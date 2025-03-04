@@ -1,5 +1,5 @@
 import React from "react";
-import "./Menu.css";
+import "./Footer.css";
 import { FiUser } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
 import { TbPigMoney } from "react-icons/tb";
@@ -7,7 +7,7 @@ import { HiChartBar } from "react-icons/hi2";
 
 const Footer = () => {
   return (
-    <div className="menu">
+    <div className="footer">
       <a href="link1">
         <GoHome className="icon" />
       </a>
