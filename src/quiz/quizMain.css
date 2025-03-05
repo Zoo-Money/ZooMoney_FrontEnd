@@ -1,0 +1,161 @@
+/* 메인 콘텐츠 */
+.quizmain-content {
+  margin-top: 40px;
+  width: 393px;
+  text-align: center;
+}
+
+/* 퀴즈 메인 캐릭터 */
+.quizmain-image {
+  width: 70px;
+  height: auto;
+  margin-left: 240px;
+  margin-bottom: -8px;
+}
+
+/* 총 점수 판 */
+.quizmain-total-box {
+  width: 80%;
+  height: 240px;
+  background-color: #fff4c2;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  margin: 0 auto 40px auto; /* 가운데 정렬 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+/* 나의 참여 현황 */
+.quizmain-total {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.quizmain-total-title {
+  font-size: 17px;
+  color: #000000;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 10px 25px 10px 25px;
+}
+
+.quizmain-total-content {
+  margin-bottom: 20px;
+}
+
+/* 현황 상세 */
+.quizmain-total-detail {
+  display: flex; /* 가로 정렬 적용 */
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: space-between; /* 🔹 양끝 정렬 */
+  width: 85%; /* 부모 요소의 전체 너비 사용 */
+  margin: 0 auto; /* 🔹 가운데 정렬 */
+}
+
+.quizmain-total-left {
+  font-size: 15px;
+  color: #000000;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 3px;
+}
+
+.quizmain-total-right {
+  font-size: 15px;
+  color: #000000;
+  font-weight: 500;
+  text-align: right;
+  margin-bottom: 3px;
+}
+
+.quizmain-total-rate {
+  margin-top: 0;
+}
+
+.quizmain-total-graph {
+  align-items: center; /* 세로 중앙 정렬 */
+  width: 88%; /* 부모 요소의 전체 너비 사용 */
+  margin: 0 auto; /* 🔹 가운데 정렬 */
+  margin-bottom: 10px;
+
+  height: 10px;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 15px;
+}
+
+.quizmain-total-calc {
+  display: flex; /* 가로 정렬 적용 */
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: space-between; /* 🔹 양끝 정렬 */
+  width: 85%; /* 부모 요소의 전체 너비 사용 */
+  margin: 0 auto; /* 🔹 가운데 정렬 */
+}
+
+.quizmain-calc-left {
+  font-size: 11px;
+  color: #000000;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 3px;
+}
+
+.quizmain-calc-right {
+  font-size: 11px;
+  color: #000000;
+  font-weight: 500;
+  text-align: right;
+  margin-bottom: 3px;
+}
+
+/* 오늘 푼 퀴즈/확인 */
+.quizmain-today {
+  font-size: 15px;
+  color: #5a5a5a;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 10px 25px 10px 25px;
+}
+
+/* 퀴즈시작하기 버튼 */
+.quizmain-button {
+  width: 80%;
+  height: 45px;
+  background-color: #f9a825;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 50px;
+}
+
+/* 꼭 확인해주세요 */
+.quizmain-check {
+  font-size: 15px;
+  color: #5a5a5a;
+  line-height: 1.5;
+  font-weight: 900;
+  margin: 10px 50px 10px 50px;
+  text-align: left;
+}
+
+/* 확인 내용 */
+.quizmain-description {
+  font-size: 15px;
+  color: #5a5a5a;
+  line-height: 2.5;
+  font-weight: 300;
+  margin: 10px 50px 10px 50px;
+  text-align: left;
+}
+
+/* 네비게이션 바 */
+.menu {
+  width: 100vw;
+  max-width: 393px;
+}

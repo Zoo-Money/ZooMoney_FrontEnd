@@ -1,0 +1,127 @@
+/* 메인 콘텐츠 */
+.quizsuccess-content {
+  margin-top: 40px;
+  /* width: 393px; */
+  text-align: center;
+}
+
+/* 퀴즈번호&이미지 묶음 */
+.quizsuccess-num-image {
+  display: flex; /* 가로 정렬 */
+  justify-content: center; /* 가운데 정렬 */
+  gap: 180px; /* 글씨와 이미지 사이 간격 */
+}
+
+/* 퀴즈번호 */
+.quizsuccess-number {
+  font-size: 17px;
+  font-weight: 900;
+  color: #000000;
+  margin-top: 60px;
+}
+
+/* 퀴즈성공 캐릭터 */
+.quizsuccess-image {
+  width: 80px;
+  height: auto;
+  margin-bottom: -8px;
+}
+
+/* 퀴즈판 */
+.quizsuccess-board {
+  padding: 10px;
+  padding-top: 25px;
+  width: 90%;
+  height: auto;
+  background-color: #fff4c2;
+
+  border: none;
+  border-radius: 15px;
+  margin: 0 auto 30px auto; /* 가운데 정렬 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 정답이에요 묶음 */
+.quizsuccess-box {
+  margin: 20px;
+}
+
+/* 정답이에요 주황 네모 */
+.quizsuccess-nemo {
+  padding: 10px;
+  width: 65%;
+  height: 10px;
+  background-color: #ffdd99;
+  border: none;
+
+  /* 💡 flexbox로 가로 정렬 적용 */
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  gap: 15px; /* 아이템 사이 간격 */
+}
+
+/* O 이미지 */
+.quizsuccess-success-image {
+  width: 35px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* 정답이에요! */
+.quizsuccess-answer {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 15px;
+  color: #000000;
+}
+
+/* 흰 박스 */
+.quizsuccess-description-box {
+  padding: 20px 0 20px 0;
+  width: 90%;
+  height: auto;
+  background-color: #ffffff;
+  color: #ffe2b3;
+  font-size: 14px;
+  font-weight: bold;
+  border: 2px solid;
+  border-radius: 15px;
+  margin: 0 auto 20px auto; /* 가운데 정렬 */
+  text-align: left;
+}
+
+/* 퀴즈 해설 */
+.quizsuccess-description {
+  font-size: 15px;
+  color: #000000;
+  line-height: 1.5;
+  font-weight: 700;
+  margin: 10px 25px 10px 25px;
+}
+
+/* 포인트 획득 */
+.quizsuccess-point {
+  font-size: 18px;
+  color: #5a5a5a;
+  font-weight: 700;
+  margin: 50px auto 70px auto;
+}
+
+/* 다음퀴즈 풀기 버튼 */
+.quizsuccess-button {
+  width: 90%;
+  height: 45px;
+  background-color: #f9a825;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+/* 네비게이션 바 */
+.menu {
+  width: 100vw;
+  max-width: 393px;
+}
