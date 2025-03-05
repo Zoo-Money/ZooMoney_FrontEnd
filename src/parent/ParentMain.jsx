@@ -56,7 +56,7 @@ const ParentMain = () => {
           <p>소비패턴 분석</p>
         </div>
         <div className="feature-card card-pink">
-          <img src={piggyBank} alt="저금통 확인" />
+          <img src={piggyBank} alt="저금통 확인ㅇㅇㅇㅇ" />
           <p>저금통 확인</p>
         </div>
       </div>
