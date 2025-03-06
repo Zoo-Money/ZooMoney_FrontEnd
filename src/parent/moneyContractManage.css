@@ -1,0 +1,51 @@
+.mock-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 80%;
+  max-width: 400px;
+}
+
+.card {
+  background-color: #ffe4b5; /* 연한 주황색 */
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.card:nth-child(2) {
+  background-color: #fffacd; /* 연한 노란색 */
+}
+
+.card-image {
+  width: 230px;
+  height: 230px;
+}
+
+.card-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 10px;
+  font-family: "Arial", sans-serif; /* 원하는 글꼴 설정 */
+}

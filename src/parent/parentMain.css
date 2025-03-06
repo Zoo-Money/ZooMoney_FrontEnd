@@ -86,6 +86,11 @@
   cursor: pointer;
 }
 
+/* 송금하기 버튼 hover 효과 */
+.consumptionhistory-button:hover {
+  background-color: #ffc881;
+}
+
 /* 송금하기 버튼 */
 .sendmoney-button {
   width: 100%;
