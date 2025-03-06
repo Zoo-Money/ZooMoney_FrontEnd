@@ -1,7 +1,7 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import StockBegin from "./stock/StockBegin";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import "./App.css";
+import StockBegin from "./stock/StockBegin";
 
 function App() {
   return (
