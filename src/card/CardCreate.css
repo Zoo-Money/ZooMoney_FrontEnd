@@ -1,0 +1,15 @@
+.card-preview {
+  width: 188px; /* 세로 신용카드의 가로 크기 (약 188px) */
+  height: 300px; /* 세로 신용카드의 세로 크기 (약 300px, 1:1.59 비율) */
+  overflow: hidden; /* 이미지가 범위를 벗어나지 않도록 설정 */
+  border-radius: 12px; /* 신용카드 모서리 둥글게 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  position: relative;
+}
+
+.card-image {
+  width: 100%; /* 이미지의 너비를 카드에 맞춤 */
+  height: 100%; /* 이미지의 높이를 카드에 맞춤 */
+  object-fit: cover; /* 이미지 비율을 유지하면서 카드 안에 맞게 자름 */
+  border-radius: 12px; /* 이미지의 모서리도 둥글게 설정 */
+}
