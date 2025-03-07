@@ -1,3 +1,4 @@
+import { Button } from "bootstrap";
 import { useState } from "react";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
@@ -41,9 +42,9 @@ const AccountBurn = () => {
           />
         </div>
 
-        <button onClick={handleBurnTokens} disabled={isLoading}>
+        <Button onClick={handleBurnTokens} disabled={isLoading}>
           {isLoading ? "처리 중..." : "출금하기"}
-        </button>
+        </Button>
       </div>
 
       {/* 하단 네비게이션 */}

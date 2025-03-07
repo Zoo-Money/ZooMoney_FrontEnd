@@ -1,3 +1,4 @@
+import { Button } from "bootstrap";
 import { useState } from "react";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
@@ -8,7 +9,7 @@ const AccountMint = () => {
   const [amount, setAmount] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
-  // 토큰 발행 핸들러s
+  // 토큰 발행 핸들러
   const handleMintTokens = async () => {
     try {
       setIsLoading(true);
@@ -41,9 +42,9 @@ const AccountMint = () => {
           />
         </div>
 
-        <button onClick={handleMintTokens} disabled={isLoading}>
+        <Button onClick={handleMintTokens} disabled={isLoading}>
           {isLoading ? "처리 중..." : "저금하기"}
-        </button>
+        </Button>
       </div>
 
       {/* 하단 네비게이션 */}
