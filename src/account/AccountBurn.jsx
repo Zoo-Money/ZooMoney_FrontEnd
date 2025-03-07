@@ -1,8 +1,11 @@
 import { useState } from "react";
+import Footer from "../common/Footer";
+import Header from "../common/Header";
+import "./Account.css";
 import { burnTokens } from "./AccountService";
 
 const AccountBurn = () => {
-  const [amount, setAmount] = useState(10000);
+  const [amount, setAmount] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   // 토큰 소각 핸들러
@@ -10,31 +13,41 @@ const AccountBurn = () => {
     try {
       setIsLoading(true);
       const burnedAmount = await burnTokens(amount);
-      alert(`${burnedAmount} 토큰 소각 완료`);
+      alert(`${burnedAmount}원 출금 완료`);
     } catch (error) {
-      alert("토큰 소각 실패");
+      alert("출금 실패");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div>
-      <h2>ZooToken 소각</h2>
-
-      <div>
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          placeholder="소각할 토큰 수량 입력"
-          disabled={isLoading}
-        />
+    <div className="mock-container">
+      {/* 헤더 */}
+      <div className="header">
+        {/* <button className="back-button">←</button> */}
+        <Header title="저금통 출금" /> {/* 원하는 제목을 props로 전달 */}
       </div>
 
-      <button onClick={handleBurnTokens} disabled={isLoading}>
-        {isLoading ? "처리 중..." : "토큰 소각"}
-      </button>
+      {/* 메인 콘텐츠 */}
+      <div className="content">
+        <div>
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="출금할 금액"
+            disabled={isLoading}
+          />
+        </div>
+
+        <button onClick={handleBurnTokens} disabled={isLoading}>
+          {isLoading ? "처리 중..." : "출금하기"}
+        </button>
+      </div>
+
+      {/* 하단 네비게이션 */}
+      <Footer />
     </div>
   );
 };
