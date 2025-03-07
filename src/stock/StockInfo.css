@@ -6,6 +6,10 @@
   line-height: 1.5;
   white-space: nowrap;
 }
+.InfoTitle a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: black; /* 글자색 검정 */
+}
 
 .InfoTitle::before {
   content: "";
