@@ -16,8 +16,8 @@ function App() {
         {/* <Route path="/" element={<QuizEnd />} /> */}
         {/* <Route path="/" element={<QuizMain />} /> */}
         {/* <Route path="/" element={<QuizQuiz />} /> */}
-        {/* <Route path="/" element={<QuizSuccess />} /> */}
-        <Route path="/" element={<QuizFailure />} />
+        <Route path="/" element={<QuizSuccess />} />
+        {/* <Route path="/" element={<QuizFailure />} /> */}
       </Routes>
     </Router>
   );
