@@ -1,0 +1,53 @@
+.container {
+  font-family: "Arial", sans-serif;
+}
+
+.header-section {
+  background-color: #fbcb7e;
+  height: 280px;
+  margin: 0 0 20px 0;
+  text-align: center;
+  position: relative;
+}
+
+.back-button {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header-image {
+  display: block;
+  margin-top: 50px;
+  width: 161px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-section {
+  padding: 20px;
+}
+
+.content-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.content-text {
+  font-size: 16px;
+  line-height: 1.5;
+}
+.mete_content {
+  padding: 0 10px 0 10px;
+}
