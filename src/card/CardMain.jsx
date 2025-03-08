@@ -1,60 +1,116 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import Header from "../card/CardMainHeader";
 import Footer from "../common/Footer";
-import cardmain from "../images/cardmain1.png";
-
+import daily from "../images/daily.png";
+import quiz from "../images/quiz.png";
+import moneyplan from "../images/moneyplan.png";
+import pattern from "../images/pattern.png";
+import { ReactComponent as BellIcon } from "../images/bell.svg"; // SVG를 React 컴포넌트로 import
+import { useState, useEffect } from "react";
+import defaultCardImage from "../images/bear01.png"; // 기본 이미지 경로
+import { fetchMetadata } from "./CardService";
+import "./CardMain.css";
 const CardMain = () => {
+  const [previewUrl, setPreviewUrl] = useState(null);
+  const [tokenId, setTokenId] = useState("");
+  const [metadata, setMetadata] = useState(null);
+  const [metadataUrl, setMetadataUrl] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [allowanceAmount, setAllowanceAmount] = useState("0원");
+
+  useEffect(() => {
+    // 세션에서 tokenId 불러오기
+    const savedTokenId = sessionStorage.getItem("nftTokenId");
+    const savedAllowance = sessionStorage.getItem("allowanceAmount");
+
+    if (savedTokenId) {
+      setTokenId(savedTokenId);
+
+      // NFT 메타데이터 조회 후 previewUrl 업데이트
+      fetchMetadata(savedTokenId, (metadata) => {
+        setPreviewUrl(metadata?.image || "");
+      });
+    }
+    // 세션에서 allowanceAmount 값이 있으면 설정
+    if (savedAllowance) {
+      setAllowanceAmount(`${Number(savedAllowance).toLocaleString()} 원`);
+    }
+  }, []);
+
   return (
     <div className="mock-container">
-      {/* 헤더 */}
-      <div className="flex justify-between items-center py-2">
-        <h1 className="font-bold text-gray-500">Zoomoney</h1>
-      </div>
-
-      {/* 카드 발급 박스 */}
-      <div className="relative w-20 h-20 mx-auto">
-        <img
-          src={cardmain}
-          alt="카드발급을 해주세요"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* 버튼 그룹 */}
-      <div className="btn-group mb-8">
-        <Button variant="outline-secondary">카드 사용내역</Button>
-        <Button variant="outline-secondary">용돈 사용내역</Button>
-      </div>
-
-      {/* 나의 응돈 */}
-      <div className="card rounded shadow-sm mb-4">
-        <h2 className="card-title h5 mb-3">나의 용돈</h2>
-        <p className="text-muted">---</p>
-        <a href="#" className="btn btn-link p-0 text-primary mb-2">
-          응돈계획 세우기
-        </a>
-        나의 소비패턴 분석
-        <a href="#" className="btn btn-link p-0 text-primary">
-          이동
-        </a>
-      </div>
-
-      {/* Zoo 포인트 */}
-      <div className="card">
-        <div className="card-body">
-          <h5 className="card-title">Zoo 포인트</h5>
-          <p className="card-text">오늘의 금융 퀴즈</p>
-          <p className="text-muted">퀴즈를 맞추면 100 포인트 지급</p>
-
-          <p className="card-text">오늘의 금융 퀴즈</p>
-          <p className="text-muted">퀴즈를 맞추면 100 포인트 지급1</p>
+      {/* 메인로고ZooMoney */}
+      <Header />
+      {/* 카드 이미지 미리보기 */}
+      <div>
+        <div className="card-preview">
+          <img
+            src={previewUrl || defaultCardImage} // 이미지가 없으면 기본 이미지 표시
+            alt="카드 미리보기"
+            className="card-image"
+          />
         </div>
       </div>
-
-      {/* 푸터 */}
+      {/* 용돈 정보 카드 */}
+      <div className="allowance-card">
+        <div className="card-header">
+          <div className="allowance-text">
+            <p className="allowance-title">나의 용돈</p>
+            <p className="allowance-amount">{allowanceAmount}</p>
+          </div>
+          <button className="consumptionhistory-button">소비내역 확인</button>
+        </div>
+        <div className="button-group">
+          <button type="button" className="sendmoney-button">
+            카드사용내역
+          </button>
+          <button type="button" className="sendmoney-button">
+            충전하기
+          </button>
+        </div>
+      </div>
+      {/* 기능 카드 버튼 */}
+      <div className="grid grid-cols-2 gap-4 mt-6 w-full">
+        <a
+          href="https://example.com/moneyplan"
+          className="feature-card card-yellow"
+        >
+          <div>
+            <img src={pattern} alt="소비 패턴 분석" />
+            <p>소비 패턴 분석</p>
+          </div>
+        </a>
+        <a
+          href="https://example.com/moneyplan"
+          className="feature-card card-blue"
+        >
+          <div>
+            <img src={moneyplan} alt="용돈 계획 세우기" />
+            <p>용돈 계획 세우기</p>
+          </div>
+        </a>
+        <a
+          href="https://example.com/moneyplan"
+          className="feature-card card-purple"
+        >
+          <div>
+            <img src={quiz} alt="금융퀴즈" />
+            <p>금융 퀴즈</p>
+          </div>
+        </a>
+        <a
+          href="https://example.com/moneyplan"
+          className="feature-card card-pink"
+        >
+          <div>
+            <img src={daily} alt="출석체크" />
+            <p>출석체크</p>
+          </div>
+        </a>
+      </div>
+      {/* 하단 네비게이션 바 */}
       <Footer />
     </div>
   );
 };
-
 export default CardMain;
