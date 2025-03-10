@@ -1,0 +1,36 @@
+.newsList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto; /* 스크롤 추가 */
+}
+
+.newsItem{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+.newsItem p{
+    margin: 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+.newsItem small{
+    font-size: 0.85em;
+    color: #555;
+}
+.newsItem:last-child{
+    border-bottom: none;
+}
+.news-item-date {
+  font-size: 0.85em;
+  color: #555;
+}
+
+.news-item-title {
+  margin: 0;
+  font-weight: bold;
+  cursor: pointer;
+}
