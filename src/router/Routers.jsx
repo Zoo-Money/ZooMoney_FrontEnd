@@ -1,12 +1,16 @@
-import React from 'react';
-import StockRouter from './StockRouter';
+import React from "react";
+import AccountRouter from "./AccountRouter";
+import NotifyRouter from "./NotifyRouter";
+import StockRouter from "./StockRouter";
 
-function Routers(props) {
-    return (
-        <div>
-            <StockRouter></StockRouter>
-        </div>
-    );
+function Routers() {
+  return (
+    <div>
+      <StockRouter />
+      <AccountRouter />
+      <NotifyRouter />
+    </div>
+  );
 }
 
 export default Routers;
