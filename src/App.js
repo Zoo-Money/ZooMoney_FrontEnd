@@ -1,7 +1,9 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import StockBegin from "./stock/StockBegin";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import AccountTest from "./account/AccountTest";
+import NotifyTest from "./account/NotifyTest";
+import "./App.css";
+import StockBegin from "./stock/StockBegin";
 
 function App() {
   return (
@@ -50,6 +52,8 @@ function App() {
         <Route path="/" element={<ChildEventSend />} />
         */}
         <Route path="/" element={<StockBegin />} />
+        <Route path="/notify" element={<NotifyTest />} />
+        <Route path="/account" element={<AccountTest />} />
         {/*
         <Route path="/" element={<StockMain />} />
         <Route path="/" element={<MyStockDetail />} />
