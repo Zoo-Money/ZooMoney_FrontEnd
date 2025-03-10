@@ -2,19 +2,11 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import StockBegin from "./stock/StockBegin";
 import "bootstrap/dist/css/bootstrap.min.css";
-import StockInfo from "./stock/StockInfo";
-import StockNews from "./stock/StockNews";
-
 
 function App() {
   return (
     <Router>
       <Routes>
-<<<<<<< HEAD
-        {/* <Route path="/" element={<StockBegin />} /> */}
-        {/* <Route path="/" element={<StockInfo />} /> */}
-        <Route path="/" element={<StockNews />} />
-=======
         {/*
         <Route path="/" element={<Header>} />
         <Route path="/" element={<Footer />} />
@@ -68,7 +60,6 @@ function App() {
         <Route path="/stock/:infoNum" element={<StockInfoDetail />} />
         <Route path="/" element={<StockNews />} />
         */}
->>>>>>> 7a92f4ae6336b59e9ff47026c09509f5ccc65056
       </Routes>
     </Router>
   );
