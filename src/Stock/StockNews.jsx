@@ -1,26 +1,27 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import StockModal from './StockModal';
+import "./stockNews.css";
 
 function StockNews(props) {
   //초기값 가져오기기
-    const [stockName, setStockName] = useState("삼성전자주식");
+    const [stockName, setStockName] = useState("");
     const [newsList, setNewsList] = useState([]);
     const [selectedNews, setSelectedNews] = useState(null);
 
-    useEffect(()=>{
-        axios({
-          url: `http://localhost:7777/zoomoney/stock/getnews/${stockName}`,
-          method: "get",
+    useEffect(() => {
+      axios({
+        url: `http://localhost:7777/zoomoney/stock/getnews/${stockName}`,
+        method: "get",
+      })
+        .then((responseData) => {
+          //console.log(responseData.data.items)
+          setNewsList(responseData.data.items);
         })
-          .then((responseData) => {
-            console.log(responseData.data.items)
-            setNewsList(responseData.data.items);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-    }, []);
+        .catch((err) => {
+          console.log(err);
+        });
+    }, [stockName]);
     
     //날짜 가공 함수
     const formatDate = (pubDate)=>{
@@ -45,19 +46,24 @@ function StockNews(props) {
     
     return (
       <div>
-        <div>
-          <ul>
+        <div className="mock-container">
+          <ul className="newsList">
             {newsList.map((item, index) => (
-              <li key={index}>
-                <p onClick={() => openModal(item)}>{clearText(item.title)}</p>
-                <small>{formatDate(item.pubDate)}</small>
+              <li key={index} className="newsItem">
+                <p className="news-item-title" onClick={() => openModal(item)}>
+                  {clearText(item.title)}
+                </p>
+                <small className="news-item-date">
+                  {formatDate(item.pubDate)}
+                </small>
               </li>
             ))}
           </ul>
-            {/* 모달 */}
+          {/* 모달 */}
           {selectedNews && (
             <StockModal
               news={selectedNews}
+              formatDate={formatDate}
               closeModal={() => setSelectedNews(null)}
               clearText={clearText}
             />
