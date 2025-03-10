@@ -2,20 +2,16 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
-function NotifyTest(props) {
+function NotifyTest() {
   const [target, setTarget] = useState(0);
 
   const sendNotification = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:7777/zoomoney/notify/send",
-        {
-          memberNum: target,
-          notifyContent: "test",
-          notifyUrl: "test.com",
-        }
-      );
-      console.log("알림 전송 성공", response);
+      await axios.post("http://localhost:7777/zoomoney/notify/send", {
+        memberNum: target,
+        notifyContent: "test",
+        notifyUrl: "test.com",
+      });
     } catch (error) {
       console.error("알림 전송 실패", error);
     }
