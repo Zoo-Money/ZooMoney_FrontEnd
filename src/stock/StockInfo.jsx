@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
+import axios from "axios";
 import "./StockInfo.css";
+import { Link } from "react-router-dom";
 
-function StockInfo(props) {
+function StockInfo() {
+  const [stockInfoList, setStockInfoList] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:7777/zoomoney/stock/StockInfoAll")
+      .then((response) => {
+        setStockInfoList(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching stock info:", error);
+      });
+  }, []);
+
   return (
     <div className="mock-container">
       <div className="header">
@@ -11,18 +26,15 @@ function StockInfo(props) {
       </div>
       <div className="faqInfo">
         <div className="faqDetail">
-          <div className="InfoTitle">주식이 뭘까?</div>
-          <div className="InfoTitle">주식은 어떻게 사고팔 수 있을까?</div>
-          <div className="InfoTitle">주식 가격은 왜 자주 바뀌는 걸까?</div>
-          <div className="InfoTitle">주식으로 어떻게 돈을 벌 수 있을까?</div>
-          <div className="InfoTitle">좋은 주식을 고르는 방법은?</div>
-          <div className="InfoTitle">주식 차트는 어떻게 보는 걸까?</div>
-          <div className="InfoTitle">주식 투자에는 어떤 전략이 있을까?</div>
-          <div className="InfoTitle">주식 시장에는 어떤 참가자들이 있을까?</div>
-          <div className="InfoTitle">
-            주식 시장은 언제 열리고, 어떻게 운영될까?
-          </div>
-          <div className="InfoTitle">주식 투자에서 조심해야 할 것은?</div>
+          {stockInfoList.map((item) => {
+            return (
+              <div className="InfoTitle">
+                <Link key={item.infoNum} to={`/stock/${item.infoNum}`}>
+                  {item.infoTitle}
+                </Link>
+              </div>
+            );
+          })}
         </div>
       </div>
       <Footer />
