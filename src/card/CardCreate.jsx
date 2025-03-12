@@ -1,25 +1,21 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { mintNFT, burnNFT } from "./CardService";
-import { PlusCircle } from "lucide-react"; // 아이콘 추가
 import Footer from "../common/Footer";
-import "./CardCreate.css";
 import Header from "../common/Header";
-import defaultCardImage from "../images/defaultcard.png";
 import defaultCardImage01 from "../images/caramelcard.png";
-import defaultCardImage02 from "../images/yellowcard.png";
+import defaultCardImage from "../images/defaultcard.png";
 import defaultCardImage03 from "../images/pinkcard.png";
 import defaultCardImage04 from "../images/skybluecard.png";
+import defaultCardImage02 from "../images/yellowcard.png";
+import "./CardCreate.css";
+import { mintNFT } from "./CardService";
 
 const CardCreate = () => {
   const [file, setFile] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [minting, setMinting] = useState(false);
-  const [burning, setBurning] = useState(false);
-  const [tokenId, setTokenId] = useState("");
   const [, setTransactionHash] = useState("");
-  const [, setBurnTransactionHash] = useState("");
   const navigate = useNavigate();
 
   const handleMintNFT = async () => {
