@@ -44,7 +44,7 @@ const QuizQuiz = () => {
         console.log("✅ 백엔드 응답:", response.data); // 백엔드 응답 확인
 
         const isCorrect = response.data.isCorrect; // 백엔드에서 받은 정답 여부
-        if (isCorrect == true) {
+        if (isCorrect === true) {
           navigate("/quiz/success", {
             state: { quiz },
             explanation: quiz.explanation,

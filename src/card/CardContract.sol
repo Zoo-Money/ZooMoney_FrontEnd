@@ -7,7 +7,7 @@ import {ERC721URIStorage} from "@openzeppelin/contracts/token/ERC721/extensions/
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 contract ZooTest is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     constructor(address initialOwner)
-        ERC721("ZooTest", "ZTS")
+        ERC721("ZooMoney", "ZMT")
         Ownable(initialOwner)
     {}
     function safeMint(address to, uint256 tokenId, string memory uri)

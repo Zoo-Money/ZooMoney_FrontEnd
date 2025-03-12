@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
 import axios from "axios"; // Axios 추가
-import Header from "../common/Header";
-import Footer from "../common/Footer";
-import "./contractWriteChild.css"; // CSS 파일 import
+import React, { useEffect, useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
+import Footer from "../common/Footer";
+import Header from "../common/Header";
+import "./contractWriteChild.css"; // CSS 파일 import
 
 const daysOfWeek = ["월", "화", "수", "목", "금", "토", "일"];
 
@@ -16,8 +16,8 @@ const getFormattedDate = () => {
 };
 
 const ContractWriteChild = () => {
-  const [selectedDay, setSelectedDay] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(getFormattedDate());
+  const [, setSelectedDay] = useState(null);
+  const [,] = useState(getFormattedDate());
   const [amount, setAmount] = useState("");
   const signatureRef = useRef(null); // 서명 캔버스 참조
   const [details, setDetails] = useState([]);

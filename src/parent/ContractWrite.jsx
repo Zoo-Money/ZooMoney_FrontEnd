@@ -214,7 +214,7 @@ const getFormattedDate = () => {
 
 const ContractWrite = () => {
   const [selectedDay, setSelectedDay] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(getFormattedDate()); // 현재 날짜 자동 설정
+  const [selectedDate, ] = useState(getFormattedDate()); // 현재 날짜 자동 설정
   const [amount, setAmount] = useState("");
   const signatureRef = useRef(null); // 서명 캔버스 참조
   const [details, setDetails] = useState([]);
