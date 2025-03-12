@@ -1,27 +1,29 @@
-/* 헤더 영역 */
 .header {
   display: flex;
-  align-items: center; /* 세로 중앙 정렬 */
-  width: 100%;
-  max-width: 393px;
-  height: 50px; /* 적절한 높이 설정 */
-  padding: 0 16px;
-  box-sizing: border-box;
+  justify-content: center; /* 제목을 중앙에 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  position: relative; /* back-icon을 왼쪽에 고정시키기 위해 상대 위치 설정 */
+  padding: 10px;
 }
 
-/* 뒤로 가기 아이콘 */
+.back-icon-container {
+  position: absolute; /* 왼쪽에 고정 */
+  left: 10px; /* 원하는 만큼 왼쪽에 간격을 둡니다. */
+}
+
+.header-title-container {
+  flex: 1; /* 제목이 중앙에 위치하도록 flex 설정 */
+  display: flex;
+  justify-content: center; /* 제목을 수평 중앙에 정렬 */
+}
+
+.header-title {
+  font-size: 24px;
+  margin: 0; /* 불필요한 마진을 제거 */
+}
 .back-icon {
   width: 24px;
   height: 24px;
   margin-right: 8px; /* 텍스트와 간격 조정 */
   cursor: pointer;
-}
-
-/* 타이틀 */
-.header-title {
-  font-size: 18px;
-  font-weight: bold;
-  flex-grow: 1; /* 남은 공간을 차지해서 가운데 정렬 효과 */
-  text-align: center;
-  margin: 8px;
 }
