@@ -1,23 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "../card/CardMainHeader";
 import Footer from "../common/Footer";
+import defaultCardImage from "../images/bear01.png"; // 기본 이미지 경로
 import daily from "../images/daily.png";
-import quiz from "../images/quiz.png";
 import moneyplan from "../images/moneyplan.png";
 import pattern from "../images/pattern.png";
-import { ReactComponent as BellIcon } from "../images/bell.svg"; // SVG를 React 컴포넌트로 import
-import { useState, useEffect } from "react";
-import defaultCardImage from "../images/bear01.png"; // 기본 이미지 경로
-import { fetchMetadata } from "./CardService";
-import { fetchMetadataFromDB } from "./CardService";
-import { Link } from "react-router-dom";
+import quiz from "../images/quiz.png";
 import "./CardMain.css";
+import { fetchMetadata } from "./CardService";
 const CardMain = () => {
-  const [previewUrl, setPreviewUrl] = useState(null);
-  const [tokenId, setTokenId] = useState("");
   const [metadata, setMetadata] = useState(null);
-  const [metadataUrl, setMetadataUrl] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [, setMetadataUrl] = useState("");
+  const [, setLoading] = useState(false);
   const [allowanceAmount, setAllowanceAmount] = useState("0원");
 
   useEffect(() => {

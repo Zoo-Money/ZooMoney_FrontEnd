@@ -2,7 +2,6 @@ import { Button } from "bootstrap";
 import { useState } from "react";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import "./Account.css";
 import { mintTokens } from "./AccountService";
 
 const AccountMint = () => {
