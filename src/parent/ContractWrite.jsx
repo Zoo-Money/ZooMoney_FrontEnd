@@ -311,18 +311,19 @@ const ContractWrite = () => {
           </div>
 
           {/* 지급 금액 */}
-          <label>지급 금액</label>
-          <div className="amount-input-container">
-            <input
-              type="text"
-              value={amount}
-              onChange={handleAmountChange}
-              placeholder="금액 입력"
-              inputMode="numeric"
-            />
-            <span>원</span>
+          <div className="amount-input-containerTop">
+            <label>지급금액</label>
+            <div className="amount-input-container">
+              <input
+                type="text"
+                value={amount}
+                onChange={handleAmountChange}
+                placeholder="금액 입력"
+                inputMode="numeric"
+              />
+              <span>원</span>
+            </div>
           </div>
-
           {/* 계약일자 */}
           <div className="input-box">
             <label>계약일자</label>
@@ -375,7 +376,7 @@ const ContractWrite = () => {
           {/* 제출 버튼 */}
           <div className="submit-button-container">
             <button className="submit-button" onClick={handleSubmit}>
-              보내기
+              아이에게 보내기
             </button>
           </div>
         </div>

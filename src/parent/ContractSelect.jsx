@@ -6,13 +6,21 @@ import Header from "../common/Header";
 import Footer from "../common/Footer";
 import "./contractSelect.css"; // CSS 파일 import
 import { FaChevronRight } from "react-icons/fa"; // 아이콘 사용
+import { useNavigate } from "react-router-dom";
 
 //  npm 방식으로 자동 로드 설정
-//pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.min.mjs");
+pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.min.mjs");
+
+//npm install pdf-viewer-reactjs
 //  pdf.worker 파일을 public 폴더에서 로드하도록 설정
-pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+// pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
 const ContractSelect = () => {
+  const navigate = useNavigate(); // useNavigate 사용
+  const handleContractDetail1Click = () => {
+    navigate("/contract/contractDetail1");
+  };
+
   return (
     <div className="mock-container">
       <div className="contract-container">
@@ -33,7 +41,7 @@ const ContractSelect = () => {
           </div>
 
           {/* 과거 계약서 확인 버튼 */}
-          <div className="past-contracts">
+          <div className="past-contracts" onClick={handleContractDetail1Click}>
             <p> 과거 계약서 확인하러 가기 </p>
             <FaChevronRight className="arrow-icon" />
           </div>

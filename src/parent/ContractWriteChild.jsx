@@ -26,22 +26,46 @@ const ContractWriteChild = () => {
   // 부모가 작성한 계약 내용을 저장할 state
   const [contractDetails, setContractDetails] = useState("");
   useEffect(() => {
-    // 부모 컴포넌트에서 전달된 계약 내용을 가져옴
-    const fetchContractDetails = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:7777/zoomoney/contract/getDetails",
-          { params: { contractNum: 123 } } //  계약서 번호는 상황에 맞게 변경
-        );
-        setContractDetails(response.data.contract_content); // 불러온 세부사항 저장
-      } catch (error) {
-        console.error("세부사항 불러오기 실패:", error);
-        alert("계약 세부사항을 불러오지 못했습니다.");
-      }
-    };
+    axios
+      .get("http://localhost:7777/zoomoney/contract/getDetails") //  세션 기반으로 조회
+      .then((response) => {
+        console.log("✅ [LOG] Axios 응답 데이터:", response.data); // 🔍 응답 데이터 확인
 
-    fetchContractDetails();
+        if (response.data && response.data.contractMoney) {
+          setAmount(response.data.contractMoney.toLocaleString()); // 🔹 지급금액을 콤마 포함 형식으로 설정
+        } else {
+          setAmount("금액 정보를 찾을 수 없습니다.");
+        }
+        if (response.data && response.data.contractContent) {
+          setContractDetails(response.data.contractContent); //  부모가 작성한 계약 내용을 세부사항에 표시
+        } else {
+          setContractDetails("계약서 내용을 찾을 수 없습니다.");
+        }
+      })
+      .catch((error) => {
+        console.error("계약서 불러오기 실패:", error);
+        alert("계약서 내용을 불러오지 못했습니다.");
+      });
   }, []);
+
+  //테스트코드
+  // useEffect(() => {
+  //   // 부모 컴포넌트에서 전달된 계약 내용을 가져옴
+  //   const fetchContractDetails = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "http://localhost:7777/zoomoney/contract/getDetails",
+  //         { params: { contractNum: 123 } } //  계약서 번호는 상황에 맞게 변경
+  //       );
+  //       setContractDetails(response.data.contract_content); // 불러온 세부사항 저장
+  //     } catch (error) {
+  //       console.error("세부사항 불러오기 실패:", error);
+  //       alert("계약 세부사항을 불러오지 못했습니다.");
+  //     }
+  //   };
+
+  //   fetchContractDetails();
+  // }, []);
 
   // 요일 선택
   const handleDaySelect = (day) => {
@@ -81,15 +105,15 @@ const ContractWriteChild = () => {
 
     //  전송할 데이터 구성
     const contractData = {
-      contract_money: parseInt(amount.replace(/,/g, ""), 10), // 금액에서 ',' 제거 후 정수 변환
-      contract_status: false, // 초안 상태
-      contract_excelpath: signatureData, // Base64 서명 이미지 전송
+      // contract_money: parseInt(amount.replace(/,/g, ""), 10), // 금액에서 ',' 제거 후 정수 변환
+      // contract_status: false, // 초안 상태
+      // contract_excelpath: signatureData, // Base64 서명 이미지 전송
     };
 
     try {
       //  Axios POST 요청으로 데이터 전송
       const response = await axios.post(
-        "http://localhost:7777/zoomoney/contract/saveDraft",
+        "http://localhost:7777/zoomoney/contract/complete",
         contractData
       );
 
@@ -110,7 +134,7 @@ const ContractWriteChild = () => {
 
           {/* 세부사항 입력 */}
           <div className="info-box">
-            <div className="contractWrtieChild-details-container">
+            <div className="contractWriteChild-details-container">
               {details.length > 0 && (
                 <ol>
                   {details.map((line, index) => (
@@ -118,36 +142,45 @@ const ContractWriteChild = () => {
                   ))}
                 </ol>
               )}
-              {/* <textarea
+              {/* 부모가 작성한 계약 내용 표시 (details가 있을 경우만) */}
+              <textarea
                 className="contractWrtieChild-custom-textarea"
-                placeholder="계약 세부사항을 입력하세요..."
-                value={inputValue}
-                onChange={handleDetailChange}
-                onKeyDown={handleKeyPress}
-              /> */}
-              <div className="info-box">
-                <div className="contractWrtieChild-details-container">
-                  <textarea
-                    className="contractWrtieChild-custom-textarea"
-                    value={contractDetails}
-                    readOnly // ✅ 읽기 전용 설정
-                  />
-                </div>
-              </div>
+                value={contractDetails || ""}
+                readOnly //  읽기 전용 설정
+              />
             </div>
           </div>
 
           {/* 지급 금액 */}
-          <label>지급 금액</label>
-          <div className="contractWrtieChild-amount-input-container">
-            <input
-              type="text"
-              value={amount}
-              onChange={handleAmountChange}
-              placeholder="금액 입력"
-              inputMode="numeric"
-            />
-            <span>원</span>
+          <div className="contractWrtieChild-amount-input-containerTop">
+            <label>지급금액</label>
+            <div className="contractWrtieChild-amount-input-container">
+              <span>{amount} 원</span>
+            </div>
+          </div>
+
+          {/* 계약일자 */}
+          <div className="input-box">
+            <label>계약일자</label>
+            <input type="text" value={selectedDate} readOnly />
+          </div>
+
+          {/* 지급 요일 선택 */}
+          <div className="day-select">
+            <label>지급 요일 선택</label>
+            <div className="day-buttons">
+              {daysOfWeek.map((day) => (
+                <button
+                  key={day}
+                  className={`day-button ${
+                    selectedDay === day ? "selected" : ""
+                  }`}
+                  onClick={() => handleDaySelect(day)}
+                >
+                  {day}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* 용돈 지급인 (서명) */}
@@ -180,7 +213,7 @@ const ContractWriteChild = () => {
 
           {/* 제출 버튼 */}
           <button className="submit-button" onClick={handleSubmit}>
-            보내기
+            서명 완료
           </button>
         </div>
 

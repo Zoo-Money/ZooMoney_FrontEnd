@@ -6,8 +6,13 @@ import Header from "../common/Header";
 import Footer from "../common/Footer";
 import "./contractDetail1.css";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // ▼▲ 화살표 추가
+// import { pdfjs } from "react-pdf";
 
-pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+//npm install pdfjs-dist@3.4.120
+//pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+
+// PDF Worker 강제 설정
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js`;
 
 const ContractDetail1 = () => {
   // 🔹 계약서 열림/닫힘 상태 관리

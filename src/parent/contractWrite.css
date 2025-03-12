@@ -78,6 +78,12 @@
   border-bottom: 2px solid #ffa500;
 }
 /* 지급 금액 입력 */
+
+.amount-input-containerTop label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
 .amount-input-container {
   display: flex;
   align-items: center;
