@@ -97,7 +97,7 @@
 }
 
 /* 참여하기 버튼 */
-.plan-button {
+button {
   width: 80%;
   height: 45px;
   background-color: #f9a825;

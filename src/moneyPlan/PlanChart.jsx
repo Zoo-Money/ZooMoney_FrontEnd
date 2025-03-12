@@ -1,13 +1,13 @@
 import React from 'react';
-import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJs, ArcElement, Tooltip, Legend, plugins } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJs, Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale } from 'chart.js';
 import axios from 'axios';
-import { id } from 'ethers';
-import { color } from 'chart.js/helpers';
 
-ChartJs.register(ArcElement, Tooltip, Legend);
+ChartJs.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
 
-function PlanChart({ values, allowance, onSave, formatCurrency }) {
+function PlanChart({ values, allowance, formatCurrency, onSave}) {
+   
+  //Pie 차트에 사용될 데이터 생성성
   const chartData = {
     labels: Object.keys(values),
     datasets: [
@@ -16,25 +16,28 @@ function PlanChart({ values, allowance, onSave, formatCurrency }) {
           parseInt(val.replace(/[^0-9]/g, ""), 10)
         ),
         backgroundColor: [
-          "#007bff",
-          "#ffc107",
-          "#dc3545",
-          "#17a2b8",
-          "#28a745",
+          "#ffcb9a",
+          "#c2f1ff",
+          "#fff4c2",
+          "#fec7c0",
+          "#caffc2",
         ],
         borderWidth: 1,
         hoverOffset: 4,
         hoverBackgroundColor: [
-          "#FF4364",
-          "#2692DB",
-          "#DDBE46",
-          "#3A9090",
-          "#7746FF",
+          "#ffcb9a",
+          "#c2f1ff",
+          "#fff4c2",
+          "#fec7c0",
+          "#caffc2",
         ],
       },
     ],
   };
-
+const total = Object.values(values).reduce(
+  (acc, val) => acc + parseInt(val.replace(/[^0-9]/g, ""), 10),
+  0
+);
   const centerText = {
     id: 'centerText',
     beforeDraw: (chart) => {
@@ -45,7 +48,7 @@ function PlanChart({ values, allowance, onSave, formatCurrency }) {
         ctx.textBaseline = 'middle';
         ctx.textAlign = 'center';
 
-        const text = `${allowance}`;
+        const text = formatCurrency(allowance);
         const textX = width / 2;
         const textY = height / 2;
 
@@ -54,16 +57,33 @@ function PlanChart({ values, allowance, onSave, formatCurrency }) {
     }
   };
 
+  //범례 스타일링
   const chartOption = {
     plugins: {
         legend: {
             display: true,
             position: 'bottom',
             labels:{
-                font: {size: 14},
+                font: {size: 12},
                 color: '#333',
                 padding: 10,
                 boxWidth: 12,
+                generateLabels: (chart) => {
+                  const labels = chart.data.labels || [];
+                  const datasets = chart.data.datasets || [];
+                  return labels.map((label, i)=>{
+                    const dataset = datasets[0];
+                    const value = dataset.data[i];
+                    const percentage = ((value / total) * 100).toFixed(2);
+                    const amount = formatCurrency(value);
+                    return{
+                      text: `${label} - ${percentage}% (${amount})`,
+                      fillStyle: dataset.backgroundColor[i],
+                      strokeStyle: dataset.borderColor[i],
+                      lineWidth: 2,
+                    };
+                  });
+                },
             },
         },
     },
@@ -97,9 +117,14 @@ function PlanChart({ values, allowance, onSave, formatCurrency }) {
   return (
     <div className="mock-container">
       <div className="chart-container">
-        <Doughnut data={chartData} options={{plugins: {legend: {display: false}}}} plugins={[centerText]} options={chartOption}></Doughnut>
-        <button onClick={onSave}>용돈 계획 세우기</button>
+        <Pie
+          data={chartData}
+          options={{ plugins: { legend: { display: false } } }}
+          plugins={[centerText]}
+          options={chartOption}
+        ></Pie>
       </div>
+      <button onClick={onSave}>용돈 계획 세우기</button>
     </div>
   );
 }
