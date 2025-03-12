@@ -1,0 +1,227 @@
+/* 전체 레이아웃 */
+.contractWrtieChild-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+}
+
+/* 계약서 입력 폼 */
+.contractWrtieChild-contract-form {
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}
+
+/* 계약서 안내 텍스트 스타일 */
+.info-text {
+  font-size: 14px; /* 기존보다 작은 글씨 크기 */
+  font-weight: bold; /* 굵은 글씨 */
+  margin-bottom: 1px; /* 아래 여백 추가 */
+}
+
+/* 계약서 정보 세부사항 입력박스 */
+.info-box {
+  border: 1px solid #ffa500;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  font-size: 14px;
+  color: #666;
+}
+/* 입력 및 리스트 컨테이너 */
+.contractWrtieChild-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 목록 스타일 */
+.details-container ol {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.details-container li {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* 세부사항 입력 텍스트 영역 */
+.contractWrtieChild-custom-textarea {
+  width: 100%;
+  min-height: 40px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: #333;
+  resize: none;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+.custom-textarea::placeholder {
+  color: #aaa;
+}
+
+.custom-textarea:focus {
+  border-bottom: 2px solid #ffa500;
+}
+/* 지급 금액 입력 */
+.contractWrtieChild-amount-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ffa500;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.amount-input-container input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  flex-grow: 1;
+  text-align: right;
+}
+
+.amount-input-container span {
+  margin-left: 5px;
+  font-size: 16px;
+  color: #000;
+}
+
+/* 목록 스타일 */
+.info-box ol {
+  margin: 10px 0 0 15px;
+  padding: 0;
+}
+
+.info-box li {
+  margin-bottom: 5px;
+}
+
+/* 입력 박스 */
+.input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-box input {
+  padding: 10px;
+  border: 1px solid #ffa500;
+  border-radius: 8px;
+  font-size: 16px;
+  text-align: right;
+  background-color: #fff;
+}
+
+/* 지급 요일 선택 */
+.day-select {
+  display: flex;
+  flex-direction: column;
+}
+
+.day-select label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.day-buttons {
+  display: flex;
+  /* gap: 8px; */
+}
+
+.day-button {
+  padding: 8px 12px;
+  border: 1px solid #ffa500;
+  background-color: white;
+  color: #ffa500;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.day-button.selected {
+  background-color: #ffa500;
+  color: white;
+}
+
+/* 서명 박스 */
+.contractWrtieChild-signature-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.signature-box label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.contractWrtieChild-signature {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  border: 1px solid #ffa500;
+  border-radius: 8px;
+}
+
+/* 서명 캔버스 */
+.contractWrtieChild-signature-canvas {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+}
+
+/* 서명 지우기 버튼 */
+.contractWrtieChild-clear-button {
+  background-color: #ddd;
+  color: black;
+  border: none;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.clear-button:hover {
+  background-color: #bbb;
+}
+
+/* 제출 버튼 */
+.submit-button {
+  background-color: #ffa500;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+}
+
+.submit-button:hover {
+  background-color: #ff8c00;
+}

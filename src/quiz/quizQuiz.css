@@ -1,0 +1,146 @@
+/* 메인 콘텐츠 */
+.quizquiz-content {
+  margin-top: 50px;
+  /* width: 393px; */
+  text-align: center;
+}
+
+/* 퀴즈 출제 캐릭터 */
+.quizquiz-image {
+  width: 80px;
+  height: auto;
+  margin-left: 250px;
+  margin-bottom: -8px;
+}
+
+/* 퀴즈판 */
+.quizquiz-board {
+  padding: 10px;
+  width: 90%;
+  height: auto;
+  background-color: #fff4c2;
+  border: none;
+  border-radius: 15px;
+  margin: 0 auto 30px auto; /* 가운데 정렬 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 퀴즈번호 묶음 */
+.quizquiz-num {
+  margin: 20px;
+}
+
+/* 퀴즈번호 */
+.quizquiz-number {
+  font-size: 17px;
+  font-weight: 900;
+  color: black;
+  margin-right: 210px;
+}
+
+/* 흰 박스 */
+.quizquiz-description-box {
+  padding: 20px 0 20px 0;
+  width: 90%;
+  height: auto;
+  background-color: #ffffff;
+  color: #ffe2b3;
+  font-size: 14px;
+  font-weight: bold;
+  border: 2px solid;
+  border-radius: 15px;
+  margin: 0 auto 20px auto; /* 가운데 정렬 */
+}
+
+/* 퀴즈 */
+.quizquiz-description {
+  font-size: 15px;
+  color: #000000;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 10px 25px 10px 25px;
+}
+
+/* OX 버튼 묶음 */
+.quizquiz-ox-button {
+  margin: 30px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* O 버튼 */
+.quizquiz-o-button {
+  padding: 10px;
+  width: 33%;
+  height: 110px;
+  background-color: #fff4c2;
+  border: none;
+  border-radius: 15px;
+  margin-right: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* X 버튼 */
+.quizquiz-x-button {
+  padding: 10px;
+  width: 33%;
+  height: 110px;
+  background-color: #fff4c2;
+  border: none;
+  border-radius: 15px;
+  margin-left: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.quizquiz-o-selected {
+  padding: 10px;
+  width: 33%;
+  height: 110px;
+  background-color: #dfd6ac;
+  border: none;
+  border-radius: 15px;
+  margin-right: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.quizquiz-x-selected {
+  padding: 10px;
+  width: 33%;
+  height: 110px;
+  background-color: #dfd6ac;
+  border: none;
+  border-radius: 15px;
+  margin-left: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* O 이미지 */
+.quizquiz-o-image {
+  width: 70px;
+  height: auto;
+}
+
+/* X 이미지 */
+.quizquiz-x-image {
+  width: 63px;
+  height: auto;
+}
+
+/* 정답제출 버튼 */
+.quizquiz-answer-button {
+  width: 90%;
+  height: 45px;
+  background-color: #f9a825;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+/* 네비게이션 바 */
+.menu {
+  width: 100vw;
+  max-width: 393px;
+}

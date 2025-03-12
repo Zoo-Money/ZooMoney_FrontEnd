@@ -1,0 +1,119 @@
+/* 헤더 */
+.AccountHeader {
+  background-color: #ffd7a0;
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 20px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.AccountHeaderText {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.AccountHeader img {
+  width: 25%;
+  height: auto;
+  margin-right: 20px;
+}
+
+.AccountCount {
+  width: 90%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.AccountContent {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 1.25rem;
+  font-weight: bold;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.AccountContent::-webkit-scrollbar {
+  display: none; /* Chrome , Safari , Opera */
+}
+
+.AccountResult {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.AccountResult form {
+  min-width: 350px;
+  min-height: 150px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.AccountEmpty {
+  width: 100%;
+  min-height: 500px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.AccountCreate {
+  width: 90%;
+  margin-top: 20px;
+  margin-bottom: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.AccountCreate a {
+  text-decoration: none;
+}
+
+.AccountCreate button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.AccountCreate button span {
+  transition: color 0.5s ease; /* 기본 상태에서도 transition 설정 */
+}
+
+.AccountCreate button:hover span {
+  cursor: pointer;
+  color: #ff9500;
+}

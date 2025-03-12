@@ -1,0 +1,27 @@
+/* 메인 콘텐츠 */
+.quizloading-content {
+  margin-top: 40px;
+  width: 393px;
+  text-align: center;
+}
+
+/* 퀴즈 메인 캐릭터 */
+.quizloading-image {
+  width: 100px;
+  height: auto;
+  margin-top: 140px;
+}
+
+/* 확인 내용 */
+.quizloading-description {
+  font-size: 17px;
+  color: #5a5a5a;
+  font-weight: 900;
+  margin: 50px 50px 10px 50px;
+}
+
+/* 네비게이션 바 */
+.menu {
+  width: 100vw;
+  max-width: 393px;
+}

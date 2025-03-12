@@ -1,0 +1,55 @@
+/* 계약 확인 목록 */
+.contractDetail1-list {
+  width: 100vw; /* 전체 너비 확장 */
+  max-width: 100%; /* 화면 전체에 걸치도록 설정 */
+  padding: 0 20px; /* 좌우 여백 조정 */
+  box-sizing: border-box; /* 여백 포함한 너비 조정 */
+}
+.contractDetail1-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0; /* 상단 여백 제거 */
+  margin-top: 0; /* 상단 간격 없애기 */
+  background-color: #fff;
+  height: calc(100vh - 60px); /* 전체 화면 높이에서 헤더/푸터 제외 */
+  font-family: "Arial", sans-serif;
+}
+/* 계약 항목 */
+.contractDetail1-item {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  width: 100%;
+}
+
+/* 계약서 제목과 아이콘 정렬 */
+.contractDetail1-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* 날짜와 아이콘 사이 간격 추가 */
+  cursor: pointer;
+  padding: 10px;
+  background-color: #fff;
+  font-weight: bold;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.contract-header:hover {
+  background-color: #ff8c00;
+  color: #fff;
+}
+
+.pdf-viewer {
+  width: 100%;
+  margin-top: 10px;
+  border: 2px solid #ffa500;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #fff8e1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.contractDetail-toggle-icon {
+  margin-left: auto;
+}

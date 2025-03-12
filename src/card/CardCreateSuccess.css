@@ -1,0 +1,51 @@
+/* 전체 화면을 아이폰 14 프로 크기로 설정 */
+/* .mock-container {
+  width: 100vw;
+  max-width: 393px;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+/* 메인 콘텐츠 */
+.content {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.main-image {
+  width: auto;
+  height: auto;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.description {
+  font-size: 15px;
+  color: #5a5a5a;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 10px 25px 10px 25px;
+  font-weight: 400;
+}
+/* 홈 버튼 */
+.success-button {
+  width: 80%;
+  height: 45px;
+  background-color: #f9a825;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 150px;
+}
+
+/* 네비게이션 바 */
+.menu {
+  width: 100vw;
+  max-width: 393px;
+}

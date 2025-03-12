@@ -1,0 +1,37 @@
+.InfoTitle {
+  position: relative;
+  padding: 15px 15px 15px 45px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.InfoTitle a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: black; /* 글자색 검정 */
+}
+
+.InfoTitle::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+  width: calc(100% - 60px);
+  height: 1.5px;
+  background-color: #e5e7eb;
+}
+
+.faqInfo {
+  padding: 20px 0px 20px 0px;
+  /* flex: 1; */
+  flex-grow: 1;
+  /* overflow-y: auto;
+  overflow-x: hidden; */
+  width: 100%;
+}
+.faqDetail {
+  max-height: calc(
+    100vh - 160px
+  ); /* header와 footer를 제외한 영역만 차지하도록 설정 */
+  overflow-y: auto; /* 스크롤 추가 */
+}

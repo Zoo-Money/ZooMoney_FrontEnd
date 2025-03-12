@@ -1,0 +1,116 @@
+
+.content {
+  margin-top: 50px;
+  text-align: center;
+}
+.content p{
+    font-size: 24px;
+}
+.content span{
+    font-weight: bold;
+    color: #ff5454;
+}
+.content-input{
+    float: right;
+    vertical-align: middle;
+    border: none;
+    background-color: transparent;
+    margin-right: 15px;
+    text-align: right;
+    align-items: center;
+}
+.content-image{
+    margin-left: 10px;
+    width: 56px;
+    height: 56px;
+}
+.content-image:last-of-type{
+    
+}
+.etc{
+    margin-left: 20px;
+}
+.content-eat{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 15px;
+    width: 329px;
+    height: 58px;
+    margin-bottom: 20px;
+    background-color: #ffcb9a;
+}
+.content-cart{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 15px;
+    width: 329px;
+    height: 58px;
+    margin-bottom: 20px;
+    background-color: #c2f1ff;
+}
+.content-game{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 15px;
+    width: 329px;
+    height: 58px;
+    margin-bottom: 20px;
+    background-color: #fff4c2;
+}
+.content-pig{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 15px;
+    width: 329px;
+    height: 58px;
+    margin-bottom: 20px;
+    background-color: #fec7c0;
+}
+.content-etc{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 15px;
+    width: 329px;
+    height: 58px;
+    margin-bottom: 20px;
+    background-color: #caffc2;
+}
+
+
+
+.description {
+  font-size: 15px;
+  color: #5a5a5a;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 10px 25px 100px 25px;
+}
+
+/* 참여하기 버튼 */
+.plan-button {
+  width: 80%;
+  height: 45px;
+  background-color: #f9a825;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* 네비게이션 바 */
+.menu {
+  width: 100vw;
+  max-width: 393px;
+}

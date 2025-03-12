@@ -1,0 +1,117 @@
+.mypageInfo {
+  margin: 8%;
+}
+.arrowBackIcoon {
+  transform: "scaleX(-1)" !important; /*좌우반전*/
+  transition: "transform 0.3s ease";
+}
+
+.info-card {
+  position: relative;
+  background-color: #fef3c7;
+  padding: 16px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 360px;
+}
+
+.InfoTitle {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.bear-img {
+  position: absolute;
+  top: -55px; /* 카드 상단보다 위로 올리기 */
+  right: 0px; /* 카드의 오른쪽 외부로 배치 */
+  width: 60px; /* 이미지 크기 */
+  z-index: 1; /* 카드 내용 위로 오도록 설정 */
+}
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+}
+.info-row2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 0;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.mytitle {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 25px 0 5px 5px;
+}
+
+.password-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+}
+
+.edit-btn {
+  background-color: #f97316;
+  color: white;
+  padding: 0rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.point-text {
+  color: #ff9800;
+}
+
+.card-box {
+  border: 1px solid #fb923c;
+  padding: 16px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 360px;
+  margin-top: 12px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.card-subtext {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.card-link {
+  color: #ea580c;
+  font-weight: bold;
+  text-align: left;
+  display: block;
+}
+
+.myDetail {
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+}
+
+.InfoTitle::before {
+  content: none !important;
+}
