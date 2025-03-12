@@ -39,7 +39,8 @@
 
 .mock-container {
   width: 100vw;
-  max-width: 393px;
+  max-width: 428px;
+  max-height: 926px;
   height: 100vh;
   background-color: white;
   display: flex;
