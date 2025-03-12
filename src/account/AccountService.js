@@ -2,7 +2,7 @@ import { BrowserProvider, Contract, parseUnits } from "ethers";
 import AccountABI from "./AccountABI.json";
 
 // 지갑 주소
-const walletAddress = process.env.REACT_APP_FT_WALLET_ADDRESS;
+const walletAddress = process.env.REACT_APP_WALLET_ADDRESS;
 
 // 스마트 컨트랙트 주소
 const contractAddress = process.env.REACT_APP_FT_CONTRACT_ADDRESS;
