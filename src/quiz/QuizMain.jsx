@@ -1,10 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./quizMain.css";
 import Footer from "../common/Footer";
 import giraffe2 from "../images/quiz/giraffe_main.png";
 import Header from "../common/Header";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const QuizMain = () => {
+  const [quizCount, setQuizCount] = useState(0); // 퀴즈 데이터 개수를 저장할 상태
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:7777/zoomoney/quiz/count")
+      .then((response) => {
+        console.log("✅ 백엔드 응답:", response.data); // 백엔드 응답 확인
+        setQuizCount(response.data.quizCount); // 상태 업데이트
+      })
+      .catch((error) => console.error("퀴즈의 개수를 알 수 없습니다.", error));
+  }, []);
+
+  const navigate = useNavigate();
+
+  const startQuiz = () => {
+    if (quizCount >= 5) {
+      // 누적 퀴즈 data수가 5개 이상이면
+      navigate("/quiz/end"); // 종료 페이지로 이동
+    } else {
+      // 5개 미만이면
+      navigate("/quiz/quiz"); // 퀴즈 출제 페이지로 이동
+    }
+  };
+
   return (
     <div className="mock-container">
       {/* 헤더 */}
@@ -50,7 +76,9 @@ const QuizMain = () => {
         <p className="quizmain-today">
           <strong>오늘 푼 퀴즈: 2/5</strong>
         </p>
-        <button className="quizmain-button">퀴즈 시작하기</button>
+        <button className="quizmain-button" onClick={startQuiz}>
+          퀴즈 시작하기
+        </button>
 
         {/* 주의사항 */}
         <p className="quizmain-check">
