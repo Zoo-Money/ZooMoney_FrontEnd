@@ -29,10 +29,7 @@ const QuizEnd = () => {
 
   return (
     <div className="mock-container">
-      {/* 헤더 */}
-      <div className="header">
-        <Header title="퀴즈 완료" /> {/* 원하는 제목을 props로 전달 */}
-      </div>
+      <Header title="퀴즈 완료" />
 
       {/* 메인 콘텐츠 */}
       <div className="quizend-content">

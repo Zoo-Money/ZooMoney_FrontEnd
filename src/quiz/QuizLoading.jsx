@@ -7,11 +7,7 @@ import Header from "../common/Header";
 const QuizLoading = () => {
   return (
     <div className="mock-container">
-      {/* 헤더 */}
-      <div className="header">
-        {/* <button className="back-button">←</button> */}
-        <Header title="오늘의 금융퀴즈" /> {/* 원하는 제목을 props로 전달 */}
-      </div>
+      <Header title="오늘의 금융퀴즈" />
 
       {/* 메인 콘텐츠 */}
       <div className="quizloading-content">
