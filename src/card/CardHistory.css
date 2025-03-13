@@ -1,0 +1,58 @@
+.usehist-header {
+  background-color: #fbcb7e;
+  height: 280px;
+  margin: 0 0 20px 0;
+  text-align: center;
+  position: relative;
+}
+.cardHistory-header {
+  font-family: "Arial", sans-serif;
+  background-color: #ffd6a7;
+  height: 300px;
+  margin: 0 0 20px 0;
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+.cardHist-content {
+  overflow-y: auto;
+  max-height: calc(100vh - 450px);
+}
+.cardHist-image {
+  margin-top: 3%;
+  width: 260px;
+  height: auto;
+}
+
+.cardHist-gotoAccount {
+  width: 30%;
+  height: 11%;
+  background-color: #f9a825;
+  color: #ffff;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 3%;
+}
+
+.cardHist-content {
+  margin: 0;
+}
+
+.cardHistoryInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 330px;
+}
+
+.cardhist-period {
+  display: flex;
+  justify-content: flex-start !important; /* 왼쪽 정렬 */
+  align-items: center; /* 세로로 중앙 정렬 (선택 사항) */
+  width: 330px;
+  margin-bottom: 5%;
+}
