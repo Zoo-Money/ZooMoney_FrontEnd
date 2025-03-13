@@ -1,13 +1,11 @@
-.container {
+.stockinfo-header {
   font-family: "Arial", sans-serif;
-}
-
-.header-section {
   background-color: #fbcb7e;
-  height: 280px;
+  height: 300px;
   margin: 0 0 20px 0;
   text-align: center;
   position: relative;
+  width: 100%;
 }
 
 .back-button {
@@ -20,12 +18,7 @@
   cursor: pointer;
 }
 
-.header-title {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.header-image {
+.stockinfo-image {
   display: block;
   margin-top: 50px;
   width: 161px;
@@ -34,20 +27,11 @@
   margin-right: auto;
 }
 
-.content-section {
-  padding: 20px;
+.stockinfo_content {
+  padding: 0 20px 0 20px;
+  margin-bottom: 50px;
+  overflow-y: auto;
 }
-
-.content-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.content-text {
-  font-size: 16px;
-  line-height: 1.5;
-}
-.mete_content {
-  padding: 0 10px 0 10px;
+.stockinfo_content span {
+  font-size: 18px;
 }
