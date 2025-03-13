@@ -110,31 +110,39 @@ export const mintNFT = async (file, setMinting, setTransactionHash) => {
       // 기존 카드 정보 사용하여 NFT 이미지 변경
       console.log("기존 카드 정보 사용:", cardNum, cardMetadata, cardMoney);
 
-      // 기존 메타데이터 URL을 사용하여 새로운 이미지 업로드
+      // 새 이미지 업로드
       const newImageUrl = await uploadToIPFS(file); // 새 이미지를 업로드하는 함수
+      console.log("새 이미지 URL:", newImageUrl);
+
       if (!newImageUrl) {
         setMinting(false);
         return;
       }
 
-      // 새로운 metadataUrl 생성
+      // 새로운 메타데이터 URL 생성 (새로운 이미지 URL을 기반으로)
       const newMetadataUrl = await uploadMetadataToIPFS(newImageUrl);
+      console.log("새로운 메타데이터 URL:", newMetadataUrl);
+
       if (!newMetadataUrl) {
         setMinting(false);
         return;
       }
 
-      // 기존 tokenId(cardMetadata)를 사용하여 NFT 이미지 변경
-      const transaction = await contract.updateMetadata(
-        cardMetadata,
-        newMetadataUrl
-      );
-      await transaction.wait();
+      try {
+        // 기존 토큰의 메타데이터 URL을 업데이트하는 함수 호출
+        console.log("setTokenURI 호출 중...");
+        const transaction = await contract.setTokenURI(
+          cardMetadata, // 기존 tokenId
+          newMetadataUrl // 새로운 metadataUrl
+        );
+        await transaction.wait();
+        console.log("NFT 이미지 변경 완료:", newMetadataUrl);
 
-      console.log("NFT 이미지 변경 완료:", newMetadataUrl);
-
-      // 카드 날짜 최신화
-      await updateCardDate(memberNum);
+        // 카드 날짜 최신화
+        await updateCardDate(memberNum);
+      } catch (error) {
+        console.error("메타데이터 업데이트 중 오류 발생:", error);
+      }
     } else {
       // 세션에 카드 정보가 없을 경우 새로운 카드 발급
       console.log("세션에 카드 정보 없음, 신규 카드 발급");
@@ -156,6 +164,7 @@ export const mintNFT = async (file, setMinting, setTransactionHash) => {
         return;
       }
 
+      console.log("safeMint 호출 중...");
       const transaction = await contract.safeMint(
         address,
         cardMetadata,
@@ -249,6 +258,9 @@ export const fetchMetadata = async (
 
     setMetadata(metadata);
     setMetadataUrl(ipfsUrl);
+
+    // ✅ 저장된 `metadataUrl`을 다른 곳에서 사용 가능
+    console.log("저장된 이미지 URL:", ipfsUrl);
   } catch (error) {
   } finally {
     setLoading(false);

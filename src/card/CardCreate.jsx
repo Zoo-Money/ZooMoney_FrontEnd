@@ -70,9 +70,7 @@ const CardCreate = () => {
   return (
     <div className="mock-container">
       {/* 헤더 */}
-      <div className="card-header">
-        <Header title="카드발급" />
-      </div>
+      <Header title="카드발급" />
 
       <div className="content">
         {/* 카드 이미지 미리보기 */}

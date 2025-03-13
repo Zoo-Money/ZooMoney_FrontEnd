@@ -15,15 +15,14 @@ const CardModify = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [minting, setMinting] = useState(false);
-  const [burning, setBurning] = useState(false);
   const [tokenId, setTokenId] = useState("");
-  const [cardNum, setCardNum] = useState("");
-  const [cardMoney, setCardMoney] = useState("");
   const [metadata, setMetadata] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(true);
+  const [newloading, setNewLoading] = useState(true);
   const [metadataUrl, setMetadataUrl] = useState("");
   const [, setTransactionHash] = useState("");
-  const [, setBurnTransactionHash] = useState("");
+  const [isImageLoaded, setIsImageLoaded] = useState(false); // 이미지 로딩 여부
+  const [, setIsReady] = useState(false); // 렌더링 제어
   const navigate = useNavigate();
 
   // ✅ 1. 백엔드에서 카드 정보를 가져와서 세션에 저장
@@ -39,32 +38,42 @@ const CardModify = () => {
 
         console.log("백엔드 응답:", response.data);
 
-        // 응답 데이터를 sessionStorage에 저장
         if (response.data) {
           sessionStorage.setItem("tokenId", response.data.cardMetadata);
           sessionStorage.setItem("card_num", response.data.cardNum);
           sessionStorage.setItem("card_money", response.data.cardMoney);
           sessionStorage.setItem("cardMetadata", response.data.cardMetadata);
+
+          setTokenId(response.data.cardMetadata);
         }
 
         console.log("저장된 세션 값:", {
-          tokenId: sessionStorage.getItem("tokenId"),
-          card_num: sessionStorage.getItem("card_num"),
-          cardMoney: sessionStorage.getItem("card_money"),
-          cardMetadata: sessionStorage.getItem("cardMetadata"),
+          tokenId: response.data.cardMetadata,
+          card_num: response.data.cardNum,
+          cardMoney: response.data.cardMoney,
+          cardMetadata: response.data.cardMetadata,
         });
+
+        setNewLoading(false);
       } catch (error) {
         console.error("데이터 가져오기 오류:", error);
+        setNewLoading(false);
       }
     };
-    const tokenId = sessionStorage.getItem("cardMetadata");
-    console.log(tokenId);
 
     fetchCardInfo();
-
-    // 세션에 카드 정보가 없으면 백엔드에서 메타데이터 가져오기
-    fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
   }, []);
+
+  useEffect(() => {
+    if (!newloading && tokenId) {
+      fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading).then(
+        () => {
+          console.log("Metadata 가져오기 완료!");
+          setIsReady(true); // 모든 데이터가 로딩된 후 렌더링 시작
+        }
+      );
+    }
+  }, [newloading, tokenId]);
 
   const handleMintNFT = async () => {
     let fileToUpload = file;
@@ -124,17 +133,19 @@ const CardModify = () => {
       <div className="content">
         {/* 카드 이미지 미리보기 */}
         <div className="modifycard-preview">
-          <img
-            src={
-              selectedImage // 사용자가 이미지를 선택했다면 그 이미지를 표시
-                ? selectedImage
-                : previewUrl // 이미지 첨부한 경우 previewUrl이 있다면 그것을 표시
-                ? previewUrl
-                : metadata?.image || defaultCardImage // 선택한 이미지나 첨부한 이미지가 없다면, 기본적으로 metadata.image 또는 기본 이미지를 표시
-            }
-            alt="미리보기"
-            className="card-image"
-          />
+          {newloading ? null : (
+            <img
+              src={
+                selectedImage // 사용자가 이미지를 선택했다면 그 이미지를 표시
+                  ? selectedImage
+                  : previewUrl // 이미지 첨부한 경우 previewUrl이 있다면 그것을 표시
+                  ? previewUrl
+                  : metadata?.image || defaultCardImage // 선택한 이미지나 첨부한 이미지가 없다면, 기본적으로 metadata.image 또는 기본 이미지를 표시
+              }
+              alt="미리보기"
+              className="card-image"
+            />
+          )}
         </div>
       </div>
       <br />
