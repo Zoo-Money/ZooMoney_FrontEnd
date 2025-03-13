@@ -16,7 +16,7 @@ const CardMain = () => {
   const [allowanceAmount, setAllowanceAmount] = useState("0원");
 
   useEffect(() => {
-    const savedAllowance = sessionStorage.getItem("cardMoney");
+    const savedAllowance = sessionStorage.getItem("card_money");
     const tokenId = sessionStorage.getItem("cardMetadata");
 
     console.log(tokenId);

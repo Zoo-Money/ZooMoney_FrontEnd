@@ -24,15 +24,18 @@ const CardModify = () => {
   const [isImageLoaded, setIsImageLoaded] = useState(false); // 이미지 로딩 여부
   const [, setIsReady] = useState(false); // 렌더링 제어
   const navigate = useNavigate();
-
+  const memberNum = sessionStorage.getItem("member_num");
   // ✅ 1. 백엔드에서 카드 정보를 가져와서 세션에 저장
   useEffect(() => {
     const fetchCardInfo = async () => {
+      console.log(memberNum);
       try {
         const response = await axios.get(
           "http://localhost:7777/zoomoney/card/get",
           {
-            withCredentials: true, // 서버 세션 유지 (중요)
+            params: {
+              memberNum: memberNum, // memberNum을 쿼리 파라미터로 전송
+            },
           }
         );
 
@@ -194,9 +197,6 @@ const CardModify = () => {
       </div>
 
       {/* 리셋 버튼 */}
-      <button onClick={handleResetImage} className="reset-button">
-        원래 이미지로 돌리기
-      </button>
       <button
         onClick={handleMintNFT}
         disabled={minting}
