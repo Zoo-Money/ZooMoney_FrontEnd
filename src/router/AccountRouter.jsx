@@ -1,8 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import AccountClose from "../account/AccountClose";
 import AccountCreate from "../account/AccountCreate";
+import AccountDetail from "../account/AccountDetail";
+import AccountInsert from "../account/AccountInsert";
 import AccountMain from "../account/AccountMain";
-import AccountMint from "../account/AccountMint";
 
 function AccountRouter() {
   return (
@@ -10,7 +12,9 @@ function AccountRouter() {
       <Routes>
         <Route path="/account" element={<AccountMain />}></Route>
         <Route path="/account/create" element={<AccountCreate />}></Route>
-        <Route path="/account/mint" element={<AccountMint />}></Route>
+        <Route path="/account/detail" element={<AccountDetail />}></Route>
+        <Route path="/account/insert" element={<AccountInsert />}></Route>
+        <Route path="/account/close" element={<AccountClose />}></Route>
       </Routes>
     </div>
   );

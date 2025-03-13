@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import pig01 from "../images/pig01.png";
 import plus from "../images/plus.png";
-import "./AccountMain.css";
+import "./css/AccountMain.css";
 
 const AccountMain = () => {
   // 세션 값 불러오기
   const memberNum = sessionStorage.getItem("member_num");
+  const navigate = useNavigate();
 
   const [accountList, setAccountList] = useState([]);
   const [accountCount, setAccountCount] = useState(0);
@@ -46,67 +47,76 @@ const AccountMain = () => {
   // 데이터 로드 후 렌더링
   if (loading) return null;
 
+  const selectAccount = (accountNum, index) => {
+    navigate("/account/detail", { state: { accountNum, index } }); // state로 전달
+  };
+
   return (
     <div className="mock-container">
       {/* 헤더 */}
-      <div className="AccountHeader">
-        <div className="AccountHeaderText">
-          <span>저금중인 금액</span>
-          <span>{amount.toLocaleString()} 원</span>
+      <div className="AccountMainHeader">
+        <div className="AccountMainHeaderText">
+          <span>나의 저금통</span>
+          <span>{accountCount} 개</span>
         </div>
         <img src={pig01} alt="pig01" />
       </div>
 
       {/* 메인 콘텐츠 */}
-      <div className="AccountCount">
-        {accountCount !== 0 ? (
-          <span>현재 {accountCount}개의 저금통이 있어요 😎</span>
-        ) : null}
+      <div className="AccountMainCount">
+        {amount !== 0 ? <span>현재 {amount}원 저금중 😎</span> : null}
       </div>
-      <div className="AccountContent">
-        <div className="AccountResult">
+      <div className="AccountMainContent">
+        <div className="AccountMainResult">
           {accountCount > 0 ? (
-            accountList.map((account, index) => (
-              <form
-                key={index}
-                className="AccountForm"
-                style={{
-                  backgroundColor: colorList[index % colorList.length],
-                }}
-              >
-                <div
+            accountList.map((account, index) => {
+              return (
+                <form
+                  key={index}
+                  className="AccountMainForm"
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
+                    backgroundColor:
+                      new Date().setHours(0, 0, 0, 0) >
+                      new Date(account.accountEnd)
+                        ? "#c4c0ba" // 만기된 저금통 색상
+                        : colorList[index % colorList.length],
                   }}
+                  onClick={() => selectAccount(account.accountNum, index)}
                 >
-                  <span style={{ fontSize: "0.75rem" }}>
-                    {/* 남은 일수 계산 */}
-                    {(() => {
-                      const daysLeft = Math.ceil(
-                        (new Date(account.accountEnd) -
-                          new Date(account.accountStart)) /
-                          (1000 * 60 * 60 * 24)
-                      );
-                      return daysLeft === 0
-                        ? "1일 미만 남음"
-                        : `${daysLeft}일 남음`;
-                    })()}
-                  </span>
-                  <span style={{ fontSize: "0.75rem" }}>
-                    {Math.round(
-                      (account.accountNow / account.accountGoal) * 100
-                    )}
-                    % 달성
-                  </span>
-                </div>
-                <div style={{ marginTop: "20px" }}>
-                  <span>{account.accountNow.toLocaleString()} 원</span>
-                </div>
-                <div style={{ marginBottom: "20px" }}>
-                  <span>{account.accountName}</span>
-                </div>
-                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <span style={{ fontSize: "0.75rem" }}>
+                      {/* 남은 일수 계산 */}
+                      {(() => {
+                        const daysLeft = Math.ceil(
+                          (new Date(account.accountEnd) - new Date()) /
+                            (1000 * 60 * 60 * 24)
+                        );
+                        return new Date().setHours(0, 0, 0, 0) >
+                          new Date(account.accountEnd)
+                          ? "만기일 지남" // 만기일이 지났을 때
+                          : daysLeft < 1
+                          ? "1일 미만 남음" // 남은 일수가 1일 미만일 때
+                          : `${daysLeft}일 남음`; // 남은 일수가 1일 이상일 때
+                      })()}
+                    </span>
+                    <span style={{ fontSize: "0.75rem" }}>
+                      {Math.floor(
+                        (account.accountNow / account.accountGoal) * 100
+                      )}
+                      % 달성
+                    </span>
+                  </div>
+                  <div style={{ marginTop: "20px" }}>
+                    <span>{account.accountNow.toLocaleString()} 원</span>
+                  </div>
+                  <div style={{ marginBottom: "20px" }}>
+                    <span>{account.accountName}</span>
+                  </div>
                   <div>
                     <div
                       className="progress bg-secondary bg-opacity-50"
@@ -127,22 +137,22 @@ const AccountMain = () => {
                       ></div>
                     </div>
                   </div>
-                </div>
-                <div
-                  style={{
-                    fontSize: "0.75rem",
-                    marginTop: "10px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <label>목표 금액</label>
-                  <span>{account.accountGoal.toLocaleString()} 원</span>
-                </div>
-              </form>
-            ))
+                  <div
+                    style={{
+                      fontSize: "0.75rem",
+                      marginTop: "10px",
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <label>목표 금액</label>
+                    <span>{account.accountGoal.toLocaleString()} 원</span>
+                  </div>
+                </form>
+              );
+            })
           ) : (
-            <div className="AccountEmpty">
+            <div className="AccountMainEmpty">
               <span>현재 저금통이 없어요 🥲</span>
             </div>
           )}
@@ -150,7 +160,7 @@ const AccountMain = () => {
       </div>
 
       {/* 저금통 만들기 버튼 */}
-      <div className="AccountCreate">
+      <div className="AccountMainCreate">
         <Link to={"/account/create"}>
           <button>
             <img src={plus} alt="plus" style={{ maxWidth: "15%" }} />

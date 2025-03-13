@@ -1,10 +1,10 @@
-import { Button } from "bootstrap";
+import { Button } from "react-bootstrap";
 import { useState } from "react";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import { mintTokens } from "./AccountService";
+import { mintTokens } from "./resources/AccountService";
 
-const AccountMint = () => {
+const AccountInsert = () => {
   const [amount, setAmount] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,7 +26,7 @@ const AccountMint = () => {
       {/* 헤더 */}
       <div className="header">
         {/* <button className="back-button">←</button> */}
-        <Header title="저금통 저금" /> {/* 원하는 제목을 props로 전달 */}
+        <Header title="저금하기" /> {/* 원하는 제목을 props로 전달 */}
       </div>
 
       {/* 메인 콘텐츠 */}
@@ -52,4 +52,4 @@ const AccountMint = () => {
   );
 };
 
-export default AccountMint;
+export default AccountInsert;
