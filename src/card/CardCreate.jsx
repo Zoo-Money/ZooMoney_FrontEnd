@@ -70,9 +70,8 @@ const CardCreate = () => {
   return (
     <div className="mock-container">
       {/* 헤더 */}
-      <div className="cardheader">
-        {/* <button className="back-button">←</button> */}
-        <Header title="카드발급" /> {/* 원하는 제목을 props로 전달 */}
+      <div className="card-header">
+        <Header title="카드발급" />
       </div>
 
       <div className="content">
@@ -113,7 +112,6 @@ const CardCreate = () => {
 
       {/* 파일 업로드 버튼 */}
       <div className="flex justify-between w-full">
-        {/* 파일 업로드 버튼 */}
         <label className="cursor-pointer">
           <div className="upload-button flex items-center gap-2">
             <span className="plus-icon bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold">

@@ -1,10 +1,11 @@
 .zoo-money {
+  width: 80%;
   font-size: 24px; /* 글자 크기 */
   font-weight: 900; /* 굵은 글씨 */
   display: flex; /* Zoo와 Money를 가로 정렬 */
-  margin-left: -200px;
   align-items: center; /* 세로 중앙 정렬 */
   margin-top: 50px; /* 상단 공백 추가 */
+  justify-content: space-between;
 }
 .zoo-money .zoo {
   color: #f7a048; /* 주황색 */
@@ -109,7 +110,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
   font-weight: bold;
   font-size: 16px;
-  color: white;
+  color: #333;
   text-align: center;
   transition: transform 0.2s ease-in-out;
   margin: auto;
@@ -128,16 +129,16 @@
   margin-bottom: 10px; /* 아이콘과 텍스트 간격 */
 }
 /* 개별 카드 배경색 */
-.card-yellow {
-  background-color: #fde68a;
+.card-skyblue {
+  background-color: #c2f1ff;
   margin-right: 0;
 }
 .card-blue {
   background-color: #8da4f2;
   margin-left: 0;
 }
-.card-purple {
-  background-color: #c084fc;
+.card-yellow {
+  background-color: #fff4c2;
   margin-right: 0;
 }
 .card-pink {
@@ -214,4 +215,8 @@
 
 .default-image {
   object-fit: cover; /* 기본 이미지 비율 유지하면서 채우기 */
+}
+.zoo-money .cardmainbell-icon {
+  width: 24px;
+  height: 24px;
 }

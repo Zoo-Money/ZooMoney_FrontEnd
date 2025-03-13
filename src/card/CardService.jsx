@@ -12,7 +12,10 @@ export const uploadToIPFS = async (file) => {
   const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`;
   const formData = new FormData();
   formData.append("file", file);
-
+  if (!file) {
+    console.error("No file selected.");
+    return null;
+  }
   const headers = {
     pinata_api_key: pinataApiKey,
     pinata_secret_api_key: pinataSecretApiKey,
@@ -22,6 +25,11 @@ export const uploadToIPFS = async (file) => {
     const response = await axios.post(url, formData, { headers });
     return `https://gateway.pinata.cloud/ipfs/${response.data.IpfsHash}`;
   } catch (error) {
+    console.error(
+      "Error uploading to IPFS:",
+      error.response ? error.response.data : error.message
+    );
+
     return null;
   }
 };
@@ -90,32 +98,72 @@ export const mintNFT = async (file, setMinting, setTransactionHash) => {
     tokenId = tokenId ? parseInt(tokenId) + 1 : 202503010; // 기본값은 202503010
     localStorage.setItem("lastTokenId", tokenId);
 
-    // 새로운 tokenId로 NFT 발행
-    const transaction = await contract.safeMint(address, tokenId, metadataUrl);
-    await transaction.wait();
-
-    setMinting(false);
-    setTransactionHash(transaction.hash);
-
     // 세션에서 카드 정보 확인
-    let cardNum = sessionStorage.getItem("cardNum");
-    let cardMetadata = sessionStorage.getItem("cardMetadata");
-    let cardMoney = sessionStorage.getItem("cardMoney");
+    let cardNum = sessionStorage.getItem("card_num");
+    let cardMetadata = sessionStorage.getItem("tokenId"); // tokenId로 사용 중
+    let cardMoney = sessionStorage.getItem("card_money");
 
-    // 세션에 값이 없으면 신규 카드 정보 생성 및 DB에 저장
-    if (!cardNum || !cardMetadata || !cardMoney) {
-      // 카드 번호, 메타데이터, 잔액을 새로 생성하여 DB에 저장
+    const memberNum = sessionStorage.getItem("member_num"); // 세션에서 member_num 가져오기
+    if (!memberNum) throw new Error("세션에 member_num이 없습니다.");
+
+    if (cardNum && cardMetadata && cardMoney) {
+      // 기존 카드 정보 사용하여 NFT 이미지 변경
+      console.log("기존 카드 정보 사용:", cardNum, cardMetadata, cardMoney);
+
+      // 기존 메타데이터 URL을 사용하여 새로운 이미지 업로드
+      const newImageUrl = await uploadToIPFS(file); // 새 이미지를 업로드하는 함수
+      if (!newImageUrl) {
+        setMinting(false);
+        return;
+      }
+
+      // 새로운 metadataUrl 생성
+      const newMetadataUrl = await uploadMetadataToIPFS(newImageUrl);
+      if (!newMetadataUrl) {
+        setMinting(false);
+        return;
+      }
+
+      // 기존 tokenId(cardMetadata)를 사용하여 NFT 이미지 변경
+      const transaction = await contract.updateMetadata(
+        cardMetadata,
+        newMetadataUrl
+      );
+      await transaction.wait();
+
+      console.log("NFT 이미지 변경 완료:", newMetadataUrl);
+
+      // 카드 날짜 최신화
+      await updateCardDate(memberNum);
+    } else {
+      // 세션에 카드 정보가 없을 경우 새로운 카드 발급
+      console.log("세션에 카드 정보 없음, 신규 카드 발급");
+
       cardNum = generateCardNumber();
       cardMetadata = tokenId;
       cardMoney = 0;
 
-      // 세션에 카드 정보 저장
-      sessionStorage.setItem("cardNum", cardNum);
-      sessionStorage.setItem("cardMetadata", cardMetadata);
-      sessionStorage.setItem("cardMoney", cardMoney);
+      // 신규 tokenId로 NFT 발행
+      const imageUrl = await uploadToIPFS(file);
+      if (!imageUrl) {
+        setMinting(false);
+        return;
+      }
+
+      const metadataUrl = await uploadMetadataToIPFS(imageUrl);
+      if (!metadataUrl) {
+        setMinting(false);
+        return;
+      }
+
+      const transaction = await contract.safeMint(
+        address,
+        cardMetadata,
+        metadataUrl
+      );
+      await transaction.wait();
 
       // 신규 카드 정보 DB에 저장
-      const memberNum = sessionStorage.getItem("member_num"); // 세션에서 member_num 가져오기
       await saveCardToDB(cardNum, cardMetadata, cardMoney, memberNum);
       console.log(
         "신규 카드 정보 DB에 저장:",
@@ -123,11 +171,9 @@ export const mintNFT = async (file, setMinting, setTransactionHash) => {
         cardMetadata,
         cardMoney
       );
-    } else {
-      // 세션에 값이 있으면 기존 tokenId에 해당하는 NFT 이미지 교체
-      console.log("기존 카드 정보 사용:", cardNum, cardMetadata, cardMoney);
-      // 이 부분은 이미지를 교체할 필요 없음, 신규 발급시 기존 이미지는 덮어쓰지 않음
     }
+
+    setMinting(false);
 
     return true;
   } catch (error) {

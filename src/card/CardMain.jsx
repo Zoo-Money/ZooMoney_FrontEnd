@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../card/CardMainHeader";
 import Footer from "../common/Footer";
 import defaultCardImage from "../images/bear01.png"; // 기본 이미지 경로
 import daily from "../images/daily.png";
 import moneyplan from "../images/moneyplan.png";
 import pattern from "../images/pattern.png";
 import quiz from "../images/quiz.png";
+import { ReactComponent as BellIcon } from "../images/bell.svg"; // SVG를 React 컴포넌트로 import
 import "./CardMain.css";
 import { fetchMetadata } from "./CardService";
 const CardMain = () => {
@@ -16,8 +16,9 @@ const CardMain = () => {
   const [allowanceAmount, setAllowanceAmount] = useState("0원");
 
   useEffect(() => {
-    const savedAllowance = sessionStorage.getItem("card_money");
-    const tokenId = sessionStorage.getItem("tokenId");
+    const savedAllowance = sessionStorage.getItem("cardMoney");
+    const tokenId = sessionStorage.getItem("cardMetadata");
+
     console.log(tokenId);
 
     // 세션에 카드 정보가 없으면 백엔드에서 메타데이터 가져오기
@@ -32,7 +33,15 @@ const CardMain = () => {
   return (
     <div className="mock-container">
       {/* 메인로고ZooMoney */}
-      <Header />
+      <div className="zoo-money">
+        <div>
+          <span className="zoo">Zoo</span>
+          <span className="money">Money</span>
+        </div>
+        <div>
+          <BellIcon className="cardmainbell-icon" />
+        </div>
+      </div>
 
       {/* 카드 이미지 미리보기 */}
       <div>
@@ -81,7 +90,7 @@ const CardMain = () => {
       <div className="grid grid-cols-2 gap-4 mt-6 w-full">
         <a
           href="https://example.com/moneyplan"
-          className="feature-card card-yellow"
+          className="feature-card card-skyblue"
         >
           <div>
             <img src={pattern} alt="소비 패턴 분석" />
@@ -99,7 +108,7 @@ const CardMain = () => {
         </a>
         <a
           href="https://example.com/moneyplan"
-          className="feature-card card-purple"
+          className="feature-card card-yellow"
         >
           <div>
             <img src={quiz} alt="금융퀴즈" />
