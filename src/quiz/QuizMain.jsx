@@ -87,10 +87,10 @@ const QuizMain = () => {
         <p className="quizmain-description">
           <li>매일 5개의 퀴즈에 도전할 수 있어요.</li>
           <li>퀴즈를 맞힐 때마다 100p를 받아요.</li>
-          <li>
+          {/* <li>
             퀴즈를 풀다가 중간에 화면이나 앱을 나가면 퀴즈 결과에서 틀린 걸로
             반영돼요.
-          </li>
+          </li> */}
         </p>
       </div>
 
