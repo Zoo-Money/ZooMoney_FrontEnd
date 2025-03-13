@@ -1,29 +1,35 @@
 .header {
   display: flex;
-  justify-content: center; /* 제목을 중앙에 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
-  position: relative; /* back-icon을 왼쪽에 고정시키기 위해 상대 위치 설정 */
-  padding: 10px;
+  align-items: center;
+  justify-content: space-between; /* 요소들을 양 끝과 중앙에 배치 */
+  padding: 20px 10px;
+  position: relative;
+  width: 100%;
 }
 
 .back-icon-container {
-  position: absolute; /* 왼쪽에 고정 */
-  left: 10px; /* 원하는 만큼 왼쪽에 간격을 둡니다. */
-}
-
-.header-title-container {
-  flex: 1; /* 제목이 중앙에 위치하도록 flex 설정 */
   display: flex;
-  justify-content: center; /* 제목을 수평 중앙에 정렬 */
+  align-items: center;
+  min-width: 40px; /* 최소 너비 설정하여 밀리지 않도록 */
 }
 
-.header-title {
-  font-size: 24px;
-  margin: 0; /* 불필요한 마진을 제거 */
-}
 .back-icon {
   width: 24px;
   height: 24px;
-  margin-right: 8px; /* 텍스트와 간격 조정 */
   cursor: pointer;
+}
+
+.header-title-container {
+  position: absolute; /* 화면 기준 중앙 정렬 */
+  left: 50%;
+  transform: translateX(-50%); /* 정확한 중앙 정렬 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  white-space: nowrap; /* 줄바꿈 방지 */
 }
