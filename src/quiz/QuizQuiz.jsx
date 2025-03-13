@@ -59,13 +59,27 @@ const QuizQuiz = () => {
       .catch((error) => console.error("퀴즈 제출 실패", error));
   };
 
+  ////////
+
+  const [quizCount, setQuizCount] = useState(0); // 퀴즈 데이터 개수를 저장할 상태
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:7777/zoomoney/quiz/count")
+      .then((response) => {
+        console.log("✅ 백엔드 응답:", response.data); // 백엔드 응답 확인
+        setQuizCount(response.data.quizCount); // 상태 업데이트
+      })
+      .catch((error) => console.error("퀴즈의 개수를 알 수 없습니다.", error));
+  }, []);
+
+  //////
+
   if (!quiz) return <QuizLoading />; // 퀴즈 로딩 화면
 
   return (
     <div className="mock-container">
-      <div className="header">
-        <Header title="퀴즈풀기" />
-      </div>
+      <Header title="퀴즈풀기" />
       <div className="quizquiz-content">
         <img
           src={giraffeQuiz}
@@ -74,7 +88,9 @@ const QuizQuiz = () => {
         />
         <div className="quizquiz-board">
           <div className="quizquiz-num">
-            <p className="quizquiz-number">QUIZ 01</p>
+            <p className="quizquiz-number">
+              QUIZ {String(quizCount + 1).padStart(2, "0")}
+            </p>
           </div>
           <div className="quizquiz-description-box">
             <p className="quizquiz-description">
