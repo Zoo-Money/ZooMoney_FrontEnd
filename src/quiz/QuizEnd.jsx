@@ -4,6 +4,7 @@ import Footer from "../common/Footer";
 import giraffe1 from "../images/quiz/giraffe_end.png";
 import Header from "../common/Header";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const QuizEnd = () => {
   const [correctAnswerCount, setCorrectAnswerCount] = useState(0); // 맞춘 퀴즈 데이터 개수를 저장할 상태
@@ -19,6 +20,12 @@ const QuizEnd = () => {
         console.error("맞춘 퀴즈의 개수를 알 수 없습니다.", error)
       );
   }, []);
+
+  const navigate = useNavigate();
+
+  const goToMain = () => {
+    navigate("/quiz/main"); // 퀴즈를 다 풀면 퀴즈 main 페이지로 이동
+  };
 
   return (
     <div className="mock-container">
@@ -36,7 +43,9 @@ const QuizEnd = () => {
           획득했어요!
         </p>
         <p className="quizend-description">내일 다시 만나요!</p>
-        <button className="quizend-button">퀴즈 풀이 완료</button>
+        <button className="quizend-button" onClick={goToMain}>
+          퀴즈 풀이 완료
+        </button>
       </div>
 
       {/* 하단 네비게이션 */}
