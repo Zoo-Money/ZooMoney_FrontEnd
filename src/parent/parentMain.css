@@ -6,35 +6,56 @@
   margin-left: -200px;
   align-items: center; /* 세로 중앙 정렬 */
   margin-top: 50px; /* 상단 공백 추가 */
+  margin-bottom: 20px;
 }
 
-.zoo-money .zoo {
+.zoo {
   color: #f7a048; /* 주황색 */
 }
 
-.zoo-money .money {
+.money {
   color: #1a1a1a; /* 검정색 */
 }
 
 /* 프로필 이미지 (겹치지 않도록 조정) */
-.profile-image {
+/* .profile-image {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  border: 2px solid white; /* 테두리 추가로 가독성 향상 */
-}
+  border: 2px solid white;  테두리 추가로 가독성 향상 
+} */
 
 /* 추가된 사용자 표시 (+1) */
-.profile-more {
+/* .profile-more {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #d1d5db; /* 회색 배경 */
+  background-color: #d1d5db;  회색 배경 
   color: black;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
+} */
+
+.profile-container {
+  width: 80%;
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.profile-wrapper {
+  cursor: pointer; /* 🔹 클릭 가능한 요소 표시 */
+  width: 60px; /* 🔹 프로필 크기 조정 */
+  text-align: center;
+}
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #ddd; /* 🔹 테두리 추가 */
 }
 
 /* 용돈 정보 카드 */
@@ -121,7 +142,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
   font-weight: bold;
   font-size: 16px;
-  color: white;
+  color: black;
   text-align: center;
   transition: transform 0.2s ease-in-out;
   margin: auto;
@@ -143,22 +164,26 @@
 
 /* 개별 카드 배경색 */
 .card-yellow {
-  background-color: #fde68a;
+  /* background-color: #fde68a; */
+  background-color: #c2f1ff;
   margin-right: 0;
 }
 
 .card-blue {
-  background-color: #8da4f2;
+  /* background-color: #8da4f2; */
+  background-color: #fff4c2;
   margin-left: 0;
 }
 
 .card-purple {
-  background-color: #c084fc;
+  /* background-color: #c084fc; */
+  background-color: #fec7c0;
   margin-right: 0;
 }
 
 .card-pink {
-  background-color: #fca5a5;
+  /* background-color: #fca5a5; */
+  background-color: #caffc2;
   margin-left: 0;
 }
 

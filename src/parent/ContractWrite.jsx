@@ -214,7 +214,7 @@ const getFormattedDate = () => {
 
 const ContractWrite = () => {
   const [selectedDay, setSelectedDay] = useState(null);
-  const [selectedDate, ] = useState(getFormattedDate()); // 현재 날짜 자동 설정
+  const [selectedDate, setSelectedDate] = useState(getFormattedDate()); // 현재 날짜 자동 설정
   const [amount, setAmount] = useState("");
   const signatureRef = useRef(null); // 서명 캔버스 참조
   const [details, setDetails] = useState([]);
@@ -251,30 +251,61 @@ const ContractWrite = () => {
     setAmount(formattedValue);
   };
 
-  //  서명 후 보내기 버튼 클릭 시
+  //  서명 후 보내기 버튼 클릭 시 - 250313 01:48 원본
+  // const handleSubmit = async () => {
+  //   //  서명 이미지를 Base64 데이터로 변환
+  //   const signatureData = signatureRef.current.toDataURL("image/png");
+
+  //   //  전송할 데이터 구성
+  //   const contractData = {
+  //     contract_money: parseInt(amount.replace(/,/g, ""), 10), // 금액에서 ',' 제거 후 정수 변환
+  //     contract_status: false, // 초안 상태
+  //     contract_excelpath: signatureData, // Base64 서명 이미지 전송
+  //     contract_content: details.join("/n"), //세부사항 추가
+  //     contract_date: formatDateToDateOnly(selectedDate), // selectedDate, 계약일자
+  //     contract_filepath: "/path/to/file",
+  //   };
+
+  //   console.log("🔍 전송할 JSON 데이터:", contractData); // 👀 JSON 확인용 로그 추가
+
+  //   try {
+  //     //  Axios POST 요청으로 데이터 전송
+  //     const response = await axios.post(
+  //       "http://localhost:7777/zoomoney/contract/saveDraft",
+  //       contractData
+  //     );
+
+  //     alert("서명 저장 성공: " + response.data);
+  //   } catch (error) {
+  //     console.error("서명 저장 실패:", error);
+  //     alert("서명 저장에 실패했습니다.");
+  //   }
+  // };
+
+  //  서명 후 보내기 버튼 클릭 시 -- 테스트코드
   const handleSubmit = async () => {
-    //  서명 이미지를 Base64 데이터로 변환
     const signatureData = signatureRef.current.toDataURL("image/png");
 
-    //  전송할 데이터 구성
+    // 🔹 부모가 작성한 세부사항에 번호 추가 및 줄바꿈 수정
+    const formattedDetails = details
+      .map((item, index) => `${index + 1}. ${item}`) // 번호 추가
+      .join("\n"); // ✅ 실제 줄바꿈 추가
+
+    // 전송할 데이터 구성
     const contractData = {
-      contract_money: parseInt(amount.replace(/,/g, ""), 10), // 금액에서 ',' 제거 후 정수 변환
-      contract_status: false, // 초안 상태
-      contract_excelpath: signatureData, // Base64 서명 이미지 전송
-      contract_content: details.join("/n"), //세부사항 추가
-      contract_date: formatDateToDateOnly(selectedDate), // selectedDate, 계약일자
+      contract_money: parseInt(amount.replace(/,/g, ""), 10),
+      contract_status: false,
+      contract_excelpath: signatureData,
+      contract_content: formattedDetails, // ✅ 수정된 세부사항 추가
+      contract_date: formatDateToDateOnly(selectedDate),
       contract_filepath: "/path/to/file",
     };
 
-    console.log("🔍 전송할 JSON 데이터:", contractData); // 👀 JSON 확인용 로그 추가
-
     try {
-      //  Axios POST 요청으로 데이터 전송
       const response = await axios.post(
         "http://localhost:7777/zoomoney/contract/saveDraft",
         contractData
       );
-
       alert("서명 저장 성공: " + response.data);
     } catch (error) {
       console.error("서명 저장 실패:", error);

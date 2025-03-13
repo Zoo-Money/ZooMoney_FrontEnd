@@ -1,15 +1,23 @@
 import React from "react";
 import { Document, Page, pdfjs } from "react-pdf"; //  react-pdf에서 Document와 Page 추가
-import "react-pdf/dist/esm/Page/AnnotationLayer.css"; //  주석 레이어 스타일 추가
-import "react-pdf/dist/esm/Page/TextLayer.css"; //  텍스트 레이어 스타일 추가
+//import "react-pdf/dist/esm/Page/AnnotationLayer.css"; //  주석 레이어 스타일 추가
+//import "react-pdf/dist/esm/Page/TextLayer.css"; //  텍스트 레이어 스타일 추가
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
 import "./contractSelect.css"; // CSS 파일 import
 import { FaChevronRight } from "react-icons/fa"; // 아이콘 사용
 import { useNavigate } from "react-router-dom";
 
+// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+// pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+
+//pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js"; // ✅ public 폴더 기준 경로
+// pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.mjs`;
 //  npm 방식으로 자동 로드 설정
-pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.min.mjs");
+// pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.min.mjs");
 
 //npm install pdf-viewer-reactjs
 //  pdf.worker 파일을 public 폴더에서 로드하도록 설정
