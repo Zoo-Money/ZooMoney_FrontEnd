@@ -12,24 +12,6 @@ const QuizFailure = () => {
   const navigate = useNavigate();
   const quiz = location.state?.quiz; // ✅ 전달된 퀴즈 데이터 가져오기
 
-  // const nextQuiz = () => {
-  //   axios
-  //     .get("http://localhost:7777/zoomoney/quiz/count")
-  //     .then((response) => {
-  //       console.log("✅ 백엔드 응답:", response.data); // 백엔드 응답 확인
-
-  //       const quizCount = response.data.quizCount; // 백엔드에서 받은 data수
-  //       if (quizCount >= 5) {
-  //         // 누적 퀴즈 data수가 5개 이상이면
-  //         navigate("/quiz/end"); // 종료 페이지로 이동
-  //       } else {
-  //         // 5개 미만이면
-  //         navigate("/quiz/quiz"); // 퀴즈 출제 페이지로 이동
-  //       }
-  //     })
-  //     .catch((error) => console.error("퀴즈의 개수를 알 수 없습니다.", error));
-  // };
-
   const [quizCount, setQuizCount] = useState(0); // 퀴즈 데이터 개수를 저장할 상태
 
   useEffect(() => {
