@@ -1,13 +1,15 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import StockBegin from "../stock/StockBegin";
+import StockInfo from "../stock/StockInfo";
 
 function StockRouter() {
   return (
     <div>
       <Routes>
         <Route path="/stock/start" element={<StockBegin />}></Route>
-        {/* <Route path="/stock/info" element={<StockInfo />}></Route>
+        <Route path="/stock/info" element={<StockInfo />}></Route>
+        {/* 
         <Route
           path="/stock/info/:infoNum"
           element={<StockInfoDetail />}
