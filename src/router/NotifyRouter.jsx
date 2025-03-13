@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import NotifyTest from "../account/NotifyTest";
+import NotifyTest from "../account/resources/NotifyTest";
 
 function NotifyRouter() {
   return (
