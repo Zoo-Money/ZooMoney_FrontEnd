@@ -1,5 +1,5 @@
 /* 헤더 */
-.AccountHeader {
+.AccountMainHeader {
   background-color: #ffd7a0;
   width: 100%;
   min-height: 200px;
@@ -10,7 +10,7 @@
   justify-content: space-between;
 }
 
-.AccountHeaderText {
+.AccountMainHeaderText {
   font-size: 1.75rem;
   font-weight: bold;
   color: #333;
@@ -21,13 +21,13 @@
   margin-left: 10px;
 }
 
-.AccountHeader img {
+.AccountMainHeader img {
   width: 25%;
   height: auto;
   margin-right: 20px;
 }
 
-.AccountCount {
+.AccountMainCount {
   width: 90%;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -38,7 +38,7 @@
   font-weight: bold;
 }
 
-.AccountContent {
+.AccountMainContent {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -50,33 +50,47 @@
   scrollbar-width: none; /* Firefox */
 }
 
-.AccountContent::-webkit-scrollbar {
+.AccountMainContent::-webkit-scrollbar {
   display: none; /* Chrome , Safari , Opera */
 }
 
-.AccountResult {
+.AccountMainResult {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-height: calc(
+    100vh - 400px
+  ); /* header와 footer를 제외한 영역만 차지하도록 설정 */
+  overflow-y: scroll; /* 스크롤 추가 */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
-.AccountResult form {
-  min-width: 350px;
-  min-height: 150px;
+.AccountMainResult::-webkit-scrollbar {
+  display: none; /* Chrome , Safari , Opera */
+}
+
+.AccountMainForm {
+  width: 350px;
+  height: 200px;
   border-radius: 10px;
   margin-bottom: 20px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+ 
+.AccountMainForm:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
-.AccountEmpty {
-  width: 100%;
-  min-height: 500px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+.AccountMainEmpty {
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,20 +99,20 @@
   font-weight: bold;
 }
 
-.AccountCreate {
-  width: 90%;
-  margin-top: 20px;
+.AccountMainCreate {
+  position: fixed;
+  bottom: 0;
   margin-bottom: 90px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.AccountCreate a {
+.AccountMainCreate a {
   text-decoration: none;
 }
 
-.AccountCreate button {
+.AccountMainCreate button {
   background-color: transparent;
   border: none;
   font-size: 1.25rem;
@@ -109,11 +123,11 @@
   gap: 0.5rem;
 }
 
-.AccountCreate button span {
-  transition: color 0.5s ease; /* 기본 상태에서도 transition 설정 */
+.AccountMainCreate button span {
+  transition: color 0.5s ease;
 }
 
-.AccountCreate button:hover span {
+.AccountMainCreate button:hover span {
   cursor: pointer;
   color: #ff9500;
 }
