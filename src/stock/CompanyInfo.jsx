@@ -3,6 +3,7 @@ import Footer from "../common/Footer";
 import Header from "../common/Header";
 import { useParams } from "react-router-dom";
 import "./CompanyInfo.css";
+import { TbAB } from "react-icons/tb";
 const CompanyInfo = () => {
   // URL에서 종목 코드, 이름 가져오기
   const { stockId, stockName } = useParams();
@@ -33,8 +34,13 @@ const CompanyInfo = () => {
 
       {/* 회사 정보 섹션 */}
       <div className="company-info-container">
-        <h2>💡 {stockName}가 어떤 회사냐면요...</h2>
-        <p>{stockInfo || "정보 없음"}</p>
+        <h3>💡 {stockName}가 어떤 회사냐면요...</h3>
+        <br />
+        <ul className="company-info-list">
+          {stockInfo.split("\n").map((line, index) => (
+            <li key={index}>{line}</li>
+          ))}
+        </ul>
       </div>
 
       <div className="footer">
