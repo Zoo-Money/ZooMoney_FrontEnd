@@ -9,63 +9,48 @@ import pattern from "../images/pattern.png";
 import quiz from "../images/quiz.png";
 import { ReactComponent as BellIcon } from "../images/bell.svg"; // SVG를 React 컴포넌트로 import
 import "./CardMain.css";
-import { fetchMetadata } from "./CardService";
+import { fetchMetadata, fetchCardInfo } from "./CardService";
 const CardMain = () => {
   const [metadata, setMetadata] = useState(null);
   const [, setMetadataUrl] = useState("");
   const [tokenId, setTokenId] = useState("");
-  const [, setLoading] = useState(false);
-  const [newloading, setNewLoading] = useState(true);
+  const [, setLoading] = useState(true);
+  const [loading, setNewLoading] = useState(true);
   const [allowanceAmount, setAllowanceAmount] = useState("0원");
-
-  // ✅ 1. 백엔드에서 카드 정보를 가져와서 세션에 저장
-  useEffect(() => {
-    const memberNum = sessionStorage.getItem("member_num"); // 세션에서 member_num 가져오기
-    const fetchCardInfo = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:7777/zoomoney/card/get",
-          {
-            headers: {
-              member_num: memberNum, // 요청 헤더로 전달
-            },
-          }
-        );
-        console.log("백엔드 응답:", response.data);
-
-        if (response.data) {
-          sessionStorage.setItem("tokenId", response.data.cardMetadata);
-          sessionStorage.setItem("card_num", response.data.cardNum);
-          sessionStorage.setItem("card_money", response.data.cardMoney);
-          sessionStorage.setItem("cardMetadata", response.data.cardMetadata);
-
-          setTokenId(response.data.cardMetadata);
-        }
-
-        setNewLoading(false);
-      } catch (error) {
-        console.error("데이터 가져오기 오류:", error);
-        setNewLoading(false);
-      }
-    };
-
-    fetchCardInfo();
-  }, []);
 
   useEffect(() => {
     const savedAllowance = sessionStorage.getItem("card_money");
     const tokenId = sessionStorage.getItem("cardMetadata");
+    const memberNum = sessionStorage.getItem("member_num"); // 세션에서 member_num 가져오기
 
-    console.log(tokenId);
+    const fetchData = async () => {
+      // memberNum이나 tokenId가 없으면 데이터를 가져오지 않음
+      if (!tokenId || !memberNum) {
+        console.log("세션에 필요한 정보가 없습니다.");
+        setLoading(false); // 바로 로딩 상태를 false로 변경하여 UI 업데이트
+        return;
+      }
 
-    // 세션에 카드 정보가 없으면 백엔드에서 메타데이터 가져오기
-    fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
+      try {
+        // 카드 정보 가져오기
+        await fetchCardInfo(memberNum, setTokenId, setNewLoading);
 
-    // allowanceAmount 값이 있으면 설정
-    if (savedAllowance) {
-      setAllowanceAmount(`${Number(savedAllowance).toLocaleString()} 원`);
-    }
-  }, []); // 컴포넌트가 마운트될 때 한 번만 실행
+        // 메타데이터 가져오기
+        await fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
+
+        // allowanceAmount 값이 있으면 설정
+        if (savedAllowance) {
+          setAllowanceAmount(`${Number(savedAllowance).toLocaleString()} 원`);
+        }
+      } catch (error) {
+        console.error("데이터 가져오기 오류:", error);
+      } finally {
+        setLoading(false); // 모든 작업이 끝난 후 로딩 상태 변경
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="mock-container">
@@ -83,23 +68,31 @@ const CardMain = () => {
       {/* 카드 이미지 미리보기 */}
       <div>
         <div className="mycard-preview">
-          <img
-            src={metadata && metadata.image ? metadata.image : defaultCardImage} // metadata가 있을 때만 이미지 사용, 없으면 기본 이미지
-            alt="카드 미리보기"
-            className={
-              metadata && metadata.image
-                ? "mycard-image custom-image"
-                : "mycard-image default-image"
-            }
-          />
-          {!metadata?.image && (
-            <Link to="/card/create">
+          {loading ? (
+            <div className="loading-overlay">로딩 중...</div> // 로딩 중 UI (예: 텍스트나 애니메이션)
+          ) : (
+            <>
               <img
-                src={defaultCardImage} // 기본 이미지를 사용
-                alt="기본 카드 이미지"
-                className="mycard-image default-image"
+                src={
+                  metadata && metadata.image ? metadata.image : defaultCardImage // metadata가 있을 때만 이미지 사용, 없으면 기본 이미지
+                }
+                alt="카드 미리보기"
+                className={
+                  metadata && metadata.image
+                    ? "mycard-image custom-image"
+                    : "mycard-image default-image"
+                }
               />
-            </Link>
+              {!metadata?.image && (
+                <Link to="/card/create">
+                  <img
+                    src={defaultCardImage} // 기본 이미지를 사용
+                    alt="기본 카드 이미지"
+                    className="mycard-image default-image"
+                  />
+                </Link>
+              )}
+            </>
           )}
         </div>
       </div>

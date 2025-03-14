@@ -9,7 +9,7 @@ import defaultCardImage03 from "../images/pinkcard.png";
 import defaultCardImage04 from "../images/skybluecard.png";
 import defaultCardImage02 from "../images/yellowcard.png";
 import "./CardModify.css";
-import { fetchMetadata, mintNFT } from "./CardService";
+import { fetchMetadata, mintNFT, fetchCardInfo } from "./CardService";
 const CardModify = () => {
   const [file, setFile] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -27,12 +27,29 @@ const CardModify = () => {
 
   useEffect(() => {
     const tokenId = sessionStorage.getItem("cardMetadata");
+    const memberNum = sessionStorage.getItem("member_num");
 
-    console.log(tokenId);
+    const fetchData = async () => {
+      if (!tokenId) {
+        console.log("세션에 cardMetadata가 없습니다.");
+        setLoading(false);
+        return;
+      }
 
-    // 세션에 카드 정보가 없으면 백엔드에서 메타데이터 가져오기
-    fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
-  }, []); // 컴포넌트가 마운트될 때 한 번만 실행
+      try {
+        // 카드 정보와 메타데이터를 비동기적으로 가져오기
+        await fetchCardInfo(memberNum, setTokenId, setNewLoading);
+        await fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
+
+        setLoading(false); // 데이터 로딩이 끝난 후 로딩 상태 업데이트
+      } catch (error) {
+        console.error("데이터 가져오기 오류:", error);
+        setLoading(false); // 오류 발생시에도 로딩 상태 종료
+      }
+    };
+
+    fetchData(); // fetchData 호출
+  }, []); // 컴포넌트가 처음 렌더링될 때만 실행
 
   const handleMintNFT = async () => {
     let fileToUpload = file;
@@ -66,6 +83,7 @@ const CardModify = () => {
 
     if (selectedFile) {
       setFile(selectedFile);
+      const previewUrl = URL.createObjectURL(selectedFile); // 이 URL을 미리보기로 설정
       setPreviewUrl(URL.createObjectURL(selectedFile));
     }
   };

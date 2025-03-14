@@ -71,6 +71,7 @@
   height: 100%;
   opacity: 0;
   cursor: pointer;
+  margin-top: 10px;
 }
 /* NFT 발행 버튼 스타일 */
 .button-style {
@@ -83,7 +84,6 @@
   border: none; /* 테두리 없앰 */
   border-radius: 10px; /* 둥근 모서리 */
   cursor: pointer; /* 마우스 커서 */
-  margin-top: 10%; /* 위쪽 여백 */
 }
 
 /* 비활성화된 버튼 */

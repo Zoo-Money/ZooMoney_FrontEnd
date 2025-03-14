@@ -2,7 +2,7 @@ import axios from "axios";
 import { ethers } from "ethers";
 import defaultCardImage from "../images/defaultcard.png";
 import CardABI from "./CardABI.json"; // 스마트 컨트랙트 ABI
-
+import React, { useEffect, useState } from "react";
 const contractAddress = process.env.REACT_APP_NFT_CONTRACT_ADDRESS;
 const pinataApiKey = process.env.REACT_APP_PINATA_API_KEY;
 const pinataSecretApiKey = process.env.REACT_APP_PINATA_SECRET_API_KEY;
@@ -327,5 +327,33 @@ export const updateCardDate = async () => {
     console.log("카드 날짜/포인트 업데이트 성공:", response.data);
   } catch (error) {
     console.error("날짜/포인트 업데이트 실패:", error);
+  }
+};
+export const fetchCardInfo = async (memberNum, setTokenId, setNewLoading) => {
+  try {
+    const response = await axios.get(
+      "http://localhost:7777/zoomoney/card/get",
+      {
+        headers: {
+          member_num: memberNum, // 요청 헤더로 전달
+        },
+      }
+    );
+
+    console.log("백엔드 응답:", response.data);
+
+    if (response.data) {
+      sessionStorage.setItem("tokenId", response.data.cardMetadata);
+      sessionStorage.setItem("card_num", response.data.cardNum);
+      sessionStorage.setItem("card_money", response.data.cardMoney);
+      sessionStorage.setItem("cardMetadata", response.data.cardMetadata);
+
+      setTokenId(response.data.cardMetadata);
+    }
+
+    setNewLoading(false);
+  } catch (error) {
+    console.error("데이터 가져오기 오류:", error);
+    setNewLoading(false);
   }
 };

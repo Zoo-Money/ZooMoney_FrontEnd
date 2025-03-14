@@ -191,6 +191,7 @@
   height: 188px; /* 세로 크기 */
   border-radius: 12px; /* 모서리 둥글게 */
   position: relative;
+  /* overflow-y: scroll; */
 }
 
 .mycard-image {
@@ -199,6 +200,7 @@
   object-fit: cover; /* 비율을 유지하면서 채우기 */
   border-radius: 12px; /* 이미지 모서리 둥글게 */
   position: absolute; /* 부모 요소에 맞게 이미지 위치 조정 */
+  overflow: hidden;
 }
 
 .custom-image {
