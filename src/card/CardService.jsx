@@ -139,7 +139,7 @@ export const mintNFT = async (file, setMinting, setTransactionHash) => {
         console.log("NFT 이미지 변경 완료:", newMetadataUrl);
 
         // 카드 날짜 최신화
-        await updateCardDate(memberNum);
+        await updateCardDate();
       } catch (error) {
         console.error("메타데이터 업데이트 중 오류 발생:", error);
       }
@@ -276,7 +276,11 @@ const generateCardNumber = () => {
 
   return formattedCardNumber;
 };
-
+const axiosHeader = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
 // 백엔드로 카드 정보를 전송하는 함수 (axios 사용 예시)
 export const saveCardToDB = async (
   cardNum,
@@ -284,20 +288,18 @@ export const saveCardToDB = async (
   cardMoney,
   memberNum
 ) => {
+  //카드 데이터
+  const cardData = {
+    card_num: cardNum,
+    card_metadata: cardMetadata,
+    card_money: cardMoney,
+    member_num: memberNum,
+  };
   try {
     const response = await axios.post(
       "http://localhost:7777/zoomoney/card/create",
-      {
-        card_num: cardNum,
-        card_metadata: cardMetadata,
-        card_money: cardMoney,
-        member_num: memberNum,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
+      cardData,
+      axiosHeader
     );
     console.log("카드 정보 저장 성공:", response.data);
   } catch (error) {
@@ -308,24 +310,22 @@ export const saveCardToDB = async (
 export const updateCardDate = async () => {
   try {
     // 예시: sessionStorage에서 memberNum을 가져오는 경우
-    const memberNum = sessionStorage.getItem("memberNum");
+    const memberNum = sessionStorage.getItem("member_num");
+    const cardNum = sessionStorage.getItem("card_num");
     if (!memberNum) {
       throw new Error("세션에 memberNum이 없습니다.");
     }
-
+    console.log(cardNum, memberNum);
     const response = await axios.put(
       "http://localhost:7777/zoomoney/card/update",
       {
+        card_num: cardNum,
         member_num: memberNum,
       },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
+      axiosHeader
     );
-    console.log("카드 날짜 업데이트 성공:", response.data);
+    console.log("카드 날짜/포인트 업데이트 성공:", response.data);
   } catch (error) {
-    console.error("카드 날짜 업데이트 실패:", error);
+    console.error("날짜/포인트 업데이트 실패:", error);
   }
 };

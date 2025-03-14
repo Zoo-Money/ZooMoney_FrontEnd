@@ -24,59 +24,15 @@ const CardModify = () => {
   const [isImageLoaded, setIsImageLoaded] = useState(false); // 이미지 로딩 여부
   const [, setIsReady] = useState(false); // 렌더링 제어
   const navigate = useNavigate();
-  const memberNum = sessionStorage.getItem("member_num");
-  // ✅ 1. 백엔드에서 카드 정보를 가져와서 세션에 저장
-  useEffect(() => {
-    const fetchCardInfo = async () => {
-      console.log(memberNum);
-      try {
-        const response = await axios.get(
-          "http://localhost:7777/zoomoney/card/get",
-          {
-            params: {
-              memberNum: memberNum, // memberNum을 쿼리 파라미터로 전송
-            },
-          }
-        );
-
-        console.log("백엔드 응답:", response.data);
-
-        if (response.data) {
-          sessionStorage.setItem("tokenId", response.data.cardMetadata);
-          sessionStorage.setItem("card_num", response.data.cardNum);
-          sessionStorage.setItem("card_money", response.data.cardMoney);
-          sessionStorage.setItem("cardMetadata", response.data.cardMetadata);
-
-          setTokenId(response.data.cardMetadata);
-        }
-
-        console.log("저장된 세션 값:", {
-          tokenId: response.data.cardMetadata,
-          card_num: response.data.cardNum,
-          cardMoney: response.data.cardMoney,
-          cardMetadata: response.data.cardMetadata,
-        });
-
-        setNewLoading(false);
-      } catch (error) {
-        console.error("데이터 가져오기 오류:", error);
-        setNewLoading(false);
-      }
-    };
-
-    fetchCardInfo();
-  }, []);
 
   useEffect(() => {
-    if (!newloading && tokenId) {
-      fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading).then(
-        () => {
-          console.log("Metadata 가져오기 완료!");
-          setIsReady(true); // 모든 데이터가 로딩된 후 렌더링 시작
-        }
-      );
-    }
-  }, [newloading, tokenId]);
+    const tokenId = sessionStorage.getItem("cardMetadata");
+
+    console.log(tokenId);
+
+    // 세션에 카드 정보가 없으면 백엔드에서 메타데이터 가져오기
+    fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
+  }, []); // 컴포넌트가 마운트될 때 한 번만 실행
 
   const handleMintNFT = async () => {
     let fileToUpload = file;
@@ -125,10 +81,6 @@ const CardModify = () => {
 
     setFile(file);
   };
-  const handleResetImage = () => {
-    setSelectedImage(null); // 이미지 리셋 (메타데이터 이미지로 복귀)
-  };
-
   return (
     <div className="mock-container">
       <Header title="카드 이미지 변경" />

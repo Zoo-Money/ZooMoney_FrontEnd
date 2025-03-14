@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import Footer from "../common/Footer";
 import defaultCardImage from "../images/bear01.png"; // 기본 이미지 경로
@@ -12,8 +13,44 @@ import { fetchMetadata } from "./CardService";
 const CardMain = () => {
   const [metadata, setMetadata] = useState(null);
   const [, setMetadataUrl] = useState("");
+  const [tokenId, setTokenId] = useState("");
   const [, setLoading] = useState(false);
+  const [newloading, setNewLoading] = useState(true);
   const [allowanceAmount, setAllowanceAmount] = useState("0원");
+
+  // ✅ 1. 백엔드에서 카드 정보를 가져와서 세션에 저장
+  useEffect(() => {
+    const memberNum = sessionStorage.getItem("member_num"); // 세션에서 member_num 가져오기
+    const fetchCardInfo = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:7777/zoomoney/card/get",
+          {
+            headers: {
+              member_num: memberNum, // 요청 헤더로 전달
+            },
+          }
+        );
+        console.log("백엔드 응답:", response.data);
+
+        if (response.data) {
+          sessionStorage.setItem("tokenId", response.data.cardMetadata);
+          sessionStorage.setItem("card_num", response.data.cardNum);
+          sessionStorage.setItem("card_money", response.data.cardMoney);
+          sessionStorage.setItem("cardMetadata", response.data.cardMetadata);
+
+          setTokenId(response.data.cardMetadata);
+        }
+
+        setNewLoading(false);
+      } catch (error) {
+        console.error("데이터 가져오기 오류:", error);
+        setNewLoading(false);
+      }
+    };
+
+    fetchCardInfo();
+  }, []);
 
   useEffect(() => {
     const savedAllowance = sessionStorage.getItem("card_money");
