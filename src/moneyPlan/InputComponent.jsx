@@ -10,7 +10,7 @@ function InputComponent({ title, img, category, handleInputChange, index}) {
           type="text"
           placeholder="금액입력"
           value={category}
-          onChange={(e) => handleInputChange(e, index)}
+          onChange={(e) => handleInputChange(e, index+1)}
         />
       </div>
     </>

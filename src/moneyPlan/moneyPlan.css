@@ -3,12 +3,24 @@
   text-align: center;
 }
 .img-deer {
-  width: 100px;
+  width: 120px;
   height: auto;
-  margin-left: 240px;
-  margin-bottom: -8px;
+  /* text-align: right; */
+  /* margin-left: 240px; */
+  /* margin-bottom: -8px; */
+  transform: scaleX(-1);
+  margin-left: auto;
+}
+.planmain-description{
+  font-size: 16px;
+  /* text-align: center; */
+  display: flex;
+  text-align: right;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 .planmain-box{
+  padding-top: 10px;
   width: 90%;
   height: auto;
   background-color: #f8f4f1;
@@ -18,9 +30,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: left;
 }
-.planmain-description{
-  font-size: 18px;
-}
+
 .planmain-description span{
   font-weight: bold;
   color: #ff5454;
@@ -143,6 +153,10 @@
   text-align: left;
 }
 /* SelectChart */
+canvas{
+  width: 300px;
+  height: 300px;
+}
 .selectchart-box{
   display: flex;
   height: 350px;
@@ -179,4 +193,23 @@
   align-items: center;
   width: 100%; /* PlanChart가 화면에 꽉 차게 */
   padding-bottom: 20px;
+}
+
+/* complete */
+.plancomplete-content{
+  text-align: center;
+}
+.img-deer2{
+  margin-top: 50px;
+  width: 200px;
+}
+.plancomplete-description{
+  font-size: 18px;
+  color: #333;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.plancomplete-description span{
+  color: #ff5454;
+  font-weight: bold;
 }

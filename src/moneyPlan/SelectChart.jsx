@@ -1,42 +1,58 @@
 import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Legend, Tooltip } from "chart.js";
+import { Chart as ChartJS, ArcElement, Legend, Tooltip, layouts } from "chart.js";
 import axios from "axios";
 import { categoryName } from "./planCommon";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import Chart from "chart.js/auto";
+import dayjs from 'dayjs';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+
+const centerTextPlugin = {
+  id: "centerTextPlugin",
+  beforeDraw: (chart) => {
+    const { width, height, ctx } = chart;
+    const text = chart.options.plugins.centerTextPlugin.text || "";
+
+    ctx.save();
+    ctx.font = "bold 18px Arial";
+    ctx.fillStyle = "#333";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    const centerX = width / 2;
+    const centerY = height / 2;
+
+    ctx.fillText(text, centerX, centerY);
+    ctx.restore();
+  },
+};
+
+Chart.register(centerTextPlugin);
 
 function SelectChart() {
   const [plansData, setPlansData] = useState({}); // 각 plan_num별 데이터 저장
   const [currentPlanNum, setCurrentPlanNum] = useState(0); // 현재 보여줄 plan_num
+  const [planDate, setPlanDate] = useState([]);
 
   // plan_date를 형식에 맞게 변환하는 함수
   const formatPlanDate = (dateString) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth()+1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-    // const formattedStart = (dateString).format("YYYY-MM-DD");
-    // const formattedEnd = (dateString).add(7, "day").format("YYYY-MM-DD");
-    // return `${formattedStart} ~ ${formattedEnd}`;
+    const formattedStart = dayjs(dateString).format("YYYY-MM-DD");
+    const formattedEnd = dayjs(dateString).add(7, "day").format("YYYY-MM-DD");
+    return `${formattedStart} ~ ${formattedEnd}`;
   };
 
   // 데이터 받아오기
+  const dateArr = [];
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/moneyplan/select") // 여러 개의 계획 데이터 요청
+      .get("http://localhost:7777/zoomoney/moneyplan/select")
       .then((response) => {
-        
-        response.data.forEach((plan)=>{
-            console.log(plan.plan_date);
+        response.data.forEach((plan) => {
+          dateArr.push(plan.plan_date.split("T")[0]);
         });
-
-        // const transformedData = response.data.map((plan) => ({
-        //   ...plan,
-        //   formattedPlanDate: formatPlanDate(plan.plan_date),
-        // }));
+        setPlanDate(dateArr);
         const plansGroupedByNum = groupByPlanNum(response.data);
         setPlansData(plansGroupedByNum); // plan_num 별로 그룹화된 데이터 저장
       })
@@ -48,7 +64,6 @@ function SelectChart() {
   // plan_num별로 데이터를 그룹화
   const groupByPlanNum = (data) => {
     return data.reduce((acc, plan) => {
-        const dateFormatted = formatPlanDate(plan.plan_date);
       const { plan_num, planDetails } = plan;
       if (!acc[plan_num]) {
         acc[plan_num] = [];
@@ -95,18 +110,21 @@ function SelectChart() {
   const chartOptions = {
     plugins: {
       legend: {
-        position: "bottom", // 범례를 아래 배치
+        position: "bottom",
         labels: {
           generateLabels: (chart) => {
             const data = chart.data.datasets[0].data;
             return chart.data.labels.map((label, i) => ({
-              text: `${label}: ${data[i].toLocaleString()}원`, // 범례에 가격 추가
-              fillStyle: chart.data.datasets[0].backgroundColor[i], // 색상 유지
+              text: `${label}: ${data[i].toLocaleString()}원`,
+              fillStyle: chart.data.datasets[0].backgroundColor[i],
             }));
           },
           usePointStyle: true,
           boxWidth: 20,
-          padding: 15,
+          padding: 10,
+          font:{
+            size: 12,
+          }
         },
       },
       tooltip: {
@@ -117,15 +135,24 @@ function SelectChart() {
           },
         },
       },
-      layout: {
-        padding: {
-          bottom: 50,
+      title: {
+        display: true,
+        text: `${formatPlanDate(planDate[currentPlanNum]) || "날짜없음"}`,
+        font: {
+          size: 16,
+          Weight: "bold",
         },
+        color: "#333",
+      },
+    },
+    layout: {
+      padding: {
+        top: 0,
       },
     },
   };
 
-  // 차트 전환
+  // 차트 전환 함수
   const handleChartChange = (direction) => {
     const planKeys = Object.keys(plansData);
     const totalPlans = planKeys.length;
@@ -153,14 +180,13 @@ function SelectChart() {
           className="selectchart-back"
           onClick={() => handleChartChange("prev")}
         />
-        <p></p>
         <IoIosArrowForward
           className="selectchart-forward"
           onClick={() => handleChartChange("next")}
         />
       </div>
       <div className="selectchart-box">
-        <Doughnut
+        <Doughnut id="myChart"
           data={getChartData(currentPlanDetails)}
           options={chartOptions}
         />

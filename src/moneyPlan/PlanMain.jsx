@@ -17,13 +17,15 @@ function PlanMain(props) {
       <div className="mock-container">
         <Header title="용돈 계획 세우기" />
         <div className="planmain-content">
-          <img src={deer1} alt="deer1" className="img-deer" />
-          <div className="planmain-box">
-            <p className="planmain-description">
-              짜임새 있는 용돈 계획을 세우고,
-              <br />
+          <div className="planmain-description">
+            <p>
+              짜임새 있는 용돈 계획을 세우고,<br/>
+              
               알뜰한 <span>소비 습관</span>을 길러봐요!
             </p>
+          <img src={deer1} alt="deer1" className="img-deer" />
+          </div>
+          <div className="planmain-box">
             <div className="planmain-chart-box">
               <SelectChart></SelectChart>
             </div>

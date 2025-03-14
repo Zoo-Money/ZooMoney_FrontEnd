@@ -43,6 +43,7 @@ function PlanChart(props) {
             planMoney: planMoney,
             categoryAmounts: category,
         };
+        console.log(requestData);
         axios.post("http://localhost:7777/zoomoney/moneyplan/save", requestData, {
             headers: {
                 "Content-Type": "application/json"
