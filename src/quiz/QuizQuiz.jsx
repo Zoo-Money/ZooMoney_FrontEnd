@@ -79,7 +79,7 @@ const QuizQuiz = () => {
 
   return (
     <div className="mock-container">
-      <Header title="퀴즈풀기" />
+      <Header title="QUIZ 풀기" />
       <div className="quizquiz-content">
         <img
           src={giraffeQuiz}

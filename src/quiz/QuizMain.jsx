@@ -33,7 +33,7 @@ const QuizMain = () => {
 
   return (
     <div className="mock-container">
-      <Header title="오늘의 금융퀴즈" />
+      <Header title="오늘의 금융 QUIZ" />
 
       {/* 메인 콘텐츠 */}
       <div className="quizmain-content">
@@ -51,7 +51,7 @@ const QuizMain = () => {
                 <p className="quizmain-total-right">300P</p>
               </div>
               <div className="quizmain-total-detail">
-                <p className="quizmain-total-left">도전한 퀴즈</p>
+                <p className="quizmain-total-left">도전한 QUIZ</p>
                 <p className="quizmain-total-right">5문제</p>
               </div>
               <div className="quizmain-total-detail">
@@ -70,10 +70,10 @@ const QuizMain = () => {
         </div>
 
         <p className="quizmain-today">
-          <strong>오늘 푼 퀴즈: 2/5</strong>
+          <strong>오늘 푼 QUIZ: 2/5</strong>
         </p>
         <button className="quizmain-button" onClick={startQuiz}>
-          퀴즈 시작하기
+          QUIZ 시작하기
         </button>
 
         {/* 주의사항 */}
@@ -81,8 +81,8 @@ const QuizMain = () => {
           <strong>꼭 확인해주세요</strong>
         </p>
         <p className="quizmain-description">
-          <li>매일 5개의 퀴즈에 도전할 수 있어요.</li>
-          <li>퀴즈를 맞힐 때마다 100p를 받아요.</li>
+          <li>매일 5개의 QUIZ에 도전할 수 있어요.</li>
+          <li>QUIZ를 맞힐 때마다 100p를 받아요.</li>
           {/* <li>
             퀴즈를 풀다가 중간에 화면이나 앱을 나가면 퀴즈 결과에서 틀린 걸로
             반영돼요.
