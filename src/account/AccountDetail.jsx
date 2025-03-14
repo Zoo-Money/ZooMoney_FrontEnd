@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import ether from "../images/ether.png";
 import "./css/AccountDetail.css";
 import { burnTokens } from "./resources/AccountService";
 
@@ -15,7 +14,7 @@ const AccountDetail = () => {
 
   const [account, setAccount] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isready, setIsReady] = useState(false);
 
   const colorList = ["#FFCB9A", "#C2F1FF", "#FFF4C2", "#FEC7C0", "#CAFFC2"];
 
@@ -32,9 +31,9 @@ const AccountDetail = () => {
             `http://localhost:7777/zoomoney/account/select/${accountNum}`
           );
           setAccount(response.data);
-          setLoading(false);
         } catch (error) {
           console.error("조회 실패");
+        } finally {
           setLoading(false);
         }
       }
@@ -46,18 +45,20 @@ const AccountDetail = () => {
   // 데이터 로드 후 렌더링
   if (loading) return null;
 
-  const insertAccount = (accountNum) => {
-    navigate("/account/insert", { state: { accountNum } }); // state로 전달
+  const insertAccount = () => {
+    navigate("/account/insert", {
+      state: {
+        accountNum,
+        accountName: account.accountName,
+        accountGoal: account.accountGoal,
+        accountNow: account.accountNow,
+      },
+    }); // state로 전달
   };
 
   const closeAccount = async (accountNum) => {
     try {
-      setIsLoading(true);
-
-      setTimeout(() => {
-        alert("저금통 해지 완료");
-        setIsLoading(false);
-      }, 1000);
+      setIsReady(true);
 
       // 저금통 해지
       await burnTokens(account.accountNow);
@@ -75,12 +76,24 @@ const AccountDetail = () => {
         `http://localhost:7777/zoomoney/account/close/${accountNum}`
       );
 
-      navigate("/account/close", {
-        state: { accountName: account.accountName },
+      navigate("/account/end", {
+        state: { accountName: account.accountName, status: 1 },
       });
     } catch (error) {
       console.error("해지 실패");
+    } finally {
+      setIsReady(false);
     }
+  };
+
+  const parentAccount = () => {
+    navigate("/account/close", {
+      state: {
+        accountNum,
+        accountName: account.accountName,
+        accountMoneyLeft: account.accountGoal - account.accountNow,
+      },
+    });
   };
 
   return (
@@ -99,7 +112,10 @@ const AccountDetail = () => {
               className="AccountDetailForm"
               style={{
                 backgroundColor:
-                  new Date().setHours(0, 0, 0, 0) > new Date(account.accountEnd)
+                  account.accountGoal - account.accountNow <= 0
+                    ? "#f9a825" // 목표 금액 달성 시 색상
+                    : new Date().setHours(0, 0, 0, 0) >
+                      new Date(account.accountEnd)
                     ? "#c4c0ba" // 만기된 저금통 색상
                     : colorList[index % colorList.length],
               }}
@@ -125,8 +141,11 @@ const AccountDetail = () => {
                   })()}
                 </span>
                 <span style={{ fontSize: "0.75rem" }}>
-                  {Math.floor((account.accountNow / account.accountGoal) * 100)}
-                  % 달성
+                  {account.accountGoal - account.accountNow <= 0
+                    ? "목표 달성 완료 💘" // 목표 달성 시 표시
+                    : Math.floor(
+                        (account.accountNow / account.accountGoal) * 100
+                      ) + "% 달성"}
                 </span>
               </div>
               <div style={{ marginTop: "20px" }}>
@@ -179,8 +198,13 @@ const AccountDetail = () => {
                 <span>만기 날짜</span>
                 <span>{account.accountEnd}</span>
               </div>
+              <hr />
               <div>
-                <img src={ether} alt="ether" />
+                <span>목표 달성까지 남은 금액</span>
+                <span>
+                  {(account.accountGoal - account.accountNow).toLocaleString()}{" "}
+                  원
+                </span>
               </div>
             </div>
 
@@ -189,24 +213,30 @@ const AccountDetail = () => {
                 backgroundColor: "#f9a825",
               }}
               onClick={() => {
+                account.accountGoal - account.accountNow <= 0 ||
                 new Date().setHours(0, 0, 0, 0) > new Date(account.accountEnd)
                   ? closeAccount(accountNum)
                   : insertAccount(accountNum);
               }}
-              disabled={isLoading}
+              disabled={isready}
             >
               <span>
-                {new Date().setHours(0, 0, 0, 0) > new Date(account.accountEnd)
-                  ? isLoading ? "처리 중..." : "해지하기"
+                {account.accountGoal - account.accountNow <= 0 ||
+                new Date().setHours(0, 0, 0, 0) > new Date(account.accountEnd)
+                  ? isready
+                    ? "처리 중..."
+                    : "해지하기"
                   : "저금하기"}
               </span>
             </button>
-            {new Date().setHours(0, 0, 0, 0) >
-            new Date(account.accountEnd) ? null : (
+            {account.accountGoal - account.accountNow <= 0 ||
+            new Date().setHours(0, 0, 0, 0) >
+              new Date(account.accountEnd) ? null : (
               <button
                 style={{
                   backgroundColor: "#c4c0ba",
                 }}
+                onClick={() => parentAccount(accountNum)}
               >
                 <span>해지 요청하기</span>
               </button>

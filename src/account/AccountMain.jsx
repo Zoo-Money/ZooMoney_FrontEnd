@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
-import pig01 from "../images/pig01.png";
+import pig_main from "../images/pig_main.png";
 import plus from "../images/plus.png";
 import "./css/AccountMain.css";
 
@@ -34,9 +34,9 @@ const AccountMain = () => {
           0
         );
         setAmount(amount);
-        setLoading(false);
       } catch (error) {
         console.error("조회 실패");
+      } finally {
         setLoading(false);
       }
     };
@@ -59,12 +59,12 @@ const AccountMain = () => {
           <span>나의 저금통</span>
           <span>{accountCount} 개</span>
         </div>
-        <img src={pig01} alt="pig01" />
+        <img src={pig_main} alt="pig_main" />
       </div>
 
       {/* 메인 콘텐츠 */}
       <div className="AccountMainCount">
-        {amount !== 0 ? <span>현재 {amount}원 저금중 😎</span> : null}
+        {amount !== 0 ? <span>현재 {amount.toLocaleString()}원 저금중 😎</span> : null}
       </div>
       <div className="AccountMainContent">
         <div className="AccountMainResult">
@@ -76,8 +76,10 @@ const AccountMain = () => {
                   className="AccountMainForm"
                   style={{
                     backgroundColor:
-                      new Date().setHours(0, 0, 0, 0) >
-                      new Date(account.accountEnd)
+                      account.accountGoal - account.accountNow <= 0
+                        ? "#f9a825" // 목표 금액 달성 시 색상
+                        : new Date().setHours(0, 0, 0, 0) >
+                          new Date(account.accountEnd)
                         ? "#c4c0ba" // 만기된 저금통 색상
                         : colorList[index % colorList.length],
                   }}
@@ -105,10 +107,11 @@ const AccountMain = () => {
                       })()}
                     </span>
                     <span style={{ fontSize: "0.75rem" }}>
-                      {Math.floor(
-                        (account.accountNow / account.accountGoal) * 100
-                      )}
-                      % 달성
+                      {account.accountGoal - account.accountNow <= 0
+                        ? "목표 달성 완료 💘" // 목표 달성 시 표시
+                        : Math.floor(
+                            (account.accountNow / account.accountGoal) * 100
+                          ) + "% 달성"}
                     </span>
                   </div>
                   <div style={{ marginTop: "20px" }}>

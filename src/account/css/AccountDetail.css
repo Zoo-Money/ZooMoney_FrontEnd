@@ -1,5 +1,5 @@
 .AccountDetailContent {
-  height: 80%;
+  height: 70%;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1.25rem;
 }
 
 .AccountDetailForm {
@@ -35,7 +35,7 @@
 
 .AccountDetailView {
   width: 350px;
-  height: 200px;
+  min-height: 225px;
   border: 2px solid #f9a825;
   border-radius: 10px;
   padding: 20px;
@@ -47,12 +47,8 @@
 .AccountDetailView div {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-}
-
-.AccountDetailView img {
-  width: 50%;
 }
 
 .AccountDetailResult button {
@@ -68,6 +64,11 @@
 .AccountDetailResult button:hover {
   opacity: 0.8;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.AccountDetailResult button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .AccountDetailResult span {

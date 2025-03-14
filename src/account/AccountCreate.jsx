@@ -32,7 +32,7 @@ const AccountTest = () => {
         accountEnd: date,
       });
 
-      navigate("/account");
+      navigate("/account/end", { state: { accountName: name, status: 2 } }); // state로 전달
     } catch (error) {
       console.error("저금통 생성 실패", error);
     }
