@@ -68,16 +68,6 @@
   margin: 16px; /* 화면과의 간격 */
 }
 
-.footer {
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-  background-color: #fff;
-  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
-  padding: 10px 0;
-  text-align: center;
-}
-
 .clickable {
   cursor: pointer; /* 클릭할 수 있도록 변경 */
 }

@@ -5,7 +5,7 @@ import Footer from "../common/Footer";
 import Header from "../common/Header";
 import { useNavigate } from "react-router-dom";
 
-const StockRank = () => {
+const StockList = () => {
   const [stocks, setStocks] = useState([]);
   const navigate = useNavigate();
 
@@ -73,4 +73,4 @@ const StockRank = () => {
   );
 };
 
-export default StockRank;
+export default StockList;
