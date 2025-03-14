@@ -7,7 +7,7 @@ import CardModify from "../card/CardModify";
 import CardModifySuccess from "../card/CardModifySuccess";
 import CardHistory from "../card/CardHistory";
 
-function AccountRouter() {
+function CardRouter() {
   return (
     <div>
       <Routes>
@@ -22,4 +22,4 @@ function AccountRouter() {
   );
 }
 
-export default AccountRouter;
+export default CardRouter;
