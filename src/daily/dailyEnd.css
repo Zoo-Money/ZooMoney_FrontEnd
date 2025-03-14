@@ -1,0 +1,44 @@
+/* 메인 콘텐츠 */
+.dailyend-content {
+  margin-top: 50px;
+  width: 393px;
+  text-align: center;
+}
+
+/* 출첵완료 캐릭터 */
+.dailyend-image {
+  width: 140px;
+  height: auto;
+  margin-top: 100px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+
+/* 설명 */
+.dailyend-description {
+  font-size: 15px;
+  color: #5a5a5a;
+  line-height: 1.5;
+  font-weight: 900;
+  margin: 30px 25px 20px 25px;
+}
+
+/* 퀴즈 풀이 완료 버튼 */
+.dailyend-button {
+  width: 90%;
+  height: 45px;
+  background-color: #f9a825;
+  color: white;
+  font-size: 14px;
+  font-weight: 900;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 10%;
+}
+
+/* 네비게이션 바 */
+.menu {
+  width: 100vw;
+  max-width: 393px;
+}
