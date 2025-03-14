@@ -21,15 +21,13 @@ function StockInfo() {
 
   return (
     <div className="mock-container">
-      <div className="header">
-        <Header title="주식에 대해 궁금해요" />
-      </div>
+      <Header title="주식에 대해 궁금해요" />
       <div className="faqInfo">
         <div className="faqDetail">
           {stockInfoList.map((item) => {
             return (
-              <div className="InfoTitle">
-                <Link key={item.infoNum} to={`/stock/${item.infoNum}`}>
+              <div className="faq-InfoTitle">
+                <Link key={item.infoNum} to={`/stock/info/${item.infoNum}`}>
                   {item.infoTitle}
                 </Link>
               </div>
