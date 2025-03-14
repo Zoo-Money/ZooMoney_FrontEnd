@@ -5,6 +5,7 @@ import StockRouter from "./StockRouter";
 import CardRouter from "./CardRouter";
 import ContractRouter from "./ContractRouter";
 import QuizRouter from "./QuizRouter";
+import DailyRouter from "./DailyRouter";
 
 function Routers() {
   return (
@@ -15,6 +16,7 @@ function Routers() {
       <CardRouter />
       <ContractRouter />
       <QuizRouter />
+      <DailyRouter />
     </div>
   );
 }
