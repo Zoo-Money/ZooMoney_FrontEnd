@@ -1,140 +1,87 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../common/Header';
+import Footer from '../common/Footer';
 import hamburger from "../images/hamburger.png";
 import cart from "../images/cart.png";
 import game from "../images/game.png";
 import pig from "../images/pig.png";
 import etc from "../images/etc.png";
-import Footer from '../common/Footer';
-import ContentInput from './ContentInput';
 import axios from 'axios';
-import PlanChart from './PlanChart';
+import "./moneyPlan.css";
+import { useNavigate } from 'react-router-dom';
+import InputComponent from './InputComponent';
+import {categoryName} from "./planCommon.js";
 
-//화폐단위포맷함수
-const formatCurrency = (value) => {
-  if (!value) return "0";
-  value = String(value);
-  let formattedValue = value.replace(/[^\d]/g, '');
-  formattedValue = formattedValue.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  return formattedValue;
-};
+function PlanWrite(props) {
+    const [planMoney, setPlanMoney] = useState();
+    const [category, setCategory] = useState({
+        1: "", 2: "", 3: "", 4: "", 5: ""
+    });
+    const [message, setMessage] = useState();
+    const navi = useNavigate();
+    const images = [ hamburger, cart, game, pig, etc];
 
-function PlanWrite() {
-    const [allowance, setAllowance] = useState(0);
-    const [values, setValues] = useState({});
-    const [message, setMessage] = useState('');
-    const [planConfirmed, setPlanConfirmed] = useState(false);
-    const contentItems = [
-      {label: "먹기", imageSrc: hamburger, className: "content-eat"},
-      {label: "쇼핑", imageSrc: cart, className: "content-cart"},
-      {label: "놀기", imageSrc: game, className: "content-game"},
-      {label: "저금", imageSrc: pig, className: "content-pig"},
-      {label: "기타", imageSrc: etc, className: "content-etc"}
-    ];
-
-    //용돈 가져오기
+    //용돈가져오기
     useEffect(()=>{
-      //세션에서 memberNum 가져오기
-      // const memberNum = sessionStorage.getItem('memberNum');
-
-      // if(!memberNum){
-      //   console.log("로그인 정보 없음~");
-      //   return;
-      // }
-      const memberNum = 1;
-      axios({
-        url: `http://localhost:7777/zoomoney/moneyplan/getAllowance?memberNum=${memberNum}`,
-        method: "get"
-      })
-      .then((responseData)=>{
-        console.log(responseData.data);
-        if(responseData.data){
-          setAllowance(responseData.data);
-        }
-      })
-      .catch((err)=>{
-        console.log(err);
-      });
+        const memberNum = 1;
+        axios({
+          url: `http://localhost:7777/zoomoney/moneyplan/getAllowance?memberNum=${memberNum}`,
+          method: "get",
+        })
+          .then((resposeData) => {
+            setPlanMoney(resposeData.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
     },[]);
 
-    //값 변환 이벤트
-    const handleInputChange = (label, e)=>{
-      setValues((prev)=>({
-        ...prev, [label]: formatCurrency(e.target.value)
-      }));
-    };
-
-    //용돈과 입력값 비교
+    //유효성검사
     useEffect(()=>{
-      const total = Object.values(values).reduce((sum,val)=>sum+(parseInt(val.replace(/[^0-9]/g, ''), 10) || 0), 0);
-      if (Object.keys(values).length === 0){
-        setMessage("설정한 용돈 금액에 맞춰 계획 금액을 입력해주세요");
-      } else if (total === allowance) {
-        setMessage("받은 용돈과 계획한 금액이 일치합니다.");
-      } else {
-        setMessage("받은 용돈과 계획한 금액이 일치하지 않습니다. 다시 입력해주세요.");
-      }
-    }, [values, allowance]);
+        const total = Object.values(category).reduce((acc, curr)=>acc + Number(curr),0);
+        if (Object.values(category).every(value => value === "")){
+            setMessage("설정한 용돈 금액에 맞춰 계획 금액을 입력해주세요");
+        } else if (total === planMoney) {
+            setMessage("받은 용돈과 계획한 금액이 일치합니다.");
+        } else {
+            setMessage("받은 용돈과 계획한 금액이 일치하지 않습니다. 다시 입력해주세요.");
+        }
+    }, [category, planMoney]);
 
-    //다음 버튼 클릭 시 넘어가기기
-    const handleConfirmPlan = ()=>{
-      setPlanConfirmed(true);
+    //입력된 값 넣어주기
+    const handleInputChange = (e, key) => {
+        const value = e.target.value;
+        setCategory(prev => ({
+            ...prev, [key]: Number(value) || ""
+        }));
     };
 
-    const handelSave = ()=>{
-      alert("계획저장완료");
+    //이동, 데이터 전달
+    const handleNext = () => {
+        navi("/moneyPlan/planchart", {state: {category, planMoney}});
     };
 
     return (
       <div className="mock-container">
-        <div className="header">
           <Header title="용돈 계획 세우기"></Header>
-        </div>
-        <div className="content">
+        <div className="planwrite-content">
           <p>
-            일주일동안 <span>{formatCurrency(allowance)}원</span>을<br></br>
-            어떻게 나눠쓸까요?
-          </p>
-          <small>어떻게 용돈을 쓸지 선택해주세요.</small>
+            일주일 동안 <span>{planMoney}원</span>을 어떻게 나눠쓸까요?<br/>
+            어떻게 용돈을 쓸지 선택해주세요.</p>
         </div>
-        {planConfirmed ? (
-          <PlanChart
-            values={values}
-            allowance={allowance}
-            handelSave={handelSave}
-            formatCurrency={formatCurrency}
-          ></PlanChart>
-        ) : (
-          <div>
-            {contentItems.map(({ label, imageSrc, className }) => (
-              <ContentInput
-                key={label}
-                imageSrc={imageSrc}
-                label={label}
-                value={values[label] ? values[label] + "원" : ""}
-                onChange={(e) => handleInputChange(label, e)}
-                onFocus={(e) =>
-                  setValues((prev) => ({
-                    ...prev,
-                    [label]: prev[label]?.replace("원", ""),
-                  }))
-                }
-                onBlur={(e) =>
-                  setValues((prev) => ({
-                    ...prev,
-                    [label]: prev[label] ? prev[label] + "원" : "",
-                  }))
-                }
-                className={className}
-              ></ContentInput>
-            ))}
-            <p>{message}</p>
-          </div>
-        )}
-            <button className="plan-button" onClick={handleConfirmPlan}>
-              다음
-            </button>
-
+        <div className="planwrite-container">
+          {images.map((item, index) => (
+            <InputComponent
+              key={index}
+              title={categoryName[index]}
+              img={images[index]}
+              handleInputChange={handleInputChange}
+              index={index}
+            ></InputComponent>
+          ))}
+          <p>{message}</p>
+        </div>
+        <button className='planwrite-button' onClick={handleNext}>다음</button>
         <Footer></Footer>
       </div>
     );
