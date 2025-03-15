@@ -13,7 +13,7 @@ const MoneyContractManage = () => {
     navigate("/contract/contractWrite"); // 계약서 작성 페이지로 이동
   };
   const handleContractSelectClick = () => {
-    navigate("/contract/contractSelect"); // 계약서 작성 페이지로 이동
+    navigate("/contract/contractSelect"); // 계약서 조회 페이지로 이동
   };
 
   return (

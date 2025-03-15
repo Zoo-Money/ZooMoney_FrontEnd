@@ -72,11 +72,14 @@ const ParentMain = () => {
     setSelectedChild(childNum);
   };
 
+  const goMoneyPlan = () => {
+    navigate("/moneyPlan/main");
+  };
   return (
     <div className="mock-container">
       {/* 메인로고ZooMoney */}
       {/* <div className="zoo-money flex justify-start items-center"> */}
-      <div className="zoo-money">
+      <div className="zoo-money-title">
         <span className="zoo">Zoo</span>
         <span className="money">Money</span>
       </div>
@@ -139,7 +142,7 @@ const ParentMain = () => {
           <img src={allowanceContract} alt="용돈 계약서" />
           <p>용돈 계약서</p>
         </div>
-        <div className="feature-card card-blue">
+        <div className="feature-card card-blue" onClick={goMoneyPlan}>
           <img src={allowancePlan} alt="용돈 계획확인" />
           <p>용돈 계획확인</p>
         </div>
