@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
@@ -7,16 +8,47 @@ import defaultCardImage from "../images/defaultcard.png";
 import defaultCardImage03 from "../images/pinkcard.png";
 import defaultCardImage04 from "../images/skybluecard.png";
 import defaultCardImage02 from "../images/yellowcard.png";
-import "./CardCreate.css";
-import { mintNFT } from "./CardService";
-
-const CardCreate = () => {
+import "./CardModify.css";
+import { fetchMetadata, mintNFT, fetchCardInfo } from "./CardService";
+const CardModify = () => {
   const [file, setFile] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [minting, setMinting] = useState(false);
+  const [tokenId, setTokenId] = useState("");
+  const [metadata, setMetadata] = useState(null);
+  const [, setLoading] = useState(true);
+  const [newloading, setNewLoading] = useState(true);
+  const [metadataUrl, setMetadataUrl] = useState("");
   const [, setTransactionHash] = useState("");
+  const [isImageLoaded, setIsImageLoaded] = useState(false); // 이미지 로딩 여부
+  const [, setIsReady] = useState(false); // 렌더링 제어
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const memberNum = sessionStorage.getItem("member_num");
+      // 카드 정보와 메타데이터를 비동기적으로 가져오기
+      await fetchCardInfo(memberNum, setTokenId, setNewLoading);
+      const tokenId = sessionStorage.getItem("cardMetadata");
+      if (!tokenId) {
+        console.log("세션에 cardMetadata가 없습니다.");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        await fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
+
+        setLoading(false); // 데이터 로딩이 끝난 후 로딩 상태 업데이트
+      } catch (error) {
+        console.error("데이터 가져오기 오류:", error);
+        setLoading(false); // 오류 발생시에도 로딩 상태 종료
+      }
+    };
+
+    fetchData(); // fetchData 호출
+  }, []); // 컴포넌트가 처음 렌더링될 때만 실행
 
   const handleMintNFT = async () => {
     let fileToUpload = file;
@@ -38,7 +70,7 @@ const CardCreate = () => {
     console.log("Mint Success:", success); // 성공 여부 확인
 
     if (success) {
-      navigate("/card/success"); // 발급 완료 페이지로 이동
+      navigate("/card/modifySuccess"); // 이미지 변경완료
     } else {
       alert("NFT 발급 실패");
     }
@@ -50,10 +82,10 @@ const CardCreate = () => {
 
     if (selectedFile) {
       setFile(selectedFile);
+      const previewUrl = URL.createObjectURL(selectedFile); // 이 URL을 미리보기로 설정
       setPreviewUrl(URL.createObjectURL(selectedFile));
     }
   };
-
   // 카드 이미지 클릭 시 실행되는 함수
   const handleImageSelect = async (image) => {
     setSelectedImage(image);
@@ -66,20 +98,26 @@ const CardCreate = () => {
 
     setFile(file);
   };
-
   return (
     <div className="mock-container">
-      {/* 헤더 */}
-      <Header title="카드발급" />
+      <Header title="카드 이미지 변경" />
 
       <div className="content">
         {/* 카드 이미지 미리보기 */}
-        <div className="card-preview">
-          <img
-            src={previewUrl ? previewUrl : selectedImage || defaultCardImage} // previewUrl이 있으면 미리보기, 없으면 선택한 이미지 또는 기본 이미지 사용
-            alt="미리보기"
-            className="card-image"
-          />
+        <div className="modifycard-preview">
+          {newloading ? null : (
+            <img
+              src={
+                selectedImage // 사용자가 이미지를 선택했다면 그 이미지를 표시
+                  ? selectedImage
+                  : previewUrl // 이미지 첨부한 경우 previewUrl이 있다면 그것을 표시
+                  ? previewUrl
+                  : metadata?.image || defaultCardImage // 선택한 이미지나 첨부한 이미지가 없다면, 기본적으로 metadata.image 또는 기본 이미지를 표시
+              }
+              alt="미리보기"
+              className="card-image"
+            />
+          )}
         </div>
       </div>
       <br />
@@ -97,7 +135,7 @@ const CardCreate = () => {
             className={`image-item ${
               selectedImage === item.image ? "ring-4 ring-purple-500" : ""
             }`}
-            onClick={() => handleImageSelect(item.image)} // 기존 setSelectedImage에서 변경
+            onClick={() => handleImageSelect(item.image)}
           >
             <img
               src={item.image}
@@ -125,15 +163,15 @@ const CardCreate = () => {
             <input type="file" onChange={handleFileChange} className="hidden" />
           </div>
         </label>
-        &nbsp;
       </div>
-      {/* NFT 발행 버튼 */}
+
+      {/* 리셋 버튼 */}
       <button
         onClick={handleMintNFT}
         disabled={minting}
-        className="button-style"
+        className="modibutton-style"
       >
-        {minting ? "" : "카드 발급"}
+        {minting ? "" : "카드 변경"}
       </button>
 
       {/* 하단 네비게이션 */}
@@ -142,4 +180,4 @@ const CardCreate = () => {
   );
 };
 
-export default CardCreate;
+export default CardModify;

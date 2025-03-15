@@ -20,9 +20,15 @@
   max-height: calc(100vh - 450px);
 }
 .cardHist-image {
-  margin-top: 3%;
-  width: 260px;
-  height: auto;
+  object-fit: contain; /* 이미지 비율을 유지하면서 잘리지 않게 */
+  transform: rotate(270deg); /* 이미지를 90도 회전하여 가로로 표시 */
+  width: 40%; /* 회전 후 이미지를 더 크게 표시 */
+  height: auto; /* 비율에 맞게 높이 자동 조정 */
+  position: absolute; /* 부모 요소에 맞게 이미지 위치 조정 */
+  top: 50%; /* 상단에서 50% 위치로 이미지 중앙 정렬 */
+  left: 50%; /* 좌측에서 50% 위치로 이미지 중앙 정렬 */
+  transform-origin: center; /* 이미지의 회전 중심을 중앙으로 설정 */
+  transform: translate(-50%, -50%) rotate(270deg); /* 중앙 정렬 후 회전 */
 }
 
 .cardHist-gotoAccount {
@@ -33,9 +39,9 @@
   font-size: 14px;
   font-weight: bold;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
   cursor: pointer;
-  margin-top: 3%;
+  margin-top: 40%;
 }
 
 .cardHist-content {

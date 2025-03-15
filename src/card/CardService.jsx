@@ -2,7 +2,7 @@ import axios from "axios";
 import { ethers } from "ethers";
 import defaultCardImage from "../images/defaultcard.png";
 import CardABI from "./CardABI.json"; // 스마트 컨트랙트 ABI
-
+import React, { useEffect, useState } from "react";
 const contractAddress = process.env.REACT_APP_NFT_CONTRACT_ADDRESS;
 const pinataApiKey = process.env.REACT_APP_PINATA_API_KEY;
 const pinataSecretApiKey = process.env.REACT_APP_PINATA_SECRET_API_KEY;
@@ -12,7 +12,10 @@ export const uploadToIPFS = async (file) => {
   const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`;
   const formData = new FormData();
   formData.append("file", file);
-
+  if (!file) {
+    console.error("No file selected.");
+    return null;
+  }
   const headers = {
     pinata_api_key: pinataApiKey,
     pinata_secret_api_key: pinataSecretApiKey,
@@ -22,6 +25,11 @@ export const uploadToIPFS = async (file) => {
     const response = await axios.post(url, formData, { headers });
     return `https://gateway.pinata.cloud/ipfs/${response.data.IpfsHash}`;
   } catch (error) {
+    console.error(
+      "Error uploading to IPFS:",
+      error.response ? error.response.data : error.message
+    );
+
     return null;
   }
 };
@@ -87,27 +95,99 @@ export const mintNFT = async (file, setMinting, setTransactionHash) => {
 
     // 클라이언트 측에서 tokenId를 증가시킴
     let tokenId = localStorage.getItem("lastTokenId");
-    tokenId = tokenId ? parseInt(tokenId) + 1 : 202503010; // 기본값은 20250300
+    tokenId = tokenId ? parseInt(tokenId) + 1 : 202503010; // 기본값은 202503010
     localStorage.setItem("lastTokenId", tokenId);
 
-    // 새로운 tokenId로 NFT 발행
-    const transaction = await contract.safeMint(address, tokenId, metadataUrl);
-    await transaction.wait();
+    // 세션에서 카드 정보 확인
+    let cardNum = sessionStorage.getItem("card_num");
+    let cardMetadata = sessionStorage.getItem("tokenId"); // tokenId로 사용 중
+    let cardMoney = sessionStorage.getItem("card_money");
+
+    const memberNum = sessionStorage.getItem("member_num"); // 세션에서 member_num 가져오기
+    if (!memberNum) throw new Error("세션에 member_num이 없습니다.");
+
+    if (cardNum && cardMetadata && cardMoney) {
+      // 기존 카드 정보 사용하여 NFT 이미지 변경
+      console.log("기존 카드 정보 사용:", cardNum, cardMetadata, cardMoney);
+
+      // 새 이미지 업로드
+      const newImageUrl = await uploadToIPFS(file); // 새 이미지를 업로드하는 함수
+      console.log("새 이미지 URL:", newImageUrl);
+
+      if (!newImageUrl) {
+        setMinting(false);
+        return;
+      }
+
+      // 새로운 메타데이터 URL 생성 (새로운 이미지 URL을 기반으로)
+      const newMetadataUrl = await uploadMetadataToIPFS(newImageUrl);
+      console.log("새로운 메타데이터 URL:", newMetadataUrl);
+
+      if (!newMetadataUrl) {
+        setMinting(false);
+        return;
+      }
+
+      try {
+        // 기존 토큰의 메타데이터 URL을 업데이트하는 함수 호출
+        console.log("setTokenURI 호출 중...");
+        const transaction = await contract.setTokenURI(
+          cardMetadata, // 기존 tokenId
+          newMetadataUrl // 새로운 metadataUrl
+        );
+        await transaction.wait();
+        console.log("NFT 이미지 변경 완료:", newMetadataUrl);
+
+        // 카드 날짜 최신화
+        await updateCardDate();
+      } catch (error) {
+        console.error("메타데이터 업데이트 중 오류 발생:", error);
+      }
+    } else {
+      // 세션에 카드 정보가 없을 경우 새로운 카드 발급
+      console.log("세션에 카드 정보 없음, 신규 카드 발급");
+
+      cardNum = generateCardNumber();
+      cardMetadata = tokenId;
+      cardMoney = 0;
+
+      // 신규 tokenId로 NFT 발행
+      const imageUrl = await uploadToIPFS(file);
+      if (!imageUrl) {
+        setMinting(false);
+        return;
+      }
+
+      const metadataUrl = await uploadMetadataToIPFS(imageUrl);
+      if (!metadataUrl) {
+        setMinting(false);
+        return;
+      }
+
+      console.log("safeMint 호출 중...");
+      const transaction = await contract.safeMint(
+        address,
+        cardMetadata,
+        metadataUrl
+      );
+      await transaction.wait();
+
+      // 신규 카드 정보 DB에 저장
+      await saveCardToDB(cardNum, cardMetadata, cardMoney, memberNum);
+      console.log(
+        "신규 카드 정보 DB에 저장:",
+        cardNum,
+        cardMetadata,
+        cardMoney
+      );
+    }
 
     setMinting(false);
-    setTransactionHash(transaction.hash);
 
-    // 임의의 카드 번호 생성 (예: 카드 번호는 16자리 숫자로)
-    const cardNum = generateCardNumber();
-    const cardMetadata = tokenId;
-    const cardMoney = 0;
-    const memberNum = sessionStorage.getItem("member_num"); // 세션에서 member_num 가져오기
-
-    // 카드 정보 백엔드로 전송
-    await saveCardToDB(cardNum, cardMetadata, cardMoney, memberNum);
     return true;
   } catch (error) {
     setMinting(false);
+    console.error("NFT 발급 중 오류 발생:", error);
   }
 };
 
@@ -133,10 +213,7 @@ export const burnNFT = async (tokenId, setBurning, setBurnTransactionHash) => {
     await transaction.wait();
 
     setBurnTransactionHash(transaction.hash);
-    alert(`NFT 소각 성공! Tx: ${transaction.hash}`);
   } catch (error) {
-    console.error("NFT 소각 오류:", error);
-    alert("NFT 소각 실패");
   } finally {
     setBurning(false);
   }
@@ -181,6 +258,9 @@ export const fetchMetadata = async (
 
     setMetadata(metadata);
     setMetadataUrl(ipfsUrl);
+
+    // ✅ 저장된 `metadataUrl`을 다른 곳에서 사용 가능
+    console.log("저장된 이미지 URL:", ipfsUrl);
   } catch (error) {
   } finally {
     setLoading(false);
@@ -196,7 +276,11 @@ const generateCardNumber = () => {
 
   return formattedCardNumber;
 };
-
+const axiosHeader = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
 // 백엔드로 카드 정보를 전송하는 함수 (axios 사용 예시)
 export const saveCardToDB = async (
   cardNum,
@@ -204,23 +288,72 @@ export const saveCardToDB = async (
   cardMoney,
   memberNum
 ) => {
+  //카드 데이터
+  const cardData = {
+    card_num: cardNum,
+    card_metadata: cardMetadata,
+    card_money: cardMoney,
+    member_num: memberNum,
+  };
   try {
     const response = await axios.post(
       "http://localhost:7777/zoomoney/card/create",
-      {
-        card_num: cardNum,
-        card_metadata: cardMetadata,
-        card_money: cardMoney,
-        member_num: memberNum,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
+      cardData,
+      axiosHeader
     );
     console.log("카드 정보 저장 성공:", response.data);
   } catch (error) {
     console.error("카드 정보 저장 실패:", error);
+  }
+};
+//카드 이미지 변경시 날짜 최신날짜로 변경
+export const updateCardDate = async () => {
+  try {
+    // 예시: sessionStorage에서 memberNum을 가져오는 경우
+    const memberNum = sessionStorage.getItem("member_num");
+    const cardNum = sessionStorage.getItem("card_num");
+    if (!memberNum) {
+      throw new Error("세션에 memberNum이 없습니다.");
+    }
+    console.log(cardNum, memberNum);
+    const response = await axios.put(
+      "http://localhost:7777/zoomoney/card/update",
+      {
+        card_num: cardNum,
+        member_num: memberNum,
+      },
+      axiosHeader
+    );
+    console.log("카드 날짜/포인트 업데이트 성공:", response.data);
+  } catch (error) {
+    console.error("날짜/포인트 업데이트 실패:", error);
+  }
+};
+export const fetchCardInfo = async (memberNum, setTokenId, setNewLoading) => {
+  try {
+    const response = await axios.get(
+      "http://localhost:7777/zoomoney/card/get",
+      {
+        headers: {
+          member_num: memberNum, // 요청 헤더로 전달
+        },
+      }
+    );
+
+    console.log("백엔드 응답:", response.data);
+
+    if (response.data) {
+      sessionStorage.setItem("tokenId", response.data.cardMetadata);
+      sessionStorage.setItem("card_num", response.data.cardNum);
+      sessionStorage.setItem("card_money", response.data.cardMoney);
+      sessionStorage.setItem("cardMetadata", response.data.cardMetadata);
+
+      setTokenId(response.data.cardMetadata);
+    }
+
+    setNewLoading(false);
+  } catch (error) {
+    console.error("데이터 가져오기 오류:", error);
+    setNewLoading(false);
   }
 };
