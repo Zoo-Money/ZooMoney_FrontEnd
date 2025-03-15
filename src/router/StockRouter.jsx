@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import StockBegin from "../stock/StockBegin";
 import StockInfo from "../stock/StockInfo";
 import StockRankResult from "../stock/StockRankResult";
+import StockRankDetail from "../stock/StockRankDetail";
 
 function StockRouter() {
   return (
@@ -26,13 +27,14 @@ function StockRouter() {
         <Route path="/stock/stockSell" element={<StockSell />}></Route>
         <Route path="/stock/tradeDone" element={<TradeDone />}></Route>
         
-        <Route path="/stock/rankDetail" element={<StockRankDetail />}></Route>
+        
         <Route path="/stock/stockHistory" element={<StockHistory />}></Route>
         <Route
           path="/stock/stockHistoryDetail"
           element={<StockHistoryDetail />}
         ></Route> */}
         <Route path="/stock/rankResult" element={<StockRankResult />}></Route>
+        <Route path="/stock/rankDetail" element={<StockRankDetail />}></Route>
       </Routes>
     </div>
   );
