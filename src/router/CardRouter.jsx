@@ -3,18 +3,23 @@ import { Route, Routes } from "react-router-dom";
 import CardMain from "../card/CardMain";
 import CardCreate from "../card/CardCreate";
 import CardCreateSuccess from "../card/CardCreateSuccess";
+import CardModify from "../card/CardModify";
+import CardModifySuccess from "../card/CardModifySuccess";
+import CardHistory from "../card/CardHistory";
 
-function AccountRouter() {
+function CardRouter() {
   return (
     <div>
       <Routes>
-        <Route path="/card/main" element={<CardMain />}></Route>
-        <Route path="/card/create" element={<CardCreate />}></Route>
-        <Route path="/card/success" element={<CardCreateSuccess />}></Route>
-        <Route path="/card/cardImageChange" element={<CardMain />}></Route>
+        <Route path="/card/main" element={<CardMain />} />
+        <Route path="/card/create" element={<CardCreate />} />
+        <Route path="/card/success" element={<CardCreateSuccess />} />
+        <Route path="/card/modify" element={<CardModify />} />
+        <Route path="/card/modifySuccess" element={<CardModifySuccess />} />
+        <Route path="/card/usehistory" element={<CardHistory />}></Route>
       </Routes>
     </div>
   );
 }
 
-export default AccountRouter;
+export default CardRouter;
