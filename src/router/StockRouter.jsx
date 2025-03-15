@@ -22,6 +22,7 @@ function StockRouter() {
           element={<StockDetail />}
         ></Route>
         <Route path="/stock/myStock" element={<MyStock />}></Route>
+        <Route path="/stock/myStockDetail" element={<MyStockDetail />}></Route>
         <Route path="/stock/stockBuy" element={<StockBuy />}></Route>
         <Route path="/stock/stockSell" element={<StockSell />}></Route>
         <Route path="/stock/tradeDone" element={<TradeDone />}></Route>
