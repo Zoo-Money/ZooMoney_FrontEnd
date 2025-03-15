@@ -118,23 +118,23 @@
 }
 
 /* 입력 박스 */
-.input-box {
+.parent-contract-input-box {
   display: flex;
   flex-direction: column;
 }
 
-.input-box label {
+.parent-contract-input-box label {
   font-size: 14px;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
-.input-box input {
+.parent-contract-input-box input {
   padding: 10px;
   border: 1px solid #ffa500;
   border-radius: 8px;
   font-size: 16px;
-  text-align: right;
+  text-align: center;
   background-color: #fff;
 }
 
@@ -186,13 +186,14 @@
 }
 
 .signature {
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
   font-size: 16px;
   font-weight: bold;
   padding: 10px;
   border: 1px solid #ffa500;
   border-radius: 8px;
+  text-align: center;
 }
 
 /* 서명 캔버스 */

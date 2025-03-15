@@ -1,15 +1,14 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Header from "../common/Header";
+import { useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
-import profile1 from "../images/profile1.png";
-import profile2 from "../images/profile2.png";
 import allowanceContract from "../images/allowanceContract.png";
 import allowancePlan from "../images/allowancePlan.png";
 import consumpPattern from "../images/consumpPattern.png";
 import piggyBank from "../images/piggyBank.png";
+import profile1 from "../images/profile1.png";
+import profile2 from "../images/profile2.png";
 import "./parentMain.css";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const ParentMain = () => {
   const navigate = useNavigate();
@@ -21,13 +20,22 @@ const ParentMain = () => {
   const selectedChildInfo = children.find(
     (child) => child.memberNum === selectedChild
   );
+  const [cardMoney, setCardMoney] = useState(0); //카드 잔액상태
 
-  // 🔹 부모 ID 기반으로 자녀 목록 불러오기
+  // 부모 ID 불러오기 (로그인 로직에서 저장한 값 사용)
+  // const parentId = sessionStorage.getItem("parentId");  //  로그인 시 저장된 부모 ID
+
+  // 부모 ID 기반으로 자녀 목록 불러오기
   useEffect(() => {
+    //   if (!parentId) {
+    //     console.error("부모 ID가 없습니다. 로그인 후 시도하세요.");
+    //     return; // 부모 ID가 없으면 요청을 보내지 않음
+    // }
     axios
       .get("http://localhost:7777/zoomoney/contract/getChildByParent", {
         params: { parentId: 2 }, // 임시 부모 ID (로그인 로직에서 받아오도록 변경 필요)
-        //withCredentials: true, // 🔹 세션 정보 전송
+        // params: { parentId: parentId },
+        //withCredentials: true, // 세션 정보 전송(로그인 기능 연동 시 필요)
       })
       .then((response) => {
         console.log("자녀 데이터:", response.data); // 🔍 데이터 확인
@@ -40,6 +48,24 @@ const ParentMain = () => {
         console.error("자녀 목록 불러오기 실패:", error);
       });
   }, []);
+
+  useEffect(() => {
+    if (selectedChild) {
+      console.log("!!!!!!바뀐 선택한 자녀의 memberNum:", selectedChild); // 🔍 확인용 로그 추가
+      axios
+        .get("http://localhost:7777/zoomoney/contract/child/money", {
+          params: { memberNum: selectedChild }, // 🔹 선택한 자녀의 memberNum 전달
+        })
+        .then((response) => {
+          console.log("카드 데이터:", response.data);
+          setCardMoney(response.data.cardMoney); // 카드 잔액 설정
+        })
+        .catch((error) => {
+          console.error("카드 정보 불러오기 실패:", error);
+          setCardMoney(0); // 카드 데이터가 없을 경우 기본 값 0 설정
+        });
+    }
+  }, [selectedChild]);
 
   // 자녀 선택 시 상태 업데이트
   const handleChildSelect = (childNum) => {
@@ -65,7 +91,14 @@ const ParentMain = () => {
             className={`profile-wrapper ${
               selectedChild === child.memberNum ? "selected" : ""
             }`}
-            onClick={() => handleChildSelect(child.memberNum)}
+            onClick={() => {
+              handleChildSelect(child.memberNum);
+              // sessionStorage.setItem("childNum", child.memberNum);
+              setTimeout(
+                () => sessionStorage.setItem("childNum", child.memberNum),
+                0
+              ); // 즉시 실행 (이 시점에서 selectedChild는 아직 변경되지 않았을 수 있음)
+            }}
           >
             <img
               className="profile-image"
@@ -90,7 +123,7 @@ const ParentMain = () => {
               {selectedChildInfo ? selectedChildInfo.memberName : "자녀 없음"}{" "}
               의 용돈
             </p>
-            <p className="allowance-amount">43,000 원</p>
+            <p className="allowance-amount"> {cardMoney.toLocaleString()} 원</p>
           </div>
           <button className="consumptionhistory-button">소비내역 확인</button>
         </div>
