@@ -19,11 +19,13 @@ const CardMain = () => {
   const [allowanceAmount, setAllowanceAmount] = useState("0원");
 
   useEffect(() => {
-    const savedAllowance = sessionStorage.getItem("card_money");
-    const tokenId = sessionStorage.getItem("cardMetadata");
     const memberNum = sessionStorage.getItem("member_num"); // 세션에서 member_num 가져오기
 
     const fetchData = async () => {
+      // 카드 정보 가져오기
+      await fetchCardInfo(memberNum, setTokenId, setNewLoading);
+      const savedAllowance = sessionStorage.getItem("card_money");
+      const tokenId = sessionStorage.getItem("cardMetadata");
       // memberNum이나 tokenId가 없으면 데이터를 가져오지 않음
       if (!tokenId || !memberNum) {
         console.log("세션에 필요한 정보가 없습니다.");
@@ -32,9 +34,6 @@ const CardMain = () => {
       }
 
       try {
-        // 카드 정보 가져오기
-        await fetchCardInfo(memberNum, setTokenId, setNewLoading);
-
         // 메타데이터 가져오기
         await fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
 

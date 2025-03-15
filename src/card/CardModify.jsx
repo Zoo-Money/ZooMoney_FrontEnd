@@ -26,10 +26,11 @@ const CardModify = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const tokenId = sessionStorage.getItem("cardMetadata");
-    const memberNum = sessionStorage.getItem("member_num");
-
     const fetchData = async () => {
+      const memberNum = sessionStorage.getItem("member_num");
+      // 카드 정보와 메타데이터를 비동기적으로 가져오기
+      await fetchCardInfo(memberNum, setTokenId, setNewLoading);
+      const tokenId = sessionStorage.getItem("cardMetadata");
       if (!tokenId) {
         console.log("세션에 cardMetadata가 없습니다.");
         setLoading(false);
@@ -37,8 +38,6 @@ const CardModify = () => {
       }
 
       try {
-        // 카드 정보와 메타데이터를 비동기적으로 가져오기
-        await fetchCardInfo(memberNum, setTokenId, setNewLoading);
         await fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
 
         setLoading(false); // 데이터 로딩이 끝난 후 로딩 상태 업데이트
