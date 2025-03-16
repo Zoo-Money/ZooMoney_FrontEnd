@@ -1,0 +1,37 @@
+.history-button{
+    width: 80%;
+    background-color: #f9a825;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    height: 45px;
+}
+.history-list{
+    width: 342.4px; /*상위 버튼이랑 넓이 똑같게 고정*/
+    border: solid 1px #ccc;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+.history-list-title{
+    font-weight: bold;
+    margin-right: 15px;
+}
+.history-list-date{
+    margin-right: 15px;
+}
+.history-list-rank{
+    font-weight: bold;
+    margin-right: 8px;
+}
+.forwardIcon{
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
