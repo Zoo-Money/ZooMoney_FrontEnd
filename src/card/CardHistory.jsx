@@ -24,6 +24,7 @@ function CardHistory() {
 
     // 세션에 카드 정보가 없으면 백엔드에서 메타데이터 가져오기
     fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
+    setLoading(false); // 바로 로딩 상태를 false로 변경하여 UI 업데이트
   }, [selectedPeriod]);
 
   const loadOrders = (period) => {
