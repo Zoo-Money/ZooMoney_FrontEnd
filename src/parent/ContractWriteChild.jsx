@@ -33,6 +33,7 @@ const ContractWriteChild = () => {
 
   // 세션에서 childNum 가져와서 API 요청에 사용
   const childNum = sessionStorage.getItem("childNum");
+  const memberNum = childNum;
 
   useEffect(() => {
     // console.log("📢 API 요청 전 childNum 값:", childNum);
@@ -110,12 +111,22 @@ const ContractWriteChild = () => {
 
     try {
       //  Axios POST 요청으로 데이터 전송
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:7777/zoomoney/contract/complete",
         contractData
       );
 
-      alert("서명 저장 성공: " + response.data);
+      const response = await axios.get(
+        `http://localhost:7777/zoomoney/member/${memberNum}/select`
+      );
+
+      await axios.post("http://localhost:7777/zoomoney/notify/send", {
+        memberNum: response.data[0].memberParent.memberNum,
+        notifyContent: "용돈계약서 아이 서명이 완료되었습니다.",
+        notifyUrl: "/contract/contractSelect",
+      });
+
+      alert("서명 저장 성공");
     } catch (error) {
       console.error("서명 저장 실패:", error);
       alert("서명 저장에 실패했습니다." + childNum);

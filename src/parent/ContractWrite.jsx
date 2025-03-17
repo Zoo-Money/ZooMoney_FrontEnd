@@ -137,6 +137,12 @@ const ContractWrite = () => {
         contractData
       );
 
+      await axios.post("http://localhost:7777/zoomoney/notify/send", {
+        memberNum: sessionStorage.getItem("childNum"),
+        notifyContent: "용돈계약서 작성 완료",
+        notifyUrl: "/contract/contractWriteChild",
+      });
+
       alert("서명 저장 성공: " + response.data);
     } catch (error) {
       console.error("서명 저장 실패:", error);
