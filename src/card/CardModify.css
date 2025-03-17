@@ -1,4 +1,4 @@
-.card-preview {
+.modifycard-preview {
   width: 188px; /* 세로 신용카드의 가로 크기 (약 188px) */
   height: 300px; /* 세로 신용카드의 세로 크기 (약 300px, 1:1.59 비율) */
   overflow: hidden; /* 이미지가 범위를 벗어나지 않도록 설정 */
@@ -7,7 +7,7 @@
   position: relative;
 }
 
-.card-image {
+.modifycard-image {
   width: 100%; /* 이미지의 너비를 카드에 맞춤 */
   height: 100%; /* 이미지의 높이를 카드에 맞춤 */
   object-fit: cover; /* 이미지 비율을 유지하면서 카드 안에 맞게 자름 */
@@ -22,7 +22,7 @@
   margin-bottom: 30px;
 }
 
-.image-item {
+.modifyimage-item {
   width: 70%; /* 세로 신용카드의 가로 크기 (약 188px) */
   height: 70%; /* 세로 신용카드의 세로 크기 (약 300px, 1:1.59 비율) */
   display: flex;
@@ -33,7 +33,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* shadow-md */
 }
 
-.image-img {
+.modifyimage-img {
   width: 100%; /* 이미지의 너비를 카드에 맞춤 */
   height: 100%; /* 이미지의 높이를 카드에 맞춤 */
   object-fit: cover; /* 이미지 비율을 유지하면서 카드 안에 맞게 자름 */
@@ -71,10 +71,9 @@
   height: 100%;
   opacity: 0;
   cursor: pointer;
-  margin-top: 10px;
 }
 /* NFT 발행 버튼 스타일 */
-.button-style {
+.modibutton-style {
   width: 80%; /* 버튼 너비 */
   height: 45px; /* 버튼 높이 */
   background-color: #f9a825; /* 주황색 배경 */
@@ -87,6 +86,6 @@
 }
 
 /* 비활성화된 버튼 */
-.button-style:disabled {
+.modibutton-style:disabled {
   background-color: #d1d5db; /* 비활성화된 버튼 색상 */
 }

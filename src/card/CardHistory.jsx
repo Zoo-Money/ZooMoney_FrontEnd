@@ -5,15 +5,25 @@ import Footer from "../common/Footer";
 import "./CardHistory.css";
 import bear1 from "../images/bear01.png";
 import dayjs from "dayjs";
-
+import { Link } from "react-router-dom";
+import { fetchMetadata, mintNFT } from "./CardService";
 function CardHistory() {
   const [historyList, setHistoryList] = useState([]);
+  const [metadata, setMetadata] = useState(null);
+  const [, setMetadataUrl] = useState("");
+  const [setNewLoading, setLoading] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState("all");
   const memberNum = sessionStorage.getItem("member_num");
   console.log("보내는 member_num:", memberNum);
 
   useEffect(() => {
     loadOrders(selectedPeriod);
+    const tokenId = sessionStorage.getItem("cardMetadata");
+
+    console.log(tokenId);
+
+    // 세션에 카드 정보가 없으면 백엔드에서 메타데이터 가져오기
+    fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
   }, [selectedPeriod]);
 
   const loadOrders = (period) => {
@@ -36,9 +46,22 @@ function CardHistory() {
     <div className="mock-container">
       <div className="cardHistory-header">
         <Header title="" />
-        <img className="cardHist-image" src={bear1} alt="토끼 이미지" />
+        <img
+          className="cardHist-image"
+          src={metadata?.image}
+          alt="카드 이미지"
+        />
         <br />
-        <button className="cardHist-gotoAccount">저금하기</button>
+        <div>
+          <button className="cardHist-gotoAccount">
+            <Link
+              to="/account"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              저금하기
+            </Link>
+          </button>
+        </div>
       </div>
 
       <div className="cardhist-period">
