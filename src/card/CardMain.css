@@ -1,3 +1,11 @@
+.cardMain-container {
+  max-height: calc(
+    100vh - 180px
+  ); /* header와 footer를 제외한 영역만 차지하도록 설정 */
+  overflow-y: auto;
+  padding-top: 5%;
+}
+
 .zoo-money {
   width: 80%;
   font-size: 24px; /* 글자 크기 */

@@ -64,97 +64,101 @@ const CardMain = () => {
         </div>
       </div>
 
-      {/* 카드 이미지 미리보기 */}
-      <div>
-        <div className="mycard-preview">
-          {loading ? (
-            <div className="loading-overlay">로딩 중...</div> // 로딩 중 UI (예: 텍스트나 애니메이션)
-          ) : (
-            <>
-              <img
-                src={
-                  metadata && metadata.image ? metadata.image : defaultCardImage // metadata가 있을 때만 이미지 사용, 없으면 기본 이미지
-                }
-                alt="카드 미리보기"
-                className={
-                  metadata && metadata.image
-                    ? "mycard-image custom-image"
-                    : "mycard-image default-image"
-                }
-              />
-              {!metadata?.image && (
-                <Link to="/card/create">
-                  <img
-                    src={defaultCardImage} // 기본 이미지를 사용
-                    alt="기본 카드 이미지"
-                    className="mycard-image default-image"
-                  />
-                </Link>
-              )}
-            </>
-          )}
+      <div className="cardMain-container">
+        {/* 카드 이미지 미리보기 */}
+        <div>
+          <div className="mycard-preview">
+            {loading ? (
+              <div className="loading-overlay">로딩 중...</div> // 로딩 중 UI (예: 텍스트나 애니메이션)
+            ) : (
+              <>
+                <img
+                  src={
+                    metadata && metadata.image
+                      ? metadata.image
+                      : defaultCardImage // metadata가 있을 때만 이미지 사용, 없으면 기본 이미지
+                  }
+                  alt="카드 미리보기"
+                  className={
+                    metadata && metadata.image
+                      ? "mycard-image custom-image"
+                      : "mycard-image default-image"
+                  }
+                />
+                {!metadata?.image && (
+                  <Link to="/card/create">
+                    <img
+                      src={defaultCardImage} // 기본 이미지를 사용
+                      alt="기본 카드 이미지"
+                      className="mycard-image default-image"
+                    />
+                  </Link>
+                )}
+              </>
+            )}
+          </div>
         </div>
-      </div>
 
-      {/* 용돈 정보 카드 */}
-      <div className="allowance-card">
-        <div className="card-header">
-          <div className="allowance-text">
-            <p className="allowance-title">나의 용돈</p>
-            <p className="allowance-amount">{allowanceAmount}</p>
+        {/* 용돈 정보 카드 */}
+        <div className="allowance-card">
+          <div className="card-header">
+            <div className="allowance-text">
+              <p className="allowance-title">나의 용돈</p>
+              <p className="allowance-amount">{allowanceAmount}</p>
+            </div>
+            <button className="consumptionhistory-button">소비내역 확인</button>
           </div>
-          <button className="consumptionhistory-button">소비내역 확인</button>
+          <div className="button-group">
+            <button type="button" className="sendmoney-button">
+              카드사용내역
+            </button>
+            <button type="button" className="sendmoney-button">
+              충전하기
+            </button>
+          </div>
         </div>
-        <div className="button-group">
-          <button type="button" className="sendmoney-button">
-            카드사용내역
-          </button>
-          <button type="button" className="sendmoney-button">
-            충전하기
-          </button>
-        </div>
-      </div>
 
-      {/* 기능 카드 버튼 */}
-      <div className="grid grid-cols-2 gap-4 mt-6 w-full">
-        <a
-          href="https://example.com/moneyplan"
-          className="feature-card card-skyblue"
-        >
-          <div>
-            <img src={pattern} alt="소비 패턴 분석" />
-            <p>소비 패턴 분석</p>
-          </div>
-        </a>
-        <a
-          href="https://example.com/moneyplan"
-          className="feature-card card-blue"
-        >
-          <div>
-            <img src={moneyplan} alt="용돈 계획 세우기" />
-            <p>용돈 계획 세우기</p>
-          </div>
-        </a>
-        <a
-          href="https://example.com/moneyplan"
-          className="feature-card card-yellow"
-        >
-          <div>
-            <img src={quiz} alt="금융퀴즈" />
-            <p>금융 퀴즈</p>
-          </div>
-        </a>
-        <a
-          href="https://example.com/moneyplan"
-          className="feature-card card-pink"
-        >
-          <div>
-            <img src={daily} alt="출석체크" />
-            <p>출석체크</p>
-          </div>
-        </a>
+        {/* 기능 카드 버튼 */}
+        <div className="grid grid-cols-2 gap-4 mt-6 w-full">
+          <a
+            href="https://example.com/moneyplan"
+            className="feature-card card-skyblue"
+          >
+            <div>
+              <img src={pattern} alt="소비 패턴 분석" />
+              <p>소비 패턴 분석</p>
+            </div>
+          </a>
+          <a
+            href="https://example.com/moneyplan"
+            className="feature-card card-blue"
+          >
+            <div>
+              <img src={moneyplan} alt="용돈 계획 세우기" />
+              <p>용돈 계획 세우기</p>
+            </div>
+          </a>
+          <a
+            href="https://example.com/moneyplan"
+            className="feature-card card-yellow"
+          >
+            <div>
+              <img src={quiz} alt="금융퀴즈" />
+              <p>금융 퀴즈</p>
+            </div>
+          </a>
+          <a
+            href="https://example.com/moneyplan"
+            className="feature-card card-pink"
+          >
+            <div>
+              <img src={daily} alt="출석체크" />
+              <p>출석체크</p>
+            </div>
+          </a>
+        </div>
+        {/* 하단 네비게이션 바 */}
       </div>
-      {/* 하단 네비게이션 바 */}
       <Footer />
     </div>
   );

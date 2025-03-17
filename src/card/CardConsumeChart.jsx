@@ -21,6 +21,8 @@ const getWeekRange = (date) => {
 };
 
 function PatternChart() {
+  const [planMoney, setPlanMoney] = useState();
+  const [categorizedData, setCategorizedData] = useState({}); // 카테고리별 데이터 상태
   const [historyList, setHistoryList] = useState([]); // 소비 내역 원본
   const [groupedData, setGroupedData] = useState({}); // 1주일 단위로 그룹화된 데이터
   const [currentCardNum, setCurrentCardNum] = useState(0); // 현재 보고 있는 주차 인덱스
@@ -31,6 +33,20 @@ function PatternChart() {
 
   const availableMoney = sessionStorage.getItem("card_money") || 0; // 세션에서 사용 가능한 금액 가져오기
 
+  //용돈가져오기
+  useEffect(() => {
+    axios({
+      url: `http://localhost:7777/zoomoney/moneyplan/getAllowance?memberNum=${memberNum}`,
+      method: "get",
+    })
+      .then((resposeData) => {
+        setPlanMoney(resposeData.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/card/select", {
@@ -38,10 +54,7 @@ function PatternChart() {
         headers: { member_num: memberNum },
       })
       .then((response) => {
-        console.log("🔍 백엔드에서 받은 원본 데이터:", response.data);
-
         if (!Array.isArray(response.data) || response.data.length === 0) {
-          console.log("❌ 소비 내역이 없습니다. 데이터가 비어 있음");
           return;
         }
 
@@ -49,27 +62,19 @@ function PatternChart() {
           (item) => item.usehistType?.trim() === "출금"
         );
 
-        console.log("🔹 출금 내역만 필터링한 결과:", filteredData);
-
         if (filteredData.length === 0) {
-          console.log("⚠️ 출금 데이터가 없습니다.");
           return;
         }
 
         const groupedData = groupDataByWeek(filteredData);
-        console.log("📊 1주일 단위 그룹화된 데이터:", groupedData);
 
         if (!groupedData) {
-          console.log("🚨 그룹화된 데이터가 undefined입니다!");
           return;
         }
 
         setGroupedData(groupedData);
-        console.log("✅ setGroupedData 실행됨", groupedData); // groupedData 상태 확인
       })
-      .catch((error) => {
-        console.error("🚨 데이터 요청 오류:", error);
-      });
+      .catch((error) => {});
   }, [memberNum]); // memberNum이 변경될 때만 실행
 
   const groupDataByWeek = (data) => {
@@ -109,9 +114,6 @@ function PatternChart() {
     weekData.transactions.forEach((item) => {
       const category = item.category?.categoryName?.trim() || "기타"; // category 객체에서 categoryName을 가져오고 없으면 "기타"로 처리
       const money = Number(item.usehistMoney) || 0; // 금액 값 가져오기
-
-      console.log("아이템 카테고리:", category); // 카테고리 확인
-      console.log("아이템 금액:", money); // 금액 확인
 
       // 카테고리가 존재하고, categoryName 배열에 포함되면 해당 카테고리에 금액을 추가
       if (categoryName.includes(category)) {
@@ -161,21 +163,16 @@ function PatternChart() {
   const getCurrentChartData = () => {
     const weeks = Object.keys(groupedData);
     if (weeks.length === 0) {
-      console.log("⚠️ 그룹화된 데이터가 없습니다.");
       return null; // 데이터가 없을 경우 null을 반환
     }
 
     const selectedWeek = weeks[currentCardNum]; // 현재 선택된 주차
     const dataForWeek = groupedData[selectedWeek] || {};
 
-    console.log("📊 현재 주차 데이터:", dataForWeek);
-
     // 카테고리별 금액 데이터 그룹화
     const categorizedData = groupDataByCategory(dataForWeek);
 
     const chartData = categoryName.map((category) => categorizedData[category]);
-
-    console.log("카테고리별 합산된 금액:", categorizedData);
 
     return {
       labels: categoryName, // labels에 카테고리 이름 설정
@@ -211,7 +208,24 @@ function PatternChart() {
 
   const chartOptions = {
     plugins: {
-      legend: { position: "bottom" },
+      legend: {
+        position: "bottom",
+        labels: {
+          generateLabels: (chart) => {
+            const data = chart.data.datasets[0].data;
+            return chart.data.labels.map((label, i) => ({
+              text: `${label}: ${data[i].toLocaleString()}원`,
+              fillStyle: chart.data.datasets[0].backgroundColor[i],
+            }));
+          },
+          usePointStyle: true,
+          boxWidth: 20,
+          padding: 10,
+          font: {
+            size: 12,
+          },
+        },
+      },
       tooltip: {
         callbacks: {
           label: (tooltipItem) =>
@@ -246,45 +260,42 @@ function PatternChart() {
   return (
     <div className="mock-container">
       <Header title="소비 내역" />
-      <div className="planmain-content">
-        <div className="planmain-description">
-          <p>
-            짜임새 있는 소비 내역을 분석하고,
-            <br />
-            알뜰한 <span>소비 습관</span>을 길러봐요!
-          </p>
+      <div className="patternmain-content">
+        <p>
+          짜임새 있는 소비 내역을 분석하고,
+          <br />
+          알뜰한 <span>소비 습관</span>을 길러봐요!
+        </p>
+
+        <div className="patternchart-icon">
+          <IoIosArrowBack
+            className="patternchart-back"
+            onClick={() => handleChartChange("prev")}
+          />
+
+          <IoIosArrowForward
+            className="patternchart-forward"
+            onClick={() => handleChartChange("next")}
+          />
         </div>
+
         <div className="patternmain-box">
-          <div className="patternmain-chart-box">
-            <div className="patternchart-box">
-              <button
-                className="patternchart-back"
-                onClick={() => handleChartChange("prev")}
-              >
-                <IoIosArrowBack />
-              </button>
-
-              <div>
-                <h2>{chartData.weekLabel}</h2>
-                <Doughnut data={chartData} options={chartOptions} />
-              </div>
-
-              <button
-                className="patternchart-forward"
-                onClick={() => handleChartChange("next")}
-              >
-                <IoIosArrowForward />
-              </button>
-            </div>
-          </div>
+          <span>{chartData.weekLabel}</span>
+          <Doughnut data={chartData} options={chartOptions} />
         </div>
+
         <div className="available-money">
-          <p>사용 가능한 금액: {availableMoney}원</p>
+          <p>총 용돈: {planMoney}원</p>
         </div>
         <div className="highest-category">
           <p>가장 많이 소비한 카테고리: {highestCategory}</p>
         </div>
       </div>
+
+      <button className="patternmain-button">
+        내가 세운 계획이랑 비교하기
+      </button>
+
       <Footer />
     </div>
   );

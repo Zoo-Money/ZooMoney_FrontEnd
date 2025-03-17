@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
-import "./CardHistory.css";
-import bear1 from "../images/bear01.png";
 import dayjs from "dayjs";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchMetadata, mintNFT } from "./CardService";
+import Footer from "../common/Footer";
+import Header from "../common/Header";
+import "./CardHistory.css";
+import { fetchMetadata } from "./CardService";
 function CardHistory() {
   const [historyList, setHistoryList] = useState([]);
   const [metadata, setMetadata] = useState(null);
   const [, setMetadataUrl] = useState("");
-  const [setNewLoading, setLoading] = useState(null);
+  const [, setLoading] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState("all");
   const memberNum = sessionStorage.getItem("member_num");
   console.log("보내는 member_num:", memberNum);
