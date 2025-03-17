@@ -1,0 +1,54 @@
+.AccountInsertContent {
+  height: 70%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  gap: 2rem;
+}
+
+.AccountInsertView {
+  width: 350px;
+  height: 225px;
+  border: 2px solid #f9a825;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.AccountInsertView div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.AccountInsertInput {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.AccountInsertContent button {
+  min-width: 350px;
+  min-height: 45px;
+  background-color: #f9a825;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.AccountInsertContent button:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.AccountInsertContent button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
