@@ -4,7 +4,8 @@ import StockBegin from "../stock/StockBegin";
 import StockInfo from "../stock/StockInfo";
 import StockRankResult from "../stock/StockRankResult";
 import StockRankDetail from "../stock/StockRankDetail";
-
+import StockHistory from "../stock/StockHistory";
+import StockHistoryDetail from "../stock/StockHistoryDetail";
 function StockRouter() {
   return (
     <div>
@@ -27,12 +28,12 @@ function StockRouter() {
         <Route path="/stock/stockSell" element={<StockSell />}></Route>
         <Route path="/stock/tradeDone" element={<TradeDone />}></Route>
         
-        
+         */}
         <Route path="/stock/stockHistory" element={<StockHistory />}></Route>
         <Route
           path="/stock/stockHistoryDetail"
           element={<StockHistoryDetail />}
-        ></Route> */}
+        ></Route>
         <Route path="/stock/rankResult" element={<StockRankResult />}></Route>
         <Route path="/stock/rankDetail" element={<StockRankDetail />}></Route>
       </Routes>
