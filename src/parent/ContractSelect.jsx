@@ -1,85 +1,57 @@
+import axios from "axios";
+import * as pdfjs from "pdfjs-dist/webpack";
 import React, { useEffect, useState } from "react";
+import { FaChevronRight } from "react-icons/fa"; // 아이콘 사용
 import { Document, Page } from "react-pdf"; //  react-pdf에서 Document와 Page 추가
 import "react-pdf/dist/esm/Page/AnnotationLayer.css"; //  주석 레이어 스타일 추가
 import "react-pdf/dist/esm/Page/TextLayer.css"; //  텍스트 레이어 스타일 추가
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
-import "./contractSelect.css"; // CSS 파일 import
-import { FaChevronRight } from "react-icons/fa"; // 아이콘 사용
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-// import { pdfjs } from "react-pdf";
-// import * as pdfjs from "pdfjs-dist/build/pdf";
-import * as pdfjs from "pdfjs-dist/webpack";
+import Footer from "../common/Footer";
+import Header from "../common/Header";
+import "./contractSelect.css"; // CSS 파일 import
 
-// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
-// pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.mjs`;
-// pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
-// Worker 버전과 pdfjs-dist 버전을 일치시키는 설정
-// pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
-
-// // 🚨 최신 버전에 맞는 worker 경로 설정 (pdfjs-dist@4.8.69 대응)
+// 🚨 최신 버전에 맞는 worker 경로 설정 (pdfjs-dist@4.8.69 대응)
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.8.69/build/pdf.worker.min.js`;
 
-//pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js"; // ✅ public 폴더 기준 경로
-// pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.mjs`;
-//  npm 방식으로 자동 로드 설정
-// pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.min.mjs");
-
-//npm install pdf-viewer-reactjs
-//  pdf.worker 파일을 public 폴더에서 로드하도록 설정
-// pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
-
 const ContractSelect = () => {
-  const [latestPdfPath, setLatestPdfPath] = useState([]);
+  const childNum = sessionStorage.getItem("childNum");
   const navigate = useNavigate(); // useNavigate 사용
+
+  const [latestPdfPath, setLatestPdfPath] = useState("");
+  const [loading, setLoading] = useState(true);
 
   // 최신 계약서 경로 가져오기
   useEffect(() => {
-    let isMounted = true; // ✅ 컴포넌트 마운트 상태 확인 변수
-
-    const childNum = sessionStorage.getItem("childNum");
-    console.log("childNum:", childNum);
-
     if (!childNum) {
       console.error("세션에 값이 없습니다.");
       return;
     }
 
-    axios
-      .get("http://localhost:7777/zoomoney/contract/latest", {
-        params: { childNum: childNum }, // 🔹 선택한 자녀의 memberNum 전달 (예시)
-      })
-      .then((response) => {
-        console.log("API 응답 데이터:", response.data);
-        // const filePath = response.data.replace(
-        //   "C:/shinhan4/work/zoomoney_front_new/ZooMoney_FrontEnd/public",
-        //   ""
-        // );
-        const fileName = response.data.split("/").pop(); // 파일명만 추출
-        // const filePath = `/contract/pdf/${fileName}`; // ✅ URL 경로 설정
-        // ✅ 컴포넌트가 마운트된 경우만 경로 설정
-        if (isMounted) {
-          // setLatestPdfPath(filePath);
-          setLatestPdfPath(fileName);
-        }
-        //setLatestPdfPath(fileName); // 여기가 중요
-        // console.log("최신 계약서 경로:", filePath);
-        console.log("최신 계약서 경로2:", fileName);
-        // setLatestPdfPath(response.data);
-      })
-      .catch((error) => {
-        console.error("최신 계약서 로드 실패:", error);
-      });
+    const draw = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:7777/zoomoney/contract/latest`,
+          { params: { childNum: childNum } }
+        );
+        console.log(response.data);
 
-    // ✅ Cleanup 로직 추가
-    return () => {
-      isMounted = false; // 컴포넌트가 언마운트되면 PDF 로드 중지
-      setLatestPdfPath(""); // 🔥 추가: 기존 PDF 경로 초기화
+        setLatestPdfPath(response.data.split("/").pop());
+      } catch (error) {
+        console.error("최신 계약서 로드 실패:", error);
+      } finally {
+        setLoading(false);
+      }
     };
-  }, []);
+
+    console.log(latestPdfPath);
+
+    draw();
+  });
+
+  // 데이터 로드 후 렌더링
+  if (loading) return null;
 
   const handleContractDetail1Click = () => {
     navigate("/contract/contractDetail1");
@@ -106,13 +78,10 @@ const ContractSelect = () => {
           <div className="ContractSelect-contract-box">
             {latestPdfPath && (
               <Document
-                // file={`http://localhost:7777/zoomoney/contract_pdf/${latestPdfPath}`}
                 file={`http://localhost:7777/zoomoney/contract_pdf/${latestPdfPath}`}
-                onLoadError={(error) =>
-                  console.log("PDF 로드 오류:", latestPdfPath)
-                }
+                onLoadError={(error) => console.log("PDF 로드 오류:", error)}
               >
-                <Page pageNumber={1} width={350} />
+                <Page pageNumber={1} width={350} /> 
               </Document>
             )}
           </div>

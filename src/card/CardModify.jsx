@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
@@ -9,7 +8,7 @@ import defaultCardImage03 from "../images/pinkcard.png";
 import defaultCardImage04 from "../images/skybluecard.png";
 import defaultCardImage02 from "../images/yellowcard.png";
 import "./CardModify.css";
-import { fetchMetadata, mintNFT, fetchCardInfo } from "./CardService";
+import { fetchCardInfo, fetchMetadata, mintNFT } from "./CardService";
 const CardModify = () => {
   const [file, setFile] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
