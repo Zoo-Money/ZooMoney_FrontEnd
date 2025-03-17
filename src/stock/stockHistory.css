@@ -11,6 +11,22 @@
     margin-bottom: 30px;
     height: 45px;
 }
+.history-box{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px; /* 좌우 여백을 20px로 설정 */
+    text-align: right;
+}
+.history-box span{
+    font-weight: bold;
+    color: #f9a825;
+    font-size: 1.2em;
+}
+.rabbit07{
+    width: 70px;
+    height: auto;
+}
 .history-list{
     width: 342.4px; /*상위 버튼이랑 넓이 똑같게 고정*/
     border: solid 1px #ccc;

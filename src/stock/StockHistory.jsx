@@ -4,48 +4,130 @@ import Header from '../common/Header';
 import { IoIosArrowForward } from "react-icons/io";
 import "./stockHistory.css";
 import axios from 'axios';
+import { Line } from "react-chartjs-2";
+import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend } from "chart.js";
+import  rabbit07  from "../images/rabbit07.png";
+
+ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 function StockHistory(props) {
-    const [ranking, setRanking] = useState([]);
-    const navi = useNavigate();
-    const goHistoryDetail = (item)=>{
-        navi("/stock/stockHistoryDetail", {state: {item}});
-    };
+  const [ranking, setRanking] = useState([]);
+  const navi = useNavigate();
 
-    useEffect(()=>{
-        axios({
-          url: "http://localhost:7777/zoomoney/stock/result/list",
-          method: "get",
-        })
-          .then((responseData)=>{
-            setRanking(responseData.data);
-          })
-          .catch((err)=>{
-            console.log(err);
-          });
-    },[]);
+  const goHistoryDetail = (item) => {
+    navi("/stock/stockHistoryDetail", { state: { item } });
+  };
 
-    const afterOneWeek = (date) => {
-        const d = new Date(date);
-        d.setDate(d.getDate()+6);
-        return d.toISOString().split('T')[0];
-    };
-    return (
-        <div className="mock-container">
-            <Header title="나의 랭킹 히스토리"></Header>
-            <button className="history-button">내 투자 내역 보러가기</button>
-            <div className="history-list-box">
-                {ranking && ranking.map((item, index)=>(
-                    <div className='history-list' key={index}>
-                        <span className='history-list-title'>시즌{index+1}</span>
-                        <span className='history-list-date'>{item.result_date} ~ {afterOneWeek(item.result_date)}</span>
-                        <span className='history-list-rank'>{item.result_rank}위</span>
-                        <IoIosArrowForward className="forwardIcon" onClick={() => goHistoryDetail(item)} />
-                    </div>
-                ))}
+  const goStockMain = () => {
+    navi("/stock/main");
+  };
+  useEffect(() => {
+    axios({
+      url: "http://localhost:7777/zoomoney/stock/result/list",
+      method: "get",
+    })
+      .then((responseData) => {
+        setRanking(responseData.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const afterOneWeek = (date) => {
+    const d = new Date(date);
+    d.setDate(d.getDate() + 6);
+    return d.toISOString().split("T")[0];
+  };
+
+  const labels = ranking.map(item => item.result_date);
+  const resultRate = ranking.map(item => item.result_rate);
+
+  const chartData = {
+      labels: labels,
+      datasets: [
+          {
+              label: "수익률",
+              data: resultRate,
+              borderColor: "red",
+              borderWidth: 2,
+              pointBackgroundColor: ["red", "red"],
+              pointRadius: 5,
+              pointStyle: "circle",
+              fill: false
+          }
+      ]
+  };
+
+  const options = {
+    responsive: true,
+    scales: {
+      x: {
+        display: false,
+      },
+      y: {
+        display: false,
+      },
+    },
+    plugins: {
+        legend: {
+            display: false,
+        },
+        tooltip: {
+            enabled: true,
+            callbacks: {
+                label: function (tooltipItem) {
+                return "수익률 " + tooltipItem.raw + "%";
+                },
+            },
+        },
+    },
+    layout: {
+        padding: {
+            bottom: 30,
+        },
+    },
+  };
+
+  return (
+    <div className="mock-container">
+      <Header title="나의 랭킹 히스토리"></Header>
+      <div className="history-box">
+        <p>
+          내가 참여한 모든 시즌들의
+          <br />
+          나의 <span>랭킹</span>을 모아놨어요
+          <br />
+          내가 얼마나 <span>성장</span>했는지
+          <br />
+          확인할 수 있어요.
+        </p>
+        <img className="rabbit07" src={rabbit07} alt="rabbit07" />
+      </div>
+      <div className="history-detail-chart">
+        <Line data={chartData} options={options}></Line>
+      </div>
+      <div className="history-list-box">
+        {ranking &&
+          ranking.map((item, index) => (
+            <div className="history-list" key={index}>
+              <span className="history-list-title">시즌{index + 1}</span>
+              <span className="history-list-date">
+                {item.result_date} ~ {afterOneWeek(item.result_date)}
+              </span>
+              <span className="history-list-rank">{item.result_rank}위</span>
+              <IoIosArrowForward
+                className="forwardIcon"
+                onClick={() => goHistoryDetail(item)}
+              />
             </div>
-        </div>
-    );
+          ))}
+      </div>
+      <button className="history-button" onClick={goStockMain}>
+        모의 투자 하러 가기
+      </button>
+    </div>
+  );
 }
 
 export default StockHistory;
