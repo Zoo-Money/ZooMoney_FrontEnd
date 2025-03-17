@@ -91,6 +91,7 @@
 .quizmain-stamp-image {
   width: 100%;
   height: auto;
+  margin: 0;
 }
 
 /* 오늘 푼 퀴즈/확인 */
