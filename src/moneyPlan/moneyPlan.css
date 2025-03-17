@@ -1,0 +1,215 @@
+/* PlanMain */
+.planmain-content {
+  text-align: center;
+}
+.img-deer {
+  width: 120px;
+  height: auto;
+  /* text-align: right; */
+  /* margin-left: 240px; */
+  /* margin-bottom: -8px; */
+  transform: scaleX(-1);
+  margin-left: auto;
+}
+.planmain-description{
+  font-size: 16px;
+  /* text-align: center; */
+  display: flex;
+  text-align: right;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.planmain-box{
+  padding-top: 10px;
+  width: 90%;
+  height: auto;
+  background-color: #f8f4f1;
+  border: none;
+  border-radius: 15px;
+  margin: 0 auto 40px auto; /* 가운데 정렬 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.planmain-description span{
+  font-weight: bold;
+  color: #ff5454;
+}
+.planmain-button {
+  width: 80%;
+  height: 45px;
+  background-color: #f9a825;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline;
+  margin-left: 10px;
+}
+
+/* PlanWrite */
+.planwrite-content{
+  margin-top: 10px;
+}
+.planwrite-content span{
+  font-weight: bold;
+  color: #ff5454;
+}
+.planwrite-input:nth-child(1){
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin: 0 auto;
+ border-radius: 15px;
+ width: 329px;
+ height: 58px;
+ background-color: #ffcb9a;
+ margin-bottom: 20px;
+}
+.planwrite-input input{
+  float: right;
+  vertical-align: middle;
+  border: none;
+  background-color: transparent;
+  margin-right: 15px;
+  text-align: right;
+  align-items: center;
+}
+.planwrite-input:nth-child(2){
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 15px;
+  width: 329px;
+  height: 58px;
+  margin-bottom: 20px;
+  background-color: #c2f1ff;
+}
+.planwrite-input:nth-child(3){
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 15px;
+  width: 329px;
+  height: 58px;
+  margin-bottom: 20px;
+  background-color: #fff4c2;
+}
+.planwrite-input:nth-child(4){
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 15px;
+  width: 329px;
+  height: 58px;
+  margin-bottom: 20px;
+  background-color: #fec7c0;
+}
+.planwrite-input:nth-child(5){
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 15px;
+  width: 329px;
+  height: 58px;
+  margin-bottom: 20px;
+  background-color: #caffc2;
+}
+.planwrite-container{
+  width: 90%;
+  font-size: 18px;
+}
+.planwrite-container img:nth-child(1){
+  margin-left: 7px;
+}
+.planwrite-button{
+  width: 80%;
+  height: 45px;
+  background-color: #f9a825;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline;
+  margin-left: 10px;
+}
+/* planChart */
+.planchart-box{
+  width: 90%;
+  height: auto;
+  background-color: #f8f4f1;
+  border: none;
+  border-radius: 15px;
+  margin: 0 auto 40px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+/* SelectChart */
+canvas{
+  width: 300px;
+  height: 300px;
+}
+.selectchart-box{
+  display: flex;
+  height: 350px;
+}
+.selectchart-icon{
+  margin: 20px;
+}
+.selectchart-back{
+  float: left;
+}
+.selectchart-forward{
+  float: right;
+}
+.etc{
+  margin-left: 20px;
+}
+.description {
+  font-size: 15px;
+  color: #5a5a5a;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 10px 25px 100px 25px;
+}
+/* PlanChart와 버튼을 겹치지 않게 배치 */
+.plan-write-container {
+  /* PlanWrite 내용이 보일 때 스타일 */
+  padding-bottom: 20px; /* 아래 여백을 주어 버튼과 겹치지 않게 */
+}
+.plan-chart-container {
+  /* PlanChart가 보일 때 스타일 */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%; /* PlanChart가 화면에 꽉 차게 */
+  padding-bottom: 20px;
+}
+
+/* complete */
+.plancomplete-content{
+  text-align: center;
+}
+.img-deer2{
+  margin-top: 50px;
+  width: 200px;
+}
+.plancomplete-description{
+  font-size: 18px;
+  color: #333;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.plancomplete-description span{
+  color: #ff5454;
+  font-weight: bold;
+}

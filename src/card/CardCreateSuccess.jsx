@@ -4,7 +4,7 @@ import Footer from "../common/Footer";
 import bear02 from "../images/bear02.png";
 import { Link } from "react-router-dom";
 
-const StockBegin = () => {
+const CardCreateSuccess = () => {
   return (
     <div className="mock-container">
       {/* 메인 콘텐츠 */}
@@ -28,4 +28,4 @@ const StockBegin = () => {
   );
 };
 
-export default StockBegin;
+export default CardCreateSuccess;

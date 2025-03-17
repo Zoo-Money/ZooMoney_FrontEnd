@@ -19,8 +19,24 @@ const CardCreate = () => {
   const navigate = useNavigate();
 
   const handleMintNFT = async () => {
-    const success = await mintNFT(file, setMinting, setTransactionHash);
+    let fileToUpload = file;
+
+    // 파일이 없을 경우, 선택한 이미지(selectedImage)를 사용하여 변환
+    if (!fileToUpload) {
+      const imageToUse = selectedImage || defaultCardImage;
+      const response = await fetch(imageToUse);
+      const blob = await response.blob();
+      fileToUpload = new File([blob], "selected-card.png", {
+        type: "image/png",
+      });
+
+      setFile(fileToUpload);
+    }
+
+    // NFT 발급 실행
+    const success = await mintNFT(fileToUpload, setMinting, setTransactionHash);
     console.log("Mint Success:", success); // 성공 여부 확인
+
     if (success) {
       navigate("/card/success"); // 발급 완료 페이지로 이동
     } else {
@@ -28,43 +44,33 @@ const CardCreate = () => {
     }
   };
 
-  // 파일 선택 시 미리보기 생성
-  const handleFileChange = async (e) => {
+  // 파일 선택 시 실행되는 함수
+  const handleFileChange = (e) => {
     let selectedFile = e.target.files[0];
 
     if (selectedFile) {
-      // 사용자가 파일을 선택한 경우
       setFile(selectedFile);
-
-      // 파일 미리보기 URL 생성
-      const previewUrl = URL.createObjectURL(selectedFile);
-      setPreviewUrl(previewUrl);
-    } else {
-      // 파일을 선택하지 않은 경우, 선택한 카드 이미지 또는 기본 이미지 사용
-      const imageToUse = selectedImage || defaultCardImage;
-
-      // 이미지 URL을 Blob으로 변환 후 File 객체 생성
-      const response = await fetch(imageToUse);
-      const blob = await response.blob();
-      const defaultFile = new File([blob], "defaultcard.png", {
-        type: "image/png",
-      });
-
-      setFile(defaultFile);
-
-      // 기본 이미지 미리보기 URL 생성
-      const previewUrl = URL.createObjectURL(defaultFile);
-      setPreviewUrl(previewUrl);
+      setPreviewUrl(URL.createObjectURL(selectedFile));
     }
+  };
+
+  // 카드 이미지 클릭 시 실행되는 함수
+  const handleImageSelect = async (image) => {
+    setSelectedImage(image);
+    setPreviewUrl(image);
+
+    // 선택한 이미지를 File 객체로 변환
+    const response = await fetch(image);
+    const blob = await response.blob();
+    const file = new File([blob], "selected-card.png", { type: "image/png" });
+
+    setFile(file);
   };
 
   return (
     <div className="mock-container">
       {/* 헤더 */}
-      <div className="header">
-        {/* <button className="back-button">←</button> */}
-        <Header title="카드발급" /> {/* 원하는 제목을 props로 전달 */}
-      </div>
+      <Header title="카드발급" />
 
       <div className="content">
         {/* 카드 이미지 미리보기 */}
@@ -91,7 +97,7 @@ const CardCreate = () => {
             className={`image-item ${
               selectedImage === item.image ? "ring-4 ring-purple-500" : ""
             }`}
-            onClick={() => setSelectedImage(item.image)}
+            onClick={() => handleImageSelect(item.image)} // 기존 setSelectedImage에서 변경
           >
             <img
               src={item.image}
@@ -104,7 +110,6 @@ const CardCreate = () => {
 
       {/* 파일 업로드 버튼 */}
       <div className="flex justify-between w-full">
-        {/* 파일 업로드 버튼 */}
         <label className="cursor-pointer">
           <div className="upload-button flex items-center gap-2">
             <span className="plus-icon bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold">

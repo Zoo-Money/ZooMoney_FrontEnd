@@ -1,0 +1,57 @@
+.rank-detail-box{
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.rabbit06{
+    margin-bottom: 30px;
+}
+.rank-detail-box span{
+    font-size: 20px;
+}
+.rank-detail-list{
+    width: 350px;
+    display: flex;
+    align-items: center;
+}
+.list-box{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+.list-box-info{
+    /* width: 395px; */
+    align-items: center;
+    height: 45px;
+    display: flex;
+    margin-left: 10px;
+    border: solid 2px #fde888;
+    padding: 5px;
+    border-radius: 10px;
+}
+.list-box-info-name{
+    margin-right: 10px;
+    font-weight: bold;
+}
+.list-box-info-name span{
+    color: gray;
+    font-weight: normal;
+}
+.list-box-info-rank span{
+    font-weight: bold;
+    color: #ff3131;
+}
+.rank-detail-button{
+    width: 80%;
+    background-color: #f9a825;
+    color: white;
+    font-size: 14px;
+    height: 45px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 20px;
+}
