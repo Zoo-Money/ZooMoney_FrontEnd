@@ -1,11 +1,10 @@
 import axios from "axios"; // Axios 추가
+import "bootstrap/dist/css/bootstrap.min.css"; // ✅ 추가
 import React, { useEffect, useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./contractWriteChild.css"; // CSS 파일 import
-
-const daysOfWeek = ["월", "화", "수", "목", "금", "토", "일"];
 
 const getFormattedDate = () => {
   const today = new Date();
@@ -16,62 +15,79 @@ const getFormattedDate = () => {
 };
 
 const ContractWriteChild = () => {
-  const [, setSelectedDay] = useState(null);
-  const [,] = useState(getFormattedDate());
+  const [selectedDate, setSelectedDate] = useState(getFormattedDate());
   const [amount, setAmount] = useState("");
   const signatureRef = useRef(null); // 서명 캔버스 참조
-  const [details, setDetails] = useState([]);
-  const [inputValue, setInputValue] = useState("");
+  const [childName, setChildName] = useState("");
 
-  // 부모가 작성한 계약 내용을 저장할 state
-  const [contractDetails, setContractDetails] = useState("");
+  // 세션에 저장된 childNum 가져오기
   useEffect(() => {
-    // 부모 컴포넌트에서 전달된 계약 내용을 가져옴
-    const fetchContractDetails = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:7777/zoomoney/contract/getDetails",
-          { params: { contractNum: 123 } } //  계약서 번호는 상황에 맞게 변경
-        );
-        setContractDetails(response.data.contract_content); // 불러온 세부사항 저장
-      } catch (error) {
-        console.error("세부사항 불러오기 실패:", error);
-        alert("계약 세부사항을 불러오지 못했습니다.");
-      }
-    };
+    const storedChildNum = sessionStorage.getItem("childNum");
+    // console.log("$$$$storedChildNum:", storedChildNum);
 
-    fetchContractDetails();
+    if (!storedChildNum) {
+      alert("아이 정보 관련 세션값이 없습니다.");
+      // sessionStorage.setItem("childNum", "1"); // 기본값 설정 (테스트용)
+    }
   }, []);
 
-  // 요일 선택
-  const handleDaySelect = (day) => {
-    setSelectedDay(day);
-  };
+  // 세션에서 childNum 가져와서 API 요청에 사용
+  const childNum = sessionStorage.getItem("childNum");
+  const memberNum = childNum;
+
+  useEffect(() => {
+    // console.log("📢 API 요청 전 childNum 값:", childNum);
+    axios
+      .get("http://localhost:7777/zoomoney/contract/childInfo", {
+        // params: { childId: 1 },
+        params: { childId: childNum },
+      })
+      .then((response) => {
+        setChildName(response.data.childName); // 아이이름 상태 저장
+      })
+      .catch((error) => {
+        console.log("아이이름 불러오기 실패:" + error);
+        setChildName("아이이름 불러오기 실패"); // 실패시 기본값
+      });
+  }, []);
+  // 오늘 날짜를 'YYYY-MM-DD' 형식으로 설정
+  const today = new Date().toISOString().split("T")[0];
+
+  // 부모가 작성한 계약 내용
+  const [contractDetails, setContractDetails] = useState("");
+  useEffect(() => {
+    axios
+      .get("http://localhost:7777/zoomoney/contract/getDetails", {
+        params: { childId: childNum }, // 세션값 childNum 사용
+      })
+      .then((response) => {
+        //console.log("API 응답 데이터:", response.data); // API 응답 데이터 확인
+
+        if (response.data && response.data.contractMoney) {
+          setAmount(response.data.contractMoney.toLocaleString()); // 지급금액을 콤마 포함 형식으로 설정
+        } else {
+          setAmount("금액 정보를 찾을 수 없습니다.");
+        }
+        if (response.data && response.data.contractContent) {
+          //  부모가 작성한 계약 내용을 세부사항에 표시
+          // 계약 상세내용 줄바꿈 적용
+          setContractDetails(
+            response.data.contractContent.replace(/\n/g, "<br>")
+          );
+        } else {
+          setContractDetails("계약서 내용을 찾을 수 없습니다.");
+        }
+      })
+      .catch((error) => {
+        console.error("계약서 불러오기 실패:", error);
+        alert("예외: 계약서 내용을 불러오지 못했습니다.(용돈계약서 작성필요)");
+      });
+    // }, []);
+  }, [childNum]);
 
   // 서명 지우기
   const clearSignature = () => {
     signatureRef.current.clear();
-  };
-
-  // 세부사항 입력 핸들러
-  const handleDetailChange = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  // Enter 키 입력 시 자동 번호 추가
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter" && inputValue.trim() !== "") {
-      setDetails([...details, inputValue]);
-      setInputValue("");
-      e.preventDefault();
-    }
-  };
-
-  // 지급 금액 입력 핸들러
-  const handleAmountChange = (e) => {
-    const numericValue = e.target.value.replace(/\D/g, "");
-    const formattedValue = Number(numericValue).toLocaleString();
-    setAmount(formattedValue);
   };
 
   //  **서명 후 보내기 버튼 클릭 시**
@@ -79,24 +95,41 @@ const ContractWriteChild = () => {
     //  서명 이미지를 Base64 데이터로 변환
     const signatureData = signatureRef.current.toDataURL("image/png");
 
+    // 계약서 ID 가져오기 (예: 부모가 작성한 계약서 조회 결과에서 가져옴)------ 하드코딩 추후수정필요
+    // const contractNum = 48; // 🔹 실제 계약 번호를 여기에 전달해야 함
+    // const childNum = 35; // 🔹 실제 계약 번호를 여기에 전달해야 함
+
     //  전송할 데이터 구성
     const contractData = {
-      contract_money: parseInt(amount.replace(/,/g, ""), 10), // 금액에서 ',' 제거 후 정수 변환
-      contract_status: false, // 초안 상태
-      contract_excelpath: signatureData, // Base64 서명 이미지 전송
+      // contract_money: parseInt(amount.replace(/,/g, ""), 10), // 금액에서 ',' 제거 후 정수 변환
+      // contract_status: false, // 초안 상태
+      // contract_excelpath: signatureData, // Base64 서명 이미지 전송
+      // contractNum: contractNum, // ✅ 계약 번호 (서버에서 해당 계약을 식별하는 값)
+      childSignature: signatureData, // ✅ 자녀의 서명 이미지 (Base64)
+      childNum: Number(childNum), // ✅ childNum 추가
     };
 
     try {
       //  Axios POST 요청으로 데이터 전송
-      const response = await axios.post(
-        "http://localhost:7777/zoomoney/contract/saveDraft",
+      await axios.post(
+        "http://localhost:7777/zoomoney/contract/complete",
         contractData
       );
 
-      alert("서명 저장 성공: " + response.data);
+      const response = await axios.get(
+        `http://localhost:7777/zoomoney/member/${memberNum}/select`
+      );
+
+      await axios.post("http://localhost:7777/zoomoney/notify/send", {
+        memberNum: response.data[0].memberParent.memberNum,
+        notifyContent: "용돈계약서 아이 서명이 완료되었습니다.",
+        notifyUrl: "/contract/contractSelect",
+      });
+
+      alert("서명 저장 성공");
     } catch (error) {
       console.error("서명 저장 실패:", error);
-      alert("서명 저장에 실패했습니다.");
+      alert("서명 저장에 실패했습니다." + childNum);
     }
   };
 
@@ -106,55 +139,50 @@ const ContractWriteChild = () => {
         <Header title="용돈계약서 작성" />
 
         <div className="contractWrtieChild-contract-form">
-          <p className="info-text">용돈 지급에 관한 세부사항을 확인하세요.</p>
+          <p className="contractWrtieChild-info-text">
+            용돈 지급에 관한 세부사항을 확인하세요.
+          </p>
 
           {/* 세부사항 입력 */}
-          <div className="info-box">
-            <div className="contractWrtieChild-details-container">
-              {details.length > 0 && (
-                <ol>
-                  {details.map((line, index) => (
-                    <li key={index}>{line}</li>
-                  ))}
-                </ol>
-              )}
-              {/* <textarea
-                className="contractWrtieChild-custom-textarea"
-                placeholder="계약 세부사항을 입력하세요..."
-                value={inputValue}
-                onChange={handleDetailChange}
-                onKeyDown={handleKeyPress}
-              /> */}
-              <div className="info-box">
-                <div className="contractWrtieChild-details-container">
-                  <textarea
-                    className="contractWrtieChild-custom-textarea"
-                    value={contractDetails}
-                    readOnly // ✅ 읽기 전용 설정
-                  />
-                </div>
-              </div>
+          <div className="contractWrtieChild-info-box">
+            <div className="contractWriteChild-details-container">
+              {/* 부모가 작성한 계약 내용 표시 (details가 있을 경우만) */}
+              <div
+                dangerouslySetInnerHTML={{ __html: contractDetails }} // HTML 형태로 표시
+              />
             </div>
           </div>
 
           {/* 지급 금액 */}
-          <label>지급 금액</label>
-          <div className="contractWrtieChild-amount-input-container">
-            <input
-              type="text"
-              value={amount}
-              onChange={handleAmountChange}
-              placeholder="금액 입력"
-              inputMode="numeric"
-            />
-            <span>원</span>
+          <div className="contractWrtieChild-amount-input-containerTop">
+            <label>지급금액</label>
+            <div className="contractWrtieChild-amount-input-container">
+              {/* <span>{amount} 원</span> */}
+              <span className="contractWrtieChild-amount-number">
+                {amount}
+              </span>{" "}
+              <span>원</span>
+            </div>
           </div>
 
-          {/* 용돈 지급인 (서명) */}
+          {/* 계약일자 */}
+          <div className="contractWrtieChild-input-box">
+            <label>계약일자</label>
+            <input type="text" value={selectedDate} readOnly />
+          </div>
+
+          {/* 지급 요일 선택 */}
+          <div className="contractWrtieChild-input-box">
+            <label>최초지급일</label>
+            <input type="text" value={selectedDate} readOnly />
+          </div>
+
+          {/* 용돈 수취인 (서명) */}
           <div className="contractWrtieChild-signature-box">
             <label>용돈 수취인</label>
             <div className="contractWrtieChild-signature">
-              <span>신짱구</span> <span>(서명)</span>
+              {/* <span>신짱구</span> <span>(서명)</span> */}
+              <span>{childName}</span> <span>(서명)</span>
             </div>
 
             {/* 서명 캔버스 */}
@@ -179,8 +207,11 @@ const ContractWriteChild = () => {
           </div>
 
           {/* 제출 버튼 */}
-          <button className="submit-button" onClick={handleSubmit}>
-            보내기
+          <button
+            className="contractWrtieChild-submit-button"
+            onClick={handleSubmit}
+          >
+            서명 완료
           </button>
         </div>
 

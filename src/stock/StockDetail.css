@@ -1,0 +1,44 @@
+.StockDetail-info {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+  width: 70%;
+}
+/* 탭 버튼 컨테이너 */
+.tabOption-container {
+  display: flex;
+  justify-content: space-around;
+  background: #f5f5f5;
+  padding: 5px;
+  border-radius: 8px;
+  width: 50%;
+}
+
+.Detailtab-button {
+  width: 45%;
+  height: 100%;
+  background-color: #f9a825;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+/* 활성화된 버튼 스타일 */
+.Detailtab-button.active {
+  background: #f9a825;
+  color: black;
+  font-weight: bold;
+}
+
+.DetailOption-content {
+  padding-top: 5%;
+  padding-left: 7%;
+  padding-right: 7%;
+  max-height: calc(100vh - 450px);
+  overflow-y: auto;
+  width: 100%;
+}

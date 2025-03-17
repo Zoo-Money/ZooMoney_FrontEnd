@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/AccountCreate.css";
+import { toast } from "react-toastify";
 
 const AccountTest = () => {
   // 세션 값 불러오기
@@ -20,7 +21,7 @@ const AccountTest = () => {
 
   const insertAccount = async () => {
     if (!name || !goal || !date) {
-      alert("모든 빈 칸을 채워주세요.");
+      toast.warning("모든 빈 칸을 채워주세요.");
       return;
     }
 
@@ -32,7 +33,7 @@ const AccountTest = () => {
         accountEnd: date,
       });
 
-      navigate("/account");
+      navigate("/account/end", { state: { accountName: name, status: 2 } }); // state로 전달
     } catch (error) {
       console.error("저금통 생성 실패", error);
     }

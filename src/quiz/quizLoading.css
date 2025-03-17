@@ -1,11 +1,11 @@
-/* 메인 콘텐츠 */
+/* 로딩 콘텐츠 */
 .quizloading-content {
   margin-top: 40px;
   width: 393px;
   text-align: center;
 }
 
-/* 퀴즈 메인 캐릭터 */
+/* 퀴즈 로딩 캐릭터 */
 .quizloading-image {
   width: 100px;
   height: auto;

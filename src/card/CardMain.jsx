@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Footer from "../common/Footer";
 import defaultCardImage from "../images/bear01.png"; // 기본 이미지 경로
+import { ReactComponent as BellIcon } from "../images/bell.svg"; // SVG를 React 컴포넌트로 import
 import daily from "../images/daily.png";
 import moneyplan from "../images/moneyplan.png";
 import pattern from "../images/pattern.png";
 import quiz from "../images/quiz.png";
-import { ReactComponent as BellIcon } from "../images/bell.svg"; // SVG를 React 컴포넌트로 import
 import "./CardMain.css";
-import { fetchMetadata, fetchCardInfo } from "./CardService";
+import { fetchCardInfo, fetchMetadata } from "./CardService";
 const CardMain = () => {
   const [metadata, setMetadata] = useState(null);
   const [, setMetadataUrl] = useState("");

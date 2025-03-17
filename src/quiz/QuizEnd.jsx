@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./quizEnd.css";
 import Footer from "../common/Footer";
-import giraffe1 from "../images/quiz/giraffe_end.png";
+import giraffeEnd from "../images/quiz/giraffe_end.png";
 import Header from "../common/Header";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,6 @@ const QuizEnd = () => {
     axios
       .get("http://localhost:7777/zoomoney/quiz/total")
       .then((response) => {
-        console.log("✅ 백엔드 응답:", response.data); // 백엔드 응답 확인
         setCorrectAnswerCount(response.data.correctAnswerCount); // 상태 업데이트
       })
       .catch((error) =>
@@ -29,19 +28,19 @@ const QuizEnd = () => {
 
   return (
     <div className="mock-container">
-      <Header title="퀴즈 완료" />
+      <Header title="QUIZ 완료" />
 
       {/* 메인 콘텐츠 */}
       <div className="quizend-content">
-        <img src={giraffe1} alt="퀴즈완료 캐릭터" className="quizend-image" />
+        <img src={giraffeEnd} alt="퀴즈완료 캐릭터" className="quizend-image" />
         <p className="quizend-description">
-          오늘의 퀴즈를 모두 풀었어요
+          오늘의 QUIZ를 모두 풀었어요
           <br />총 <strong>{String(correctAnswerCount) * 100} 포인트</strong>를
           획득했어요!
         </p>
         <p className="quizend-description">내일 다시 만나요!</p>
         <button className="quizend-button" onClick={goToMain}>
-          퀴즈 풀이 완료
+          QUIZ 풀이 완료
         </button>
       </div>
 
