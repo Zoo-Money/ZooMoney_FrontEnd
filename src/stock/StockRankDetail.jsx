@@ -1,8 +1,7 @@
 import React from 'react';
 import Header from '../common/Header';
-import rabbit06 from "../images/rabbit06.png";
 import gold from "../images/gold.png";
-import RankList from './RankList';
+import rabbit06 from "../images/rabbit06.png";
 import "./stockRankDetail.css";
 function StockRankDetail(props) {
     return (

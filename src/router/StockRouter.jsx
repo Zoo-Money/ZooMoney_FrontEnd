@@ -4,7 +4,10 @@ import StockBegin from "../stock/StockBegin";
 import StockInfo from "../stock/StockInfo";
 import StockRankResult from "../stock/StockRankResult";
 import StockRankDetail from "../stock/StockRankDetail";
-
+import StockHistory from "../stock/StockHistory";
+import StockHistoryDetail from "../stock/StockHistoryDetail";
+import StockMain from "../stock/StockMain";
+import StockList from "../stock/StockList";
 function StockRouter() {
   return (
     <div>
@@ -16,25 +19,27 @@ function StockRouter() {
           path="/stock/info/:infoNum"
           element={<StockInfoDetail />}
         ></Route>
-        <Route path="/stock/list" element={<StockRank />}></Route>
+        
         <Route
           path="/stock/list/:stockId/:stockName"
           element={<StockDetail />}
         ></Route>
-        <Route path="/stock/myStock" element={<MyStock />}></Route>
+
         <Route path="/stock/myStockDetail" element={<MyStockDetail />}></Route>
         <Route path="/stock/stockBuy" element={<StockBuy />}></Route>
         <Route path="/stock/stockSell" element={<StockSell />}></Route>
         <Route path="/stock/tradeDone" element={<TradeDone />}></Route>
         
-        
+         */}
         <Route path="/stock/stockHistory" element={<StockHistory />}></Route>
         <Route
           path="/stock/stockHistoryDetail"
           element={<StockHistoryDetail />}
-        ></Route> */}
+        ></Route>
         <Route path="/stock/rankResult" element={<StockRankResult />}></Route>
         <Route path="/stock/rankDetail" element={<StockRankDetail />}></Route>
+        <Route path="/stock/stockMain" element={<StockMain />}></Route>
+        <Route path="/stock/list" element={<StockList />}></Route>
       </Routes>
     </div>
   );

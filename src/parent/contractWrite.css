@@ -77,7 +77,50 @@
 .custom-textarea:focus {
   border-bottom: 2px solid #ffa500;
 }
+
+.edit-delete-buttons {
+  display: flex;
+  gap: 4px; /* 버튼 간격 */
+  margin-top: 5px;
+}
+
+.edit-button,
+.delete-button {
+  border: 1px solid #ffa500; /* 주황색 테두리 */
+  background-color: #fff; /* 흰색 배경 */
+  color: #ffa500;
+  border-radius: 20px;
+  padding: 3px 6px;
+  cursor: pointer;
+  font-size: 9px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 60px;
+  text-align: center;
+}
+
+.edit-button:hover {
+  background-color: #ffa500;
+  color: #fff; /* 호버 시 색상 반전 */
+}
+
+.delete-button {
+  border: 1px solid #ff4500; /* 빨간색 테두리 */
+  color: #ff4500;
+}
+
+.delete-button:hover {
+  background-color: #ff4500;
+  color: #fff;
+}
+
 /* 지급 금액 입력 */
+
+.amount-input-containerTop label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
 .amount-input-container {
   display: flex;
   align-items: center;
@@ -112,24 +155,25 @@
 }
 
 /* 입력 박스 */
-.input-box {
+.parent-contract-input-box {
   display: flex;
   flex-direction: column;
 }
 
-.input-box label {
+.parent-contract-input-box label {
   font-size: 14px;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
-.input-box input {
+.parent-contract-input-box input {
   padding: 10px;
   border: 1px solid #ffa500;
   border-radius: 8px;
   font-size: 16px;
-  text-align: right;
+  text-align: center;
   background-color: #fff;
+  font-weight: bold;
 }
 
 /* 지급 요일 선택 */
@@ -180,17 +224,17 @@
 }
 
 .signature {
-  display: flex;
   justify-content: space-between;
   font-size: 16px;
   font-weight: bold;
   padding: 10px;
   border: 1px solid #ffa500;
   border-radius: 8px;
+  text-align: center;
 }
 
 /* 서명 캔버스 */
-.signature-canvas {
+.parent-signature-canvas {
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: white;

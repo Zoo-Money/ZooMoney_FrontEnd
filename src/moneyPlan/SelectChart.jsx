@@ -1,11 +1,11 @@
+import axios from "axios";
+import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
+import Chart from "chart.js/auto";
+import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Legend, Tooltip, layouts } from "chart.js";
-import axios from "axios";
-import { categoryName } from "./planCommon";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import Chart from "chart.js/auto";
-import dayjs from 'dayjs';
+import { categoryName } from "./planCommon";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -59,7 +59,7 @@ function SelectChart() {
       .catch((error) => {
         console.error("데이터 로딩 오류: ", error);
       });
-  }, []);
+  });
 
   // plan_num별로 데이터를 그룹화
   const groupByPlanNum = (data) => {
@@ -122,9 +122,9 @@ function SelectChart() {
           usePointStyle: true,
           boxWidth: 20,
           padding: 10,
-          font:{
+          font: {
             size: 12,
-          }
+          },
         },
       },
       tooltip: {
@@ -186,7 +186,8 @@ function SelectChart() {
         />
       </div>
       <div className="selectchart-box">
-        <Doughnut id="myChart"
+        <Doughnut
+          id="myChart"
           data={getChartData(currentPlanDetails)}
           options={chartOptions}
         />

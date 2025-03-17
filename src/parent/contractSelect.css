@@ -1,14 +1,17 @@
 /* 전체 컨테이너 */
-.contract-container {
+.ContractSelect-contract-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
   background-color: #fff;
   font-family: "Arial", sans-serif;
+  max-height: calc(100vh - 70px); /* Footer 높이를 제외한 화면 높이 */
+  overflow-y: auto; /* 스크롤 가능하게 설정 */
+  padding-bottom: 30px; /* 하단 여백 추가 (보내기 버튼 공간 확보) */
 }
 
 /* 본문 콘텐츠 */
-.content {
+.ContractSelect-content {
   padding: 20px;
   flex-grow: 1;
   align-items: flex-start; /* ✅ 자식 요소들(소제목 포함) 왼쪽 정렬 */
@@ -16,7 +19,7 @@
 }
 
 /* 소제목 */
-.subtitle {
+.ContractSelect-subtitle {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -24,7 +27,7 @@
 }
 
 /* 계약서 박스 */
-.contract-box {
+.ContractSelect-contract-box {
   width: 100%; /* 부모 요소 너비에 맞춤 */
   max-width: 350px; /* ✅ PDF 크기 강제 제한 */
   height: auto; /* 세로는 자동 조정 */
@@ -50,7 +53,7 @@
 }
 
 /* 과거 계약서 확인 버튼 */
-.past-contracts {
+.ContractSelect-past-contracts {
   display: flex;
   justify-content: space-between; /* 텍스트와 아이콘 간격 */
   background-color: #fff;
@@ -65,14 +68,14 @@
   margin-top: 40px;
 }
 
-.past-contracts:hover {
+.ContractSelect-past-contracts:hover {
   color: #ff8c00; /* 마우스 호버 시 글씨 색상 주황색으로 변경 */
   background-color: transparent; /* 배경색 변경 방지 */
   cursor: pointer; /* 포인터 커서 추가로 버튼 느낌 강화 */
   transition: color 0.3s ease; /* 색상 전환을 부드럽게 */
 }
 
-.arrow-icon {
+.ContractSelect-arrow-icon {
   color: dimgray;
   font-size: 18px;
   align-self: center; /* 아이콘을 세로 중앙에 위치시킴 */
