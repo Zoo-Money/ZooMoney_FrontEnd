@@ -6,13 +6,11 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Login(props) {
-  // 상태 관리
   const [memberId, setMemberId] = useState("");
   const [memberPw, setMemberPw] = useState("");
   const [message, setMessage] = useState("");
   const navi = useNavigate();
 
-  // 폼 제출 함수
   const handleSubmit = (e) => {
     e.preventDefault();
     axios({
@@ -22,14 +20,12 @@ function Login(props) {
         member_id: memberId,
         member_pw: memberPw,
       },
-      withCredentials: true, // 세션 유지
+      withCredentials: true,
     })
       .then((responseData) => {
         console.log(responseData.data);
-        // 로그인 성공 시 세션과 sessionStorage에 값 저장
         if (responseData.data.message === "로그인 성공") {
           setMessage("로그인 성공!");
-          // 서버에서 반환된 세션 데이터를 sessionStorage에 저장
           const {
             member_id,
             member_num,
@@ -39,7 +35,6 @@ function Login(props) {
             member_type,
             member_parent,
           } = responseData.data;
-          // 세션 스토리지에 값 저장
           sessionStorage.setItem("member_id", member_id);
           sessionStorage.setItem("member_num", member_num);
           sessionStorage.setItem("member_phone", member_phone);
@@ -47,7 +42,6 @@ function Login(props) {
           sessionStorage.setItem("member_name", member_name);
           sessionStorage.setItem("member_type", member_type);
           sessionStorage.setItem("member_parent", member_parent);
-          // 로그인 성공 후 페이지 이동
           navi("/card/main");
         } else {
           setMessage("로그인 실패!");
