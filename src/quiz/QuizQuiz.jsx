@@ -1,13 +1,14 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./quizQuiz.css";
+import { toast } from "react-toastify";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import giraffeQuiz from "../images/quiz/giraffe_quiz.png";
 import O from "../images/quiz/O.png";
 import X from "../images/quiz/X.png";
-import axios from "axios";
 import QuizLoading from "./QuizLoading";
+import "./css/quizQuiz.css";
 
 const QuizQuiz = () => {
   const [quiz, setQuiz] = useState(null);
@@ -26,7 +27,7 @@ const QuizQuiz = () => {
 
   const handleSubmit = () => {
     if (!selectedAnswer) {
-      alert("정답을 선택해주세요!");
+      toast.error("정답을 선택해주세요!");
       return;
     }
 

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import "./quizSuccess.css";
-import Footer from "../common/Footer";
-import giraffeSuccess from "../images/quiz/giraffe_quiz.png";
-import Header from "../common/Header";
-import O from "../images/quiz/O.png";
-import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Footer from "../common/Footer";
+import Header from "../common/Header";
+import giraffeSuccess from "../images/quiz/giraffe_quiz.png";
+import O from "../images/quiz/O.png";
+import "./css/quizSuccess.css";
 
 const QuizSuccess = () => {
   const location = useLocation();

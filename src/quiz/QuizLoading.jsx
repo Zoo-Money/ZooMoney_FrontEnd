@@ -1,5 +1,5 @@
 import React from "react";
-import "./quizLoading.css";
+import "./css/quizLoading.css";
 import Footer from "../common/Footer";
 import giraffeLoading from "../images/quiz/giraffe_main.png";
 import Header from "../common/Header";

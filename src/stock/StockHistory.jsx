@@ -1,14 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Header from '../common/Header';
-import { IoIosArrowForward } from "react-icons/io";
-import "./stockHistory.css";
-import axios from 'axios';
+import axios from "axios";
+import {
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Tooltip,
+} from "chart.js";
+import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend } from "chart.js";
-import  rabbit07  from "../images/rabbit07.png";
+import { IoIosArrowForward } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import Header from "../common/Header";
+import rabbit07 from "../images/rabbit07.png";
+import "./css/stockHistory.css";
 
-ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend);
+ChartJS.register(
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend
+);
 
 function StockHistory(props) {
   const [ranking, setRanking] = useState([]);
@@ -40,23 +55,23 @@ function StockHistory(props) {
     return d.toISOString().split("T")[0];
   };
 
-  const labels = ranking.map(item => item.result_date);
-  const resultRate = ranking.map(item => item.result_rate);
+  const labels = ranking.map((item) => item.result_date);
+  const resultRate = ranking.map((item) => item.result_rate);
 
   const chartData = {
-      labels: labels,
-      datasets: [
-          {
-              label: "수익률",
-              data: resultRate,
-              borderColor: "red",
-              borderWidth: 2,
-              pointBackgroundColor: ["red", "red"],
-              pointRadius: 5,
-              pointStyle: "circle",
-              fill: false
-          }
-      ]
+    labels: labels,
+    datasets: [
+      {
+        label: "수익률",
+        data: resultRate,
+        borderColor: "red",
+        borderWidth: 2,
+        pointBackgroundColor: ["red", "red"],
+        pointRadius: 5,
+        pointStyle: "circle",
+        fill: false,
+      },
+    ],
   };
 
   const options = {
@@ -70,22 +85,22 @@ function StockHistory(props) {
       },
     },
     plugins: {
-        legend: {
-            display: false,
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        enabled: true,
+        callbacks: {
+          label: function (tooltipItem) {
+            return "수익률 " + tooltipItem.raw + "%";
+          },
         },
-        tooltip: {
-            enabled: true,
-            callbacks: {
-                label: function (tooltipItem) {
-                return "수익률 " + tooltipItem.raw + "%";
-                },
-            },
-        },
+      },
     },
     layout: {
-        padding: {
-            bottom: 30,
-        },
+      padding: {
+        bottom: 30,
+      },
     },
   };
 

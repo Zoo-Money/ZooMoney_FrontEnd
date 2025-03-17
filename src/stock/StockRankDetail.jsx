@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../common/Header';
 import gold from "../images/gold.png";
 import rabbit06 from "../images/rabbit06.png";
-import "./stockRankDetail.css";
+import "./css/stockRankDetail.css";
 function StockRankDetail(props) {
     return (
       <div className="mock-container">

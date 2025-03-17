@@ -8,16 +8,16 @@ import { HiChartBar } from "react-icons/hi2";
 const Footer = () => {
   return (
     <div className="footer">
-      <a href="link1">
+      <a href="/main">
         <GoHome className="icon" />
       </a>
-      <a href="link2">
+      <a href="/account">
         <TbPigMoney className="iconPig" />
       </a>
-      <a href="link3">
+      <a href="/stock/stockMain">
         <HiChartBar className="icon" />
       </a>
-      <a href="link4">
+      <a href="/member/mypage">
         <FiUser className="iconMypage" />
       </a>
     </div>

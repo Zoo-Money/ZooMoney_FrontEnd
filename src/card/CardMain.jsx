@@ -7,8 +7,8 @@ import daily from "../images/daily.png";
 import moneyplan from "../images/moneyplan.png";
 import pattern from "../images/pattern.png";
 import quiz from "../images/quiz.png";
-import "./CardMain.css";
 import { fetchCardInfo, fetchMetadata } from "./CardService";
+import "./css/CardMain.css";
 const CardMain = () => {
   const [metadata, setMetadata] = useState(null);
   const [, setMetadataUrl] = useState("");
@@ -105,51 +105,42 @@ const CardMain = () => {
               <p className="allowance-title">나의 용돈</p>
               <p className="allowance-amount">{allowanceAmount}</p>
             </div>
-            <button className="consumptionhistory-button">소비내역 확인</button>
           </div>
           <div className="button-group">
-            <button type="button" className="sendmoney-button">
-              카드사용내역
-            </button>
-            <button type="button" className="sendmoney-button">
-              충전하기
-            </button>
+            <a href="/card/usehistory">
+              <button type="button" className="sendmoney-button">
+                카드사용내역
+              </button>
+            </a>
+            <a href="/contract/contractSelect">
+              <button type="button" className="sendmoney-button">
+                용돈 계약서
+              </button>
+            </a>
           </div>
         </div>
 
         {/* 기능 카드 버튼 */}
         <div className="grid grid-cols-2 gap-4 mt-6 w-full">
-          <a
-            href="https://example.com/moneyplan"
-            className="feature-card card-skyblue"
-          >
+          <a href="/card/pattern" className="feature-card card-skyblue">
             <div>
               <img src={pattern} alt="소비 패턴 분석" />
               <p>소비 패턴 분석</p>
             </div>
           </a>
-          <a
-            href="https://example.com/moneyplan"
-            className="feature-card card-blue"
-          >
+          <a href="/moneyplan/main" className="feature-card card-blue">
             <div>
               <img src={moneyplan} alt="용돈 계획 세우기" />
               <p>용돈 계획 세우기</p>
             </div>
           </a>
-          <a
-            href="https://example.com/moneyplan"
-            className="feature-card card-yellow"
-          >
+          <a href="/quiz/main" className="feature-card card-yellow">
             <div>
               <img src={quiz} alt="금융퀴즈" />
               <p>금융 퀴즈</p>
             </div>
           </a>
-          <a
-            href="https://example.com/moneyplan"
-            className="feature-card card-pink"
-          >
+          <a href="/daily/main" className="feature-card card-pink">
             <div>
               <img src={daily} alt="출석체크" />
               <p>출석체크</p>

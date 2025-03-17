@@ -1,10 +1,10 @@
 import React from "react";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
 import { FaQuestionCircle } from "react-icons/fa";
-import "./stockMain.css";
+import { Link, useNavigate } from "react-router-dom";
+import Footer from "../common/Footer";
+import Header from "../common/Header";
 import rabbit01 from "../images/rabbit01.png";
-import { useNavigate } from "react-router-dom";
+import "./css/stockMain.css";
 
 function StockMain(props) {
     const navi = useNavigate();
@@ -15,10 +15,12 @@ function StockMain(props) {
     <div className="mock-container">
       <Header title="모의투자" />
       <div className="stock-main-header">
+        <Link to="/stock/info">
         <div className="stock-main-info">
           <FaQuestionCircle className="questionmark"/>
           <span>주식에 대해 궁금해요!</span>
         </div>
+        </Link>
         <img src={rabbit01} alt="rabbit01" />
       </div>
       <div className="stock-main-box">

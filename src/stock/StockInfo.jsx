@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
 import axios from "axios";
-import "./StockInfo.css";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../common/Footer";
+import Header from "../common/Header";
+import "./css/StockInfo.css";
 
 function StockInfo() {
   const [stockInfoList, setStockInfoList] = useState([]);

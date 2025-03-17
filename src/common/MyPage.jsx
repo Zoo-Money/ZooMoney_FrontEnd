@@ -12,7 +12,7 @@ function MyPage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/member/2/select")
+      .get("http://localhost:7777/zoomoney/member/1/select")
       .then((response) => {
         if (response.data.length > 0) {
           setMemberInfo(response.data[0]);
@@ -62,7 +62,7 @@ function MyPage() {
           <div className="card-box">
             <div className="info-row2">
               <span className="label">카드관리</span>
-              <Link to="/card/CardImageChange">
+              <Link to="/card/modify">
                 <IoArrowForwardCircleOutline
                   size={22}
                   style={{ color: "black" }}

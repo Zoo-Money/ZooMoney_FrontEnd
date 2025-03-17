@@ -3,7 +3,7 @@ import Header from "../common/Header";
 import Footer from "../common/Footer";
 import allowanceContract from "../images/allowanceContract.png";
 import allowanceContractCheck from "../images/allowanceContractCheck.png";
-import "./moneyContractManage.css";
+import "./css/moneyContractManage.css";
 import { useNavigate } from "react-router-dom";
 
 const MoneyContractManage = () => {

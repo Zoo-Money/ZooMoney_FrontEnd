@@ -21,7 +21,7 @@ const AccountTest = () => {
 
   const insertAccount = async () => {
     if (!name || !goal || !date) {
-      toast.warning("모든 빈 칸을 채워주세요.");
+      toast.error("모든 빈 칸을 채워주세요.");
       return;
     }
 

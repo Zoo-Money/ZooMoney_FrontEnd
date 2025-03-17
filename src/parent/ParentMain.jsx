@@ -8,7 +8,7 @@ import consumpPattern from "../images/consumpPattern.png";
 import piggyBank from "../images/piggyBank.png";
 import profile1 from "../images/profile1.png";
 import profile2 from "../images/profile2.png";
-import "./parentMain.css";
+import "./css/parentMain.css";
 
 const ParentMain = () => {
   const navigate = useNavigate();

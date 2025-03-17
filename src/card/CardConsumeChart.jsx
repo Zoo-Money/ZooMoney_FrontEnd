@@ -2,12 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Legend, Tooltip, Title } from "chart.js";
 import axios from "axios";
-import { categoryName } from "./patternCommon";
+import { categoryName } from "./resources/patternCommon";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import dayjs from "dayjs";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
-import "./CardConsumeChart.css";
+import "./css/CardConsumeChart.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 

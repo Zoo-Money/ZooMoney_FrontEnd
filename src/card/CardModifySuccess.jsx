@@ -1,5 +1,5 @@
 import React from "react";
-import "./CardCreateSuccess.css";
+import "./css/CardCreateSuccess.css";
 import Footer from "../common/Footer";
 import bear02 from "../images/bear02.png";
 import { Link } from "react-router-dom";
