@@ -4,7 +4,7 @@ import CardMain from "../card/CardMain";
 import CardCreate from "../card/CardCreate";
 import CardCreateSuccess from "../card/CardCreateSuccess";
 
-function AccountRouter() {
+function CardRouter() {
   return (
     <div>
       <Routes>
@@ -17,4 +17,4 @@ function AccountRouter() {
   );
 }
 
-export default AccountRouter;
+export default CardRouter;

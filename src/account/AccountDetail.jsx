@@ -71,6 +71,7 @@ const AccountDetail = () => {
           params: { amount: account.accountNow }, // 쿼리 파라미터로 amount 전달
         }
       );
+
       // 저금통 상태 변경
       await axios.put(
         `http://localhost:7777/zoomoney/account/close/${accountNum}`

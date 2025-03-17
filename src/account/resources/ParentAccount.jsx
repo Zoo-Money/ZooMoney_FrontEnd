@@ -1,18 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
-import pig_main from "../images/pig_main.png";
-import plus from "../images/plus.png";
-import "./css/AccountMain.css";
+import { useNavigate } from "react-router-dom";
+import Footer from "../../common/Footer";
+import Header from "../../common/Header";
 
-const AccountMain = () => {
+const ParentAccount = () => {
   // 세션 값 불러오기
   const memberNum = sessionStorage.getItem("member_num");
   const navigate = useNavigate();
 
   const [accountList, setAccountList] = useState([]);
-  const [amount, setAmount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   const colorList = ["#FFCB9A", "#C2F1FF", "#FFF4C2", "#FEC7C0", "#CAFFC2"];
@@ -25,13 +22,6 @@ const AccountMain = () => {
           `http://localhost:7777/zoomoney/account/list/${memberNum}`
         );
         setAccountList(response.data);
-
-        // 현재 금액 계산
-        const amount = response.data.reduce(
-          (acc, account) => acc + account.accountNow,
-          0
-        );
-        setAmount(amount);
       } catch (error) {
         console.error("조회 실패");
       } finally {
@@ -45,29 +35,17 @@ const AccountMain = () => {
   // 데이터 로드 후 렌더링
   if (loading) return null;
 
-  const selectAccount = (accountNum, index) => {
-    navigate("/account/detail", { state: { accountNum, index } }); // state로 전달
-  };
-
   return (
     <div className="mock-container">
       {/* 헤더 */}
-      <div className="AccountMainHeader">
-        <div className="AccountMainHeaderText">
-          <span>나의 저금통</span>
-          <span>{accountList.length} 개</span>
-        </div>
-        <img src={pig_main} alt="pig_main" />
+      <div className="header">
+        {/* <button className="back-button">←</button> */}
+        <Header title="저금통 확인" /> {/* 원하는 제목을 props로 전달 */}
       </div>
 
       {/* 메인 콘텐츠 */}
-      <div className="AccountMainCount">
-        {amount !== 0 ? (
-          <span>현재 {amount.toLocaleString()}원 저금중 😎</span>
-        ) : null}
-      </div>
       <div className="AccountMainContent">
-        <div className="AccountMainResult">
+        <div className="AccountMainResult" style={{ maxHeight: "calc(100vh - 250px)" }}>
           {accountList.length > 0 ? (
             accountList.map((account, index) => {
               return (
@@ -82,13 +60,13 @@ const AccountMain = () => {
                           new Date(account.accountEnd)
                         ? "#c4c0ba" // 만기된 저금통 색상
                         : colorList[index % colorList.length],
+                    cursor: "default"
                   }}
-                  onClick={() => selectAccount(account.accountNum, index)}
                 >
                   <div
                     style={{
                       display: "flex",
-                      justifyContent: "space-between",
+                      justifyContent: "space-between"
                     }}
                   >
                     <span style={{ fontSize: "0.75rem" }}>
@@ -132,7 +110,7 @@ const AccountMain = () => {
                           width:
                             (account.accountNow / account.accountGoal) * 100 +
                             "%",
-                          height: "0.5rem",
+                          height: "0.5rem"
                         }}
                         aria-valuenow={
                           (account.accountNow / account.accountGoal) * 100
@@ -145,7 +123,7 @@ const AccountMain = () => {
                       fontSize: "0.75rem",
                       marginTop: "10px",
                       display: "flex",
-                      justifyContent: "space-between",
+                      justifyContent: "space-between"
                     }}
                   >
                     <label>목표 금액</label>
@@ -162,19 +140,9 @@ const AccountMain = () => {
         </div>
       </div>
 
-      {/* 저금통 만들기 버튼 */}
-      <div className="AccountMainCreate">
-        <Link to={"/account/create"}>
-          <button>
-            <img src={plus} alt="plus" style={{ maxWidth: "15%" }} />
-            <span>저금통 만들기</span>
-          </button>
-        </Link>
-      </div>
-
       {/* 하단 네비게이션 */}
       <Footer />
     </div>
   );
 };
-export default AccountMain;
+export default ParentAccount;
