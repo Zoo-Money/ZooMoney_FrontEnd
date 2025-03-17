@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import giraffe1 from "../images/daily/giraffe_end.png";
+import dailyEnd from "../images/daily/giraffe_end.png";
 import "./dailyEnd.css";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ const DailyEnd = () => {
 
       {/* 메인 콘텐츠 */}
       <div className="dailyend-content">
-        <img src={giraffe1} alt="출첵완료 캐릭터" className="dailyend-image" />
+        <img src={dailyEnd} alt="출첵완료 캐릭터" className="dailyend-image" />
         <p className="dailyend-description">
           오늘의 출석체크 완료로
           <br />

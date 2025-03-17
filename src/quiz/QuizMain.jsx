@@ -1,44 +1,91 @@
-import React, { useEffect, useState } from "react";
-import "./quizMain.css";
-import Footer from "../common/Footer";
-import giraffe2 from "../images/quiz/giraffe_main.png";
-import Header from "../common/Header";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../common/Footer";
+import Header from "../common/Header";
+import emptyStamp from "../images/quiz/empty_stamp.avif";
+import giraffeMain from "../images/quiz/giraffe_main.png";
+import oStamp from "../images/quiz/o_stamp.png";
+import xStamp from "../images/quiz/x_stamp.png";
+import "./quizMain.css";
 
 const QuizMain = () => {
-  const [quizCount, setQuizCount] = useState(0); // 퀴즈 데이터 개수를 저장할 상태
+  const [quizCount, setQuizCount] = useState(0); // 도전한 퀴즈 개수
+  const [correctAnswerCount, setCorrectAnswerCount] = useState(0); // 맞힌 정답 개수
+  const [answerList, setAnswerList] = useState([]); // 푼 퀴즈 데이터 리스트
 
   useEffect(() => {
+    // 📌 도전한 퀴즈 개수 가져오기
     axios
       .get("http://localhost:7777/zoomoney/quiz/count")
       .then((response) => {
-        console.log("✅ 백엔드 응답:", response.data); // 백엔드 응답 확인
-        setQuizCount(response.data.quizCount); // 상태 업데이트
+        setQuizCount(response.data.quizCount);
       })
-      .catch((error) => console.error("퀴즈의 개수를 알 수 없습니다.", error));
+      .catch((error) =>
+        console.error("❌ 도전한 퀴즈 개수를 가져오는 데 실패했습니다.", error)
+      );
+
+    // 📌 맞힌 정답 개수 가져오기
+    axios
+      .get("http://localhost:7777/zoomoney/quiz/total")
+      .then((response) => {
+        setCorrectAnswerCount(response.data.correctAnswerCount);
+      })
+      .catch((error) =>
+        console.error("❌ 맞힌 정답 개수를 가져오는 데 실패했습니다.", error)
+      );
+
+    //  📌 문제별 정답 여부 List 가져오기
+    axios
+      .get("http://localhost:7777/zoomoney/quiz/answerlist")
+      .then((response) => {
+        setAnswerList(response.data.answerList || []); // 만약 answerList가 undefined이면 빈 배열로 설정
+      })
+      .catch((error) =>
+        console.error("❌ 정답 리스트를 가져오는 데 실패했습니다.", error)
+      );
   }, []);
 
   const navigate = useNavigate();
 
   const startQuiz = () => {
     if (quizCount >= 5) {
-      // 누적 퀴즈 data수가 5개 이상이면
-      navigate("/quiz/end"); // 종료 페이지로 이동
+      navigate("/card/main"); // 자녀 메인 페이지로 이동
     } else {
-      // 5개 미만이면
       navigate("/quiz/quiz"); // 퀴즈 출제 페이지로 이동
     }
   };
 
+  // stamp image처리 (반복)
+  const stampMap = [...Array(5)].map((_, index) => (
+    <div className="quizmain-stamp" key={index}>
+      {answerList.length > index && answerList[index] !== undefined ? (
+        <img
+          src={answerList[index] === 1 ? oStamp : xStamp}
+          alt={answerList[index] === 1 ? "정답 스탬프" : "오답 스탬프"}
+          className="quizmain-stamp-image"
+        />
+      ) : (
+        <img
+          src={emptyStamp}
+          alt="기본 스탬프"
+          className="quizmain-stamp-image"
+        />
+      )}
+    </div>
+  ));
+
   return (
     <div className="mock-container">
-      <Header title="오늘의 금융 QUIZ" />
+      <Header title="오늘의 금융퀴즈" />
 
       {/* 메인 콘텐츠 */}
       <div className="quizmain-content">
-        <img src={giraffe2} alt="퀴즈 메인 캐릭터" className="quizmain-image" />
-
+        <img
+          src={giraffeMain}
+          alt="퀴즈 메인 캐릭터"
+          className="quizmain-image"
+        />
         {/* 총 점수 */}
         <div className="quizmain-total-box">
           <div className="quizmain-total">
@@ -48,45 +95,47 @@ const QuizMain = () => {
             <div className="quizmain-total-content">
               <div className="quizmain-total-detail">
                 <p className="quizmain-total-left">포인트 적립</p>
-                <p className="quizmain-total-right">300P</p>
+                <p className="quizmain-total-right">
+                  {correctAnswerCount * 100}P
+                </p>
               </div>
               <div className="quizmain-total-detail">
-                <p className="quizmain-total-left">도전한 QUIZ</p>
-                <p className="quizmain-total-right">5문제</p>
+                <p className="quizmain-total-left">도전한 퀴즈</p>
+                <p className="quizmain-total-right">{quizCount}문제</p>
               </div>
               <div className="quizmain-total-detail">
                 <p className="quizmain-total-left">맞힌 정답</p>
-                <p className="quizmain-total-right">3문제</p>
-              </div>
-            </div>
-            <div className="quizmain-total-rate">
-              <div className="quizmain-total-graph"></div>
-              <div className="quizmain-total-calc">
-                <p className="quizmain-calc-left">오늘의 정답률</p>
-                <p className="quizmain-calc-right">77%</p>
+                <p className="quizmain-total-right">{correctAnswerCount}문제</p>
               </div>
             </div>
           </div>
         </div>
 
-        <p className="quizmain-today">
-          <strong>오늘 푼 QUIZ: 2/5</strong>
-        </p>
-        <button className="quizmain-button" onClick={startQuiz}>
-          QUIZ 시작하기
-        </button>
+        {/* 스탬프 */}
+        <div className="quizmain-stamp-box">{stampMap}</div>
 
+        {quizCount < 5 ? (
+          <>
+            <p className="quizmain-today">퀴즈를 풀러 가볼까요?</p>
+            <button className="quizmain-button" onClick={startQuiz}>
+              시작하기
+            </button>
+          </>
+        ) : (
+          <>
+            <p className="quizmain-today-done">오늘의 퀴즈를 다 풀었어요!</p>
+            <button className="quizmain-button" onClick={startQuiz}>
+              메인으로 돌아가기
+            </button>
+          </>
+        )}
         {/* 주의사항 */}
         <p className="quizmain-check">
           <strong>꼭 확인해주세요</strong>
         </p>
         <p className="quizmain-description">
-          <li>매일 5개의 QUIZ에 도전할 수 있어요.</li>
-          <li>QUIZ를 맞힐 때마다 100p를 받아요.</li>
-          {/* <li>
-            퀴즈를 풀다가 중간에 화면이나 앱을 나가면 퀴즈 결과에서 틀린 걸로
-            반영돼요.
-          </li> */}
+          <li>매일 5개의 퀴즈에 도전할 수 있어요.</li>
+          <li>퀴즈를 맞힐 때마다 100P를 받아요.</li>
         </p>
       </div>
 

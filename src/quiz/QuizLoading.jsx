@@ -1,7 +1,7 @@
 import React from "react";
 import "./quizLoading.css";
 import Footer from "../common/Footer";
-import giraffe2 from "../images/quiz/giraffe_main.png";
+import giraffeLoading from "../images/quiz/giraffe_main.png";
 import Header from "../common/Header";
 
 const QuizLoading = () => {
@@ -9,11 +9,11 @@ const QuizLoading = () => {
     <div className="mock-container">
       <Header title="오늘의 금융QUIZ" />
 
-      {/* 메인 콘텐츠 */}
+      {/* 로딩 콘텐츠 */}
       <div className="quizloading-content">
         <img
-          src={giraffe2}
-          alt="퀴즈 메인 캐릭터"
+          src={giraffeLoading}
+          alt="퀴즈 로딩 캐릭터"
           className="quizloading-image"
         />
 

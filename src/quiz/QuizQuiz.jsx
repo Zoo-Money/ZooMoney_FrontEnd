@@ -36,13 +36,9 @@ const QuizQuiz = () => {
       userAnswer: selectedAnswer, // 사용자가 선택한 답변
     };
 
-    console.log("🚀 보내는 데이터 (payload):", payload); // 확인용
-
     axios
       .post("http://localhost:7777/zoomoney/quiz/submit", payload)
       .then((response) => {
-        console.log("✅ 백엔드 응답:", response.data); // 백엔드 응답 확인
-
         const isCorrect = response.data.isCorrect; // 백엔드에서 받은 정답 여부
         if (isCorrect === true) {
           navigate("/quiz/success", {
@@ -59,21 +55,16 @@ const QuizQuiz = () => {
       .catch((error) => console.error("퀴즈 제출 실패", error));
   };
 
-  ////////
-
   const [quizCount, setQuizCount] = useState(0); // 퀴즈 데이터 개수를 저장할 상태
 
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/quiz/count")
       .then((response) => {
-        console.log("✅ 백엔드 응답:", response.data); // 백엔드 응답 확인
         setQuizCount(response.data.quizCount); // 상태 업데이트
       })
       .catch((error) => console.error("퀴즈의 개수를 알 수 없습니다.", error));
   }, []);
-
-  //////
 
   if (!quiz) return <QuizLoading />; // 퀴즈 로딩 화면
 

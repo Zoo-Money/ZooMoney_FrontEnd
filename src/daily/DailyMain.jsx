@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import giraffe1 from "../images/daily/giraffe_daily.png";
+import dailyMain from "../images/daily/giraffe_daily.png";
 import "./dailyMain.css";
 
 const DailyMain = () => {
@@ -34,7 +34,7 @@ const DailyMain = () => {
 
       {/* 메인 콘텐츠 */}
       <div className="daily-content">
-        <img src={giraffe1} alt="출석체크 캐릭터" className="daily-image" />
+        <img src={dailyMain} alt="출석체크 캐릭터" className="daily-image" />
         <p className="daily-check">매일매일 출석체크</p>
 
         {isChecked === null ? ( // 로딩 상태
