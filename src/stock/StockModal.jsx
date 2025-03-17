@@ -1,6 +1,6 @@
+import React from "react";
+import "./css/stockModal.css";
 
-import React from 'react';
-import "./stockModal.css";
 function StockModal({ news, closeModal, clearText, formatDate }) {
   return (
     <div

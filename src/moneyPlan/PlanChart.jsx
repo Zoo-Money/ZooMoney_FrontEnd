@@ -7,6 +7,7 @@ import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Legend, Tooltip } from 'chart.js';
 import axios from 'axios';
 import {categoryName} from "./planCommon.js";
+import { toast } from 'react-toastify';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function PlanChart(props) {
@@ -50,12 +51,12 @@ function PlanChart(props) {
             },
         })
         .then((response) => {
-            alert("계획이 저장되었습니다.");
+            toast.error("계획이 저장되었습니다.");
             navi("/moneyPlan/complete");
         })
         .catch((error)=>{
             console.error("저장오류: ", error);
-            alert("저장 중 오류가 발생했습니다.");
+            toast.error("저장 중 오류가 발생했습니다.");
         });
     };
     //차트 스타일

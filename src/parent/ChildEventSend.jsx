@@ -1,9 +1,10 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./childEventSend.css";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import "./css/childEventSend.css";
 
 const ChildEventSend = () => {
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ const ChildEventSend = () => {
           setSelectedChild(storedChildNum); // 세션 값 기준으로 설정
         } else {
           // 🚨 세션 값이 없고 자녀 데이터도 없을 경우 경고 메시지 표시
-          alert("자녀 정보가 없습니다. 자녀 선택 후 다시 시도해 주세요.");
+          toast.error("자녀 정보가 없습니다. 자녀 선택 후 다시 시도해 주세요.");
         }
       })
       .catch((error) => {
@@ -112,12 +113,12 @@ const ChildEventSend = () => {
   const handleSendAllowance = async () => {
     const storedChildNum = Number(sessionStorage.getItem("childNum")); // 세션에서 자녀 ID 가져오기
     if (!storedChildNum) {
-      alert("자녀 정보가 없습니다. 자녀 선택 후 다시 시도해 주세요.");
+      toast.error("자녀 정보가 없습니다. 자녀 선택 후 다시 시도해 주세요.");
       return;
     }
 
     if (amount <= 0) {
-      alert("송금할 금액을 입력하세요.");
+      toast.error("송금할 금액을 입력하세요.");
       return;
     }
 
@@ -126,12 +127,12 @@ const ChildEventSend = () => {
         `http://localhost:7777/zoomoney/contract/sendAllowance/${storedChildNum}`,
         { amount: Number(amount) } //숫자변환
       );
-      alert("용돈 송금에 성공했습니다.");
+      toast.error("용돈 송금에 성공했습니다.");
       // navigate("/contract/parentMain"); // 성공 시 ParentMain 페이지로 이동
       navigate(`/contract/parentMain?childNum=${storedChildNum}`); // childNum 전달
     } catch (error) {
       console.error("송금 실패:", error);
-      alert("송금에 실패했습니다. 다시시도해주세요");
+      toast.error("송금에 실패했습니다. 다시시도해주세요");
     }
   };
 

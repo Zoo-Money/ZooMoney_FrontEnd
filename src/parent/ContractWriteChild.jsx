@@ -2,9 +2,10 @@ import axios from "axios"; // Axios 추가
 import "bootstrap/dist/css/bootstrap.min.css"; // ✅ 추가
 import React, { useEffect, useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
+import { toast } from "react-toastify";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import "./contractWriteChild.css"; // CSS 파일 import
+import "./css/contractWriteChild.css"; // CSS 파일 import
 
 const getFormattedDate = () => {
   const today = new Date();
@@ -26,7 +27,7 @@ const ContractWriteChild = () => {
     // console.log("$$$$storedChildNum:", storedChildNum);
 
     if (!storedChildNum) {
-      alert("아이 정보 관련 세션값이 없습니다.");
+      toast.error("아이 정보 관련 세션값이 없습니다.");
       // sessionStorage.setItem("childNum", "1"); // 기본값 설정 (테스트용)
     }
   }, []);
@@ -80,7 +81,7 @@ const ContractWriteChild = () => {
       })
       .catch((error) => {
         console.error("계약서 불러오기 실패:", error);
-        alert("예외: 계약서 내용을 불러오지 못했습니다.(용돈계약서 작성필요)");
+        toast.error("예외: 계약서 내용을 불러오지 못했습니다.(용돈계약서 작성필요)");
       });
     // }, []);
   }, [childNum]);
@@ -126,10 +127,10 @@ const ContractWriteChild = () => {
         notifyUrl: "/contract/contractSelect",
       });
 
-      alert("서명 저장 성공");
+      toast.error("서명 저장 성공");
     } catch (error) {
       console.error("서명 저장 실패:", error);
-      alert("서명 저장에 실패했습니다." + childNum);
+      toast.error("서명 저장에 실패했습니다." + childNum);
     }
   };
 

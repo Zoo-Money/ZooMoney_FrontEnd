@@ -1,8 +1,8 @@
 import React from "react";
-import "./StockBegin.css";
 import Footer from "../common/Footer";
-import rabbit1 from "../images/rabbit01.png";
 import Header from "../common/Header";
+import rabbit1 from "../images/rabbit01.png";
+import "./css/StockBegin.css";
 
 const StockBegin = () => {
   return (

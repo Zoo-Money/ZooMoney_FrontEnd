@@ -7,7 +7,7 @@ import emptyStamp from "../images/quiz/empty_stamp.avif";
 import giraffeMain from "../images/quiz/giraffe_main.png";
 import oStamp from "../images/quiz/o_stamp.png";
 import xStamp from "../images/quiz/x_stamp.png";
-import "./quizMain.css";
+import "./css/quizMain.css";
 
 const QuizMain = () => {
   const [quizCount, setQuizCount] = useState(0); // 도전한 퀴즈 개수

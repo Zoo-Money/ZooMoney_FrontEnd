@@ -1,7 +1,7 @@
 import React from 'react';
-import rabbit07 from "../images/rabbit07.png";
 import Header from '../common/Header';
-import "./stockRankResult.css"
+import rabbit07 from "../images/rabbit07.png";
+import "./css/stockRankResult.css";
 function StockRankResult(props) {
     return (
         <div className='mock-container'>

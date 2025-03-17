@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./CompanyInfo.css";
+import "./css/CompanyInfo.css";
 
 const CompanyInfo = () => {
   // URL에서 종목 코드, 이름 가져오기

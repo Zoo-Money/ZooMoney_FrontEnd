@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./MyStockProfit.css";
-import Header from "../common/Header";
+import { AiOutlineClose, AiOutlineQuestionCircle } from "react-icons/ai";
 import Footer from "../common/Footer";
-import { AiOutlineQuestionCircle, AiOutlineClose } from "react-icons/ai";
+import Header from "../common/Header";
 import rabbit from "../images/rabbit02.png";
+import "./css/MyStockProfit.css";
 
 const descriptions = {
   총매입:

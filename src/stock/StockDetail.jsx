@@ -1,12 +1,12 @@
+import { Chart, registerables } from "chart.js";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-import { Chart, registerables } from "chart.js";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
 import { useParams } from "react-router-dom";
-import StockNews from "./StockNews";
+import Footer from "../common/Footer";
+import Header from "../common/Header";
 import CompanyInfo from "./CompanyInfo";
-import "./StockDetail.css";
+import "./css/StockDetail.css";
+import StockNews from "./StockNews";
 
 Chart.register(...registerables); // Chart.js 등록
 const StockDetail = () => {

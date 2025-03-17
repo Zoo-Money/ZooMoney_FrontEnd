@@ -7,8 +7,9 @@ import defaultCardImage from "../images/defaultcard.png";
 import defaultCardImage03 from "../images/pinkcard.png";
 import defaultCardImage04 from "../images/skybluecard.png";
 import defaultCardImage02 from "../images/yellowcard.png";
-import "./CardCreate.css";
+import "./css/CardCreate.css";
 import { mintNFT } from "./CardService";
+import { toast } from "react-toastify";
 
 const CardCreate = () => {
   const [file, setFile] = useState(null);
@@ -40,7 +41,7 @@ const CardCreate = () => {
     if (success) {
       navigate("/card/success"); // 발급 완료 페이지로 이동
     } else {
-      alert("NFT 발급 실패");
+      toast.error("NFT 발급 실패");
     }
   };
 

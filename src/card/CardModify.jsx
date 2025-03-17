@@ -7,8 +7,9 @@ import defaultCardImage from "../images/defaultcard.png";
 import defaultCardImage03 from "../images/pinkcard.png";
 import defaultCardImage04 from "../images/skybluecard.png";
 import defaultCardImage02 from "../images/yellowcard.png";
-import "./CardModify.css";
+import "./css/CardModify.css";
 import { fetchCardInfo, fetchMetadata, mintNFT } from "./CardService";
+import { toast } from "react-toastify";
 const CardModify = () => {
   const [file, setFile] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -70,7 +71,7 @@ const CardModify = () => {
     if (success) {
       navigate("/card/modifySuccess"); // 이미지 변경완료
     } else {
-      alert("NFT 발급 실패");
+      toast.error("NFT 발급 실패");
     }
   };
 

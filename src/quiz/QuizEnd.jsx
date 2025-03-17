@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import "./quizEnd.css";
-import Footer from "../common/Footer";
-import giraffeEnd from "../images/quiz/giraffe_end.png";
-import Header from "../common/Header";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../common/Footer";
+import Header from "../common/Header";
+import giraffeEnd from "../images/quiz/giraffe_end.png";
+import "./css/quizEnd.css";
 
 const QuizEnd = () => {
   const [correctAnswerCount, setCorrectAnswerCount] = useState(0); // 맞춘 퀴즈 데이터 개수를 저장할 상태

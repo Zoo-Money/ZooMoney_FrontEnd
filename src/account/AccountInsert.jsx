@@ -56,13 +56,13 @@ const AccountInsert = () => {
 
       // 저금할 금액 확인
       if (!amount || Number(amount) <= 0) {
-        toast.warning("저금할 금액을 입력하세요.");
+        toast.error("저금할 금액을 입력하세요.");
         return;
       }
 
       // 저금 가능 금액 확인
       if (cardmoneyleft < amount || accountmoneyleft < amount) {
-        toast.warning("저금 가능 금액보다 큽니다.");
+        toast.error("저금 가능 금액보다 큽니다.");
         return;
       }
 

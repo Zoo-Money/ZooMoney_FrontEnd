@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import StockModal from "./StockModal";
-import "./stockNews.css";
+import "./css/stockNews.css";
 import { useParams } from "react-router-dom";
 
 function StockNews(props) {

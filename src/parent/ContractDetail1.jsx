@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 // import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 // import "react-pdf/dist/esm/Page/TextLayer.css";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // ▼▲ 화살표 추가
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
-import Header from "../common/Header";
 import Footer from "../common/Footer";
-import "./contractDetail1.css";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // ▼▲ 화살표 추가
+import Header from "../common/Header";
+import "./css/contractDetail1.css";
 // import { pdfjs } from "react-pdf";
 
 // PDF Worker 설정

@@ -4,7 +4,8 @@ import { Form, InputGroup } from "react-bootstrap";
 import SignatureCanvas from "react-signature-canvas";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import "./contractWrite.css"; // CSS 파일 import
+import "./css/contractWrite.css"; // CSS 파일 import
+import { toast } from "react-toastify";
 
 const getFormattedDate = () => {
   const today = new Date();
@@ -109,7 +110,7 @@ const ContractWrite = () => {
   const handleSubmit = async () => {
     // 유효성검사
     if (!isFormValid) {
-      alert("모든 항목을 입력하세요.");
+      toast.error("모든 항목을 입력하세요.");
       return;
     }
     const signatureData = signatureRef.current.toDataURL("image/png");
@@ -143,10 +144,10 @@ const ContractWrite = () => {
         notifyUrl: "/contract/contractWriteChild",
       });
 
-      alert("서명 저장 성공: " + response.data);
+      toast.error("서명 저장 성공: " + response.data);
     } catch (error) {
       console.error("서명 저장 실패:", error);
-      alert("서명 저장에 실패했습니다.");
+      toast.error("서명 저장에 실패했습니다.");
     }
   };
 

@@ -1,9 +1,9 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import rabbit2 from "../images/rabbit02.png";
 import Header from "../common/Header";
-import "./StockInfoDetail.css";
+import rabbit2 from "../images/rabbit02.png";
+import "./css/StockInfoDetail.css";
 
 function StockInfoDetail() {
   const { infoNum } = useParams();

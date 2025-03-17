@@ -1,7 +1,8 @@
 import axios from "axios";
 import { ethers } from "ethers";
 import defaultCardImage from "../images/defaultcard.png";
-import CardABI from "./CardABI.json"; // 스마트 컨트랙트 ABI
+import CardABI from "./resources/CardABI.json"; // 스마트 컨트랙트 ABI
+import { toast } from "react-toastify";
 const contractAddress = process.env.REACT_APP_NFT_CONTRACT_ADDRESS;
 const pinataApiKey = process.env.REACT_APP_PINATA_API_KEY;
 const pinataSecretApiKey = process.env.REACT_APP_PINATA_SECRET_API_KEY;
@@ -67,7 +68,7 @@ export const mintNFT = async (file, setMinting, setTransactionHash) => {
   }
 
   if (!window.ethereum) {
-    alert("MetaMask를 설치하세요!");
+    toast.error("MetaMask를 설치하세요!");
     return;
   }
 
@@ -197,7 +198,7 @@ export const burnNFT = async (tokenId, setBurning, setBurnTransactionHash) => {
   }
 
   if (!window.ethereum) {
-    alert("MetaMask를 설치하세요!");
+    toast.error("MetaMask를 설치하세요!");
     return;
   }
 
@@ -243,7 +244,7 @@ export const fetchMetadata = async (
     const uri = await contract.tokenURI(tokenId);
 
     if (!uri || uri === "0x") {
-      alert("유효한 tokenURI가 아닙니다.");
+      toast.error("유효한 tokenURI가 아닙니다.");
       setLoading(false);
       return;
     }
