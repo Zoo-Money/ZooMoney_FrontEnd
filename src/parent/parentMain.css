@@ -1,5 +1,5 @@
 /* ZooMoney 로고 스타일 */
-.zoo-money-title {
+.parent-main-zoo-money-title {
   font-size: 24px; /* 글자 크기 */
   font-weight: 900; /* 굵은 글씨 */
   display: flex; /* Zoo와 Money를 가로 정렬 */
@@ -38,7 +38,7 @@
   font-size: 14px;
 } */
 
-.profile-container {
+.parent-main-profile-container {
   width: 80%;
   display: flex;
   gap: 5px;
