@@ -1,0 +1,103 @@
+/* PlanMain */
+.patternmain-content {
+  text-align: center;
+}
+.img-deer {
+  width: 120px;
+  height: auto;
+  /* text-align: right; */
+  /* margin-left: 240px; */
+  /* margin-bottom: -8px; */
+  transform: scaleX(-1);
+  margin-left: auto;
+}
+.patternmain-description {
+  font-size: 16px;
+  /* text-align: center; */
+  display: flex;
+  text-align: right;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.patternmain-box {
+  padding-top: 10px;
+  width: 90%;
+  height: auto;
+  background-color: #f8f4f1;
+  border: none;
+  border-radius: 15px;
+  margin: 0 auto 40px auto; /* 가운데 정렬 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.patternmain-description span {
+  font-weight: bold;
+  color: #ff5454;
+}
+.patternmain-button {
+  width: 80%;
+  height: 45px;
+  background-color: #f9a825;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline;
+  margin-left: 10px;
+}
+/* planChart */
+.patternmain-box {
+  width: 100%;
+  height: 100%;
+  background-color: #f8f4f1;
+  border: none;
+  border-radius: 15px;
+  margin: 0 auto 40px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+/* SelectChart */
+canvas {
+  width: 300px;
+  height: 300px;
+}
+.patternchart-box {
+  display: flex;
+  height: 350px;
+}
+.patternchart-icon {
+  margin: 20px;
+}
+.patternchart-back {
+  float: left;
+}
+.patternchart-forward {
+  float: right;
+}
+.patternetc {
+  margin-left: 20px;
+}
+.patterndescription {
+  font-size: 15px;
+  color: #5a5a5a;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 10px 25px 100px 25px;
+}
+/* PlanChart와 버튼을 겹치지 않게 배치 */
+.pattern-write-container {
+  /* PlanWrite 내용이 보일 때 스타일 */
+  padding-bottom: 20px; /* 아래 여백을 주어 버튼과 겹치지 않게 */
+}
+.pattern-chart-container {
+  /* PlanChart가 보일 때 스타일 */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%; /* PlanChart가 화면에 꽉 차게 */
+  padding-bottom: 20px;
+}

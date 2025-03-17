@@ -14,14 +14,13 @@ const CardModify = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [minting, setMinting] = useState(false);
-  const [tokenId, setTokenId] = useState("");
+  const [, setTokenId] = useState("");
   const [metadata, setMetadata] = useState(null);
   const [, setLoading] = useState(true);
   const [newloading, setNewLoading] = useState(true);
-  const [metadataUrl, setMetadataUrl] = useState("");
+  const [, setMetadataUrl] = useState("");
   const [, setTransactionHash] = useState("");
-  const [isImageLoaded, setIsImageLoaded] = useState(false); // 이미지 로딩 여부
-  const [, setIsReady] = useState(false); // 렌더링 제어
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -75,16 +74,20 @@ const CardModify = () => {
     }
   };
 
-  // 파일 선택 시 실행되는 함수
   const handleFileChange = (e) => {
     let selectedFile = e.target.files[0];
 
     if (selectedFile) {
       setFile(selectedFile);
-      const previewUrl = URL.createObjectURL(selectedFile); // 이 URL을 미리보기로 설정
+
+      // 새 파일을 업로드하면 기존 선택한 이미지(selectedImage)를 초기화
+      setSelectedImage(null);
+
+      // 파일의 미리보기 URL 생성
       setPreviewUrl(URL.createObjectURL(selectedFile));
     }
   };
+
   // 카드 이미지 클릭 시 실행되는 함수
   const handleImageSelect = async (image) => {
     setSelectedImage(image);
@@ -97,6 +100,13 @@ const CardModify = () => {
 
     setFile(file);
   };
+
+  // previewUrl이 변경될 때 selectedImage도 업데이트
+  useEffect(() => {
+    if (previewUrl) {
+      setSelectedImage(previewUrl);
+    }
+  }, [previewUrl]);
   return (
     <div className="mock-container">
       <Header title="카드 이미지 변경" />
@@ -156,7 +166,7 @@ const CardModify = () => {
               <span className="text-lg font-semibold">
                 원하는 이미지 추가하기
                 <br />
-                <span className="text-sm text-gray-500">(이후, 10,000P)</span>
+                <span className="text-sm text-gray-500">(10,000P 차감)</span>
               </span>
             </div>
             <input type="file" onChange={handleFileChange} className="hidden" />
