@@ -1,23 +1,26 @@
 /* PlanMain */
 .planmain-content {
   text-align: center;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
 }
 .img-deer {
   width: 120px;
   height: auto;
-  /* text-align: right; */
-  /* margin-left: 240px; */
-  /* margin-bottom: -8px; */
   transform: scaleX(-1);
   margin-left: auto;
 }
 .planmain-description {
-  font-size: 16px;
-  /* text-align: center; */
   display: flex;
+  font-size: 16px;
   text-align: right;
-  justify-content: space-between;
+  margin-bottom: -10px;
+  margin-top: -20px;
   align-items: flex-end;
+}
+.planmain-description p{
+  margin-left: 35px;
 }
 .planmain-box {
   padding-top: 10px;
@@ -30,7 +33,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: left;
 }
-
 .planmain-description span {
   font-weight: bold;
   color: #ff5454;
@@ -47,19 +49,29 @@
   cursor: pointer;
   display: inline;
   margin-left: 10px;
+  margin-top: -15px;
 }
 
 /* PlanWrite */
 .planwrite-content {
   margin-top: 10px;
+  text-align: left;
+  margin-left: -50px;
 }
 .planwrite-content span {
+  font-size: 1.5rem;
   font-weight: bold;
   color: #ff5454;
 }
-.planwrite-input:nth-child(1) {
+
+.planwrite-container p{
+  font-size: 14px;
+  text-align: center;
+  margin-top: 30px;
+}
+.planwrite-input-list:nth-child(1) {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin: 0 auto;
   border-radius: 15px;
@@ -68,16 +80,29 @@
   background-color: #ffcb9a;
   margin-bottom: 20px;
 }
-.planwrite-input input {
-  float: right;
+.planwrite-input-list span{
+  display: flex;
+  width: 50px;
+  margin-right: 20px;
+}
+.planwrite-input-list img{
+  width: 60px;
+  display: flex;
+  margin-right: 25px;
+}
+.planwrite-input-list input {
   vertical-align: middle;
+  width: 150px;
   border: none;
   background-color: transparent;
-  margin-right: 15px;
+  margin-right: 5px;
   text-align: right;
-  align-items: center;
+  margin-bottom: 8px;
 }
-.planwrite-input:nth-child(2) {
+.planwrite-input-list input:focus{
+  outline: none;
+}
+.planwrite-input-list:nth-child(2) {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -88,7 +113,7 @@
   margin-bottom: 20px;
   background-color: #c2f1ff;
 }
-.planwrite-input:nth-child(3) {
+.planwrite-input-list:nth-child(3) {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -99,7 +124,7 @@
   margin-bottom: 20px;
   background-color: #fff4c2;
 }
-.planwrite-input:nth-child(4) {
+.planwrite-input-list:nth-child(4) {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -110,9 +135,8 @@
   margin-bottom: 20px;
   background-color: #fec7c0;
 }
-.planwrite-input:nth-child(5) {
+.planwrite-input-list:nth-child(5) {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin: 0 auto;
   border-radius: 15px;
@@ -153,22 +177,25 @@
   text-align: left;
 }
 /* SelectChart */
-canvas {
-  /* width: 300px; */
-  /* height: 300px; */
-}
 .selectchart-box {
   display: flex;
   height: 350px;
+  margin-top: 50px;
 }
 .selectchart-icon {
   margin: 20px;
 }
 .selectchart-back {
   float: left;
+  width: 22px;
+  height: 22px;
+  margin-top: 8px;
 }
 .selectchart-forward {
   float: right;
+  width: 22px;
+  height: 22px;
+  margin-top: 8px;
 }
 .etc {
   margin-left: 20px;
