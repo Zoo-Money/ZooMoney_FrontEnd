@@ -1,9 +1,6 @@
 .company-info-container {
   background-color: #fff; /* 배경색 흰색 */
-  border-radius: 10px; /* 둥근 모서리 */
   padding: 16px;
-  margin: 20px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
 .company-info-title {
