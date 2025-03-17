@@ -1,6 +1,4 @@
 .AccountCreateContent {
-  width: 100%;
-  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,11 +16,11 @@
 
 .AccountCreateText {
   margin: 20px 20px;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
-.AccountCreateContent .AccountCreateInput {
+.AccountCreateInput {
   width: 90%;
   margin-left: 20px;
   margin-right: 20px;
@@ -30,9 +28,7 @@
 }
 
 .AccountCreate {
-  position: fixed;
-  bottom: 0;
-  margin-bottom: 200px;
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
