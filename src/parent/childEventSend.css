@@ -1,0 +1,165 @@
+/* 전체 레이아웃 */
+.Child-Event-Send-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  background-color: white;
+  max-height: calc(100vh - 70px); /* Footer 높이를 제외한 화면 높이 */
+  overflow-y: auto; /* 스크롤 가능하게 설정 */
+  padding-bottom: 30px; /* 하단 여백 추가 (보내기 버튼 공간 확보) */
+}
+
+/* 송금입력 폼 */
+.Child-Event-Send-contract-form {
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.Child-Event-Send-section {
+  margin-bottom: 20px;
+}
+
+.Child-Event-Send-highlight {
+  color: #ff7f00;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.Child-Event-Send-balance {
+  color: #999; /* 연한 회색 */
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.Child-Event-Send-amount-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.Child-Event-Send-amount-btn {
+  flex: 1;
+  background-color: #ff7f00;
+  color: #fff;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 10px;
+}
+
+.Child-Event-Send-amount-btn.selected {
+  background-color: #ff4500;
+}
+
+.Child-Event-Send-amount-input-containerTop label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.Child-Event-Send-amount-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ffa500;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.Child-Event-Send-amount-input-container input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  flex-grow: 1;
+  text-align: right;
+}
+
+.Child-Event-Send-amount-input-container span {
+  margin-left: 5px;
+  font-size: 16px;
+  color: #000;
+}
+
+.Child-Event-Send-message-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ff7f00;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.Child-Event-Send-account-info {
+  display: flex;
+  align-items: center;
+  background-color: #eef2f7;
+  border: 2px solid #ff7f00;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.Child-Event-Send-amount-account-containerTop label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.Child-Event-Send-amount-account-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ffa500;
+  border-radius: 8px;
+  padding: 10px 0;
+  height: 50px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.Child-Event-Send-amount-account-container p {
+  margin: 0 !important; /* 상속된 불필요한 여백 제거 */
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  line-height: 50px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.Child-Event-Send-amount-input-container span {
+  margin-left: 5px;
+  font-size: 16px;
+  color: #000;
+}
+
+.bank-logo {
+  width: 30px;
+  height: 30px; /* 🔥 높이 추가 */
+  margin-right: 10px;
+}
+
+/*용돈 보내기 버튼 */
+.Child-Event-Send-submit-button {
+  background-color: #ffa500;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.Child-Event-Send-submit-button:hover {
+  background-color: #ff8c00;
+}
+.Child-Event-Send-submit-button-container {
+  margin-top: 20px; /* 버튼 상단 간격 추가 */
+  text-align: center;
+}

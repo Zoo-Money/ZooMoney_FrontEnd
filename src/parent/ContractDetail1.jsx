@@ -1,13 +1,28 @@
 import React, { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import "react-pdf/dist/esm/Page/TextLayer.css";
+// import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+// import "react-pdf/dist/esm/Page/TextLayer.css";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
 import "./contractDetail1.css";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // ▼▲ 화살표 추가
+// import { pdfjs } from "react-pdf";
 
-pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+// PDF Worker 설정
+pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.js`;
+
+// pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+
+//npm install pdfjs-dist@3.4.120
+//pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+
+// PDF Worker 강제 설정
+//pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js`;
+
+// PDF Worker 설정 (필수)
+// pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.js");
 
 const ContractDetail1 = () => {
   // 🔹 계약서 열림/닫힘 상태 관리
@@ -29,9 +44,8 @@ const ContractDetail1 = () => {
 
   return (
     <div className="mock-container">
-      <div className="header">
-        <Header title="용돈계약서 조회" />
-      </div>
+      <Header title="용돈계약서 조회" />
+
       <div className="contractDetail1-container">
         <div className="contractDetail1-list">
           {contracts.map((contract, index) => (
@@ -41,7 +55,7 @@ const ContractDetail1 = () => {
                 onClick={() => toggleContract(index)}
               >
                 <p>{contract.date} 계약 확인 </p>
-                <div className="contractDetail-toggle-icon">
+                <div className="contractDetail1-toggle-icon">
                   {openContract === index ? <FaChevronUp /> : <FaChevronDown />}
                 </div>
               </div>
@@ -54,7 +68,7 @@ const ContractDetail1 = () => {
                       console.error("PDF 로드 오류:", error)
                     }
                   >
-                    <Page pageNumber={1} width={300} />
+                    <Page pageNumber={1} width={window.innerWidth * 0.9} />
                   </Document>
                 </div>
               )}

@@ -11,7 +11,7 @@
   transform: scaleX(-1);
   margin-left: auto;
 }
-.planmain-description{
+.planmain-description {
   font-size: 16px;
   /* text-align: center; */
   display: flex;
@@ -19,7 +19,7 @@
   justify-content: space-between;
   align-items: flex-end;
 }
-.planmain-box{
+.planmain-box {
   padding-top: 10px;
   width: 90%;
   height: auto;
@@ -31,7 +31,7 @@
   text-align: left;
 }
 
-.planmain-description span{
+.planmain-description span {
   font-weight: bold;
   color: #ff5454;
 }
@@ -50,25 +50,25 @@
 }
 
 /* PlanWrite */
-.planwrite-content{
+.planwrite-content {
   margin-top: 10px;
 }
-.planwrite-content span{
+.planwrite-content span {
   font-weight: bold;
   color: #ff5454;
 }
-.planwrite-input:nth-child(1){
- display: flex;
- justify-content: space-between;
- align-items: center;
- margin: 0 auto;
- border-radius: 15px;
- width: 329px;
- height: 58px;
- background-color: #ffcb9a;
- margin-bottom: 20px;
+.planwrite-input:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 15px;
+  width: 329px;
+  height: 58px;
+  background-color: #ffcb9a;
+  margin-bottom: 20px;
 }
-.planwrite-input input{
+.planwrite-input input {
   float: right;
   vertical-align: middle;
   border: none;
@@ -77,7 +77,7 @@
   text-align: right;
   align-items: center;
 }
-.planwrite-input:nth-child(2){
+.planwrite-input:nth-child(2) {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -88,7 +88,7 @@
   margin-bottom: 20px;
   background-color: #c2f1ff;
 }
-.planwrite-input:nth-child(3){
+.planwrite-input:nth-child(3) {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -99,7 +99,7 @@
   margin-bottom: 20px;
   background-color: #fff4c2;
 }
-.planwrite-input:nth-child(4){
+.planwrite-input:nth-child(4) {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -110,7 +110,7 @@
   margin-bottom: 20px;
   background-color: #fec7c0;
 }
-.planwrite-input:nth-child(5){
+.planwrite-input:nth-child(5) {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -121,14 +121,14 @@
   margin-bottom: 20px;
   background-color: #caffc2;
 }
-.planwrite-container{
+.planwrite-container {
   width: 90%;
   font-size: 18px;
 }
-.planwrite-container img:nth-child(1){
+.planwrite-container img:nth-child(1) {
   margin-left: 7px;
 }
-.planwrite-button{
+.planwrite-button {
   width: 80%;
   height: 45px;
   background-color: #f9a825;
@@ -142,7 +142,7 @@
   margin-left: 10px;
 }
 /* planChart */
-.planchart-box{
+.planchart-box {
   width: 90%;
   height: auto;
   background-color: #f8f4f1;
@@ -153,24 +153,24 @@
   text-align: left;
 }
 /* SelectChart */
-canvas{
-  width: 300px;
-  height: 300px;
+canvas {
+  /* width: 300px; */
+  /* height: 300px; */
 }
-.selectchart-box{
+.selectchart-box {
   display: flex;
   height: 350px;
 }
-.selectchart-icon{
+.selectchart-icon {
   margin: 20px;
 }
-.selectchart-back{
+.selectchart-back {
   float: left;
 }
-.selectchart-forward{
+.selectchart-forward {
   float: right;
 }
-.etc{
+.etc {
   margin-left: 20px;
 }
 .description {
@@ -196,20 +196,20 @@ canvas{
 }
 
 /* complete */
-.plancomplete-content{
+.plancomplete-content {
   text-align: center;
 }
-.img-deer2{
+.img-deer2 {
   margin-top: 50px;
   width: 200px;
 }
-.plancomplete-description{
+.plancomplete-description {
   font-size: 18px;
   color: #333;
   margin-top: 30px;
   margin-bottom: 30px;
 }
-.plancomplete-description span{
+.plancomplete-description span {
   color: #ff5454;
   font-weight: bold;
 }
