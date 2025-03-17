@@ -93,13 +93,13 @@ const ParentMain = () => {
     <div className="mock-container">
       {/* 메인로고ZooMoney */}
       {/* <div className="zoo-money flex justify-start items-center"> */}
-      <div className="zoo-money-title">
+      <div className="parent-main-zoo-money-title">
         <span className="zoo">Zoo</span>
         <span className="money">Money</span>
       </div>
 
       {/* 프로필 영역 */}
-      <div className="profile-container">
+      <div className="parent-main-profile-container">
         {" "}
         {/* 🔹 가로로 정렬을 위한 추가 */}
         {children.map((child) => (
