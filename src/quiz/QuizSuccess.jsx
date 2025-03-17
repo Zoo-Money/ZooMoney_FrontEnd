@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./quizSuccess.css";
 import Footer from "../common/Footer";
-import giraffeQuiz from "../images/quiz/giraffe_quiz.png";
+import giraffeSuccess from "../images/quiz/giraffe_quiz.png";
 import Header from "../common/Header";
 import O from "../images/quiz/O.png";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -18,7 +18,6 @@ const QuizSuccess = () => {
     axios
       .get("http://localhost:7777/zoomoney/quiz/count")
       .then((response) => {
-        console.log("✅ 백엔드 응답:", response.data); // 백엔드 응답 확인
         setQuizCount(response.data.quizCount); // 상태 업데이트
       })
       .catch((error) => console.error("퀴즈의 개수를 알 수 없습니다.", error));
@@ -34,9 +33,17 @@ const QuizSuccess = () => {
     }
   };
 
+  const goToMain = () => {
+    navigate("/quiz/main");
+  };
+
+  const goToEnd = () => {
+    navigate("/quiz/end");
+  };
+
   return (
     <div className="mock-container">
-      <Header title="퀴즈 결과" />
+      <Header title="QUIZ 결과" />
 
       {/* 메인 콘텐츠 */}
       <div className="quizsuccess-content">
@@ -45,7 +52,7 @@ const QuizSuccess = () => {
             QUIZ {String(quizCount).padStart(2, "0")}
           </p>
           <img
-            src={giraffeQuiz}
+            src={giraffeSuccess}
             alt="퀴즈성공 캐릭터"
             className="quizsuccess-image"
           />
@@ -64,9 +71,25 @@ const QuizSuccess = () => {
 
         <p className="quizsuccess-point">100포인트를 획득했어요!</p>
 
-        <button className="quizsuccess-button" onClick={nextQuiz}>
-          다음 퀴즈 풀기
-        </button>
+        {quizCount >= 5 ? (
+          <>
+            <p className="quizsuccess-quiz-done">
+              오늘의 퀴즈를 모두 응시했어요!
+            </p>
+            <button className="quizsuccess-button" onClick={goToEnd}>
+              포인트는 총 몇점?
+            </button>
+          </>
+        ) : (
+          <>
+            <button className="quizsuccess-button" onClick={nextQuiz}>
+              다음 QUIZ 풀기
+            </button>
+            <button className="quizsuccess-button-stop" onClick={goToMain}>
+              그만 풀기
+            </button>
+          </>
+        )}
       </div>
 
       {/* 하단 네비게이션 */}
