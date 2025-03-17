@@ -103,7 +103,7 @@
   border: none;
   border-radius: 10px;
   font-weight: 600;
-  margin-top: 0; /* 위로 이동 */
+  margin-top: 20px;
   cursor: pointer;
 }
 

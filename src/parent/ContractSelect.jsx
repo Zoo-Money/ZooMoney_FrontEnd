@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Document, Page } from "react-pdf"; //  react-pdf에서 Document와 Page 추가
-//import "react-pdf/dist/esm/Page/AnnotationLayer.css"; //  주석 레이어 스타일 추가
-//import "react-pdf/dist/esm/Page/TextLayer.css"; //  텍스트 레이어 스타일 추가
+import "react-pdf/dist/esm/Page/AnnotationLayer.css"; //  주석 레이어 스타일 추가
+import "react-pdf/dist/esm/Page/TextLayer.css"; //  텍스트 레이어 스타일 추가
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import Header from "../common/Header";
@@ -38,9 +38,19 @@ const ContractSelect = () => {
 
   // 최신 계약서 경로 가져오기
   useEffect(() => {
+    let isMounted = true; // ✅ 컴포넌트 마운트 상태 확인 변수
+
+    const childNum = sessionStorage.getItem("childNum");
+    console.log("childNum:", childNum);
+
+    if (!childNum) {
+      console.error("세션에 값이 없습니다.");
+      return;
+    }
+
     axios
       .get("http://localhost:7777/zoomoney/contract/latest", {
-        params: { childNum: 1 }, // 🔹 선택한 자녀의 memberNum 전달 (예시)
+        params: { childNum: childNum }, // 🔹 선택한 자녀의 memberNum 전달 (예시)
       })
       .then((response) => {
         console.log("API 응답 데이터:", response.data);
@@ -49,15 +59,26 @@ const ContractSelect = () => {
         //   ""
         // );
         const fileName = response.data.split("/").pop(); // 파일명만 추출
-        const filePath = `/contract/pdf/${fileName}`; // ✅ URL 경로 설정
-        setLatestPdfPath(fileName); // 여기가 중요
-        console.log("최신 계약서 경로:", filePath);
+        // const filePath = `/contract/pdf/${fileName}`; // ✅ URL 경로 설정
+        // ✅ 컴포넌트가 마운트된 경우만 경로 설정
+        if (isMounted) {
+          // setLatestPdfPath(filePath);
+          setLatestPdfPath(fileName);
+        }
+        //setLatestPdfPath(fileName); // 여기가 중요
+        // console.log("최신 계약서 경로:", filePath);
         console.log("최신 계약서 경로2:", fileName);
         // setLatestPdfPath(response.data);
       })
       .catch((error) => {
         console.error("최신 계약서 로드 실패:", error);
       });
+
+    // ✅ Cleanup 로직 추가
+    return () => {
+      isMounted = false; // 컴포넌트가 언마운트되면 PDF 로드 중지
+      setLatestPdfPath(""); // 🔥 추가: 기존 PDF 경로 초기화
+    };
   }, []);
 
   const handleContractDetail1Click = () => {
@@ -66,10 +87,10 @@ const ContractSelect = () => {
 
   return (
     <div className="mock-container">
-      <div className="contract-container">
+      <div className="ContractSelect-contract-container">
         <Header title="용돈계약서 조회" />
-        <div className="content">
-          <h2 className="subtitle">현재 유효한 용돈계약서</h2>
+        <div className="ContractSelect-content">
+          <h2 className="ContractSelect-subtitle">현재 유효한 용돈계약서</h2>
 
           {/* 계약서 내용 PDF 표시*/}
           {/* npm install react-pdf 라이브러리 설치해야함 */}
@@ -82,30 +103,26 @@ const ContractSelect = () => {
             </Document>
           </div> */}
 
-          <div className="contract-box">
-            <embed
-              src={`http://localhost:7777/zoomoney/contract_pdf/${latestPdfPath}`}
-              type="application/pdf"
-              width="100%"
-              height="800px"
-            ></embed>
-            {/* {latestPdfPath ? (
+          <div className="ContractSelect-contract-box">
+            {latestPdfPath && (
               <Document
-                // file={latestPdfPath}
-                // file={`http://localhost:7777${latestPdfPath}`
-                file={`http://localhost:7777${latestPdfPath}`}
-                onLoadError={(error) => console.error("PDF 로드 오류:", error)}
+                // file={`http://localhost:7777/zoomoney/contract_pdf/${latestPdfPath}`}
+                file={`http://localhost:7777/zoomoney/contract_pdf/${latestPdfPath}`}
+                onLoadError={(error) =>
+                  console.log("PDF 로드 오류:", latestPdfPath)
+                }
               >
                 <Page pageNumber={1} width={350} />
               </Document>
-            ) : (
-              <p>PDF 파일을 찾을 수 없습니다.</p>
-            )} */}
+            )}
           </div>
           {/* 과거 계약서 확인 버튼 */}
-          <div className="past-contracts" onClick={handleContractDetail1Click}>
+          <div
+            className="ContractSelect-past-contracts"
+            onClick={handleContractDetail1Click}
+          >
             <p> 과거 계약서 확인하러 가기 </p>
-            <FaChevronRight className="arrow-icon" />
+            <FaChevronRight className="ContractSelect-arrow-icon" />
           </div>
         </div>
 

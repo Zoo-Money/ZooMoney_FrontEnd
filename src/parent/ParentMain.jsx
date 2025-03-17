@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import allowanceContract from "../images/allowanceContract.png";
 import allowancePlan from "../images/allowancePlan.png";
@@ -12,6 +12,8 @@ import "./parentMain.css";
 
 const ParentMain = () => {
   const navigate = useNavigate();
+  const location = useLocation(); // query parameter 읽기 위해 추가
+
   const handleMoneyContractManageClick = () => {
     navigate("/contract/moneyContractManage");
   };
@@ -40,14 +42,22 @@ const ParentMain = () => {
       .then((response) => {
         console.log("자녀 데이터:", response.data); // 🔍 데이터 확인
         setChildren(response.data);
-        if (response.data.length > 0) {
+
+        // query parameter에서 childNum이 있는지 확인
+        const searchParams = new URLSearchParams(location.search);
+        const queryChildNum = Number(searchParams.get("childNum"));
+
+        if (queryChildNum) {
+          setSelectedChild(queryChildNum); // query parameter 값이 우선
+        } else if (response.data.length > 0) {
           setSelectedChild(response.data[0].memberNum || null); // 첫 번째 자녀 선택 (기본값)
         }
       })
       .catch((error) => {
         console.error("자녀 목록 불러오기 실패:", error);
       });
-  }, []);
+    // }, []);
+  }, [location]); // location 추가
 
   useEffect(() => {
     if (selectedChild) {
@@ -70,10 +80,14 @@ const ParentMain = () => {
   // 자녀 선택 시 상태 업데이트
   const handleChildSelect = (childNum) => {
     setSelectedChild(childNum);
+    sessionStorage.setItem("childNum", String(childNum)); // 문자열로 저장해야 함
   };
 
   const goMoneyPlan = () => {
-    navigate("/moneyPlan/main");
+    navigate("/moneyPlan/confirm");
+  };
+  const ChildEventSend = () => {
+    navigate("/contract/childEventSend");
   };
   return (
     <div className="mock-container">
@@ -124,13 +138,15 @@ const ParentMain = () => {
           <div className="allowance-text">
             <p className="allowance-title">
               {selectedChildInfo ? selectedChildInfo.memberName : "자녀 없음"}{" "}
-              의 용돈
+              의 용돈주머니
             </p>
             <p className="allowance-amount"> {cardMoney.toLocaleString()} 원</p>
           </div>
           <button className="consumptionhistory-button">소비내역 확인</button>
         </div>
-        <button className="sendmoney-button">송금하기</button>
+        <button className="sendmoney-button" onClick={ChildEventSend}>
+          송금하기
+        </button>
       </div>
 
       {/* 기능 카드 버튼 */}

@@ -22,25 +22,31 @@ const MoneyContractManage = () => {
       <Header title="용돈 계약서 관리" />
 
       {/* 메인 콘텐츠 */}
-      <div className="content">
-        <div className="card-container">
+      <div className="MoneyContractManage-content">
+        <div className="MoneyContractManage-card-container">
           {/* 용돈 계약서 작성 */}
-          <div className="card" onClick={handleContractWrtieClick}>
-            <p className="card-title">용돈계약서 작성</p>
+          <div
+            className="MoneyContractManage-card"
+            onClick={handleContractWrtieClick}
+          >
+            <p className="MoneyContractManage-card-title">용돈계약서 작성</p>
             <img
               src={allowanceContract}
               alt="용돈 계약서 작성"
-              className="card-image"
+              className="MoneyContractManage-card-image"
             />
           </div>
 
           {/* 용돈 계약서 조회 */}
-          <div className="card" onClick={handleContractSelectClick}>
-            <p className="card-title">용돈계약서 조회</p>
+          <div
+            className="MoneyContractManage-card"
+            onClick={handleContractSelectClick}
+          >
+            <p className="MoneyContractManage-card-title">용돈계약서 조회</p>
             <img
               src={allowanceContractCheck}
               alt="용돈 계약서 조회"
-              className="card-image"
+              className="MoneyContractManage-card-image"
             />
           </div>
         </div>

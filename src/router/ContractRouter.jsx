@@ -6,6 +6,7 @@ import MoneyContractManage from "../parent/MoneyContractManage";
 import ContractSelect from "../parent/ContractSelect";
 import ContractDetail1 from "../parent/ContractDetail1";
 import ParentMain from "../parent/ParentMain";
+import ChildEventSend from "../parent/ChildEventSend";
 
 function ContractRouter() {
   return (
@@ -27,6 +28,10 @@ function ContractRouter() {
       <Route
         path="/contract/contractDetail1"
         element={<ContractDetail1 />}
+      ></Route>
+      <Route
+        path="/contract/childEventSend"
+        element={<ChildEventSend />}
       ></Route>
     </Routes>
   );

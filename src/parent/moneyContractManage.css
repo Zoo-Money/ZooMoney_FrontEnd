@@ -1,29 +1,20 @@
-/* .mock-container {
+.MoneyContractManage-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  height: 100vh;
-} */
-
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* justify-content: center; */
   flex-grow: 1;
   width: 100%;
 }
 
-.card-container {
+.MoneyContractManage-card-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   width: 80%;
-  max-width: 400px;
+  max-width: 350px;
 }
 
-.card {
+.MoneyContractManage-card {
   background-color: #ffe4b5; /* 연한 주황색 */
   border-radius: 16px;
   padding: 20px;
@@ -34,16 +25,16 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
-.card:nth-child(2) {
+.MoneyContractManage-card:nth-child(2) {
   background-color: #fffacd; /* 연한 노란색 */
 }
 
-.card-image {
-  width: 230px;
-  height: 230px;
+.MoneyContractManage-card-image {
+  width: 200px;
+  height: 200px;
 }
 
-.card-title {
+.MoneyContractManage-card-title {
   font-size: 30px;
   font-weight: bold;
   margin-top: 10px;

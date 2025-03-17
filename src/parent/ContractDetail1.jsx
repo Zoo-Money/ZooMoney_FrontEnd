@@ -35,7 +35,7 @@ const ContractDetail1 = () => {
 
   // 🔹 계약서 데이터 (임시 데이터)
   const contracts = [
-    { date: "2023. 01. 06", file: "./contract1.pdf" },
+    { date: "2023. 01. 06", file: "/contract1.pdf" },
     { date: "2023. 01. 15", file: "/contract2.pdf" },
     { date: "2023. 02. 10", file: "/contract3.pdf" },
     { date: "2023. 03. 10", file: "/contract4.pdf" },
@@ -44,9 +44,8 @@ const ContractDetail1 = () => {
 
   return (
     <div className="mock-container">
-      <div className="header">
-        <Header title="용돈계약서 조회" />
-      </div>
+      <Header title="용돈계약서 조회" />
+
       <div className="contractDetail1-container">
         <div className="contractDetail1-list">
           {contracts.map((contract, index) => (
@@ -56,7 +55,7 @@ const ContractDetail1 = () => {
                 onClick={() => toggleContract(index)}
               >
                 <p>{contract.date} 계약 확인 </p>
-                <div className="contractDetail-toggle-icon">
+                <div className="contractDetail1-toggle-icon">
                   {openContract === index ? <FaChevronUp /> : <FaChevronDown />}
                 </div>
               </div>
@@ -69,7 +68,7 @@ const ContractDetail1 = () => {
                       console.error("PDF 로드 오류:", error)
                     }
                   >
-                    <Page pageNumber={1} width={300} />
+                    <Page pageNumber={1} width={window.innerWidth * 0.9} />
                   </Document>
                 </div>
               )}
