@@ -1,7 +1,6 @@
 import React from 'react';
-import gold from "../images/gold.png";
-import silver from "../images/silver.png";
 import bronze from "../images/bronze.png";
+import silver from "../images/silver.png";
 
 function RankList({gold}) {
   const images = [gold, silver, bronze];

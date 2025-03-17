@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
 import axios from "axios"; // Axios 추가
-import Header from "../common/Header";
-import Footer from "../common/Footer";
-import "./contractWrite.css"; // CSS 파일 import
+import React, { useEffect, useRef, useState } from "react";
+import { Form, InputGroup } from "react-bootstrap";
 import SignatureCanvas from "react-signature-canvas";
-import { Form, InputGroup, Modal, Button } from "react-bootstrap";
+import Footer from "../common/Footer";
+import Header from "../common/Header";
+import "./contractWrite.css"; // CSS 파일 import
 
 const getFormattedDate = () => {
   const today = new Date();
