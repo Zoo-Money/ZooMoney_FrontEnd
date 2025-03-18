@@ -1,17 +1,14 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import ContractWrite from "../parent/ContractWrite";
-import ContractWriteChild from "../parent/ContractWriteChild";
-import MoneyContractManage from "../parent/MoneyContractManage";
-import ContractSelect from "../parent/ContractSelect";
-import ContractDetail1 from "../parent/ContractDetail1";
-import ParentMain from "../parent/ParentMain";
-import ChildEventSend from "../parent/ChildEventSend";
+import ContractDetail from "../contract/ContractDetail";
+import ContractSelect from "../contract/ContractSelect";
+import ContractWrite from "../contract/ContractWrite";
+import ContractWriteChild from "../contract/ContractWriteChild";
+import MoneyContractManage from "../contract/MoneyContractManage";
 
 function ContractRouter() {
   return (
     <Routes>
-      <Route path="/contract/parentMain" element={<ParentMain />}></Route>
       <Route
         path="/contract/contractWriteChild"
         element={<ContractWriteChild />}
@@ -27,11 +24,7 @@ function ContractRouter() {
       ></Route>
       <Route
         path="/contract/contractDetail1"
-        element={<ContractDetail1 />}
-      ></Route>
-      <Route
-        path="/contract/childEventSend"
-        element={<ChildEventSend />}
+        element={<ContractDetail />}
       ></Route>
     </Routes>
   );

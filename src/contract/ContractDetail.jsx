@@ -1,46 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-// import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-// import "react-pdf/dist/esm/Page/TextLayer.css";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // ▼▲ 화살표 추가
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import "./css/contractDetail1.css";
-// import { pdfjs } from "react-pdf";
+import "./css/contractDetail.css";
+import axios from "axios";
 
 // PDF Worker 설정
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.js`;
 
-// pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+const ContractDetail = () => {
+  // 계약서 열림/닫힘 상태 관리
+  const [openContract, setOpenContract] = useState(null); // 열림/닫힘 상태 관리
+  const [contracts, setContracts] = useState([]); // 계약서 데이터 상태 관리
 
-//npm install pdfjs-dist@3.4.120
-//pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
-
-// PDF Worker 강제 설정
-//pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js`;
-
-// PDF Worker 설정 (필수)
-// pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.js");
-
-const ContractDetail1 = () => {
-  // 🔹 계약서 열림/닫힘 상태 관리
-  const [openContract, setOpenContract] = useState(null);
-
-  // 🔹 계약서 더보기 기능
+  // 계약서 더보기 기능
   const toggleContract = (index) => {
     setOpenContract(openContract === index ? null : index); // 동일한 항목 클릭 시 닫힘
   };
 
-  // 🔹 계약서 데이터 (임시 데이터)
-  const contracts = [
-    { date: "2023. 01. 06", file: "/contract1.pdf" },
-    { date: "2023. 01. 15", file: "/contract2.pdf" },
-    { date: "2023. 02. 10", file: "/contract3.pdf" },
-    { date: "2023. 03. 10", file: "/contract4.pdf" },
-    { date: "2023. 05. 15", file: "/contract4.pdf" },
-  ];
+  useEffect(() => {
+    const childNum = sessionStorage.getItem("childNum"); // 세션 값 가져오기
+    axios
+      .get(`http://localhost:7777/zoomoney/contract/pastContracts/${childNum}`)
+      .then((response) => {
+        setContracts(response.data); // 데이터를 상태에 저장
+      })
+      .catch((error) => {
+        console.log("과거 계약서 로드 오류:", error);
+      });
+  }, []);
 
   return (
     <div className="mock-container">
@@ -54,7 +45,7 @@ const ContractDetail1 = () => {
                 className="contractDetail1-header"
                 onClick={() => toggleContract(index)}
               >
-                <p>{contract.date} 계약 확인 </p>
+                <p>{contract.contractDate}계약 확인 </p>
                 <div className="contractDetail1-toggle-icon">
                   {openContract === index ? <FaChevronUp /> : <FaChevronDown />}
                 </div>
@@ -63,7 +54,7 @@ const ContractDetail1 = () => {
               {openContract === index && (
                 <div className="pdf-viewer">
                   <Document
-                    file={contract.file}
+                    file={`http://localhost:7777/zoomoney${contract.contractFilepath}`}
                     onLoadError={(error) =>
                       console.error("PDF 로드 오류:", error)
                     }
@@ -85,4 +76,4 @@ const ContractDetail1 = () => {
   );
 };
 
-export default ContractDetail1;
+export default ContractDetail;

@@ -10,9 +10,9 @@ import "react-pdf/dist/Page/TextLayer.css";
 import { useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import "./css/contractSelect.css"; // CSS 파일 import
+import "./css/contractSelect.css";
 
-// 🚨 최신 버전에 맞는 worker 경로 설정 (pdfjs-dist@4.8.69 대응)
+// 최신 버전에 맞는 worker 경로 설정 (pdfjs-dist@4.8.69 대응)
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.8.69/build/pdf.worker.min.js`;
 
 const ContractSelect = () => {
@@ -63,14 +63,6 @@ const ContractSelect = () => {
 
           {/* 계약서 내용 PDF 표시*/}
           {/* npm install react-pdf 라이브러리 설치해야함 */}
-          {/* <div className="contract-box">
-            <Document
-              file="/ex_contract2.pdf" //  PDF 파일 경로 (public 폴더 기준)
-              onLoadError={(error) => console.error("PDF 로드 오류:", error)}
-            >
-              <Page pageNumber={1} width={350} />
-            </Document>
-          </div> */}
 
           <div className="ContractSelect-contract-box">
             {latestPdfPath && (
@@ -78,7 +70,7 @@ const ContractSelect = () => {
                 file={`http://localhost:7777/zoomoney/contract_pdf/${latestPdfPath}`}
                 onLoadError={(error) => console.error("PDF 로드 오류:", error)}
               >
-                <Page pageNumber={1} width={350} /> 
+                <Page pageNumber={1} width={350} />
               </Document>
             )}
           </div>

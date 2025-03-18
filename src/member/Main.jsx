@@ -50,11 +50,6 @@ const Main = () => {
         await list();
         await count();
       });
-
-      // 컴포넌트 언마운트 시 연결 종료
-      return () => {
-        eventSource.close();
-      };
     };
 
     // 사용자의 알림 목록 조회
@@ -309,6 +304,7 @@ const Main = () => {
             >
               카드사용내역
             </a>
+
             <span>|</span>
             <a
               href={
@@ -318,6 +314,7 @@ const Main = () => {
               }
             >
               용돈 계약서
+
             </a>
           </div>
         </div>
