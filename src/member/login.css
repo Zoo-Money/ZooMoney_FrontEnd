@@ -16,7 +16,7 @@
 .login-header span{
     color: #ff9500;
 }
-img{
+.login-bear{
     margin-left: 10px;
     width: 120px;
     height: auto;
@@ -32,10 +32,10 @@ img{
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.login-input{
+.login-input-box{
     margin-bottom: 20px;
 }
-input{
+.login-input{
     width: 100%;
     padding: 12px;
     margin-top: 8px;
