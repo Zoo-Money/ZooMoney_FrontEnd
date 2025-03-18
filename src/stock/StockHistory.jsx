@@ -27,21 +27,22 @@ ChartJS.register(
 
 function StockHistory(props) {
   const navi = useNavigate();
-  //시즌별 결과 담기
   const [ranking, setRanking] = useState([]);
-
+  const memberNum = sessionStorage.getItem("member_num");
+  //디테일 값 가지고 페이지 넘어가기
   const goHistoryDetail = (item) => {
     navi("/stock/stockHistoryDetail", { state: { item } });
   };
-
   const goStockMain = () => {
     navi("/stock/main");
   };
+
+  //시즌별 결과 받아오기기
   useEffect(() => {
-    axios({
-      url: "http://localhost:7777/zoomoney/stock/result/list",
-      method: "get",
-    })
+    axios
+      .get(`http://localhost:7777/zoomoney/stock/result/list/${memberNum}`, {
+        params: { memberNum },
+      })
       .then((responseData) => {
         setRanking(responseData.data);
       })
@@ -50,15 +51,17 @@ function StockHistory(props) {
       });
   }, []);
 
+  //일주일 뒤 날짜 폼폼
   const afterOneWeek = (date) => {
     const d = new Date(date);
     d.setDate(d.getDate() + 6);
-    return d.toISOString().split("T")[0];
+    return d.toISOString().split("T")[0].replace(/\-/g, ".");
   };
 
   const labels = ranking.map((item) => item.result_date);
   const resultRate = ranking.map((item) => item.result_rate);
 
+  //차트데이터
   const chartData = {
     labels: labels,
     datasets: [
@@ -75,6 +78,7 @@ function StockHistory(props) {
     ],
   };
 
+  //차트스타일
   const options = {
     responsive: true,
     scales: {
@@ -129,7 +133,12 @@ function StockHistory(props) {
             <div className="history-list" key={index}>
               <span className="history-list-title">시즌{index + 1}</span>
               <span className="history-list-date">
-                {item.result_date} ~ {afterOneWeek(item.result_date)}
+                {new Date(item.result_date).toLocaleString("ko-KR", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                })}
+                ~ {afterOneWeek(item.result_date)}
               </span>
               <span className="history-list-rank">{item.result_rank}위</span>
               <IoIosArrowForward

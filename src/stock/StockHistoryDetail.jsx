@@ -18,7 +18,6 @@ function StockHistoryDetail(props) {
         params: { memberNum },
       })
       .then((response) => {
-        console.log(response.data);
         setHistory(response.data);
       })
       .catch((err) => {
@@ -35,7 +34,7 @@ function StockHistoryDetail(props) {
           <p>
             지난 시즌 나의 등수는
             <br />
-            {/* <span>{item.result_rank}등</span> 이에요. */}
+            <span>{item.result_rank}등</span> 이에요.
           </p>
         </div>
 
