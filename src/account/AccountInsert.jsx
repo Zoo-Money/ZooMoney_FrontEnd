@@ -31,7 +31,11 @@ const AccountInsert = () => {
       try {
         // 카드 잔액 조회
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/card/get`
+          `http://localhost:7777/zoomoney/card/get`, {
+            headers: {
+              member_num: memberNum,
+            }
+          }
         );
         setCardMoneyLeft(response.data.cardMoney);
         setAccountMoneyLeft(accountGoal - accountNow);
@@ -71,7 +75,7 @@ const AccountInsert = () => {
       }
 
       // 저금통 저금
-      await mintTokens(amount);
+      //await mintTokens(amount);
 
       // 카드 금액 변경
       await axios.put(

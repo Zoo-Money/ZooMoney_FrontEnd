@@ -140,7 +140,7 @@ const ContractWrite = () => {
 
       await axios.post("http://localhost:7777/zoomoney/notify/send", {
         memberNum: sessionStorage.getItem("childNum"),
-        notifyContent: "용돈계약서 작성 완료",
+        notifyContent: "📜 용돈계약서가 작성되었어요<br>확인하고 서명해주세요",
         notifyUrl: "/contract/contractWriteChild",
       });
 
