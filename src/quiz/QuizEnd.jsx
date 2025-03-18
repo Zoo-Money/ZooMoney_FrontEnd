@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import giraffeEnd from "../images/quiz/giraffe_end.png";
+import giraffe02 from "../images/giraffe/giraffe02.png";
 import "./css/quizEnd.css";
 
 const QuizEnd = () => {
@@ -32,7 +32,7 @@ const QuizEnd = () => {
 
       {/* 메인 콘텐츠 */}
       <div className="quizend-content">
-        <img src={giraffeEnd} alt="퀴즈완료 캐릭터" className="quizend-image" />
+        <img src={giraffe02} alt="giraffe02" className="quizend-image" />
         <p className="quizend-description">
           오늘의 QUIZ를 모두 풀었어요
           <br />총 <strong>{String(correctAnswerCount) * 100} 포인트</strong>를

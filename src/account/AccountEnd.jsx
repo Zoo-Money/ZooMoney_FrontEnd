@@ -1,11 +1,11 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import Footer from "../common/Footer";
-import pig01 from "../images/pig01.png";
-import pig02 from "../images/pig02.png";
-import pig03 from "../images/pig03.png";
-import pig04 from "../images/pig04.png";
-import pig05 from "../images/pig05.png";
+import pig01 from "../images/pig/pig01.png";
+import pig02 from "../images/pig/pig02.png";
+import pig03 from "../images/pig/pig03.png";
+import pig04 from "../images/pig/pig04.png";
+import pig05 from "../images/pig/pig05.png";
 import "./css/AccountEnd.css";
 
 const AccountEnd = () => {

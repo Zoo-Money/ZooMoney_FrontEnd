@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import rabbit1 from "../images/rabbit01.png";
+import rabbit1 from "../images/rabbit/rabbit01.png";
 import "./css/StockBegin.css";
 
 const StockBegin = () => {

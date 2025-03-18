@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import rabbit1 from "../images/rabbit01.png";
+import rabbit1 from "../images/rabbit/rabbit01.png";
 import "./css/StockList.css";
 
 const StockList = () => {

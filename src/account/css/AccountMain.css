@@ -72,8 +72,7 @@
 }
 
 .AccountMainForm {
-  width: 350px;
-  height: 200px;
+  min-width: 350px;
   border-radius: 10px;
   margin-bottom: 20px;
   padding: 20px;

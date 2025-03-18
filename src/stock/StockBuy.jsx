@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import rabbit07 from "../images/rabbit07.png";
+import rabbit07 from "../images/rabbit/rabbit07.png";
 import "../stock/css/stockBuy.css";
 
 function StockBuy(props) {

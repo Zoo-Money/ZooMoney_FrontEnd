@@ -13,7 +13,7 @@ import { Line } from "react-chartjs-2";
 import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
-import rabbit07 from "../images/rabbit07.png";
+import rabbit07 from "../images/rabbit/rabbit07.png";
 import "./css/stockHistory.css";
 
 ChartJS.register(
