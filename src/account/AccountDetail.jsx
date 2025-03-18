@@ -60,17 +60,19 @@ const AccountDetail = () => {
     try {
       setIsReady(true);
 
-      // 저금통 해지
-      await burnTokens(account.accountNow);
+      if (account.accountNow !== 0) {
+        // 저금통 해지
+        await burnTokens(account.accountNow);
 
-      // 카드 금액 변경
-      await axios.put(
-        `http://localhost:7777/zoomoney/card/change/${memberNum}`,
-        null,
-        {
-          params: { amount: account.accountNow }, // 쿼리 파라미터로 amount 전달
-        }
-      );
+        // 카드 금액 변경
+        await axios.put(
+          `http://localhost:7777/zoomoney/card/change/${memberNum}`,
+          null,
+          {
+            params: { amount: account.accountNow }, // 쿼리 파라미터로 amount 전달
+          }
+        );
+      }
 
       // 저금통 상태 변경
       await axios.put(

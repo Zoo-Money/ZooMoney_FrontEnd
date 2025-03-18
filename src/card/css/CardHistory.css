@@ -17,8 +17,14 @@
 
 .cardHist-content {
   overflow-y: auto;
-  max-height: calc(100vh - 450px);
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
+
+.cardHist-content::-webkit-scrollbar {
+  display: none; /* Chrome , Safari , Opera */
+}
+
 .cardHist-image {
   object-fit: contain; /* 이미지 비율을 유지하면서 잘리지 않게 */
   transform: rotate(270deg); /* 이미지를 90도 회전하여 가로로 표시 */

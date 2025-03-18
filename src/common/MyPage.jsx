@@ -9,10 +9,13 @@ import { Link } from "react-router-dom";
 
 function MyPage() {
   const [memberInfo, setMemberInfo] = useState(null);
+  const memberNum = sessionStorage.getItem("member_num");
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/member/1/select")
+      .get("http://localhost:7777/zoomoney/member/select", {
+        params: { memberNum },
+      })
       .then((response) => {
         if (response.data.length > 0) {
           setMemberInfo(response.data[0]);

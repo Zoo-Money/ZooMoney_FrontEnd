@@ -1,13 +1,14 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Legend, Tooltip, Title } from "chart.js";
 import axios from "axios";
-import { categoryName } from "./resources/patternCommon";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
 import dayjs from "dayjs";
-import Header from "../common/Header";
+import React, { useEffect, useRef, useState } from "react";
+import { Doughnut } from "react-chartjs-2";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Footer from "../common/Footer";
+import Header from "../common/Header";
 import "./css/CardConsumeChart.css";
+import { categoryName } from "./resources/patternCommon";
+import { Link } from "react-router-dom";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
@@ -29,9 +30,7 @@ function PatternChart() {
   const [highestCategory, setHighestCategory] = useState(""); // 가장 많이 소비한 카테고리
   const memberNum = sessionStorage.getItem("member_num");
 
-  const previousHighestCategoryRef = useRef(""); // useRef로 이전 카테고리를 추적
-
-  const availableMoney = sessionStorage.getItem("card_money") || 0; // 세션에서 사용 가능한 금액 가져오기
+  const previousHighestCategoryRef = useRef(""); // 이전 카테고리를 추적
 
   //용돈가져오기
   useEffect(() => {
@@ -43,7 +42,7 @@ function PatternChart() {
         setPlanMoney(resposeData.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
 
@@ -81,11 +80,11 @@ function PatternChart() {
     return data.reduce((acc, item) => {
       const date = new Date(item.usehistDate);
       const weekStart = new Date(date);
-      weekStart.setDate(date.getDate() - date.getDay()); // 해당 주의 시작 (일요일)
+      weekStart.setDate(date.getDate() - date.getDay()); // 해당 주의 시작
       const weekEnd = new Date(weekStart);
-      weekEnd.setDate(weekStart.getDate() + 6); // 해당 주의 종료 (토요일)
+      weekEnd.setDate(weekStart.getDate() + 6); // 해당 주의 종료
 
-      // 날짜 문자열 형식: 2025-01-05 ~ 2025-01-11
+      // 날짜 문자열 형식: YYYY-MM-D
       const weekKey = `${weekStart.toISOString().split("T")[0]} ~ ${
         weekEnd.toISOString().split("T")[0]
       }`;
@@ -136,10 +135,6 @@ function PatternChart() {
       previousHighestCategoryRef.current = highestCategory; // 가장 최근의 값을 저장
     }
 
-    console.log(
-      "카테고리별 합산된 금액:",
-      JSON.stringify(categorizedData, null, 2)
-    );
     return categorizedData;
   };
 
@@ -236,7 +231,6 @@ function PatternChart() {
         id: "doughnutlabel",
         beforeDraw: (chart) => {
           const { ctx, chartArea } = chart;
-          const { totalAmount } = chart.config.data;
 
           // 차트 중앙에 금액 표시
           ctx.save();
@@ -268,6 +262,8 @@ function PatternChart() {
         </p>
 
         <div className="patternchart-icon">
+          <span>{chartData.weekLabel}</span>
+
           <IoIosArrowBack
             className="patternchart-back"
             onClick={() => handleChartChange("prev")}
@@ -280,20 +276,22 @@ function PatternChart() {
         </div>
 
         <div className="patternmain-box">
-          <span>{chartData.weekLabel}</span>
           <Doughnut data={chartData} options={chartOptions} />
-        </div>
-
-        <div className="available-money">
-          <p>총 용돈: {planMoney}원</p>
-        </div>
-        <div className="highest-category">
-          <p>가장 많이 소비한 카테고리: {highestCategory}</p>
         </div>
       </div>
 
+      <div className="available-money">
+        <p>용돈: {planMoney}원</p>
+      </div>
+
+      <div className="highest-category">
+        <p>가장 많이 소비한 카테고리: {highestCategory}</p>
+      </div>
+
       <button className="patternmain-button">
-        내가 세운 계획이랑 비교하기
+        <Link to="/main" className="patternlink-style">
+          홈
+        </Link>
       </button>
 
       <Footer />

@@ -70,7 +70,6 @@ const ChildEventSend = () => {
           params: { memberNum: selectedChild }, // 선택한 자녀의 memberNum 전달
         })
         .then((response) => {
-          console.log("카드 데이터:", response.data);
           setCardMoney(response.data.cardMoney); // 카드 잔액 설정
         })
         .catch((error) => {

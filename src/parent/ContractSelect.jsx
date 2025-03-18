@@ -35,7 +35,6 @@ const ContractSelect = () => {
           `http://localhost:7777/zoomoney/contract/latest`,
           { params: { childNum: childNum } }
         );
-        console.log(response.data);
 
         setLatestPdfPath(response.data.split("/").pop());
       } catch (error) {
@@ -44,8 +43,6 @@ const ContractSelect = () => {
         setLoading(false);
       }
     };
-
-    console.log(latestPdfPath);
 
     draw();
   });
@@ -79,7 +76,7 @@ const ContractSelect = () => {
             {latestPdfPath && (
               <Document
                 file={`http://localhost:7777/zoomoney/contract_pdf/${latestPdfPath}`}
-                onLoadError={(error) => console.log("PDF 로드 오류:", error)}
+                onLoadError={(error) => console.error("PDF 로드 오류:", error)}
               >
                 <Page pageNumber={1} width={350} /> 
               </Document>

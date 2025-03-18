@@ -13,7 +13,6 @@ const StockList = () => {
     fetch("http://localhost:7777/zoomoney/stock/rank")
       .then((response) => response.json())
       .then((data) => {
-        console.log("Fetched Data:", data);
         if (Array.isArray(data)) {
           setStocks(data);
         } else {
@@ -25,7 +24,6 @@ const StockList = () => {
   }, []);
 
   const handleStockClick = (stockId, stockName) => {
-    console.log(`선택한 종목 코드와 이름: ${stockId},${stockName}`);
     navigate(`/stock-detail/${stockId}/${stockName}`); // ✅ 종목 상세 페이지로 이동
   };
 
