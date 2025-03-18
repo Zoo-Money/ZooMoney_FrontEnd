@@ -12,7 +12,6 @@ function NotifyTest() {
   const [notifyList, setNotifyList] = useState([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
-
   const [view, setView] = useState(false);
 
   useEffect(() => {

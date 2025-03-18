@@ -36,7 +36,7 @@ const ContractWrite = () => {
         setParentName(response.data.parentName); // 부모이름 상태 저장
       })
       .catch((error) => {
-        console.log("부모이름 불러오기 실패:" + error);
+        console.error("부모이름 불러오기 실패:" + error);
         setParentName("부모이름 불러오기 실패"); // 실패시 기본값
       });
   }, []);
@@ -140,7 +140,7 @@ const ContractWrite = () => {
 
       await axios.post("http://localhost:7777/zoomoney/notify/send", {
         memberNum: sessionStorage.getItem("childNum"),
-        notifyContent: "용돈계약서 작성 완료",
+        notifyContent: "📜 용돈계약서가 작성되었어요<br>확인하고 서명해주세요",
         notifyUrl: "/contract/contractWriteChild",
       });
 

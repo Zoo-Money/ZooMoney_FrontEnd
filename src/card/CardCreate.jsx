@@ -36,7 +36,6 @@ const CardCreate = () => {
 
     // NFT 발급 실행
     const success = await mintNFT(fileToUpload, setMinting, setTransactionHash);
-    console.log("Mint Success:", success); // 성공 여부 확인
 
     if (success) {
       navigate("/card/success"); // 발급 완료 페이지로 이동

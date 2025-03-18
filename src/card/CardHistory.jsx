@@ -6,6 +6,7 @@ import Footer from "../common/Footer";
 import Header from "../common/Header";
 import { fetchMetadata } from "./CardService";
 import "./css/CardHistory.css";
+
 function CardHistory() {
   const [historyList, setHistoryList] = useState([]);
   const [metadata, setMetadata] = useState(null);
@@ -13,13 +14,10 @@ function CardHistory() {
   const [, setLoading] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState("all");
   const memberNum = sessionStorage.getItem("member_num");
-  console.log("보내는 member_num:", memberNum);
-
+  
   useEffect(() => {
     loadOrders(selectedPeriod);
     const tokenId = sessionStorage.getItem("cardMetadata");
-
-    console.log(tokenId);
 
     // 세션에 카드 정보가 없으면 백엔드에서 메타데이터 가져오기
     fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);

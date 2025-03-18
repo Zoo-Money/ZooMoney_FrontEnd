@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import StockModal from "./StockModal";
 import "./css/stockNews.css";
-import { useParams } from "react-router-dom";
 
 function StockNews(props) {
   //초기값 가져오기기
@@ -16,11 +16,10 @@ function StockNews(props) {
       method: "get",
     })
       .then((responseData) => {
-        //console.log(responseData.data.items)
         setNewsList(responseData.data.items);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }, [stockName]);
 

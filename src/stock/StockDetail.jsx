@@ -30,12 +30,11 @@ const StockDetail = () => {
   useEffect(() => {
     const ws = new WebSocket(`ws://192.168.0.104:7777/zoomoney/ws/stocks`);
     ws.onopen = () => {
-      console.log("WebSocket 연결 성공!");
       ws.send(JSON.stringify({ type: "subscribe", symbol: tr_key }));
     };
     ws.onmessage = (event) => {
       const text = event.data;
-      console.log("Received:", text);
+
       // 응답 데이터 파싱
       const parts = text.split("|");
       if (parts.length > 3) {
@@ -67,9 +66,6 @@ const StockDetail = () => {
     };
     ws.onerror = (error) => {
       console.error("WebSocket 에러 발생:", error);
-    };
-    ws.onclose = () => {
-      console.log("WebSocket 연결 종료");
     };
     // 컴포넌트가 언마운트되거나 종목 코드가 변경될 때 연결 종료
     return () => {

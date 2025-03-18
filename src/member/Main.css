@@ -226,7 +226,3 @@
 .default-image {
   object-fit: cover; /* 기본 이미지 비율 유지하면서 채우기 */
 }
-.zoo-money .cardmainbell-icon {
-  width: 24px;
-  height: 24px;
-}
