@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { categoryName } from "./planCommon";
+import { categoryName } from "../moneyPlan/resource/planCommon.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -32,8 +32,8 @@ const centerTextPlugin = {
 Chart.register(centerTextPlugin);
 
 function SelectChart() {
-  const [plansData, setPlansData] = useState({}); // 각 plan_num별 데이터 저장
-  const [currentPlanNum, setCurrentPlanNum] = useState(0); // 현재 보여줄 plan_num
+  const [plansData, setPlansData] = useState({}); //각 plan_num별 데이터 저장
+  const [currentPlanNum, setCurrentPlanNum] = useState(0); //현재 보여줄 plan_num
   const [planDate, setPlanDate] = useState([]);
 
   // plan_date를 형식에 맞게 변환하는 함수
@@ -111,6 +111,7 @@ function SelectChart() {
     plugins: {
       legend: {
         position: "bottom",
+        fullSize: true,
         labels: {
           generateLabels: (chart) => {
             const data = chart.data.datasets[0].data;
@@ -120,7 +121,7 @@ function SelectChart() {
             }));
           },
           usePointStyle: true,
-          boxWidth: 20,
+          boxWidth: 40,
           padding: 10,
           font: {
             size: 12,
@@ -139,15 +140,10 @@ function SelectChart() {
         display: true,
         text: `${formatPlanDate(planDate[currentPlanNum]) || "날짜없음"}`,
         font: {
-          size: 16,
-          Weight: "bold",
+          size: 18,
+          weight: "bold",
         },
         color: "#333",
-      },
-    },
-    layout: {
-      padding: {
-        top: 0,
       },
     },
   };
