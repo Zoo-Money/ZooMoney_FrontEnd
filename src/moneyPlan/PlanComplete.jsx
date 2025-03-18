@@ -1,5 +1,5 @@
 import React from 'react';
-import deer2 from "../images/deer2.png";
+import deer02 from "../images/deer/deer02.png";
 import Header from '../common/Header';
 import "../moneyPlan/css/moneyPlan.css";
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +14,7 @@ function PlanComplete(props) {
       <div className="mock-container">
         <Header title="용돈 계획 세우기기"></Header>
         <div className="plancomplete-content">
-          <img src={deer2} alt="deer2" className="plancomplete-img" />
+          <img src={deer02} alt="deer02" className="plancomplete-img" />
           <p className="plancomplete-description">
             용돈 계획을 <span>저장</span>했어요
             <br />

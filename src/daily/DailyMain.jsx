@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import dailyMain from "../images/daily/giraffe_daily.png";
+import giraffe01 from "../images/giraffe/giraffe01.png";
 import "./dailyMain.css";
 
 const DailyMain = () => {
@@ -13,7 +13,11 @@ const DailyMain = () => {
   // 출석 여부 확인
   useEffect(() => {
     axios
-      .post("http://localhost:7777/zoomoney/daily/check")
+      .post(
+        "http://localhost:7777/zoomoney/daily/check",
+        {},
+        { withCredentials: true }
+      )
       .then((response) => {
         setIsChecked(response.data.isChecked); // 출석 여부 저장
       })
@@ -24,7 +28,7 @@ const DailyMain = () => {
     if (isChecked) {
       navigate("/daily/end"); // 출석 성공 시 이동
     } else {
-      navigate("/card/main"); // 이미 출석했으면 메인으로 이동
+      navigate("/main"); // 이미 출석했으면 메인으로 이동
     }
   };
 
@@ -34,7 +38,7 @@ const DailyMain = () => {
 
       {/* 메인 콘텐츠 */}
       <div className="daily-content">
-        <img src={dailyMain} alt="출석체크 캐릭터" className="daily-image" />
+        <img src={giraffe01} alt="giraffe01" className="daily-image" />
         <p className="daily-check">매일매일 출석체크</p>
 
         {isChecked === null ? ( // 로딩 상태

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ethers } from "ethers";
-import defaultCardImage from "../images/defaultcard.png";
+import card00 from "../images/card/card00.png";
 import CardABI from "./resources/CardABI.json"; // 스마트 컨트랙트 ABI
 import { toast } from "react-toastify";
 const contractAddress = process.env.REACT_APP_NFT_CONTRACT_ADDRESS;
@@ -62,7 +62,7 @@ export const uploadMetadataToIPFS = async (imageUrl) => {
 export const mintNFT = async (file, setMinting, setTransactionHash) => {
   if (!file) {
     // 기본 이미지 URL을 File 객체로 변환
-    const response = await fetch(defaultCardImage);
+    const response = await fetch(card00);
     const blob = await response.blob();
     file = new File([blob], "default-image.png", { type: "image/png" });
   }

@@ -5,13 +5,13 @@ import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import "./css/contractDetail1.css";
+import "./css/contractDetail.css";
 import axios from "axios";
 
 // PDF Worker 설정
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.js`;
 
-const ContractDetail1 = () => {
+const ContractDetail = () => {
   // 계약서 열림/닫힘 상태 관리
   const [openContract, setOpenContract] = useState(null); // 열림/닫힘 상태 관리
   const [contracts, setContracts] = useState([]); // 계약서 데이터 상태 관리
@@ -76,4 +76,4 @@ const ContractDetail1 = () => {
   );
 };
 
-export default ContractDetail1;
+export default ContractDetail;

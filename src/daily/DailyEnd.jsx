@@ -1,14 +1,14 @@
 import React from "react";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import dailyEnd from "../images/daily/giraffe_end.png";
+import giraffe02 from "../images/giraffe/giraffe02.png";
 import "./dailyEnd.css";
 import { useNavigate } from "react-router-dom";
 
 const DailyEnd = () => {
   const navigate = useNavigate();
   const goToMain = () => {
-    navigate("/card/main");
+    navigate("/main");
   };
   return (
     <div className="mock-container">
@@ -16,7 +16,7 @@ const DailyEnd = () => {
 
       {/* 메인 콘텐츠 */}
       <div className="dailyend-content">
-        <img src={dailyEnd} alt="출첵완료 캐릭터" className="dailyend-image" />
+        <img src={giraffe02} alt="giraffe02" className="dailyend-image" />
         <p className="dailyend-description">
           오늘의 출석체크 완료로
           <br />

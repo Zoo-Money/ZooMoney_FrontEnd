@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../common/Header';
-import deer1 from "../images/deer1.png";
+import deer01 from "../images/deer/deer01.png";
 import SelectChart from '../moneyPlan/SelectChart';
 import Footer from '../common/Footer';
 
@@ -16,11 +16,11 @@ function MoneyPlanConfirm(props) {
             <br />
             <span>용돈 계획</span>이에요!
           </p>
-          <img src={deer1} alt="deer1" className="img-deer" />
+          <img src={deer01} alt="deer01" className="img-deer" />
         </div>
         <div className="planmain-box">
           <div className="planmain-chart-box">
-            <SelectChart></SelectChart>
+            <SelectChart />
           </div>
         </div>
       </div>

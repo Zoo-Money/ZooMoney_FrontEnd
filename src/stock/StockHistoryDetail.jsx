@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../common/Header";
-import rabbit05 from "../images/rabbit05.png";
+import rabbit05 from "../images/rabbit/rabbit05.png";
 import "./css/stockHistoryDetail.css";
 
 function StockHistoryDetail(props) {

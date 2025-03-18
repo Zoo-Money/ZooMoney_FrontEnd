@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import giraffeSuccess from "../images/quiz/giraffe_quiz.png";
+import giraffe05 from "../images/giraffe/giraffe05.png";
 import O from "../images/quiz/O.png";
 import "./css/quizSuccess.css";
 
@@ -51,11 +51,7 @@ const QuizSuccess = () => {
           <p className="quizsuccess-number">
             QUIZ {String(quizCount).padStart(2, "0")}
           </p>
-          <img
-            src={giraffeSuccess}
-            alt="퀴즈성공 캐릭터"
-            className="quizsuccess-image"
-          />
+          <img src={giraffe05} alt="giraffe05" className="quizsuccess-image" />
         </div>
         <div className="quizsuccess-board">
           <div className="quizsuccess-box">
@@ -76,7 +72,7 @@ const QuizSuccess = () => {
             <p className="quizsuccess-quiz-done">
               오늘의 퀴즈를 모두 응시했어요!
             </p>
-            <button className="quizsuccess-button" onClick={goToEnd}>
+            <button className="quizsuccess-point-button" onClick={goToEnd}>
               포인트는 총 몇점?
             </button>
           </>

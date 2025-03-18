@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchCardInfo, fetchMetadata } from "../card/CardService";
 import Footer from "../common/Footer";
-import defaultCardImage from "../images/bear01.png"; // 기본 이미지 경로
+import defaultCardImage from "../images/cardmain.png"; // 기본 이미지 경로
 import daily from "../images/daily.png";
 import moneyplan from "../images/moneyplan.png";
 import pattern from "../images/pattern.png";
@@ -25,6 +25,7 @@ const Main = () => {
   const [notifyList, setNotifyList] = useState([]);
   const [count, setCount] = useState(0);
   const [view, setView] = useState(false);
+  const [shake, setShake] = useState(false);
 
   useEffect(() => {
     // 서버와 SSE 연결
@@ -33,12 +34,21 @@ const Main = () => {
         `http://localhost:7777/zoomoney/notify/subscribe/${memberNum}`
       );
 
+      // 알림 정보 갱신
       list();
       count();
 
-      eventSource.addEventListener("NOTIFY", function (event) {
-        list();
-        count();
+      eventSource.addEventListener("NOTIFY", async () => {
+        // 알림 아이콘 애니메이션
+        setShake(true);
+
+        setTimeout(() => {
+          setShake(false);
+        }, 500);
+
+        // 알림 정보 갱신
+        await list();
+        await count();
       });
     };
 
@@ -104,6 +114,13 @@ const Main = () => {
   if (loading) return null;
 
   const handleBellClick = () => {
+    // 알림 아이콘 애니메이션
+    setShake(true);
+
+    setTimeout(() => {
+      setShake(false);
+    }, 500);
+
     setView(!view);
   };
 
@@ -159,6 +176,7 @@ const Main = () => {
           {/* 종 모양 아이콘 */}
           <Badge badgeContent={count} color="error">
             <NotificationsIcon
+              className={shake ? "bell-shake" : ""}
               color="action"
               onClick={handleBellClick}
               style={{ fontSize: "1.5rem", cursor: "pointer" }}
@@ -168,10 +186,12 @@ const Main = () => {
           {/* 알림 리스트 */}
           {view && (
             <div
+              className="notifyList"
               style={{
-                paddingTop: "10px",
+                padding: "10px",
+                paddingBottom: "5px",
                 position: "absolute",
-                right: "-20px",
+                right: "-10px",
                 minWidth: "200px",
                 minHeight: "300px",
                 backgroundColor: "#fff",
@@ -186,7 +206,7 @@ const Main = () => {
               <div
                 className="AccountMainResult"
                 style={{
-                  maxHeight: "290px",
+                  maxHeight: "300px",
                   overflowY: "auto",
                 }}
               >
