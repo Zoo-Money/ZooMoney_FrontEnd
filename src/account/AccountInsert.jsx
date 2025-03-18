@@ -31,7 +31,11 @@ const AccountInsert = () => {
       try {
         // 카드 잔액 조회
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/card/get`
+          `http://localhost:7777/zoomoney/card/get`, {
+            headers: {
+              member_num: memberNum,
+            }
+          }
         );
         setCardMoneyLeft(response.data.cardMoney);
         setAccountMoneyLeft(accountGoal - accountNow);
@@ -90,8 +94,6 @@ const AccountInsert = () => {
           params: { amount: amount }, // 쿼리 파라미터로 amount 전달
         }
       );
-
-      console.log(status);
 
       navigate("/account/end", {
         state: { accountName, status },

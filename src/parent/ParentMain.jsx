@@ -40,7 +40,6 @@ const ParentMain = () => {
         //withCredentials: true, // 세션 정보 전송(로그인 기능 연동 시 필요)
       })
       .then((response) => {
-        console.log("자녀 데이터:", response.data); // 🔍 데이터 확인
         setChildren(response.data);
 
         // query parameter에서 childNum이 있는지 확인
@@ -61,13 +60,11 @@ const ParentMain = () => {
 
   useEffect(() => {
     if (selectedChild) {
-      console.log("!!!!!!바뀐 선택한 자녀의 memberNum:", selectedChild); // 🔍 확인용 로그 추가
       axios
         .get("http://localhost:7777/zoomoney/contract/child/money", {
           params: { memberNum: selectedChild }, // 🔹 선택한 자녀의 memberNum 전달
         })
         .then((response) => {
-          console.log("카드 데이터:", response.data);
           setCardMoney(response.data.cardMoney); // 카드 잔액 설정
         })
         .catch((error) => {

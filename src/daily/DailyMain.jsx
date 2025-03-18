@@ -17,7 +17,7 @@ const DailyMain = () => {
       .then((response) => {
         setIsChecked(response.data.isChecked); // 출석 여부 저장
       })
-      .catch((error) => console.log("출석 체크 실패", error));
+      .catch((error) => console.error("출석 체크 실패", error));
   }, []);
 
   const handleButtonClick = () => {

@@ -107,12 +107,8 @@ export const mintNFT = async (file, setMinting, setTransactionHash) => {
     if (!memberNum) throw new Error("세션에 member_num이 없습니다.");
 
     if (cardNum && cardMetadata && cardMoney) {
-      // 기존 카드 정보 사용하여 NFT 이미지 변경
-      console.log("기존 카드 정보 사용:", cardNum, cardMetadata, cardMoney);
-
       // 새 이미지 업로드
       const newImageUrl = await uploadToIPFS(file); // 새 이미지를 업로드하는 함수
-      console.log("새 이미지 URL:", newImageUrl);
 
       if (!newImageUrl) {
         setMinting(false);
@@ -121,7 +117,6 @@ export const mintNFT = async (file, setMinting, setTransactionHash) => {
 
       // 새로운 메타데이터 URL 생성 (새로운 이미지 URL을 기반으로)
       const newMetadataUrl = await uploadMetadataToIPFS(newImageUrl);
-      console.log("새로운 메타데이터 URL:", newMetadataUrl);
 
       if (!newMetadataUrl) {
         setMinting(false);
@@ -130,13 +125,11 @@ export const mintNFT = async (file, setMinting, setTransactionHash) => {
 
       try {
         // 기존 토큰의 메타데이터 URL을 업데이트하는 함수 호출
-        console.log("setTokenURI 호출 중...");
         const transaction = await contract.setTokenURI(
           cardMetadata, // 기존 tokenId
           newMetadataUrl // 새로운 metadataUrl
         );
         await transaction.wait();
-        console.log("NFT 이미지 변경 완료:", newMetadataUrl);
 
         // 카드 날짜 최신화
         await updateCardDate();
@@ -145,8 +138,6 @@ export const mintNFT = async (file, setMinting, setTransactionHash) => {
       }
     } else {
       // 세션에 카드 정보가 없을 경우 새로운 카드 발급
-      console.log("세션에 카드 정보 없음, 신규 카드 발급");
-
       cardNum = generateCardNumber();
       cardMetadata = tokenId;
       cardMoney = 0;
@@ -164,7 +155,6 @@ export const mintNFT = async (file, setMinting, setTransactionHash) => {
         return;
       }
 
-      console.log("safeMint 호출 중...");
       const transaction = await contract.safeMint(
         address,
         cardMetadata,
@@ -174,12 +164,6 @@ export const mintNFT = async (file, setMinting, setTransactionHash) => {
 
       // 신규 카드 정보 DB에 저장
       await saveCardToDB(cardNum, cardMetadata, cardMoney, memberNum);
-      console.log(
-        "신규 카드 정보 DB에 저장:",
-        cardNum,
-        cardMetadata,
-        cardMoney
-      );
     }
 
     setMinting(false);
@@ -258,9 +242,6 @@ export const fetchMetadata = async (
 
     setMetadata(metadata);
     setMetadataUrl(ipfsUrl);
-
-    // ✅ 저장된 `metadataUrl`을 다른 곳에서 사용 가능
-    console.log("저장된 이미지 URL:", ipfsUrl);
   } catch (error) {
   } finally {
     setLoading(false);
@@ -296,12 +277,11 @@ export const saveCardToDB = async (
     member_num: memberNum,
   };
   try {
-    const response = await axios.post(
+    await axios.post(
       "http://localhost:7777/zoomoney/card/create",
       cardData,
       axiosHeader
     );
-    console.log("카드 정보 저장 성공:", response.data);
   } catch (error) {
     console.error("카드 정보 저장 실패:", error);
   }
@@ -315,8 +295,7 @@ export const updateCardDate = async () => {
     if (!memberNum) {
       throw new Error("세션에 memberNum이 없습니다.");
     }
-    console.log(cardNum, memberNum);
-    const response = await axios.put(
+    await axios.put(
       "http://localhost:7777/zoomoney/card/update",
       {
         card_num: cardNum,
@@ -324,7 +303,6 @@ export const updateCardDate = async () => {
       },
       axiosHeader
     );
-    console.log("카드 날짜/포인트 업데이트 성공:", response.data);
   } catch (error) {
     console.error("날짜/포인트 업데이트 실패:", error);
   }
@@ -339,8 +317,6 @@ export const fetchCardInfo = async (memberNum, setTokenId, setNewLoading) => {
         },
       }
     );
-
-    console.log("백엔드 응답:", response.data);
 
     if (response.data) {
       sessionStorage.setItem("tokenId", response.data.cardMetadata);

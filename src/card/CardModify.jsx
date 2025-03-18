@@ -31,7 +31,6 @@ const CardModify = () => {
       await fetchCardInfo(memberNum, setTokenId, setNewLoading);
       const tokenId = sessionStorage.getItem("cardMetadata");
       if (!tokenId) {
-        console.log("세션에 cardMetadata가 없습니다.");
         setLoading(false);
         return;
       }
@@ -66,7 +65,6 @@ const CardModify = () => {
 
     // NFT 발급 실행
     const success = await mintNFT(fileToUpload, setMinting, setTransactionHash);
-    console.log("Mint Success:", success); // 성공 여부 확인
 
     if (success) {
       navigate("/card/modifySuccess"); // 이미지 변경완료
