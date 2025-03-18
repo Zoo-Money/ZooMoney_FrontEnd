@@ -32,6 +32,9 @@
     font-weight: bold;
     margin-right: 8px;
 }
-.history-detail-list-price{
+.buy{
     color: blue;
+}
+.sell{
+    color: red;
 }

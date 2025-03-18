@@ -26,8 +26,9 @@ ChartJS.register(
 );
 
 function StockHistory(props) {
-  const [ranking, setRanking] = useState([]);
   const navi = useNavigate();
+  //시즌별 결과 담기
+  const [ranking, setRanking] = useState([]);
 
   const goHistoryDetail = (item) => {
     navi("/stock/stockHistoryDetail", { state: { item } });
