@@ -123,14 +123,14 @@ const CardModify = () => {
                   : metadata?.image || defaultCardImage // 선택한 이미지나 첨부한 이미지가 없다면, 기본적으로 metadata.image 또는 기본 이미지를 표시
               }
               alt="미리보기"
-              className="card-image"
+              className="modifycard-image"
             />
           )}
         </div>
       </div>
       <br />
       {/* 카드 기본 이미지 선택 */}
-      <div className="image-container">
+      <div className="modifyimage-container">
         {[
           { image: defaultCardImage01, bgColor: "bg-orange-500" },
           { image: defaultCardImage02, bgColor: "bg-yellow-400" },
@@ -140,7 +140,7 @@ const CardModify = () => {
         ].map((item, index) => (
           <div
             key={index}
-            className={`image-item ${
+            className={`modifyimage-item ${
               selectedImage === item.image ? "ring-4 ring-purple-500" : ""
             }`}
             onClick={() => handleImageSelect(item.image)}
@@ -148,7 +148,7 @@ const CardModify = () => {
             <img
               src={item.image}
               alt={`카드 ${index + 1}`}
-              className="image-img"
+              className="modifyimage-img"
             />
           </div>
         ))}
@@ -161,7 +161,7 @@ const CardModify = () => {
             <span className="plus-icon bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold">
               +
             </span>
-            <div className="text-container">
+            <div className="modifytext-container">
               <span className="text-lg font-semibold">
                 원하는 이미지 추가하기
                 <br />
@@ -173,7 +173,7 @@ const CardModify = () => {
         </label>
       </div>
 
-      {/* 리셋 버튼 */}
+      {/* 변경 버튼 */}
       <button
         onClick={handleMintNFT}
         disabled={minting}

@@ -9,7 +9,6 @@ import defaultCardImage04 from "../images/skybluecard.png";
 import defaultCardImage02 from "../images/yellowcard.png";
 import "./css/CardCreate.css";
 import { mintNFT } from "./CardService";
-import { toast } from "react-toastify";
 
 const CardCreate = () => {
   const [file, setFile] = useState(null);
@@ -40,7 +39,7 @@ const CardCreate = () => {
     if (success) {
       navigate("/card/success"); // 발급 완료 페이지로 이동
     } else {
-      toast.error("NFT 발급 실패");
+      alert("NFT 발급 실패");
     }
   };
 
@@ -74,17 +73,17 @@ const CardCreate = () => {
 
       <div className="content">
         {/* 카드 이미지 미리보기 */}
-        <div className="card-preview">
+        <div className="createcard-preview">
           <img
             src={previewUrl ? previewUrl : selectedImage || defaultCardImage} // previewUrl이 있으면 미리보기, 없으면 선택한 이미지 또는 기본 이미지 사용
             alt="미리보기"
-            className="card-image"
+            className="createcard-image"
           />
         </div>
       </div>
       <br />
       {/* 카드 기본 이미지 선택 */}
-      <div className="image-container">
+      <div className="createimage-container">
         {[
           { image: defaultCardImage01, bgColor: "bg-orange-500" },
           { image: defaultCardImage02, bgColor: "bg-yellow-400" },
@@ -94,7 +93,7 @@ const CardCreate = () => {
         ].map((item, index) => (
           <div
             key={index}
-            className={`image-item ${
+            className={`createimage-item ${
               selectedImage === item.image ? "ring-4 ring-purple-500" : ""
             }`}
             onClick={() => handleImageSelect(item.image)} // 기존 setSelectedImage에서 변경
@@ -102,7 +101,7 @@ const CardCreate = () => {
             <img
               src={item.image}
               alt={`카드 ${index + 1}`}
-              className="image-img"
+              className="createimage-img"
             />
           </div>
         ))}
@@ -118,20 +117,17 @@ const CardCreate = () => {
             <div className="text-container">
               <span className="text-lg font-semibold">
                 원하는 이미지 추가하기
-                <br />
-                <span className="text-sm text-gray-500">(이후, 10,000P)</span>
               </span>
             </div>
             <input type="file" onChange={handleFileChange} className="hidden" />
           </div>
         </label>
-        &nbsp;
       </div>
       {/* NFT 발행 버튼 */}
       <button
         onClick={handleMintNFT}
         disabled={minting}
-        className="button-style"
+        className="createbutton-style"
       >
         {minting ? "" : "카드 발급"}
       </button>
