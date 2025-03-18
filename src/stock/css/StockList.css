@@ -13,8 +13,15 @@
 .stock-list {
   background: white;
   border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 16px;
+  width: 70%;
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.stock-list::-webkit-scrollbar {
+  display: none; /* Chrome , Safari , Opera */
 }
 
 .stock-item {
@@ -59,13 +66,15 @@
   color: blue;
 }
 
-.main-image {
+.stockList-image {
   width: 40px;
   height: auto;
-  position: absolute;
-  top: 0;
-  right: 0; /* 우측 끝 */
-  margin: 16px; /* 화면과의 간격 */
+  align-self: self-end;
+  margin-right: 15%;
+}
+
+.stockList-image img {
+  margin-right: 10px; /* 텍스트와 간격 */
 }
 
 .clickable {

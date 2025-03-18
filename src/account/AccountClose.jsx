@@ -32,7 +32,7 @@ const AccountClose = () => {
       await axios.post("http://localhost:7777/zoomoney/notify/send", {
         memberNum: target,
         notifyContent: `🐷 ${member_name}님이 저금통 해지 요청을 보냈어요`,
-        notifyUrl: "부모 저금통 상세 페이지 링크",
+        notifyUrl: "/parent/account",
       });
     } catch (error) {
       console.error("알림 전송 실패", error);

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import giraffeFailure from "../images/quiz/giraffe_failure.png";
+import giraffe03 from "../images/giraffe/giraffe03.png";
 import X from "../images/quiz/X.png";
 import "./css/quizFailure.css";
 
@@ -52,8 +52,8 @@ const QuizFailure = () => {
             QUIZ {String(quizCount).padStart(2, "0")}
           </p>
           <img
-            src={giraffeFailure}
-            alt="퀴즈실패 캐릭터"
+            src={giraffe03}
+            alt="giraffe03"
             className="quizfailure-image"
           />
         </div>

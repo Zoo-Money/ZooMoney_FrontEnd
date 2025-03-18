@@ -16,7 +16,7 @@ const getFormattedDate = () => {
 };
 
 const ContractWriteChild = () => {
-  const [selectedDate, setSelectedDate] = useState(getFormattedDate());
+  const [selectedDate] = useState(getFormattedDate());
   const [amount, setAmount] = useState("");
   const signatureRef = useRef(null); // 서명 캔버스 참조
   const [childName, setChildName] = useState("");
@@ -24,7 +24,6 @@ const ContractWriteChild = () => {
   // 세션에 저장된 childNum 가져오기
   useEffect(() => {
     const storedChildNum = sessionStorage.getItem("childNum");
-    // console.log("$$$$storedChildNum:", storedChildNum);
 
     if (!storedChildNum) {
       toast.error("아이 정보 관련 세션값이 없습니다.");
@@ -37,7 +36,6 @@ const ContractWriteChild = () => {
   const memberNum = childNum;
 
   useEffect(() => {
-    // console.log("📢 API 요청 전 childNum 값:", childNum);
     axios
       .get("http://localhost:7777/zoomoney/contract/childInfo", {
         // params: { childId: 1 },
@@ -47,12 +45,13 @@ const ContractWriteChild = () => {
         setChildName(response.data.childName); // 아이이름 상태 저장
       })
       .catch((error) => {
-        console.log("아이이름 불러오기 실패:" + error);
+        console.error("아이이름 불러오기 실패:" + error);
         setChildName("아이이름 불러오기 실패"); // 실패시 기본값
       });
-  }, []);
+  });
+
   // 오늘 날짜를 'YYYY-MM-DD' 형식으로 설정
-  const today = new Date().toISOString().split("T")[0];
+  // const today = new Date().toISOString().split("T")[0];
 
   // 부모가 작성한 계약 내용
   const [contractDetails, setContractDetails] = useState("");
@@ -62,8 +61,6 @@ const ContractWriteChild = () => {
         params: { childId: childNum }, // 세션값 childNum 사용
       })
       .then((response) => {
-        //console.log("API 응답 데이터:", response.data); // API 응답 데이터 확인
-
         if (response.data && response.data.contractMoney) {
           setAmount(response.data.contractMoney.toLocaleString()); // 지급금액을 콤마 포함 형식으로 설정
         } else {
@@ -81,7 +78,9 @@ const ContractWriteChild = () => {
       })
       .catch((error) => {
         console.error("계약서 불러오기 실패:", error);
-        toast.error("예외: 계약서 내용을 불러오지 못했습니다.(용돈계약서 작성필요)");
+        toast.error(
+          "예외: 계약서 내용을 불러오지 못했습니다.(용돈계약서 작성필요)"
+        );
       });
     // }, []);
   }, [childNum]);
@@ -123,7 +122,7 @@ const ContractWriteChild = () => {
 
       await axios.post("http://localhost:7777/zoomoney/notify/send", {
         memberNum: response.data[0].memberParent.memberNum,
-        notifyContent: "용돈계약서 아이 서명이 완료되었습니다.",
+        notifyContent: "📜 용돈계약서의 확인이 완료되어 잘 보관되었어요",
         notifyUrl: "/contract/contractSelect",
       });
 

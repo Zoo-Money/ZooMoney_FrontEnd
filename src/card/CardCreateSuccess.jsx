@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/CardCreateSuccess.css";
 import Footer from "../common/Footer";
-import bear02 from "../images/bear02.png";
+import bear01 from "../images/bear/bear01.png";
 import { Link } from "react-router-dom";
 
 const CardCreateSuccess = () => {
@@ -9,7 +9,7 @@ const CardCreateSuccess = () => {
     <div className="mock-container">
       {/* 메인 콘텐츠 */}
       <div className="content">
-        <img src={bear02} alt="모의투자 캐릭터" className="main-image" />
+        <img src={bear01} alt="bear01" className="main-image" />
       </div>
       <p className="description">카드 발급이 완료되었어요</p>
       <button className="success-button">

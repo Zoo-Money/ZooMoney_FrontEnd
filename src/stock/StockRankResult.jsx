@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../common/Header';
-import rabbit07 from "../images/rabbit07.png";
+import rabbit07 from "../images/rabbit/rabbit07.png";
 import "./css/stockRankResult.css";
 function StockRankResult(props) {
     return (

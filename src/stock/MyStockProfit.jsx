@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineQuestionCircle } from "react-icons/ai";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import rabbit from "../images/rabbit02.png";
+import rabbit from "../images/rabbit/rabbit02.png";
 import "./css/MyStockProfit.css";
 
 const descriptions = {

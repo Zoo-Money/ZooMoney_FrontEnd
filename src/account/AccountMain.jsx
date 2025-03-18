@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
-import pig_main from "../images/pig_main.png";
+import pig00 from "../images/pig/pig00.png";
 import plus from "../images/plus.png";
 import "./css/AccountMain.css";
 
@@ -57,7 +57,7 @@ const AccountMain = () => {
           <span>나의 저금통</span>
           <span>{accountList.length} 개</span>
         </div>
-        <img src={pig_main} alt="pig_main" />
+        <img src={pig00} alt="pig00" />
       </div>
 
       {/* 메인 콘텐츠 */}
