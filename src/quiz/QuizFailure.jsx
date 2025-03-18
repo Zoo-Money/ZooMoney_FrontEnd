@@ -76,7 +76,7 @@ const QuizFailure = () => {
             <p className="quizfailure-quiz-done">
               오늘의 퀴즈를 모두 응시했어요!
             </p>
-            <button className="quizfailure-button" onClick={goToEnd}>
+            <button className="quizfailure-point-button" onClick={goToEnd}>
               포인트는 총 몇점?
             </button>
           </>

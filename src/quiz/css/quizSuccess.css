@@ -1,15 +1,25 @@
 /* 메인 콘텐츠 */
 .quizsuccess-content {
-  margin-top: 40px;
-  /* width: 393px; */
+  margin-top: 5px;
+  height: 83%;
+  width: 90%;
   text-align: center;
+  overflow-y: scroll; /* 스크롤 추가 */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.AccountMainResult::-webkit-scrollbar {
+  display: none; /* Chrome , Safari , Opera */
 }
 
 /* 퀴즈번호&이미지 묶음 */
 .quizsuccess-num-image {
   display: flex; /* 가로 정렬 */
   justify-content: center; /* 가운데 정렬 */
-  gap: 180px; /* 글씨와 이미지 사이 간격 */
+  gap: 170px; /* 글씨와 이미지 사이 간격 */
+  margin-top: 30px;
+  margin-bottom: -8px;
 }
 
 /* 퀴즈번호 */
@@ -17,14 +27,14 @@
   font-size: 17px;
   font-weight: 900;
   color: #000000;
-  margin-top: 60px;
+  margin-top: 52px;
 }
 
 /* 퀴즈성공 캐릭터 */
 .quizsuccess-image {
   width: 80px;
   height: auto;
-  margin-bottom: -8px;
+  margin-right: -10px;
 }
 
 /* 퀴즈판 */
@@ -34,7 +44,6 @@
   width: 90%;
   height: auto;
   background-color: #fff4c2;
-
   border: none;
   border-radius: 15px;
   margin: 0 auto 30px auto; /* 가운데 정렬 */
@@ -53,11 +62,9 @@
   height: 10px;
   background-color: #ffdd99;
   border: none;
-
-  /* 💡 flexbox로 가로 정렬 적용 */
   display: flex;
-  align-items: center; /* 세로 중앙 정렬 */
-  gap: 15px; /* 아이템 사이 간격 */
+  align-items: center;
+  gap: 15px;
 }
 
 /* O 이미지 */
@@ -104,7 +111,7 @@
   font-size: 18px;
   color: #5a5a5a;
   font-weight: 700;
-  margin: 50px auto 30px auto;
+  margin: 30px auto 30px auto;
 }
 
 /* 오늘의 퀴즈 완료 */
@@ -113,7 +120,7 @@
   color: #5a5a5a;
   line-height: 1.5;
   font-weight: 500;
-  margin: 30px 25px 20px 25px;
+  margin: -10px 25px 30px 25px;
 }
 
 /* 다음퀴즈 풀기 버튼 */
@@ -147,10 +154,31 @@
   border-radius: 15px;
   cursor: pointer;
   margin-top: 2%;
+  margin-bottom: 70px;
   transition: 0.5s ease;
 }
 
 .quizsuccess-button-stop:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 총 몇 포인트 버튼 */
+.quizsuccess-point-button {
+  width: 90%;
+  height: 45px;
+  background-color: #f9a825;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-bottom: 70px;
+  transition: 0.5s ease;
+}
+
+.quizsuccess-point-button:hover {
   opacity: 0.8;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }

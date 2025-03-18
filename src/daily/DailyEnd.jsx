@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const DailyEnd = () => {
   const navigate = useNavigate();
   const goToMain = () => {
-    navigate("/card/main");
+    navigate("/main");
   };
   return (
     <div className="mock-container">

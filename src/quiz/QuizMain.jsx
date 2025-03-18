@@ -50,7 +50,7 @@ const QuizMain = () => {
 
   const startQuiz = () => {
     if (quizCount >= 5) {
-      navigate("/card/main"); // 자녀 메인 페이지로 이동
+      navigate("/main"); // 자녀 메인 페이지로 이동
     } else {
       navigate("/quiz/quiz"); // 퀴즈 출제 페이지로 이동
     }
@@ -120,6 +120,10 @@ const QuizMain = () => {
             <button className="quizmain-button" onClick={startQuiz}>
               시작하기
             </button>
+            {/* 주의사항 */}
+            <p className="quizmain-check">
+              <strong>꼭 확인해주세요</strong>
+            </p>
           </>
         ) : (
           <>
@@ -129,10 +133,6 @@ const QuizMain = () => {
             </button>
           </>
         )}
-        {/* 주의사항 */}
-        <p className="quizmain-check">
-          <strong>꼭 확인해주세요</strong>
-        </p>
         <p className="quizmain-description">
           <li>매일 5개의 퀴즈에 도전할 수 있어요.</li>
           <li>퀴즈를 맞힐 때마다 100P를 받아요.</li>

@@ -13,7 +13,11 @@ const DailyMain = () => {
   // 출석 여부 확인
   useEffect(() => {
     axios
-      .post("http://localhost:7777/zoomoney/daily/check")
+      .post(
+        "http://localhost:7777/zoomoney/daily/check",
+        {},
+        { withCredentials: true }
+      )
       .then((response) => {
         setIsChecked(response.data.isChecked); // 출석 여부 저장
       })
@@ -24,7 +28,7 @@ const DailyMain = () => {
     if (isChecked) {
       navigate("/daily/end"); // 출석 성공 시 이동
     } else {
-      navigate("/card/main"); // 이미 출석했으면 메인으로 이동
+      navigate("/main"); // 이미 출석했으면 메인으로 이동
     }
   };
 

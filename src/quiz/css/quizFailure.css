@@ -1,15 +1,24 @@
 /* 메인 콘텐츠 */
 .quizfailure-content {
-  margin-top: 40px;
-  /* width: 393px; */
+  margin-top: 5px;
+  height: 83%;
+  width: 90%;
   text-align: center;
+  overflow-y: scroll; /* 스크롤 추가 */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.AccountMainResult::-webkit-scrollbar {
+  display: none; /* Chrome , Safari , Opera */
 }
 
 /* 퀴즈번호&이미지 묶음 */
 .quizfailure-num-image {
   display: flex; /* 가로 정렬 */
   justify-content: center; /* 가운데 정렬 */
-  gap: 180px; /* 글씨와 이미지 사이 간격 */
+  gap: 170px; /* 글씨와 이미지 사이 간격 */
+  margin-top: 22px;
 }
 
 /* 퀴즈번호 */
@@ -24,6 +33,7 @@
 .quizfailure-image {
   width: 80px;
   height: auto;
+  margin-right: -10px;
   margin-bottom: -8px;
 }
 
@@ -101,7 +111,7 @@
   font-size: 18px;
   color: #5a5a5a;
   font-weight: 700;
-  margin: 50px auto 30px auto;
+  margin: 30px auto 30px auto;
 }
 
 /* 오늘의 퀴즈 완료 */
@@ -110,7 +120,7 @@
   color: #5a5a5a;
   line-height: 1.5;
   font-weight: 500;
-  margin: 30px 25px 20px 25px;
+  margin: -10px 25px 30px 25px;
 }
 
 /* 다음퀴즈 풀기 버튼 */
@@ -144,10 +154,31 @@
   border-radius: 15px;
   cursor: pointer;
   margin-top: 2%;
+  margin-bottom: 70px;
   transition: 0.5s ease;
 }
 
 .quizfailure-button-stop:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 총 몇 포인트 버튼 */
+.quizfailure-point-button {
+  width: 90%;
+  height: 45px;
+  background-color: #f9a825;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-bottom: 70px;
+  transition: 0.5s ease;
+}
+
+.quizfailure-point-button:hover {
   opacity: 0.8;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
