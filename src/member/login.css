@@ -1,41 +1,42 @@
+.login-container {
+  display: "flex";
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: "100vh";
+  padding: 20px;
+}
+.login-header {
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: bold;
+  font-size: 36px;
+}
+.login-header span {
+  color: #ff9500;
+}
 
-.login-container{
-    display: 'flex';
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: '100vh';
-    padding: 20px;
-}
-.login-header{
-    text-align: center;
-    margin-bottom: 40px;
-    font-weight: bold;
-    font-size: 36px;
-}
-.login-header span{
-    color: #ff9500;
-}
-img{
+.login-bear{
     margin-left: 10px;
     width: 120px;
     height: auto;
 }
-.login-form{
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    min-width: 350px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  min-width: 350px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.login-input{
+
+.login-input-box{
     margin-bottom: 20px;
 }
-input{
+.login-input{
     width: 100%;
     padding: 12px;
     margin-top: 8px;
@@ -43,28 +44,28 @@ input{
     border-radius: 4px;
     font-size: 16px;
 }
-.login-button{
-    padding: 12px;
-    background-color: #ff9500;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
+.login-button {
+  padding: 12px;
+  background-color: #ff9500;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
 }
-.login-error{
-    color: red;
-    font-size: 14px;
-    margin-bottom: 10px;
-    text-align: center;
+.login-error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: center;
 }
-.login-forgotPW{
-    width: 80%;
-    padding: 12px;
-    background-color: #f0f0f0;
-    color: #ff9500;
-    border: 1px solid #ff9500;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
+.login-forgotPW {
+  width: 80%;
+  padding: 12px;
+  background-color: #f0f0f0;
+  color: #ff9500;
+  border: 1px solid #ff9500;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
 }
