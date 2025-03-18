@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PlanMain from "../moneyPlan/PlanMain";
 import PlanWrite from "../moneyPlan/PlanWrite";
-import "../moneyPlan/moneyPlan.css"
+import "../moneyPlan/css/moneyPlan.css"
 import PlanChart from '../moneyPlan/PlanChart';
 import PlanComplete from '../moneyPlan/PlanComplete';
 import MoneyPlanConfirm from '../parent/MoneyPlanConfirm';

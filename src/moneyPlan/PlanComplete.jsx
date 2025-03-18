@@ -1,7 +1,7 @@
 import React from 'react';
 import deer2 from "../images/deer2.png";
 import Header from '../common/Header';
-import "./moneyPlan.css";
+import "../moneyPlan/css/moneyPlan.css";
 import { useNavigate } from 'react-router-dom';
 
 
