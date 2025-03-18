@@ -11,6 +11,9 @@ import StockList from "../stock/StockList";
 import StockDetail from "../stock/StockDetail";
 import StockInfoDetail from "../stock/StockInfoDetail";
 import MyStockProfit from "../stock/MyStockProfit";
+import StockBuy from "../stock/StockBuy";
+import StockBuyDone from "../stock/StockBuyDone";
+
 function StockRouter() {
   return (
     <div>
@@ -28,7 +31,7 @@ function StockRouter() {
         ></Route>
 
         <Route path="/stock/myStockProfit" element={<MyStockProfit />}></Route>
-        {/* <Route path="/stock/stockBuy" element={<StockBuy />}></Route>
+        {/* 
         <Route path="/stock/stockSell" element={<StockSell />}></Route>
         <Route path="/stock/tradeDone" element={<TradeDone />}></Route> */}
 
@@ -41,6 +44,8 @@ function StockRouter() {
         <Route path="/stock/rankDetail" element={<StockRankDetail />}></Route>
         <Route path="/stock/stockMain" element={<StockMain />}></Route>
         <Route path="/stock/list" element={<StockList />}></Route>
+        <Route path="/stock/stockBuy" element={<StockBuy />}></Route>
+        <Route path="/stock/buyDone" element={<StockBuyDone/>}></Route>
       </Routes>
     </div>
   );

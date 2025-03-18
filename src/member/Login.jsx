@@ -42,7 +42,11 @@ function Login(props) {
           sessionStorage.setItem("member_name", member_name);
           sessionStorage.setItem("member_type", member_type);
           sessionStorage.setItem("member_parent", member_parent);
-          navi("/main");
+          if(member_type === "parent"){
+            navi("/contract/parentMain");
+          } else{
+            navi("/main");
+          }
         } else {
           setMessage("로그인 실패!");
         }
