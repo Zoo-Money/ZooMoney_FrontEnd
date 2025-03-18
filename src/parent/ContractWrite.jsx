@@ -1,10 +1,10 @@
-import axios from "axios"; // Axios 추가
+import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import SignatureCanvas from "react-signature-canvas";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import "./css/contractWrite.css"; // CSS 파일 import
+import "./css/contractWrite.css";
 import { toast } from "react-toastify";
 
 const getFormattedDate = () => {

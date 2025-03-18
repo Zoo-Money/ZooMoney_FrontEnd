@@ -1,11 +1,11 @@
-import axios from "axios"; // Axios 추가
-import "bootstrap/dist/css/bootstrap.min.css"; // ✅ 추가
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import "./css/contractWriteChild.css"; // CSS 파일 import
+import "./css/contractWriteChild.css";
 
 const getFormattedDate = () => {
   const today = new Date();
@@ -20,15 +20,14 @@ const ContractWriteChild = () => {
   const [amount, setAmount] = useState("");
   const signatureRef = useRef(null); // 서명 캔버스 참조
   const [childName, setChildName] = useState("");
-
-  const childNum = sessionStorage.getItem("member_num");
+  const childNum = sessionStorage.getItem("childNum");
+  const memberNum = sessionStorage.getItem("member_num");
 
   // 오늘 날짜를 'YYYY-MM-DD' 형식으로 설정
   const today = new Date().toISOString().split("T")[0];
   const [contractDetails, setContractDetails] = useState(""); // 부모가 작성한 계약 내용
 
   useEffect(() => {
-    const childNum = sessionStorage.getItem("childNum");
     if (!childNum) {
       toast.error("아이 정보 관련 세션값이 없습니다.");
     }
@@ -89,7 +88,7 @@ const ContractWriteChild = () => {
 
     const contractData = {
       childSignature: signatureData, // 자녀의 서명 이미지 (Base64)
-      childNum: Number(childNum), // childNum 추가
+      childNum: Number(childNum),
     };
 
     try {
@@ -99,10 +98,9 @@ const ContractWriteChild = () => {
       );
 
       const response = await axios.get(
-        // "http://localhost:7777/zoomoney/member/select",
-        "http://localhost:7777/zoomoney/member/{memberNum}/select",
+        "http://localhost:7777/zoomoney/member/select",
         {
-          params: { childNum },
+          params: { memberNum: memberNum },
         }
       );
 
@@ -164,7 +162,6 @@ const ContractWriteChild = () => {
           <div className="contractWrtieChild-signature-box">
             <label>용돈 수취인</label>
             <div className="contractWrtieChild-signature">
-              {/* <span>신짱구</span> <span>(서명)</span> */}
               <span>{childName}</span> <span>(서명)</span>
             </div>
 

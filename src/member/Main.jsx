@@ -283,7 +283,7 @@ const Main = () => {
                 카드사용내역
               </button>
             </a>
-            <a href="/contract/contractSelect">
+            <a href="/contract/contractWriteChild">
               <button type="button" className="sendmoney-button">
                 용돈 계약서
               </button>
