@@ -14,7 +14,7 @@ function CardHistory() {
   const [, setLoading] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState("all");
   const memberNum = sessionStorage.getItem("member_num");
-  
+
   useEffect(() => {
     loadOrders(selectedPeriod);
     const tokenId = sessionStorage.getItem("cardMetadata");
@@ -27,10 +27,7 @@ function CardHistory() {
   const loadOrders = (period) => {
     axios
       .get("http://localhost:7777/zoomoney/card/select", {
-        params: { period },
-        headers: {
-          member_num: memberNum,
-        },
+        params: { period, memberNum },
       })
       .then((response) => {
         setHistoryList(response.data);

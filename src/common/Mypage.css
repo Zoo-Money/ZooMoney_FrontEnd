@@ -108,8 +108,13 @@
 }
 
 .myDetail {
-  max-height: calc(100vh - 160px);
+  max-height: calc(100vh - 180px);
   overflow-y: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.myDetail::-webkit-scrollbar {
+  display: none; /* Chrome , Safari , Opera */
 }
 
 .InfoTitle::before {
