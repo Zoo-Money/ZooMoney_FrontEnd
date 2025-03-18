@@ -9,9 +9,13 @@ import "./css/quizEnd.css";
 const QuizEnd = () => {
   const [correctAnswerCount, setCorrectAnswerCount] = useState(0); // 맞춘 퀴즈 데이터 개수를 저장할 상태
 
+  const memberNum = sessionStorage.getItem("member_num");
+
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/quiz/total")
+      .get("http://localhost:7777/zoomoney/quiz/total", {
+        params: { memberNum: memberNum },
+      })
       .then((response) => {
         setCorrectAnswerCount(response.data.correctAnswerCount); // 상태 업데이트
       })

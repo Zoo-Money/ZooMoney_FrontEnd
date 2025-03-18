@@ -14,10 +14,14 @@ const QuizMain = () => {
   const [correctAnswerCount, setCorrectAnswerCount] = useState(0); // 맞힌 정답 개수
   const [answerList, setAnswerList] = useState([]); // 푼 퀴즈 데이터 리스트
 
+  const memberNum = sessionStorage.getItem("member_num");
+
   useEffect(() => {
     // 📌 도전한 퀴즈 개수 가져오기
     axios
-      .get("http://localhost:7777/zoomoney/quiz/count")
+      .get("http://localhost:7777/zoomoney/quiz/count", {
+        params: { memberNum: memberNum },
+      })
       .then((response) => {
         setQuizCount(response.data.quizCount);
       })
@@ -27,7 +31,9 @@ const QuizMain = () => {
 
     // 📌 맞힌 정답 개수 가져오기
     axios
-      .get("http://localhost:7777/zoomoney/quiz/total")
+      .get("http://localhost:7777/zoomoney/quiz/total", {
+        params: { memberNum: memberNum },
+      })
       .then((response) => {
         setCorrectAnswerCount(response.data.correctAnswerCount);
       })
@@ -37,7 +43,9 @@ const QuizMain = () => {
 
     //  📌 문제별 정답 여부 List 가져오기
     axios
-      .get("http://localhost:7777/zoomoney/quiz/answerlist")
+      .get("http://localhost:7777/zoomoney/quiz/answerlist", {
+        params: { memberNum: memberNum },
+      })
       .then((response) => {
         setAnswerList(response.data.answerList || []); // 만약 answerList가 undefined이면 빈 배열로 설정
       })
@@ -81,11 +89,7 @@ const QuizMain = () => {
 
       {/* 메인 콘텐츠 */}
       <div className="quizmain-content">
-        <img
-          src={giraffe04}
-          alt="giraffe04"
-          className="quizmain-image"
-        />
+        <img src={giraffe04} alt="giraffe04" className="quizmain-image" />
         {/* 총 점수 */}
         <div className="quizmain-total-box">
           <div className="quizmain-total">
