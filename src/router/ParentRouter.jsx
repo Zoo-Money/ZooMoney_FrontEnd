@@ -4,6 +4,7 @@ import ChildEventSend from "../parent/ChildEventSend";
 import MoneyPlanConfirm from "../parent/MoneyPlanConfirm";
 import ParentAccount from "../parent/ParentAccount";
 import ParentMain from "../parent/ParentMain";
+import CardHistoryParent from "../card/CardHistoryParent";
 
 function ParentRouter() {
   return (
@@ -12,6 +13,7 @@ function ParentRouter() {
       <Route path="/parent/childEventSend" element={<ChildEventSend />}></Route>
       <Route path="/parent/account" element={<ParentAccount />}></Route>
       <Route path="/parent/confirm" element={<MoneyPlanConfirm />}></Route>
+      <Route path="/card/usehistoryParent" element={<CardHistoryParent />} />
     </Routes>
   );
 }

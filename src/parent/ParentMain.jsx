@@ -84,7 +84,7 @@ const ParentMain = () => {
     navigate("/parent/childEventSend");
   };
   const gocusumehistory = () => {
-    navigate("/card/usehistory");
+    navigate("/card/usehistoryParent");
   };
   const goPattern = () => {
     navigate("/card/pattern");
