@@ -312,8 +312,8 @@ export const fetchCardInfo = async (memberNum, setTokenId, setNewLoading) => {
     const response = await axios.get(
       "http://localhost:7777/zoomoney/card/get",
       {
-        headers: {
-          member_num: memberNum, // 요청 헤더로 전달
+        params: {
+          member_num: memberNum, // 쿼리 파라미터로 전달
         },
       }
     );
