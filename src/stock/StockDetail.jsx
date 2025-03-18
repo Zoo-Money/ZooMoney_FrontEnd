@@ -1,23 +1,29 @@
 import { Chart, registerables } from "chart.js";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import CompanyInfo from "./CompanyInfo";
 import "./css/StockDetail.css";
 import StockNews from "./StockNews";
 
-Chart.register(...registerables); // Chart.js 등록
+Chart.register(...registerables);
 const StockDetail = () => {
-  const { stockId, stockName } = useParams(); // URL에서 infoNum 가져오기
-  const [tr_key] = useState(stockId); // 종목 코드
+  const { stockId, stockName } = useParams();
+  const [tr_key] = useState(stockId);
 
-  const [activeTab, setActiveTab] = useState("company"); //기본값 : 회사정보
+  const [activeTab, setActiveTab] = useState("company");
   const [latestPrice, setLatestPrice] = useState(null);
 
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate("/stock/stockBuy", { state: { latestPrice } });
+  };
+
   const [chartData, setChartData] = useState({
-    labels: [], // 시간
+    labels: [],
     datasets: [
       {
         label: "실시간 체결가",
@@ -43,12 +49,11 @@ const StockDetail = () => {
           const currentPrice = parseFloat(stockInfo[2]); // 현재가
           const time = stockInfo[1]; // 체결 시간
           const timeString = String(time); // time 값을 문자열로 변환
+
           // 데이터 추가 (최대 50개로 제한)
           setChartData((prevData) => {
-            const newLabels = [...prevData.labels, timeString].slice(-50); // 시간
-            const newData = [...prevData.datasets[0].data, currentPrice].slice(
-              -50
-            ); // 가격
+            const newLabels = [...prevData.labels, timeString]; // 시간
+            const newData = [...prevData.datasets[0].data, currentPrice]; // 가격
             return {
               labels: newLabels,
               datasets: [
@@ -67,7 +72,7 @@ const StockDetail = () => {
     ws.onerror = (error) => {
       console.error("WebSocket 에러 발생:", error);
     };
-    // 컴포넌트가 언마운트되거나 종목 코드가 변경될 때 연결 종료
+
     return () => {
       ws.close();
     };
@@ -94,24 +99,24 @@ const StockDetail = () => {
             scales: {
               x: {
                 grid: {
-                  display: false, // x축 눈금 없애기
+                  display: false,
                 },
                 ticks: {
-                  display: false, // x축 숫자 없애기
+                  display: false,
                 },
               },
               y: {
                 grid: {
-                  display: false, // y축 눈금 없애기
+                  display: false,
                 },
                 ticks: {
-                  display: false, // y축 숫자 없애기
+                  display: false,
                 },
               },
             },
             elements: {
               point: {
-                radius: 0, // 동그라미 없애기
+                radius: 0,
               },
             },
           }}
@@ -135,10 +140,16 @@ const StockDetail = () => {
         </button>
       </div>
 
-      {/* 선택된 컴포넌트 렌더링 */}
       <div className="DetailOption-content">
         {activeTab === "company" ? <CompanyInfo /> : <StockNews />}
       </div>
+      {activeTab === "company" && (
+        <div>
+          <button className="goToBuy-button" onClick={handleButtonClick}>
+            사러가기
+          </button>
+        </div>
+      )}
       <Footer />
     </div>
   );
