@@ -50,11 +50,6 @@ const Main = () => {
         await list();
         await count();
       });
-
-      // 컴포넌트 언마운트 시 연결 종료
-    return () => {
-      eventSource.close();
-    };
     };
 
     // 사용자의 알림 목록 조회

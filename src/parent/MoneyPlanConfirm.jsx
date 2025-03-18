@@ -20,7 +20,7 @@ function MoneyPlanConfirm(props) {
         </div>
         <div className="planmain-box">
           <div className="planmain-chart-box">
-            <SelectChart></SelectChart>
+            <SelectChart />
           </div>
         </div>
       </div>
