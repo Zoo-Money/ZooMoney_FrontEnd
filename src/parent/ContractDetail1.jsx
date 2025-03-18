@@ -21,14 +21,6 @@ const ContractDetail1 = () => {
     setOpenContract(openContract === index ? null : index); // 동일한 항목 클릭 시 닫힘
   };
 
-  // 계약서 데이터 (임시 데이터)
-  // const contracts = [
-  //   { date: "2023. 01. 06", file: "/contract1.pdf" },
-  //   { date: "2023. 01. 15", file: "/contract2.pdf" },
-  //   { date: "2023. 02. 10", file: "/contract3.pdf" },
-  //   { date: "2023. 03. 10", file: "/contract4.pdf" },
-  //   { date: "2023. 05. 15", file: "/contract4.pdf" },
-  // ];
   useEffect(() => {
     const childNum = sessionStorage.getItem("childNum"); // 세션 값 가져오기
     axios
@@ -62,7 +54,6 @@ const ContractDetail1 = () => {
               {openContract === index && (
                 <div className="pdf-viewer">
                   <Document
-                    // file={contract.file}
                     file={`http://localhost:7777/zoomoney${contract.contractFilepath}`}
                     onLoadError={(error) =>
                       console.error("PDF 로드 오류:", error)
