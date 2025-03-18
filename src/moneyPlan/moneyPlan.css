@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.img-deer {
+.planmain-deer {
   width: 120px;
   height: auto;
   transform: scaleX(-1);
@@ -197,16 +197,7 @@
   height: 22px;
   margin-top: 8px;
 }
-.etc {
-  margin-left: 20px;
-}
-.description {
-  font-size: 15px;
-  color: #5a5a5a;
-  line-height: 1.5;
-  font-weight: 500;
-  margin: 10px 25px 100px 25px;
-}
+
 /* PlanChart와 버튼을 겹치지 않게 배치 */
 .plan-write-container {
   /* PlanWrite 내용이 보일 때 스타일 */
@@ -226,7 +217,7 @@
 .plancomplete-content {
   text-align: center;
 }
-.img-deer2 {
+.plancomplete-img {
   margin-top: 50px;
   width: 200px;
 }

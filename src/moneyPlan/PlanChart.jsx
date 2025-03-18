@@ -59,6 +59,7 @@ function PlanChart(props) {
             toast.error("저장 중 오류가 발생했습니다.");
         });
     };
+    
     //차트 스타일
     const options = {
         responsive: true,
