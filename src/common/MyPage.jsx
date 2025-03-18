@@ -4,7 +4,7 @@ import Footer from "../common/Footer";
 import "./Mypage.css";
 import axios from "axios";
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
-import bear3 from "../images/bear03.png";
+import bear02 from "../images/bear/bear02.png";
 import { Link } from "react-router-dom";
 
 function MyPage() {
@@ -24,7 +24,7 @@ function MyPage() {
       .catch((error) => {
         console.error("Error fetching member info:", error);
       });
-  }, []);
+  }, [memberNum]);
   if (!memberInfo) {
     return <div>Loading...</div>; // 데이터가 로딩되지 않았을 때 화면에 로딩 메시지를 보여줍니다.
   }
@@ -37,7 +37,7 @@ function MyPage() {
         <div className="myDetail">
           <p className="mytitle">내정보</p>
           <div className="info-card">
-            <img src={bear3} alt="곰돌이" className="bear-img" />
+            <img src={bear02} alt="bear02" className="bear-img" />
             <div className="info-row">
               <span className="label">아이디</span>
               <span className="InfoTitle">{memberInfo.memberId}</span>

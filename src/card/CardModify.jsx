@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import defaultCardImage01 from "../images/caramelcard.png";
-import defaultCardImage from "../images/defaultcard.png";
-import defaultCardImage03 from "../images/pinkcard.png";
-import defaultCardImage04 from "../images/skybluecard.png";
-import defaultCardImage02 from "../images/yellowcard.png";
-import "./css/CardModify.css";
+import card00 from "../images/card/card00.png";
+import card01 from "../images/card/card01.png";
+import card02 from "../images/card/card02.png";
+import card03 from "../images/card/card03.png";
+import card04 from "../images/card/card04.png";
 import { fetchCardInfo, fetchMetadata, mintNFT } from "./CardService";
-import { toast } from "react-toastify";
+import "./css/CardModify.css";
 const CardModify = () => {
   const [file, setFile] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -53,7 +53,7 @@ const CardModify = () => {
 
     // 파일이 없을 경우, 선택한 이미지(selectedImage)를 사용하여 변환
     if (!fileToUpload) {
-      const imageToUse = selectedImage || defaultCardImage;
+      const imageToUse = selectedImage || card00;
       const response = await fetch(imageToUse);
       const blob = await response.blob();
       fileToUpload = new File([blob], "selected-card.png", {
@@ -120,7 +120,7 @@ const CardModify = () => {
                   ? selectedImage
                   : previewUrl // 이미지 첨부한 경우 previewUrl이 있다면 그것을 표시
                   ? previewUrl
-                  : metadata?.image || defaultCardImage // 선택한 이미지나 첨부한 이미지가 없다면, 기본적으로 metadata.image 또는 기본 이미지를 표시
+                  : metadata?.image || card00 // 선택한 이미지나 첨부한 이미지가 없다면, 기본적으로 metadata.image 또는 기본 이미지를 표시
               }
               alt="미리보기"
               className="card-image"
@@ -132,11 +132,11 @@ const CardModify = () => {
       {/* 카드 기본 이미지 선택 */}
       <div className="image-container">
         {[
-          { image: defaultCardImage01, bgColor: "bg-orange-500" },
-          { image: defaultCardImage02, bgColor: "bg-yellow-400" },
-          { image: defaultCardImage03, bgColor: "bg-pink-400" },
-          { image: defaultCardImage04, bgColor: "bg-gray-700" },
-          { image: defaultCardImage, bgColor: "bg-gray-700" },
+          { image: card00, bgColor: "bg-gray-700" },
+          { image: card01, bgColor: "bg-orange-500" },
+          { image: card02, bgColor: "bg-yellow-400" },
+          { image: card03, bgColor: "bg-pink-400" },
+          { image: card04, bgColor: "bg-gray-700" },
         ].map((item, index) => (
           <div
             key={index}

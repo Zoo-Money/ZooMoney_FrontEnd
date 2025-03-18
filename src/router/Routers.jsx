@@ -1,24 +1,22 @@
 import React from "react";
 import AccountRouter from "./AccountRouter";
-import NotifyRouter from "./NotifyRouter";
-import StockRouter from "./StockRouter";
 import CardRouter from "./CardRouter";
 import ContractRouter from "./ContractRouter";
-import QuizRouter from "./QuizRouter";
-import MoneyPlanRouter from "./MoneyPlanRouter";
 import DailyRouter from "./DailyRouter";
 import MemberRouter from "./MemberRouter";
+import MoneyPlanRouter from "./MoneyPlanRouter";
+import QuizRouter from "./QuizRouter";
+import StockRouter from "./StockRouter";
 
 function Routers() {
   return (
     <div>
       <StockRouter />
       <AccountRouter />
-      <NotifyRouter />
       <CardRouter />
       <ContractRouter />
       <QuizRouter />
-      <MoneyPlanRouter></MoneyPlanRouter>
+      <MoneyPlanRouter />
       <DailyRouter />
       <MemberRouter />
     </div>

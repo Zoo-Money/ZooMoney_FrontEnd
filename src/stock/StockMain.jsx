@@ -3,23 +3,23 @@ import { FaQuestionCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import rabbit01 from "../images/rabbit01.png";
+import rabbit01 from "../images/rabbit/rabbit01.png";
 import "./css/stockMain.css";
 
 function StockMain(props) {
-    const navi = useNavigate();
-    const goStockList = ()=>{
-        navi("/stock/list");
-    };
+  const navi = useNavigate();
+  const goStockList = () => {
+    navi("/stock/list");
+  };
   return (
     <div className="mock-container">
       <Header title="모의투자" />
       <div className="stock-main-header">
         <Link to="/stock/info">
-        <div className="stock-main-info">
-          <FaQuestionCircle className="questionmark"/>
-          <span>주식에 대해 궁금해요!</span>
-        </div>
+          <div className="stock-main-info">
+            <FaQuestionCircle className="questionmark" />
+            <span>주식에 대해 궁금해요!</span>
+          </div>
         </Link>
         <img src={rabbit01} alt="rabbit01" />
       </div>
@@ -46,7 +46,9 @@ function StockMain(props) {
         <div className="stock-main-mystock-list"></div>
       </div>
 
-      <button className="stock-main-button" onClick={goStockList}>투자하러 가기</button>
+      <button className="stock-main-button" onClick={goStockList}>
+        투자하러 가기
+      </button>
       <Footer />
     </div>
   );

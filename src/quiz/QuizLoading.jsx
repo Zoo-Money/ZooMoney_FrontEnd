@@ -1,8 +1,8 @@
 import React from "react";
-import "./css/quizLoading.css";
 import Footer from "../common/Footer";
-import giraffeLoading from "../images/quiz/giraffe_main.png";
 import Header from "../common/Header";
+import giraffe04 from "../images/giraffe/giraffe04.png";
+import "./css/quizLoading.css";
 
 const QuizLoading = () => {
   return (
@@ -11,11 +11,7 @@ const QuizLoading = () => {
 
       {/* 로딩 콘텐츠 */}
       <div className="quizloading-content">
-        <img
-          src={giraffeLoading}
-          alt="퀴즈 로딩 캐릭터"
-          className="quizloading-image"
-        />
+        <img src={giraffe04} alt="giraffe04" className="quizloading-image" />
 
         <p className="quizloading-description">잠시만 기다려주세요~</p>
       </div>

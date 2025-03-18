@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import giraffeQuiz from "../images/quiz/giraffe_quiz.png";
+import giraffe05 from "../images/giraffe/giraffe05.png";
 import O from "../images/quiz/O.png";
 import X from "../images/quiz/X.png";
 import QuizLoading from "./QuizLoading";
@@ -73,11 +73,7 @@ const QuizQuiz = () => {
     <div className="mock-container">
       <Header title="QUIZ 풀기" />
       <div className="quizquiz-content">
-        <img
-          src={giraffeQuiz}
-          alt="퀴즈 출제 캐릭터"
-          className="quizquiz-image"
-        />
+        <img src={giraffe05} alt="giraffe05" className="quizquiz-image" />
         <div className="quizquiz-board">
           <div className="quizquiz-num">
             <p className="quizquiz-number">
