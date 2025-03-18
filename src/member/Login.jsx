@@ -23,7 +23,6 @@ function Login(props) {
       withCredentials: true,
     })
       .then((responseData) => {
-        console.log(responseData.data);
         if (responseData.data.message === "로그인 성공") {
           setMessage("로그인 성공!");
           const {
@@ -52,7 +51,7 @@ function Login(props) {
         }
       })
       .catch((err) => {
-        console.log("로그인 중 오류", err);
+        console.error("로그인 중 오류", err);
       });
   };
 

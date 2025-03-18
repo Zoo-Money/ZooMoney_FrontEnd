@@ -17,7 +17,6 @@ const CompanyInfo = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Stock Info:", data);
         // stock_info에 저장
         setStockInfo(data.stock_info || "정보 없음");
       })

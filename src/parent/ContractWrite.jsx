@@ -36,7 +36,7 @@ const ContractWrite = () => {
         setParentName(response.data.parentName); // 부모이름 상태 저장
       })
       .catch((error) => {
-        console.log("부모이름 불러오기 실패:" + error);
+        console.error("부모이름 불러오기 실패:" + error);
         setParentName("부모이름 불러오기 실패"); // 실패시 기본값
       });
   }, []);

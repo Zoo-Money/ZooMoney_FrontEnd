@@ -102,7 +102,7 @@
 .AccountMainCreate {
   position: fixed;
   bottom: 0;
-  margin-bottom: 6rem;
+  margin-bottom: 85px;
   display: flex;
   flex-direction: column;
 }

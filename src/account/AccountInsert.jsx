@@ -75,7 +75,7 @@ const AccountInsert = () => {
       }
 
       // 저금통 저금
-      //await mintTokens(amount);
+      await mintTokens(amount);
 
       // 카드 금액 변경
       await axios.put(
@@ -94,8 +94,6 @@ const AccountInsert = () => {
           params: { amount: amount }, // 쿼리 파라미터로 amount 전달
         }
       );
-
-      console.log(status);
 
       navigate("/account/end", {
         state: { accountName, status },

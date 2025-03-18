@@ -32,7 +32,7 @@ function PlanWrite(props) {
             setPlanMoney(resposeData.data);
           })
           .catch((error) => {
-            console.log(error);
+            console.error(error);
           });
     },[]);
 

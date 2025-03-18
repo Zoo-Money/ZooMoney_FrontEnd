@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Legend, Tooltip, Title } from "chart.js";
 import axios from "axios";
-import { categoryName } from "./resources/patternCommon";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
 import dayjs from "dayjs";
-import Header from "../common/Header";
+import React, { useEffect, useRef, useState } from "react";
+import { Doughnut } from "react-chartjs-2";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Footer from "../common/Footer";
+import Header from "../common/Header";
 import "./css/CardConsumeChart.css";
+import { categoryName } from "./resources/patternCommon";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
@@ -43,7 +43,7 @@ function PatternChart() {
         setPlanMoney(resposeData.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
 
@@ -136,10 +136,6 @@ function PatternChart() {
       previousHighestCategoryRef.current = highestCategory; // 가장 최근의 값을 저장
     }
 
-    console.log(
-      "카테고리별 합산된 금액:",
-      JSON.stringify(categorizedData, null, 2)
-    );
     return categorizedData;
   };
 

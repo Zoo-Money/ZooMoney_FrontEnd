@@ -45,7 +45,7 @@ function StockHistory(props) {
         setRanking(responseData.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }, []);
 
