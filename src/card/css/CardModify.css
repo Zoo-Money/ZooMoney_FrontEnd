@@ -3,7 +3,6 @@
   height: 300px; /* 세로 신용카드의 세로 크기 (약 300px, 1:1.59 비율) */
   overflow: hidden; /* 이미지가 범위를 벗어나지 않도록 설정 */
   border-radius: 12px; /* 신용카드 모서리 둥글게 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
   position: relative;
 }
 
@@ -14,12 +13,12 @@
   border-radius: 12px; /* 이미지의 모서리도 둥글게 설정 */
 }
 
-.image-container {
+.modifyimage-container {
   display: flex;
   flex-direction: row; /* 가로로 배치 */
   gap: 1rem; /* 간격 조정 (space-x-4와 유사) */
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .modifyimage-item {
@@ -30,7 +29,6 @@
   align-items: center;
   border-radius: 1rem; /* rounded-2xl */
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* shadow-md */
 }
 
 .modifyimage-img {
@@ -59,7 +57,7 @@
   position: relative;
 }
 
-.text-container {
+.modifytext-container {
   display: flex;
   flex-direction: column;
   line-height: 1.2;
@@ -83,6 +81,7 @@
   border: none; /* 테두리 없앰 */
   border-radius: 10px; /* 둥근 모서리 */
   cursor: pointer; /* 마우스 커서 */
+  margin-top: 10px;
 }
 
 /* 비활성화된 버튼 */

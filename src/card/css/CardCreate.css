@@ -1,28 +1,27 @@
-.card-preview {
+.createcard-preview {
   width: 188px; /* 세로 신용카드의 가로 크기 (약 188px) */
   height: 300px; /* 세로 신용카드의 세로 크기 (약 300px, 1:1.59 비율) */
   overflow: hidden; /* 이미지가 범위를 벗어나지 않도록 설정 */
   border-radius: 12px; /* 신용카드 모서리 둥글게 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
   position: relative;
 }
 
-.card-image {
+.createcard-image {
   width: 100%; /* 이미지의 너비를 카드에 맞춤 */
   height: 100%; /* 이미지의 높이를 카드에 맞춤 */
   object-fit: cover; /* 이미지 비율을 유지하면서 카드 안에 맞게 자름 */
   border-radius: 12px; /* 이미지의 모서리도 둥글게 설정 */
 }
 
-.image-container {
+.createimage-container {
   display: flex;
   flex-direction: row; /* 가로로 배치 */
   gap: 1rem; /* 간격 조정 (space-x-4와 유사) */
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
-.image-item {
+.createimage-item {
   width: 70%; /* 세로 신용카드의 가로 크기 (약 188px) */
   height: 70%; /* 세로 신용카드의 세로 크기 (약 300px, 1:1.59 비율) */
   display: flex;
@@ -30,10 +29,9 @@
   align-items: center;
   border-radius: 1rem; /* rounded-2xl */
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* shadow-md */
 }
 
-.image-img {
+.createimage-img {
   width: 100%; /* 이미지의 너비를 카드에 맞춤 */
   height: 100%; /* 이미지의 높이를 카드에 맞춤 */
   object-fit: cover; /* 이미지 비율을 유지하면서 카드 안에 맞게 자름 */
@@ -59,7 +57,7 @@
   position: relative;
 }
 
-.text-container {
+.createtext-container {
   display: flex;
   flex-direction: column;
   line-height: 1.2;
@@ -71,10 +69,9 @@
   height: 100%;
   opacity: 0;
   cursor: pointer;
-  margin-top: 10px;
 }
 /* NFT 발행 버튼 스타일 */
-.button-style {
+.createbutton-style {
   width: 80%; /* 버튼 너비 */
   height: 45px; /* 버튼 높이 */
   background-color: #f9a825; /* 주황색 배경 */
@@ -84,9 +81,10 @@
   border: none; /* 테두리 없앰 */
   border-radius: 10px; /* 둥근 모서리 */
   cursor: pointer; /* 마우스 커서 */
+  margin-top: 10px;
 }
 
 /* 비활성화된 버튼 */
-.button-style:disabled {
+.createbutton-style:disabled {
   background-color: #d1d5db; /* 비활성화된 버튼 색상 */
 }
