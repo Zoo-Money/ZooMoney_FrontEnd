@@ -23,6 +23,7 @@ const ContractWrite = () => {
   const [inputValue, setInputValue] = useState("");
   const [date, setDate] = useState("");
   const [parentName, setParentName] = useState("");
+  const parentId = sessionStorage.getItem("member_num");
 
   // 계약 세부사항에 '수정 중인 인덱스' 추가
   const [editingIndex, setEditingIndex] = useState(null);
@@ -30,7 +31,7 @@ const ContractWrite = () => {
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/contract/parentInfo", {
-        params: { parentId: 2 },
+        params: { parentId: parentId },
       })
       .then((response) => {
         setParentName(response.data.parentName); // 부모이름 상태 저장
@@ -135,7 +136,10 @@ const ContractWrite = () => {
     try {
       const response = await axios.post(
         "http://localhost:7777/zoomoney/contract/saveDraft",
-        contractData
+        contractData,
+        {
+          params: { parentId: sessionStorage.getItem("member_num") }, // params로 parentId 전달
+        }
       );
 
       await axios.post("http://localhost:7777/zoomoney/notify/send", {

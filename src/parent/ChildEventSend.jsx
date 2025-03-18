@@ -195,7 +195,6 @@ const ChildEventSend = () => {
             <button
               className="Child-Event-Send-submit-button"
               onClick={handleSendAllowance}
-              // disabled={!isFormValid}
             >
               용돈 보내기
             </button>

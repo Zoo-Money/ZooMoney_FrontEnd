@@ -81,7 +81,7 @@ const ParentMain = () => {
   const goMoneyPlan = () => {
     navigate("/moneyPlan/confirm");
   };
-  const ChildEventSend = () => {
+  const goChildEventSend = () => {
     navigate("/contract/childEventSend");
   };
   return (
@@ -138,7 +138,7 @@ const ParentMain = () => {
           </div>
           <button className="consumptionhistory-button">소비내역 확인</button>
         </div>
-        <button className="sendmoney-button" onClick={ChildEventSend}>
+        <button className="sendmoney-button" onClick={goChildEventSend}>
           송금하기
         </button>
       </div>
