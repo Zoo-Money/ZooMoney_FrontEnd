@@ -125,8 +125,7 @@ const ChildEventSend = () => {
         { amount: Number(amount) } //숫자변환
       );
       toast.error("용돈 송금에 성공했습니다.");
-      // navigate("/contract/parentMain"); // 성공 시 ParentMain 페이지로 이동
-      navigate(`/contract/parentMain?childNum=${storedChildNum}`); // childNum 전달
+      navigate(`/parent/main?childNum=${storedChildNum}`); // childNum 전달
     } catch (error) {
       console.error("송금 실패:", error);
       toast.error("송금에 실패했습니다. 다시시도해주세요");

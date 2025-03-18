@@ -83,8 +83,13 @@ const ParentMain = () => {
   const goMoneyPlan = () => {
     navigate("/moneyPlan/confirm");
   };
+
   const ChildEventSend = () => {
-    navigate("/contract/childEventSend");
+    navigate("/parent/childEventSend");
+  };
+
+  const goAccount = () => {
+    navigate("/parent/account", { state: { target: selectedChild } }); // state로 전달
   };
   return (
     <div className="mock-container">
@@ -163,7 +168,7 @@ const ParentMain = () => {
           <img src={consumpPattern} alt="소비패턴 분석" />
           <p>소비패턴 분석</p>
         </div>
-        <div className="feature-card card-pink">
+        <div className="feature-card card-pink" onClick={goAccount}>
           <img src={piggyBank} alt="저금통 확인" />
           <p>저금통 확인</p>
         </div>
