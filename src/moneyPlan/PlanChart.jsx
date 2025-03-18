@@ -2,11 +2,11 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import "./moneyPlan.css";
+import "../moneyPlan/css/moneyPlan.css";
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Legend, Tooltip } from 'chart.js';
 import axios from 'axios';
-import {categoryName} from "./planCommon.js";
+import {categoryName} from "../moneyPlan/resource/planCommon.js";
 import { toast } from 'react-toastify';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -59,6 +59,7 @@ function PlanChart(props) {
             toast.error("저장 중 오류가 발생했습니다.");
         });
     };
+    
     //차트 스타일
     const options = {
         responsive: true,

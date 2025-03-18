@@ -62,24 +62,28 @@ function Login(props) {
       <div className="login-container">
         <div className="login-header">
           <span>Zoo</span>Money
-          <img className="login-image" src={bear04} alt="bear04" />
+
+          <img className='login-bear' src={bear04} alt="bear04" />
+
+
+
         </div>
         <form className="login-form" onSubmit={handleSubmit}>
-          <div className="login-input">
+          <div className="login-input-box">
             <label htmlFor="username">아이디</label>
             <input
+              className='login-input'
               type="text"
-              id="username"
               placeholder="아이디를 입력하세요"
               value={memberId}
               onChange={(e) => setMemberId(e.target.value)}
             />
           </div>
-          <div className="login-input">
+          <div className="login-input-box">
             <label htmlFor="password">비밀번호</label>
             <input
               type="password"
-              id="password"
+              className='login-input'
               placeholder="비밀번호를 입력하세요"
               value={memberPw}
               onChange={(e) => setMemberPw(e.target.value)}
