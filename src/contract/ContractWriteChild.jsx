@@ -1,11 +1,11 @@
-import axios from "axios"; // Axios 추가
-import "bootstrap/dist/css/bootstrap.min.css"; // ✅ 추가
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import "./css/contractWriteChild.css"; // CSS 파일 import
+import "./css/contractWriteChild.css";
 
 const getFormattedDate = () => {
   const today = new Date();
@@ -20,45 +20,37 @@ const ContractWriteChild = () => {
   const [amount, setAmount] = useState("");
   const signatureRef = useRef(null); // 서명 캔버스 참조
   const [childName, setChildName] = useState("");
+  const childNum = sessionStorage.getItem("childNum");
+  const memberNum = sessionStorage.getItem("member_num");
 
-  // 세션에 저장된 childNum 가져오기
+  // 오늘 날짜를 'YYYY-MM-DD' 형식으로 설정
+  const today = new Date().toISOString().split("T")[0];
+  const [contractDetails, setContractDetails] = useState(""); // 부모가 작성한 계약 내용
+
   useEffect(() => {
-    const storedChildNum = sessionStorage.getItem("childNum");
-
-    if (!storedChildNum) {
+    if (!childNum) {
       toast.error("아이 정보 관련 세션값이 없습니다.");
-      // sessionStorage.setItem("childNum", "1"); // 기본값 설정 (테스트용)
     }
   }, []);
-
-  // 세션에서 childNum 가져와서 API 요청에 사용
-  const childNum = sessionStorage.getItem("childNum");
-  const memberNum = childNum;
 
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/contract/childInfo", {
-        // params: { childId: 1 },
         params: { childId: childNum },
       })
       .then((response) => {
-        setChildName(response.data.childName); // 아이이름 상태 저장
+        setChildName(response.data.childName);
       })
       .catch((error) => {
-        console.error("아이이름 불러오기 실패:" + error);
-        setChildName("아이이름 불러오기 실패"); // 실패시 기본값
+        setChildName("아이이름 불러오기 실패");
       });
-  });
-
-  // 오늘 날짜를 'YYYY-MM-DD' 형식으로 설정
-  // const today = new Date().toISOString().split("T")[0];
+  }, []);
 
   // 부모가 작성한 계약 내용
-  const [contractDetails, setContractDetails] = useState("");
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/contract/getDetails", {
-        params: { childId: childNum }, // 세션값 childNum 사용
+        params: { childId: childNum },
       })
       .then((response) => {
         if (response.data && response.data.contractMoney) {
@@ -67,7 +59,7 @@ const ContractWriteChild = () => {
           setAmount("금액 정보를 찾을 수 없습니다.");
         }
         if (response.data && response.data.contractContent) {
-          //  부모가 작성한 계약 내용을 세부사항에 표시
+          // 부모가 작성한 계약 내용을 세부사항에 표시
           // 계약 상세내용 줄바꿈 적용
           setContractDetails(
             response.data.contractContent.replace(/\n/g, "<br>")
@@ -82,7 +74,6 @@ const ContractWriteChild = () => {
           "예외: 계약서 내용을 불러오지 못했습니다.(용돈계약서 작성필요)"
         );
       });
-    // }, []);
   }, [childNum]);
 
   // 서명 지우기
@@ -95,29 +86,22 @@ const ContractWriteChild = () => {
     //  서명 이미지를 Base64 데이터로 변환
     const signatureData = signatureRef.current.toDataURL("image/png");
 
-    // 계약서 ID 가져오기 (예: 부모가 작성한 계약서 조회 결과에서 가져옴)------ 하드코딩 추후수정필요
-    // const contractNum = 48; // 🔹 실제 계약 번호를 여기에 전달해야 함
-    // const childNum = 35; // 🔹 실제 계약 번호를 여기에 전달해야 함
-
-    //  전송할 데이터 구성
     const contractData = {
-      // contract_money: parseInt(amount.replace(/,/g, ""), 10), // 금액에서 ',' 제거 후 정수 변환
-      // contract_status: false, // 초안 상태
-      // contract_excelpath: signatureData, // Base64 서명 이미지 전송
-      // contractNum: contractNum, // ✅ 계약 번호 (서버에서 해당 계약을 식별하는 값)
-      childSignature: signatureData, // ✅ 자녀의 서명 이미지 (Base64)
-      childNum: Number(childNum), // ✅ childNum 추가
+      childSignature: signatureData, // 자녀의 서명 이미지 (Base64)
+      childNum: Number(childNum),
     };
 
     try {
-      //  Axios POST 요청으로 데이터 전송
       await axios.post(
         "http://localhost:7777/zoomoney/contract/complete",
         contractData
       );
 
       const response = await axios.get(
-        `http://localhost:7777/zoomoney/member/${memberNum}/select`
+        "http://localhost:7777/zoomoney/member/select",
+        {
+          params: { memberNum: memberNum },
+        }
       );
 
       await axios.post("http://localhost:7777/zoomoney/notify/send", {
@@ -157,10 +141,7 @@ const ContractWriteChild = () => {
           <div className="contractWrtieChild-amount-input-containerTop">
             <label>지급금액</label>
             <div className="contractWrtieChild-amount-input-container">
-              {/* <span>{amount} 원</span> */}
-              <span className="contractWrtieChild-amount-number">
-                {amount}
-              </span>{" "}
+              <span className="contractWrtieChild-amount-number">{amount}</span>{" "}
               <span>원</span>
             </div>
           </div>
@@ -181,7 +162,6 @@ const ContractWriteChild = () => {
           <div className="contractWrtieChild-signature-box">
             <label>용돈 수취인</label>
             <div className="contractWrtieChild-signature">
-              {/* <span>신짱구</span> <span>(서명)</span> */}
               <span>{childName}</span> <span>(서명)</span>
             </div>
 
