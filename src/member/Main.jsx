@@ -6,9 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { fetchCardInfo, fetchMetadata } from "../card/CardService";
 import Footer from "../common/Footer";
 import defaultCardImage from "../images/cardmain.png"; // 기본 이미지 경로
-import daily from "../images/daily.png";
-import moneyplan from "../images/moneyplan.png";
-import pattern from "../images/pattern.png";
+import pig00 from "../images/pig/pig00.png";
+import deer02 from "../images/deer/deer02.png";
+import rabbit01 from "../images/rabbit/rabbit01.png";
 import quiz from "../images/quiz.png";
 import "./Main.css";
 
@@ -256,7 +256,7 @@ const Main = () => {
 
       <div className="cardMain-container">
         {/* 카드 이미지 미리보기 */}
-        <div>
+        <div className="card-main-box">
           <div className="mycard-preview">
             {loading ? (
               <div className="loading-overlay">로딩 중...</div> // 로딩 중 UI (예: 텍스트나 애니메이션)
@@ -290,50 +290,70 @@ const Main = () => {
         </div>
 
         {/* 용돈 정보 카드 */}
-        <div className="allowance-card">
-          <div className="card-header">
-            <div className="allowance-text">
-              <p className="allowance-title">나의 용돈</p>
-              <p className="allowance-amount">{allowanceAmount}</p>
-            </div>
+        <div className="allowance-card-box">
+          <div className="allowance-text">
+            <span>나의 용돈</span>
+            <span>{allowanceAmount}</span>
           </div>
-          <div className="button-group">
-            <a href="/card/usehistory">
-              <button type="button" className="sendmoney-button">
-                카드사용내역
-              </button>
+
+          <div className="cardmainbutton-group">
+            <a
+              href={
+                metadata && metadata.image ? "/card/usehistory" : "/card/create"
+              }
+            >
+              카드사용내역
             </a>
-            <a href="/contract/contractWriteChild">
-              <button type="button" className="sendmoney-button">
-                용돈 계약서
-              </button>
+
+            <span>|</span>
+            <a
+              href={
+                metadata && metadata.image
+                  ? "/contract/contractSelect"
+                  : "/card/create"
+              }
+            >
+              용돈 계약서
+
             </a>
           </div>
         </div>
 
         {/* 기능 카드 버튼 */}
-        <div className="grid grid-cols-2 gap-4 mt-6 w-full">
-          <a href="/card/pattern" className="feature-card card-skyblue">
+        <div className="grid grid-cols-2 gap-2 mt-1 w-full">
+          <a
+            href={metadata && metadata.image ? "/card/pattern" : "/card/create"}
+            className="feature-card-main card-skyblue"
+          >
             <div>
-              <img src={pattern} alt="소비 패턴 분석" />
+              <img
+                src={rabbit01}
+                className="card-rabbit"
+                alt="소비 패턴 분석"
+              />
               <p>소비 패턴 분석</p>
             </div>
           </a>
-          <a href="/moneyplan/main" className="feature-card card-blue">
+          <a
+            href={
+              metadata && metadata.image ? "/moneyplan/main" : "/card/create"
+            }
+            className="feature-card-main card-blue"
+          >
             <div>
-              <img src={moneyplan} alt="용돈 계획 세우기" />
+              <img src={deer02} className="card-deer" alt="용돈 계획 세우기" />
               <p>용돈 계획 세우기</p>
             </div>
           </a>
-          <a href="/quiz/main" className="feature-card card-yellow">
+          <a href="/quiz/main" className="feature-card-main card-yellow">
             <div>
-              <img src={quiz} alt="금융퀴즈" />
+              <img src={quiz} className="card-giraffe" alt="금융퀴즈" />
               <p>금융 퀴즈</p>
             </div>
           </a>
-          <a href="/daily/main" className="feature-card card-pink">
+          <a href="/daily/main" className="feature-card-main card-pink">
             <div>
-              <img src={daily} alt="출석체크" />
+              <img src={pig00} className="card-pig" alt="출석체크" />
               <p>출석체크</p>
             </div>
           </a>
