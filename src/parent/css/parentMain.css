@@ -146,6 +146,7 @@
   text-align: center;
   transition: transform 0.2s ease-in-out;
   margin: auto;
+  cursor: pointer;
 }
 
 .grid {

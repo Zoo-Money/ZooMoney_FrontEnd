@@ -7,7 +7,7 @@ import "./css/moneyContractManage.css";
 import { useNavigate } from "react-router-dom";
 
 const MoneyContractManage = () => {
-  const navigate = useNavigate(); // useNavigate 사용
+  const navigate = useNavigate();
 
   const handleContractWrtieClick = () => {
     navigate("/contract/contractWrite"); // 계약서 작성 페이지로 이동

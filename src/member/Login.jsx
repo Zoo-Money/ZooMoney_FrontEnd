@@ -42,7 +42,7 @@ function Login(props) {
           sessionStorage.setItem("member_type", member_type);
           sessionStorage.setItem("member_parent", member_parent);
           if (member_type === "parent") {
-            navi("/contract/parentMain");
+            navi("/parent/main");
           } else {
             navi("/main");
           }
