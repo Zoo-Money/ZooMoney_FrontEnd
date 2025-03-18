@@ -16,26 +16,25 @@ function CardHistory() {
   const memberNum = sessionStorage.getItem("member_num");
 
   useEffect(() => {
+    const loadOrders = (period) => {
+      axios
+        .get("http://localhost:7777/zoomoney/card/select", {
+          params: { period, memberNum },
+        })
+        .then((response) => {
+          setHistoryList(response.data);
+        })
+        .catch((error) => {
+          console.error("데이터 요청 오류:", error);
+        });
+    };
+
     loadOrders(selectedPeriod);
     const tokenId = sessionStorage.getItem("cardMetadata");
 
     // 세션에 카드 정보가 없으면 백엔드에서 메타데이터 가져오기
     fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
-    setLoading(false); // 바로 로딩 상태를 false로 변경하여 UI 업데이트
-  }, [selectedPeriod]);
-
-  const loadOrders = (period) => {
-    axios
-      .get("http://localhost:7777/zoomoney/card/select", {
-        params: { period, memberNum },
-      })
-      .then((response) => {
-        setHistoryList(response.data);
-      })
-      .catch((error) => {
-        console.error("데이터 요청 오류:", error);
-      });
-  };
+  }, [selectedPeriod, memberNum]);
 
   return (
     <div className="mock-container">

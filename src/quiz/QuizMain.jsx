@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import emptyStamp from "../images/quiz/empty_stamp.avif";
-import giraffeMain from "../images/quiz/giraffe_main.png";
+import giraffe04 from "../images/giraffe/giraffe04.png";
 import oStamp from "../images/quiz/o_stamp.png";
 import xStamp from "../images/quiz/x_stamp.png";
 import "./css/quizMain.css";
@@ -82,8 +82,8 @@ const QuizMain = () => {
       {/* 메인 콘텐츠 */}
       <div className="quizmain-content">
         <img
-          src={giraffeMain}
-          alt="퀴즈 메인 캐릭터"
+          src={giraffe04}
+          alt="giraffe04"
           className="quizmain-image"
         />
         {/* 총 점수 */}

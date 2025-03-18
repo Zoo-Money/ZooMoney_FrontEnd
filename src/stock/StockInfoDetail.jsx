@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../common/Header";
-import rabbit2 from "../images/rabbit02.png";
+import rabbit2 from "../images/rabbit/rabbit02.png";
 import "./css/StockInfoDetail.css";
 
 function StockInfoDetail() {
