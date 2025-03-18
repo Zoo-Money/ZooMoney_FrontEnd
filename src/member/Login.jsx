@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import Header from '../common/Header';
-import bear04 from '../images/bear04.png';
+import React, { useState } from "react";
+import Header from "../common/Header";
+import bear04 from "../images/bear04.png";
 import "./login.css";
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login(props) {
   const [memberId, setMemberId] = useState("");
@@ -62,7 +62,11 @@ function Login(props) {
       <div className="login-container">
         <div className="login-header">
           <span>Zoo</span>Money
+
           <img className='login-bear' src={bear04} alt="bear04" />
+
+
+
         </div>
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="login-input-box">
