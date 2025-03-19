@@ -167,10 +167,10 @@ const Main = () => {
   return (
     <div className="mock-container">
       {/* 메인로고ZooMoney */}
-      <div className="zoo-money">
+      <div className="main-zoomoney-text">
         <div>
-          <span className="zoo">Zoo</span>
-          <span className="money">Money</span>
+          <span className="main-zoo">Zoo</span>
+          <span className="main-money">Money</span>
         </div>
         <div style={{ position: "relative" }}>
           {/* 종 모양 아이콘 */}
@@ -254,7 +254,7 @@ const Main = () => {
         </div>
       </div>
 
-      <div className="cardMain-container">
+      <div className="card-main-container">
         {/* 카드 이미지 미리보기 */}
         <div className="card-main-box">
           <div className="mycard-preview">
@@ -290,13 +290,13 @@ const Main = () => {
         </div>
 
         {/* 용돈 정보 카드 */}
-        <div className="allowance-card-box">
-          <div className="allowance-text">
+        <div className="main-allowance-box">
+          <div className="main-allowance-text">
             <span>나의 용돈</span>
             <span>{allowanceAmount}</span>
           </div>
 
-          <div className="cardmainbutton-group">
+          <div className="main-button-group">
             <a
               href={
                 metadata && metadata.image ? "/card/usehistory" : "/card/create"
@@ -304,7 +304,6 @@ const Main = () => {
             >
               카드사용내역
             </a>
-
             <span>|</span>
             <a
               href={
@@ -314,16 +313,15 @@ const Main = () => {
               }
             >
               용돈 계약서
-
             </a>
           </div>
         </div>
 
         {/* 기능 카드 버튼 */}
-        <div className="grid grid-cols-2 gap-2 mt-1 w-full">
+        <div className="main-grid grid-cols-2 gap-2 mt-1 w-full">
           <a
             href={metadata && metadata.image ? "/card/pattern" : "/card/create"}
-            className="feature-card-main card-skyblue"
+            className="main-grid-box box-skyblue"
           >
             <div>
               <img
@@ -338,27 +336,26 @@ const Main = () => {
             href={
               metadata && metadata.image ? "/moneyplan/main" : "/card/create"
             }
-            className="feature-card-main card-blue"
+            className="main-grid-box box-blue"
           >
             <div>
               <img src={deer02} className="card-deer" alt="용돈 계획 세우기" />
               <p>용돈 계획 세우기</p>
             </div>
           </a>
-          <a href="/quiz/main" className="feature-card-main card-yellow">
+          <a href="/quiz/main" className="main-grid-box box-yellow">
             <div>
               <img src={quiz} className="card-giraffe" alt="금융퀴즈" />
               <p>금융 퀴즈</p>
             </div>
           </a>
-          <a href="/daily/main" className="feature-card-main card-pink">
+          <a href="/daily/main" className="main-grid-box box-pink">
             <div>
               <img src={pig00} className="card-pig" alt="출석체크" />
               <p>출석체크</p>
             </div>
           </a>
         </div>
-        {/* 하단 네비게이션 바 */}
       </div>
       <Footer />
     </div>
