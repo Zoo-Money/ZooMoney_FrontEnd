@@ -78,16 +78,16 @@ const ParentMain = () => {
   };
 
   const goMoneyPlan = () => {
-    navigate("/moneyPlan/confirm");
+    navigate("/parent/confirm");
   };
   const goChildEventSend = () => {
     navigate("/parent/childEventSend");
   };
   const gocusumehistory = () => {
-    navigate("/card/usehistoryParent");
+    navigate("/parent/usehistoryParent");
   };
   const goPattern = () => {
-    navigate("/card/pattern");
+    navigate("/parent/patternParent");
   };
   const goAccount = () => {
     navigate("/parent/account", { state: { target: selectedChild } }); // state로 전달

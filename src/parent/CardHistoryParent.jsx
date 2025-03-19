@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import { fetchMetadata } from "./CardService";
+import { fetchMetadata } from "../card/CardService";
 import "./css/CardHistory.css";
 
 function CardHistory() {
