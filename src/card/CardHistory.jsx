@@ -10,7 +10,7 @@ import cardimage from "../images/card/card00.png";
 
 function CardHistory() {
   const [historyList, setHistoryList] = useState([]);
-  const [metadata, setMetadata] = useState(null);
+  const [, setMetadata] = useState(null);
   const [, setMetadataUrl] = useState("");
   const [, setLoading] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState("all");
