@@ -120,6 +120,15 @@
   width: 80%;
 }
 
+.stock-main-mystock-list-box p {
+  margin-top: 10%;
+  margin-bottom: 2%;
+}
+
+.stock-table {
+  margin-top: 0px;
+}
+
 .stock-table td {
   font-size: 12px;
 }
