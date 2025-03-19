@@ -272,7 +272,7 @@ const Main = () => {
           <div className="main-button-group">
             <a href="/card/usehistory">카드사용내역</a>
             <span>|</span>
-            <a href="/contract/contractSelect">용돈 계약서</a>
+            <a href="/contract/contractSelectChild">용돈 계약서</a>
           </div>
         </div>
 
