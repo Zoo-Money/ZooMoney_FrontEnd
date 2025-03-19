@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // ▼▲ 화살표 추가
 import "react-pdf/dist/Page/AnnotationLayer.css";
@@ -22,14 +22,14 @@ const ContractDetail = () => {
   };
 
   useEffect(() => {
-    const childNum = sessionStorage.getItem("childNum"); // 세션 값 가져오기
+    const memberNum = sessionStorage.getItem("member_num"); // 세션 값 가져오기
     axios
-      .get(`http://localhost:7777/zoomoney/contract/pastContracts/${childNum}`)
+      .get(`http://localhost:7777/zoomoney/contract/pastContracts/${memberNum}`)
       .then((response) => {
         setContracts(response.data); // 데이터를 상태에 저장
       })
       .catch((error) => {
-        console.error("과거 계약서 로드 오류:", error);
+        console.log("과거 계약서 로드 오류:", error);
       });
   }, []);
 

@@ -18,11 +18,11 @@ const ParentMain = () => {
     navigate("/contract/moneyContractManage");
   };
   const [children, setChildren] = useState([]);
-  const [selectedChild, setSelectedChild] = useState(null); // 선택한 자녀의 memberNum
+  const [selectedChild, setSelectedChild] = useState(null);
   const selectedChildInfo = children.find(
     (child) => child.memberNum === selectedChild
   );
-  const [cardMoney, setCardMoney] = useState(0); //카드 잔액상태
+  const [cardMoney, setCardMoney] = useState(0);
 
   // 부모, 아이 정보가 모두 필요한 화면이라 혼동을 막기 위해 parentId 사용
   const parentId = sessionStorage.getItem("member_num");
@@ -35,7 +35,7 @@ const ParentMain = () => {
     }
     axios
       .get("http://localhost:7777/zoomoney/contract/getChildByParent", {
-        params: { parentId: parentId }, // 임시 부모 ID (로그인 로직에서 받아오도록 변경 필요)
+        params: { parentId: parentId },
       })
       .then((response) => {
         setChildren(response.data);
@@ -45,21 +45,24 @@ const ParentMain = () => {
         const queryChildNum = Number(searchParams.get("childNum"));
 
         if (queryChildNum) {
-          setSelectedChild(queryChildNum); // query parameter 값이 우선
+          setSelectedChild(queryChildNum);
+          sessionStorage.setItem("childNum", String(queryChildNum));
         } else if (response.data.length > 0) {
-          setSelectedChild(response.data[0].memberNum || null); // 첫 번째 자녀 선택 (기본값)
+          const firstChildNum = response.data[0].memberNum;
+          setSelectedChild(response.data[0].memberNum || null);
+          sessionStorage.setItem("childNum", String(firstChildNum));
         }
       })
       .catch((error) => {
         console.error("자녀 목록 불러오기 실패:", error);
       });
-  }, [location, parentId]); // location 추가
+  }, [location, parentId]);
 
   useEffect(() => {
     if (selectedChild) {
       axios
         .get("http://localhost:7777/zoomoney/contract/child/money", {
-          params: { memberNum: selectedChild }, // 선택한 자녀의 memberNum 전달
+          params: { memberNum: selectedChild },
         })
         .then((response) => {
           setCardMoney(response.data.cardMoney);
@@ -102,7 +105,7 @@ const ParentMain = () => {
       {/* 프로필 영역 */}
       <div className="parent-main-profile-container">
         {" "}
-        {/* 🔹 가로로 정렬을 위한 추가 */}
+        {/* 가로로 정렬을 위한 추가 */}
         {children.map((child) => (
           <div
             key={child.memberNum}
@@ -124,7 +127,7 @@ const ParentMain = () => {
             />
             <div className="profile-name">
               {" "}
-              {/* 🔹 이름을 프로필 아래에 위치 */}
+              {/* 이름을 프로필 아래에 위치 */}
               <span>{child.memberName}</span>
             </div>
           </div>
