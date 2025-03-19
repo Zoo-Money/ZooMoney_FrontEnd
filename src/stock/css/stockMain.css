@@ -68,3 +68,61 @@
   border-radius: 10px;
   margin-top: 20px;
 }
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.stock-table th,
+.stock-table td {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.stock-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.profit {
+  color: red;
+  font-weight: bold;
+}
+
+.loss {
+  color: blue;
+  font-weight: bold;
+}
+
+.current-price {
+  font-size: 14px;
+  color: #666;
+}
+
+.sell-button {
+  background-color: white;
+  border: 1px solid orange;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: orange;
+  cursor: pointer;
+}
+
+.sell-button:hover {
+  background-color: orange;
+  color: white;
+}
+
+.stock-main-mystock-list-box {
+  width: 80%;
+}
+
+.stock-table td {
+  font-size: 12px;
+}
+.stock-table th {
+  font-size: 12px;
+}
