@@ -14,7 +14,7 @@ const CardModifySuccess = () => {
       <p className="description">카드 변경이 완료되었어요</p>
       <button className="success-button">
         <Link
-          to="/card/main" // 상대경로로 수정
+          to="/main" // 상대경로로 수정
           className="success-button"
           style={{ textDecoration: "none" }}
         >
