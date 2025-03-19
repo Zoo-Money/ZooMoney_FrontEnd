@@ -28,14 +28,14 @@ function PatternChart() {
   const [groupedData, setGroupedData] = useState({}); // 1주일 단위로 그룹화된 데이터
   const [currentCardNum, setCurrentCardNum] = useState(0); // 현재 보고 있는 주차 인덱스
   const [highestCategory, setHighestCategory] = useState(""); // 가장 많이 소비한 카테고리
-  const memberNum = sessionStorage.getItem("member_num");
+  const childNum = sessionStorage.getItem("childNum");
 
   const previousHighestCategoryRef = useRef(""); // 이전 카테고리를 추적
 
   //용돈가져오기
   useEffect(() => {
     axios({
-      url: `http://localhost:7777/zoomoney/moneyplan/getAllowance?memberNum=${memberNum}`,
+      url: `http://localhost:7777/zoomoney/moneyplan/getAllowance?memberNum=${childNum}`,
       method: "get",
     })
       .then((resposeData) => {
@@ -44,14 +44,12 @@ function PatternChart() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [childNum]);
 
   useEffect(() => {
-    console.log("@@member_num:" + memberNum);
     axios
       .get("http://localhost:7777/zoomoney/card/select", {
-        params: { period: "all" },
-        headers: { member_num: memberNum },
+        params: { member_num: childNum },
       })
       .then((response) => {
         if (!Array.isArray(response.data) || response.data.length === 0) {
@@ -75,7 +73,7 @@ function PatternChart() {
         setGroupedData(groupedData);
       })
       .catch((error) => {});
-  }, [memberNum]); // memberNum이 변경될 때만 실행
+  }, [childNum]); // memberNum이 변경될 때만 실행
 
   const groupDataByWeek = (data) => {
     return data.reduce((acc, item) => {
@@ -290,7 +288,7 @@ function PatternChart() {
       </div>
 
       <button className="patternmain-button">
-        <Link to="/main" className="patternlink-style">
+        <Link to="/parent/main" className="patternlink-style">
           홈
         </Link>
       </button>
