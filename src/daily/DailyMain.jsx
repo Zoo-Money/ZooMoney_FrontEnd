@@ -11,11 +11,13 @@ const DailyMain = () => {
   const [isChecked, setIsChecked] = useState(null); // 출석 여부 상태
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태 추가
 
+  const memberNum = sessionStorage.getItem("member_num");
+
   // ✅ 출석 여부 확인 (DB 수정 X)
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/daily/status", {
-        withCredentials: true,
+        params: { memberNum: memberNum },
       })
       .then((response) => {
         setIsChecked(response.data.isChecked);
@@ -30,11 +32,7 @@ const DailyMain = () => {
   // ✅ 출석 체크 (버튼 눌렀을 때만 실행)
   const handleAttendance = () => {
     axios
-      .post(
-        "http://localhost:7777/zoomoney/daily/check",
-        {},
-        { withCredentials: true }
-      )
+      .post(`http://localhost:7777/zoomoney/daily/check?memberNum=${memberNum}`)
       .then((response) => {
         setIsChecked(true); // 출석 완료 상태 업데이트
         navigate("/daily/end"); // 출석 성공 시 이동

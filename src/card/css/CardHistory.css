@@ -1,70 +1,76 @@
-.usehist-header {
-  background-color: #fbcb7e;
-  height: 280px;
-  margin: 0 0 20px 0;
+.card-history-box {
+  background-color: #ffcd95;
+  height: 200px;
+  min-height: 280px;
   text-align: center;
-  position: relative;
-}
-.cardHistory-header {
-  font-family: "Arial", sans-serif;
-  background-color: #ffd6a7;
-  height: 300px;
-  margin: 0 0 20px 0;
-  text-align: center;
-  position: relative;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-history-img {
+  width: 40%;
+  height: auto;
+  object-fit: contain;
+  transform: rotate(270deg);
+  /* position: static;
+  transform-origin: center;
+  transform: translate(-50%, -50%) rotate(270deg); */
+  margin-top: -30px;
+}
+.card-history-period-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin-top: -25px;
+}
+.card-history-period select,
+.card-hist-go-to-account {
+  height: 40px;
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  min-width: 140px;
 }
 
-.cardHist-content {
+.card-hist-go-to-account {
+  background-color: #ff9500;
+  color: #ffff;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.card-hist-go-to-account:hover {
+  background-color: #0056b3;
+}
+.card-history-content {
   overflow-y: auto;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
 
-.cardHist-content::-webkit-scrollbar {
+.card-history-content::-webkit-scrollbar {
   display: none; /* Chrome , Safari , Opera */
 }
 
-.cardHist-image {
-  object-fit: contain; /* 이미지 비율을 유지하면서 잘리지 않게 */
-  transform: rotate(270deg); /* 이미지를 90도 회전하여 가로로 표시 */
-  width: 40%; /* 회전 후 이미지를 더 크게 표시 */
-  height: auto; /* 비율에 맞게 높이 자동 조정 */
-  position: absolute; /* 부모 요소에 맞게 이미지 위치 조정 */
-  top: 50%; /* 상단에서 50% 위치로 이미지 중앙 정렬 */
-  left: 50%; /* 좌측에서 50% 위치로 이미지 중앙 정렬 */
-  transform-origin: center; /* 이미지의 회전 중심을 중앙으로 설정 */
-  transform: translate(-50%, -50%) rotate(270deg); /* 중앙 정렬 후 회전 */
-}
-
-.cardHist-gotoAccount {
-  width: 30%;
-  height: 11%;
-  background-color: #ff9500;
-  color: #ffff;
-  font-size: 14px;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 40%;
-}
-
-.cardHist-content {
+.card-history-content {
   margin: 0;
 }
 
-.cardHistoryInfo {
+.card-history-list-box {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+.card-history-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 330px;
+  margin-bottom: 10px;
+  margin-top: 15px;
 }
-
-.cardhist-period {
-  display: flex;
-  justify-content: flex-start !important; /* 왼쪽 정렬 */
-  align-items: center; /* 세로로 중앙 정렬 (선택 사항) */
-  width: 330px;
-  margin-bottom: 5%;
+.info-time {
+  margin-bottom: 5px;
 }

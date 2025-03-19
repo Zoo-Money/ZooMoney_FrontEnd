@@ -2,13 +2,14 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Badge } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { fetchCardInfo, fetchMetadata } from "../card/CardService";
 import Footer from "../common/Footer";
-import defaultCardImage from "../images/cardmain.png"; // 기본 이미지 경로
+import defaultCardImage from "../images/card/card00.png"; // 기본 이미지 경로
 import deer02 from "../images/deer/deer02.png";
-import pig00 from "../images/pig/pig00.png";
 import giraffe05 from "../images/giraffe/giraffe05.png";
+import pig00 from "../images/pig/pig00.png";
+import point01 from "../images/point/point01.jpg";
 import rabbit01 from "../images/rabbit/rabbit01.png";
 import "./Main.css";
 
@@ -26,6 +27,7 @@ const Main = () => {
   const [count, setCount] = useState(0);
   const [view, setView] = useState(false);
   const [shake, setShake] = useState(false);
+  const [memberPoint, setMemberPoint] = useState("0");
 
   useEffect(() => {
     // 서버와 SSE 연결
@@ -102,6 +104,23 @@ const Main = () => {
         setLoading(false); // 모든 작업이 끝난 후 로딩 상태 변경
       }
     };
+
+    // 포인트 조회
+    const fetchMemberPoint = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:7777/zoomoney/member/point/${memberNum}`
+        );
+        const formattedPoint = Number(
+          response.data.member_point
+        ).toLocaleString(); // 숫자에 , 추가
+        setMemberPoint(`${formattedPoint}`);
+      } catch (error) {
+        console.error("포인트 불러오기 실패", error);
+      }
+    };
+
+    fetchMemberPoint();
 
     conn();
     fetchData();
@@ -252,39 +271,24 @@ const Main = () => {
         {/* 카드 이미지 미리보기 */}
         <div className="card-main-box">
           <div className="mycard-preview">
-            {loading ? (
-              <div className="loading-overlay">로딩 중...</div> // 로딩 중 UI (예: 텍스트나 애니메이션)
-            ) : (
-              <>
-                <img
-                  src={
-                    metadata && metadata.image
-                      ? metadata.image
-                      : defaultCardImage // metadata가 있을 때만 이미지 사용, 없으면 기본 이미지
-                  }
-                  alt="카드 미리보기"
-                  className={
-                    metadata && metadata.image
-                      ? "mycard-image custom-image"
-                      : "mycard-image default-image"
-                  }
-                />
-                {!metadata?.image && (
-                  <Link to="/card/create">
-                    <img
-                      src={defaultCardImage} // 기본 이미지를 사용
-                      alt="기본 카드 이미지"
-                      className="mycard-image default-image"
-                    />
-                  </Link>
-                )}
-              </>
-            )}
+            <>
+              <img
+                src={defaultCardImage} // 기본 이미지를 사용
+                alt="기본 카드 이미지"
+                className="mycard-image custom-image"
+              />
+            </>
           </div>
         </div>
 
         {/* 용돈 정보 카드 */}
         <div className="main-allowance-box">
+          <div className="main-point-box">
+            <img src={point01} alt="point01" className="main-point-image" />
+            <div className="main-point-num">
+              <p>{memberPoint}</p>
+            </div>
+          </div>
           <div className="main-allowance-text">
             <span>나의 용돈</span>
             <span>{allowanceAmount}</span>
@@ -324,10 +328,7 @@ const Main = () => {
 
         {/* 기능 카드 버튼 */}
         <div className="main-grid grid-cols-2 gap-2 mt-1 w-full">
-          <a
-            href={metadata && metadata.image ? "/card/pattern" : "/card/create"}
-            className="main-grid-box box-skyblue"
-          >
+          <a href="/card/pattern" className="main-grid-box box-skyblue">
             <div>
               <img
                 src={rabbit01}
@@ -337,12 +338,7 @@ const Main = () => {
               <p>소비 패턴 분석</p>
             </div>
           </a>
-          <a
-            href={
-              metadata && metadata.image ? "/moneyplan/main" : "/card/create"
-            }
-            className="main-grid-box box-blue"
-          >
+          <a href="/moneyplan/main" className="main-grid-box box-blue">
             <div>
               <img src={deer02} className="card-deer" alt="용돈 계획 세우기" />
               <p>용돈 계획 세우기</p>
