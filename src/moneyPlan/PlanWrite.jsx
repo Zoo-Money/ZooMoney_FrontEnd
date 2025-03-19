@@ -38,7 +38,7 @@ function PlanWrite(props) {
         setPlanMoney(formattedMoney);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
 

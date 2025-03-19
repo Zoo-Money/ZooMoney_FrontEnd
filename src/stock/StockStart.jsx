@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import StockMain from "./StockMain";
 import StockBegin from "./StockBegin";
+import StockMain from "./StockMain";
 
 function StockStart(props) {
   const [hasMemberNum, setHasMemberNum] = useState(2);
@@ -16,7 +16,7 @@ function StockStart(props) {
       .catch((error) => {
         console.error("Error fetching stock info:", error);
       });
-  }, []);
+  });
 
   if (hasMemberNum === 2) {
     return <div>Loading...</div>; // 로딩 중일 때 보여줄 컴포넌트
