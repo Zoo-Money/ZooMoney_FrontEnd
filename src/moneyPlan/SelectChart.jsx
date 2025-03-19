@@ -44,14 +44,15 @@ function SelectChart() {
   };
 
   // 데이터 받아오기
-  const dateArr = [];
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/moneyplan/select")
       .then((response) => {
-        response.data.forEach((plan) => {
-          dateArr.push(plan.plan_date.split("T")[0]);
-        });
+        const sortedData = response.data.sort((a,b) => b.plan_num - a.plan_num);
+        const dateArr = sortedData.map((plan) => plan.plan_date.split("T")[0]);
+        // response.data.forEach((plan) => {
+        //   dateArr.push(plan.plan_date.split("T")[0]);
+        // });
         setPlanDate(dateArr);
         const plansGroupedByNum = groupByPlanNum(response.data);
         setPlansData(plansGroupedByNum); // plan_num 별로 그룹화된 데이터 저장
