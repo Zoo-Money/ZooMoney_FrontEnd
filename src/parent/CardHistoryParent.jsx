@@ -19,8 +19,7 @@ function CardHistory() {
     const loadOrders = (period) => {
       axios
         .get("http://localhost:7777/zoomoney/card/select", {
-          params: { period },
-          headers: { member_num: memberNum },
+          params: { period, member_num: memberNum },
         })
 
         .then((response) => {
