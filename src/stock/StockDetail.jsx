@@ -19,7 +19,7 @@ const StockDetail = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate("/stock/stockBuy", { state: { latestPrice } });
+    navigate("/stock/stockBuy", { state: { stockId, latestPrice } });
   };
 
   const [chartData, setChartData] = useState({
