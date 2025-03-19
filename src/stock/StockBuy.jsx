@@ -10,10 +10,10 @@ function StockBuy(props) {
   const navigate = useNavigate();
 
   // 세션에서 memberNum 가져오기
-  const memberNum = sessionStorage.getItem("memberNum") || 0;
+  const memberNum = sessionStorage.getItem("member_num") || 0;
 
   // 주식 번호 및 가격 설정
-  const [stockNum] = useState(location.state?.stockNum || 1);
+  const [stockId] = useState(location.state?.stockId || 1);
   const [price, setPrice] = useState(location.state?.latestPrice || ""); // 가격 입력 가능
   const [amount, setAmount] = useState(""); // 수량 입력 상태
 
@@ -32,14 +32,15 @@ function StockBuy(props) {
     }
 
     try {
-      const response = await fetch("http://localhost:7777/stock/buy", {
+      const response = await fetch("http://localhost:7777/zoomoney/stock/buy", {
         method: "POST",
+        mode: "cors",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
         },
-        body: new URLSearchParams({
+        body: JSON.stringify({
           memberNum,
-          stockNum,
+          stockId,
           amount,
           price,
         }),

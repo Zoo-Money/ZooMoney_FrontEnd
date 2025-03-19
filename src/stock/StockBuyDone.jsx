@@ -7,7 +7,7 @@ import "../stock/css/stockBuy.css";
 function StockBuyDone(props) {
   const navi = useNavigate();
   const goStockMain = () => {
-    navi("/stock/stockMain");
+    navi("/stock/myStock");
   };
   return (
     <div className="mock-container">
