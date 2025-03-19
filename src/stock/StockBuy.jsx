@@ -14,8 +14,12 @@ function StockBuy(props) {
 
   // 주식 번호 및 가격 설정
   const [stockId] = useState(location.state?.stockId || 1);
+  const [stockName] = useState(location.state?.stockName || "Unknown");
   const [price, setPrice] = useState(location.state?.latestPrice || ""); // 가격 입력 가능
   const [amount, setAmount] = useState(""); // 수량 입력 상태
+
+  // stockName이 정상적으로 들어오는지 확인
+  console.log("StockBuy - stockName:", stockName);
 
   // 가격이 바뀌면 업데이트
   useEffect(() => {
@@ -50,7 +54,13 @@ function StockBuy(props) {
       alert(result); // 응답 메시지 출력
 
       if (response.ok) {
-        navigate("/stock/buyDone");
+        navigate("/stock/buyDone", {
+          state: {
+            stockName,
+            amount,
+            totalPrice: price * amount, // 총 구매 금액액
+          },
+        });
       }
     } catch (error) {
       console.error("매수 실패:", error);

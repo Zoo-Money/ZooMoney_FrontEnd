@@ -25,8 +25,8 @@ function StockMain(props) {
       },
     });
   };
-  const goToSell = (stockId) => {
-    navi("/stock/stockSell", { state: { stockId } });
+  const goToSell = (stockId, stockName) => {
+    navi("/stock/stockSell", { state: { stockId, stockName } });
   };
 
   useEffect(() => {
@@ -151,7 +151,7 @@ function StockMain(props) {
                     <td>
                       <button
                         className="sell-button"
-                        onClick={() => goToSell(stock.stockId)}
+                        onClick={() => goToSell(stock.stockId, stock.stockName)}
                       >
                         매도하기
                       </button>

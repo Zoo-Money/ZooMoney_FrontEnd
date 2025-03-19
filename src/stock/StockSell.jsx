@@ -4,6 +4,7 @@ import Footer from "../common/Footer";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "../stock/css/stockBuy.css";
+import { LocationSearching } from "@mui/icons-material";
 
 function StockSell(props) {
   const location = useLocation();
@@ -14,6 +15,7 @@ function StockSell(props) {
 
   // 주식 번호 및 가격 설정
   const [stockId] = useState(location.state?.stockId || 1);
+  const [stockName] = useState(location.state?.stockName || "Unknown");
   const [price, setPrice] = useState(location.state?.latestPrice || ""); // 가격 입력 가능
   const [amount, setAmount] = useState(""); // 수량 입력 상태
 
@@ -24,8 +26,8 @@ function StockSell(props) {
     }
   }, [location.state?.latestPrice]);
 
-  // 구매 요청
-  const handleBuy = async () => {
+  // 판매 요청
+  const handleSell = async () => {
     if (!price || !amount) {
       alert("가격과 수량을 입력해주세요.");
       return;
@@ -53,7 +55,13 @@ function StockSell(props) {
       alert(result); // 응답 메시지 출력
 
       if (response.ok) {
-        navigate("/stock/buyDone");
+        navigate("/stock/TradeDone", {
+          state: {
+            stockName,
+            amount,
+            totalPrice: amount * price, // 총 매도 금액
+          },
+        });
       }
     } catch (error) {
       console.error("매도 실패:", error);
@@ -90,7 +98,7 @@ function StockSell(props) {
           />
         </div>
       </div>
-      <button className="buy-button" onClick={handleBuy}>
+      <button className="buy-button" onClick={handleSell}>
         판매하기
       </button>
       <Footer />
