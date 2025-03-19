@@ -6,6 +6,7 @@ import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractWrite.css";
 import { toast } from "react-toastify";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const getFormattedDate = () => {
   const today = new Date();
@@ -24,6 +25,7 @@ const ContractWrite = () => {
   const [date, setDate] = useState("");
   const [parentName, setParentName] = useState("");
   const parentId = sessionStorage.getItem("member_num");
+  const navigate = useNavigate(); // ✅ useNavigate 훅 선언
 
   // 계약 세부사항에 '수정 중인 인덱스' 추가
   const [editingIndex, setEditingIndex] = useState(null);
@@ -37,7 +39,7 @@ const ContractWrite = () => {
         setParentName(response.data.parentName); // 부모이름 상태 저장
       })
       .catch((error) => {
-        console.error("부모이름 불러오기 실패:" + error);
+        // console.error("부모이름 불러오기 실패:" + error);
         setParentName("부모이름 불러오기 실패"); // 실패시 기본값
       });
   }, []);
@@ -149,6 +151,7 @@ const ContractWrite = () => {
       });
 
       toast.error("서명 저장 성공: " + response.data);
+      navigate("/parent/main"); // ✅ useNavigate()를 통한 페이지 이동
     } catch (error) {
       console.error("서명 저장 실패:", error);
       toast.error("서명 저장에 실패했습니다.");

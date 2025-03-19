@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractWriteChild.css";
+import { useNavigate } from "react-router-dom";
 
 const getFormattedDate = () => {
   const today = new Date();
@@ -20,7 +21,8 @@ const ContractWriteChild = () => {
   const [amount, setAmount] = useState("");
   const signatureRef = useRef(null); // 서명 캔버스 참조
   const [childName, setChildName] = useState("");
-  const childNum = sessionStorage.getItem("childNum");
+  const navigate = useNavigate(); // useNavigate 훅 선언
+  // const childNum = sessionStorage.getItem("childNum");
   const memberNum = sessionStorage.getItem("member_num");
 
   // 오늘 날짜를 'YYYY-MM-DD' 형식으로 설정
@@ -28,7 +30,7 @@ const ContractWriteChild = () => {
   const [contractDetails, setContractDetails] = useState(""); // 부모가 작성한 계약 내용
 
   useEffect(() => {
-    if (!childNum) {
+    if (!memberNum) {
       toast.error("아이 정보 관련 세션값이 없습니다.");
     }
   }, []);
@@ -36,7 +38,7 @@ const ContractWriteChild = () => {
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/contract/childInfo", {
-        params: { childId: childNum },
+        params: { childId: memberNum },
       })
       .then((response) => {
         setChildName(response.data.childName);
@@ -50,7 +52,7 @@ const ContractWriteChild = () => {
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/contract/getDetails", {
-        params: { childId: childNum },
+        params: { childId: memberNum },
       })
       .then((response) => {
         if (response.data && response.data.contractMoney) {
@@ -74,7 +76,7 @@ const ContractWriteChild = () => {
           "예외: 계약서 내용을 불러오지 못했습니다.(용돈계약서 작성필요)"
         );
       });
-  }, [childNum]);
+  }, [memberNum]);
 
   // 서명 지우기
   const clearSignature = () => {
@@ -88,7 +90,7 @@ const ContractWriteChild = () => {
 
     const contractData = {
       childSignature: signatureData, // 자녀의 서명 이미지 (Base64)
-      childNum: Number(childNum),
+      childNum: Number(memberNum),
     };
 
     try {
@@ -110,10 +112,11 @@ const ContractWriteChild = () => {
         notifyUrl: "/contract/contractSelect",
       });
 
-      toast.error("서명 저장 성공");
+      toast.error("서명 저장 성공! 계약이 완료되었습니다.");
+      navigate("/main");
     } catch (error) {
       console.error("서명 저장 실패:", error);
-      toast.error("서명 저장에 실패했습니다." + childNum);
+      toast.error("서명 저장에 실패했습니다." + memberNum);
     }
   };
 
