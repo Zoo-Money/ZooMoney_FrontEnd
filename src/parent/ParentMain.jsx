@@ -2,10 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
-import allowanceContract from "../images/allowanceContract.png";
-import allowancePlan from "../images/allowancePlan.png";
-import consumpPattern from "../images/consumpPattern.png";
-import piggyBank from "../images/piggyBank.png";
+import bear04 from "../images/bear/bear04.png";
+import deer02 from "../images/deer/deer02.png";
+import rabbit02 from "../images//rabbit/rabbit02.png";
+import pig02 from "../images/pig/pig02.png";
 import profile1 from "../images/profile1.png";
 import profile2 from "../images/profile2.png";
 import "./css/parentMain.css";
@@ -94,11 +94,9 @@ const ParentMain = () => {
   };
   return (
     <div className="mock-container">
-      {/* 메인로고ZooMoney */}
-      {/* <div className="zoo-money flex justify-start items-center"> */}
       <div className="parent-main-zoo-money-title">
-        <span className="zoo">Zoo</span>
-        <span className="money">Money</span>
+        <span className="parent-zoo">Zoo</span>
+        <span className="parent-money">Money</span>
       </div>
 
       {/* 프로필 영역 */}
@@ -139,7 +137,9 @@ const ParentMain = () => {
         <div className="card-header">
           <div className="allowance-text">
             <p className="allowance-title">
-              {selectedChildInfo ? selectedChildInfo.memberName : "자녀 없음"}{" "}
+              <span className="allowance-cild-name">
+                {selectedChildInfo ? selectedChildInfo.memberName : "자녀 없음"}{" "}
+              </span>
               의 용돈주머니
             </p>
             <p className="allowance-amount"> {cardMoney.toLocaleString()} 원</p>
@@ -157,24 +157,24 @@ const ParentMain = () => {
       </div>
 
       {/* 기능 카드 버튼 */}
-      <div className="grid grid-cols-2 gap-4 mt-6 w-full">
+      <div className="parent-grid grid-cols-2 gap-3 mt-1 w-full">
         <div
-          className="feature-card card-yellow"
+          className="parent-card card-yellow"
           onClick={handleMoneyContractManageClick}
         >
-          <img src={allowanceContract} alt="용돈 계약서" />
+          <img className="parent-bear" src={bear04} alt="용돈 계약서" />
           <p>용돈 계약서</p>
         </div>
-        <div className="feature-card card-blue" onClick={goMoneyPlan}>
-          <img src={allowancePlan} alt="용돈 계획확인" />
-          <p>용돈 계획확인</p>
+        <div className="parent-card card-blue" onClick={goMoneyPlan}>
+          <img className="parent-deer" src={deer02} alt="용돈 계획확인" />
+          <p>용돈 계획 확인</p>
         </div>
-        <div className="feature-card card-purple" onClick={goPattern}>
-          <img src={consumpPattern} alt="소비패턴 분석" />
-          <p>소비패턴 분석</p>
+        <div className="parent-card card-purple" onClick={goPattern}>
+          <img className="parent-rabbit" src={rabbit02} alt="소비패턴 분석" />
+          <p>소비 패턴 분석</p>
         </div>
-        <div className="feature-card card-pink" onClick={goAccount}>
-          <img src={piggyBank} alt="저금통 확인" />
+        <div className="parent-card card-pink" onClick={goAccount}>
+          <img className="parent-pig" src={pig02} alt="저금통 확인" />
           <p>저금통 확인</p>
         </div>
       </div>
