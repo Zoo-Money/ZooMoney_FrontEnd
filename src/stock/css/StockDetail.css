@@ -18,7 +18,7 @@
 .Detailtab-button {
   width: 45%;
   height: 100%;
-  background-color: #f9a825;
+  background-color: #ff9500;
   color: white;
   font-size: 14px;
   font-weight: bold;
@@ -29,7 +29,7 @@
 
 /* 활성화된 버튼 스타일 */
 .Detailtab-button.active {
-  background: #f9a825;
+  background: #ff9500;
   color: black;
   font-weight: bold;
 }

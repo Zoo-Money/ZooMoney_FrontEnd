@@ -7,7 +7,7 @@ import "./css/quizLoading.css";
 const QuizLoading = () => {
   return (
     <div className="mock-container">
-      <Header title="오늘의 금융QUIZ" />
+      <Header title="오늘의 금융퀴즈" />
 
       {/* 로딩 콘텐츠 */}
       <div className="quizloading-content">

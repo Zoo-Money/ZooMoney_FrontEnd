@@ -1,6 +1,6 @@
 .history-button{
     width: 80%;
-    background-color: #f9a825;
+    background-color: #ff9500;
     color: white;
     font-size: 14px;
     font-weight: bold;
@@ -20,7 +20,7 @@
 }
 .history-box span{
     font-weight: bold;
-    color: #f9a825;
+    color: #ff9500;
     font-size: 1.2em;
 }
 .rabbit07{

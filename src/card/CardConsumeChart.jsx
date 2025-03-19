@@ -3,7 +3,7 @@ import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
 import React, { useEffect, useRef, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/CardConsumeChart.css";
@@ -21,6 +21,8 @@ ChartJS.register(ArcElement, Tooltip, Legend, Title);
 // };
 
 function PatternChart() {
+  const navigate = useNavigate();
+
   // const [categorizedData, setCategorizedData] = useState({}); // 카테고리별 데이터 상태
   // const [historyList, setHistoryList] = useState([]); // 소비 내역 원본
   const [planMoney, setPlanMoney] = useState();
@@ -195,9 +197,7 @@ function PatternChart() {
 
   const chartData = getCurrentChartData();
 
-  if (!chartData) {
-    return <div>소비 내역이 없습니다!</div>;
-  }
+  if (!chartData) return null;
 
   const chartOptions = {
     plugins: {
@@ -286,10 +286,8 @@ function PatternChart() {
         <p>가장 많이 소비한 카테고리: {highestCategory}</p>
       </div>
 
-      <button className="patternmain-button">
-        <Link to="/main" className="patternlink-style">
-          홈
-        </Link>
+      <button className="patternmain-button" onClick={() => navigate("/main")}>
+        메인 페이지
       </button>
 
       <Footer />

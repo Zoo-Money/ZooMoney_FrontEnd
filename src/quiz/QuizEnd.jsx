@@ -32,19 +32,19 @@ const QuizEnd = () => {
 
   return (
     <div className="mock-container">
-      <Header title="QUIZ 완료" />
+      <Header title="오늘의 금융퀴즈" />
 
       {/* 메인 콘텐츠 */}
       <div className="quizend-content">
         <img src={giraffe02} alt="giraffe02" className="quizend-image" />
         <p className="quizend-description">
-          오늘의 QUIZ를 모두 풀었어요
-          <br />총 <strong>{String(correctAnswerCount) * 100} 포인트</strong>를
-          획득했어요!
+          풀 수 있는 퀴즈를 다 풀었어요
+          <br />오늘 총 <strong>{String(correctAnswerCount) * 100} 포인트</strong>를
+          획득했어요
         </p>
         <p className="quizend-description">내일 다시 만나요!</p>
         <button className="quizend-button" onClick={goToMain}>
-          QUIZ 풀이 완료
+          확인
         </button>
       </div>
 
