@@ -6,6 +6,7 @@ import "../moneyPlan/css/moneyPlan.css";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Legend, Tooltip } from "chart.js";
 import axios from "axios";
+import deer03 from "../images/deer/deer03.png";
 import { categoryName } from "../moneyPlan/resource/planCommon.js";
 import { toast } from "react-toastify";
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -91,15 +92,18 @@ function PlanChart(props) {
   return (
     <div className="mock-container">
       <Header title="용돈 계획 세우기" />
-      <div className="planwrite-content">
-        <p>
-          일주일 동안 <span>{planMoney.toLocaleString()}원</span>을
-          <br />
-          아래와 같이 쓰기로 계획했어요.
-        </p>
-      </div>
+      <img src={deer03} alt="deer03" className="chart-deer03"/>
       <div className="planchart-box">
-        <Doughnut data={data} options={options} />
+        <div className="plan-chart-content">
+          <p>
+            일주일 동안 <span>{planMoney.toLocaleString()}원</span>을
+            <br />
+            아래와 같이 쓰기로 계획했어요.
+          </p>
+        </div>
+        <div className="plan-confirm-chart">
+          <Doughnut data={data} options={options} />
+        </div>
       </div>
       <button className="planmain-button" onClick={handleSavePlan}>
         다음
