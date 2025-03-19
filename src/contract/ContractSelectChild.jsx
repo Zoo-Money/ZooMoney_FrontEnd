@@ -16,7 +16,7 @@ import "./css/contractSelect.css";
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.8.69/build/pdf.worker.min.js`;
 
 const ContractSelect = () => {
-  const childNum = sessionStorage.getItem("childNum");
+  const memberNum = sessionStorage.getItem("member_num");
   const navigate = useNavigate(); // useNavigate 사용
 
   const [latestPdfPath, setLatestPdfPath] = useState("");
@@ -24,7 +24,7 @@ const ContractSelect = () => {
 
   // 최신 계약서 경로 가져오기
   useEffect(() => {
-    if (!childNum) {
+    if (!memberNum) {
       console.error("세션에 값이 없습니다.");
       return;
     }
@@ -33,7 +33,7 @@ const ContractSelect = () => {
       try {
         const response = await axios.get(
           `http://localhost:7777/zoomoney/contract/latest`,
-          { params: { childNum: childNum } }
+          { params: { childNum: memberNum } }
         );
 
         setLatestPdfPath(response.data.split("/").pop());
@@ -51,7 +51,7 @@ const ContractSelect = () => {
   if (loading) return null;
 
   const handleContractDetail1Click = () => {
-    navigate("/contract/contractDetail");
+    navigate("/contract/contractDetailChild");
   };
 
   return (
