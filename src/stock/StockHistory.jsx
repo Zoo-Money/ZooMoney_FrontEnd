@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "./css/stockHistory.css";
+import Footer from "../common/Footer";
 
 ChartJS.register(
   LineElement,
@@ -51,7 +52,7 @@ function StockHistory(props) {
       });
   });
 
-  //일주일 뒤 날짜 폼폼
+  //일주일 뒤 날짜 폼
   const afterOneWeek = (date) => {
     const d = new Date(date);
     d.setDate(d.getDate() + 6);
@@ -159,6 +160,7 @@ function StockHistory(props) {
       <button className="history-button" onClick={goStockMain}>
         모의 투자 하러 가기
       </button>
+      <Footer/>
     </div>
   );
 }
