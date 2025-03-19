@@ -15,7 +15,7 @@ const QuizQuiz = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const navigate = useNavigate();
 
-  // const memberNum = sessionStorage.getItem("member_num");
+  const memberNum = sessionStorage.getItem("member_num");
 
   // ✅ 백엔드에서 퀴즈 가져오기
   useEffect(() => {
@@ -38,7 +38,9 @@ const QuizQuiz = () => {
     };
 
     axios
-      .post("http://localhost:7777/zoomoney/quiz/submit", payload)
+      .post("http://localhost:7777/zoomoney/quiz/submit", payload, {
+        params: { memberNum: memberNum },
+      })
       .then((response) => {
         const isCorrect = response.data.isCorrect; // 백엔드에서 받은 정답 여부
         if (isCorrect === true) {
@@ -60,18 +62,20 @@ const QuizQuiz = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/quiz/count")
+      .get("http://localhost:7777/zoomoney/quiz/count", {
+        params: { memberNum: memberNum },
+      })
       .then((response) => {
         setQuizCount(response.data.quizCount); // 상태 업데이트
       })
       .catch((error) => console.error("퀴즈의 개수를 알 수 없습니다.", error));
-  }, []);
+  });
 
   if (!quiz) return <QuizLoading />; // 퀴즈 로딩 화면
 
   return (
     <div className="mock-container">
-      <Header title="QUIZ 풀기" />
+      <Header title="오늘의 금융퀴즈" />
       <div className="quizquiz-content">
         <img src={giraffe05} alt="giraffe05" className="quizquiz-image" />
         <div className="quizquiz-board">
@@ -105,7 +109,7 @@ const QuizQuiz = () => {
           </button>
         </div>
         <button className="quizquiz-answer-button" onClick={handleSubmit}>
-          정답제출
+          정답 제출
         </button>
       </div>
       <Footer />

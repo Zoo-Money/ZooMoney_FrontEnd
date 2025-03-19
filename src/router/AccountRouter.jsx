@@ -7,8 +7,6 @@ import AccountEnd from "../account/AccountEnd";
 import AccountInsert from "../account/AccountInsert";
 import AccountMain from "../account/AccountMain";
 
-import ParentAccount from "../account/resources/ParentAccount";
-
 function AccountRouter() {
   return (
     <div>
@@ -19,8 +17,6 @@ function AccountRouter() {
         <Route path="/account/insert" element={<AccountInsert />}></Route>
         <Route path="/account/end" element={<AccountEnd />}></Route>
         <Route path="/account/close" element={<AccountClose />}></Route>
-
-        <Route path="/account/parent" element={<ParentAccount />}></Route>
       </Routes>
     </div>
   );

@@ -14,7 +14,7 @@ const Footer = () => {
       <a href="/account">
         <TbPigMoney className="iconPig" />
       </a>
-      <a href="/stock/stockMain">
+      <a href="/stock/main">
         <HiChartBar className="icon" />
       </a>
       <a href="/member/mypage">

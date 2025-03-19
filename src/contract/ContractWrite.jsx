@@ -1,11 +1,12 @@
-import axios from "axios"; // Axios 추가
+import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import SignatureCanvas from "react-signature-canvas";
+import { toast } from "react-toastify";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import "./css/contractWrite.css"; // CSS 파일 import
-import { toast } from "react-toastify";
+import "./css/contractWrite.css";
 
 const getFormattedDate = () => {
   const today = new Date();
@@ -23,6 +24,8 @@ const ContractWrite = () => {
   const [inputValue, setInputValue] = useState("");
   const [date, setDate] = useState("");
   const [parentName, setParentName] = useState("");
+  const parentId = sessionStorage.getItem("member_num");
+  const navigate = useNavigate(); // ✅ useNavigate 훅 선언
 
   // 계약 세부사항에 '수정 중인 인덱스' 추가
   const [editingIndex, setEditingIndex] = useState(null);
@@ -30,16 +33,16 @@ const ContractWrite = () => {
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/contract/parentInfo", {
-        params: { parentId: 2 },
+        params: { parentId: parentId },
       })
       .then((response) => {
         setParentName(response.data.parentName); // 부모이름 상태 저장
       })
       .catch((error) => {
-        console.error("부모이름 불러오기 실패:" + error);
+        // console.error("부모이름 불러오기 실패:" + error);
         setParentName("부모이름 불러오기 실패"); // 실패시 기본값
       });
-  }, []);
+  });
 
   const [isFormValid, setIsFormValid] = useState(false);
 
@@ -135,7 +138,10 @@ const ContractWrite = () => {
     try {
       const response = await axios.post(
         "http://localhost:7777/zoomoney/contract/saveDraft",
-        contractData
+        contractData,
+        {
+          params: { parentId: sessionStorage.getItem("member_num") }, // params로 parentId 전달
+        }
       );
 
       await axios.post("http://localhost:7777/zoomoney/notify/send", {
@@ -145,6 +151,7 @@ const ContractWrite = () => {
       });
 
       toast.error("서명 저장 성공: " + response.data);
+      navigate("/parent/main"); // ✅ useNavigate()를 통한 페이지 이동
     } catch (error) {
       console.error("서명 저장 실패:", error);
       toast.error("서명 저장에 실패했습니다.");

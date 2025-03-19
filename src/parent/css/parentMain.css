@@ -1,47 +1,23 @@
 /* ZooMoney 로고 스타일 */
 .parent-main-zoo-money-title {
-  font-size: 24px; /* 글자 크기 */
-  font-weight: 900; /* 굵은 글씨 */
-  display: flex; /* Zoo와 Money를 가로 정렬 */
-  margin-left: -200px;
-  align-items: center; /* 세로 중앙 정렬 */
-  margin-top: 50px; /* 상단 공백 추가 */
-  margin-bottom: 20px;
-}
-
-.zoo {
-  color: #f7a048; /* 주황색 */
-}
-
-.money {
-  color: #1a1a1a; /* 검정색 */
-}
-
-/* 프로필 이미지 (겹치지 않도록 조정) */
-/* .profile-image {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  border: 2px solid white;  테두리 추가로 가독성 향상 
-} */
-
-/* 추가된 사용자 표시 (+1) */
-/* .profile-more {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #d1d5db;  회색 배경 
-  color: black;
+  font-size: 30px;
+  font-weight: bold;
   display: flex;
+  margin-left: -150px;
   align-items: center;
-  justify-content: center;
-  font-size: 14px;
-} */
-
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+.parent-zoo {
+  color: #ff9500;
+}
+.parent-money {
+  color: #1a1a1a;
+}
 .parent-main-profile-container {
   width: 80%;
   display: flex;
-  gap: 5px;
+  gap: 10px;
   margin-bottom: 10px;
 }
 
@@ -50,7 +26,9 @@
   width: 60px; /* 🔹 프로필 크기 조정 */
   text-align: center;
 }
-
+.profile-wrapper:hover{
+  transform: scale(1.05); /* 마우스 올리면 확대 */
+}
 .profile-image {
   width: 50px;
   height: 50px;
@@ -62,18 +40,18 @@
 .allowance-card {
   background-color: white;
   width: 85%;
-  height: auto; /* 높이를 자동 조절 */
-  border-radius: 12px; /* 둥근 모서리 */
-  border: 2px solid #f7a048; /* 주황색 테두리 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  padding: 20px; /* 내부 여백 */
+  height: auto;
+  border-radius: 12px;
+  border: 3px solid #ff9500;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
   margin-bottom: 30px;
 }
 /* 카드 상단 레이아웃 */
 .card-header {
   display: flex;
-  justify-content: space-between; /* 양쪽 정렬 */
-  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* 용돈 정보 텍스트 */
@@ -84,19 +62,25 @@
 
 /* 타이틀 스타일 */
 .allowance-title {
-  font-size: 14px;
-  color: gray;
+  font-size: 16px;
+  color: #333;
 }
-
+.allowance-cild-name{
+  font-weight: bold;
+  font-size: 18px;
+}
 /* 금액 스타일 */
 .allowance-amount {
   font-size: 24px;
   font-weight: bold;
+  align-items: center;
+  margin-left: 8px;
 }
 
 /* 소비내역 확인 버튼 */
 .consumptionhistory-button {
-  background-color: #fde4c3;
+  height: 40px;
+  background-color: #f9e7cf;
   color: black;
   font-size: 14px;
   padding: 6px 12px;
@@ -109,16 +93,16 @@
 
 /* 송금하기 버튼 hover 효과 */
 .consumptionhistory-button:hover {
-  background-color: #ffc881;
+  background-color: #f8d5a8;
 }
 
 /* 송금하기 버튼 */
 .sendmoney-button {
   width: 100%;
   height: 45px;
-  background-color: #f9a825;
+  background-color: #ff9500;
   color: white;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   border: none;
   border-radius: 10px;
@@ -131,63 +115,74 @@
 }
 
 /* 기능 카드 스타일 */
-.feature-card {
-  width: 150px; /* 카드 크기 */
+.parent-card {
+  width: 150px;
   height: 150px;
-  border-radius: 20px; /* 모서리 둥글게 */
+  border-radius: 20px;
   display: flex;
-  flex-direction: column; /* 세로 정렬 */
-  align-items: center; /* 중앙 정렬 */
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   font-weight: bold;
   font-size: 16px;
   color: black;
   text-align: center;
   transition: transform 0.2s ease-in-out;
   margin: auto;
+  cursor: pointer;
 }
 
-.grid {
+.parent-grid {
   display: grid !important; /* 강제로 grid 적용 */
   grid-template-columns: repeat(2, 1fr); /* 2열 그리드 */
-  gap: 10px; /* 카드 사이 간격 */
   width: 100%;
   max-width: 400px;
 }
-
-.feature-card img {
-  width: 60px; /* 아이콘 크기 */
-  height: auto;
-  margin-bottom: 10px; /* 아이콘과 텍스트 간격 */
+.parent-bear{
+  width: 70px;
+  margin-right: 5px;
+  margin-bottom: 10px;
 }
-
+.parent-deer{
+  width: 75px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+.parent-rabbit{
+  width: 80px;
+  margin-top: 5px;
+}
+.card-purple p{
+  margin-top: 10px;
+}
+.parent-pig{
+  width: 180px;
+  margin-top: -15px;
+  
+}
 /* 개별 카드 배경색 */
 .card-yellow {
-  /* background-color: #fde68a; */
   background-color: #c2f1ff;
   margin-right: 0;
 }
 
 .card-blue {
-  /* background-color: #8da4f2; */
   background-color: #fff4c2;
   margin-left: 0;
 }
 
 .card-purple {
-  /* background-color: #c084fc; */
   background-color: #fec7c0;
   margin-right: 0;
 }
 
 .card-pink {
-  /* background-color: #fca5a5; */
   background-color: #caffc2;
   margin-left: 0;
 }
 
 /* 카드 hover 효과 */
-.feature-card:hover {
-  transform: scale(1.05); /* 마우스 올리면 확대 */
+.parent-card:hover {
+  transform: scale(1.05);
 }

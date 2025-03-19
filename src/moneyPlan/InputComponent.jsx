@@ -25,8 +25,7 @@ function InputComponent({
         </span>
         <input
           type="text"
-          placeholder="금액입력"
-          style={isLast ? { marginRight: "-5px" } : {}}
+          placeholder="금액 입력"
           value={category}
           onChange={(e) => handleInputChange(e, index + 1)}
         />

@@ -3,11 +3,11 @@ import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
 import React, { useEffect, useRef, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { categoryName } from "../card/resources/patternCommon";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/CardConsumeChart.css";
-import { categoryName } from "./resources/patternCommon";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
@@ -21,22 +21,20 @@ ChartJS.register(ArcElement, Tooltip, Legend, Title);
 // };
 
 function PatternChart() {
-  const navigate = useNavigate();
-
   // const [categorizedData, setCategorizedData] = useState({}); // 카테고리별 데이터 상태
   // const [historyList, setHistoryList] = useState([]); // 소비 내역 원본
   const [planMoney, setPlanMoney] = useState();
   const [groupedData, setGroupedData] = useState({}); // 1주일 단위로 그룹화된 데이터
   const [currentCardNum, setCurrentCardNum] = useState(0); // 현재 보고 있는 주차 인덱스
   const [highestCategory, setHighestCategory] = useState(""); // 가장 많이 소비한 카테고리
-  const memberNum = sessionStorage.getItem("member_num");
+  const childNum = sessionStorage.getItem("childNum");
 
   const previousHighestCategoryRef = useRef(""); // 이전 카테고리를 추적
 
   //용돈가져오기
   useEffect(() => {
     axios({
-      url: `http://localhost:7777/zoomoney/moneyplan/getAllowance?memberNum=${memberNum}`,
+      url: `http://localhost:7777/zoomoney/moneyplan/getAllowance?memberNum=${childNum}`,
       method: "get",
     })
       .then((resposeData) => {
@@ -45,12 +43,12 @@ function PatternChart() {
       .catch((error) => {
         console.error(error);
       });
-  });
+  }, [childNum]);
 
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/card/select", {
-        params: { member_num: memberNum },
+        params: { member_num: childNum },
       })
       .then((response) => {
         if (!Array.isArray(response.data) || response.data.length === 0) {
@@ -74,7 +72,7 @@ function PatternChart() {
         setGroupedData(groupedData);
       })
       .catch((error) => {});
-  }, [memberNum]); // memberNum이 변경될 때만 실행
+  }, [childNum]); // memberNum이 변경될 때만 실행
 
   const groupDataByWeek = (data) => {
     return data.reduce((acc, item) => {
@@ -197,7 +195,9 @@ function PatternChart() {
 
   const chartData = getCurrentChartData();
 
-  if (!chartData) return null;
+  if (!chartData) {
+    return <div>소비 내역이 없습니다!</div>;
+  }
 
   const chartOptions = {
     plugins: {
@@ -286,8 +286,10 @@ function PatternChart() {
         <p>가장 많이 소비한 카테고리: {highestCategory}</p>
       </div>
 
-      <button className="patternmain-button" onClick={() => navigate("/main")}>
-        메인 페이지
+      <button className="patternmain-button">
+        <Link to="/parent/main" className="patternlink-style">
+          홈
+        </Link>
       </button>
 
       <Footer />

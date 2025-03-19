@@ -38,7 +38,7 @@ function PlanWrite(props) {
         setPlanMoney(formattedMoney);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
 
@@ -48,9 +48,10 @@ function PlanWrite(props) {
       (acc, curr) => acc + Number(curr),
       0
     );
+    const numericPlanMoney = Number(planMoney?.replace(/,/g, "")) || 0; // 숫자로 변환
     if (Object.values(category).every((value) => value === "")) {
       setMessage("설정한 용돈 금액에 맞춰 계획 금액을 입력해주세요");
-    } else if (total === planMoney) {
+    } else if (total === numericPlanMoney) {
       setMessage("받은 용돈과 계획한 금액이 일치합니다.");
     } else {
       setMessage(
@@ -59,21 +60,23 @@ function PlanWrite(props) {
     }
   }, [category, planMoney]);
 
-  //이동+유효성검사+데이터전달달
+  //이동+유효성검사+데이터전달
   const handleNext = () => {
     const total = Object.values(category).reduce(
       (acc, curr) => acc + Number(curr),
       0
     );
-
+    const numericPlanMoney = Number(planMoney?.replace(/,/g, "")) || 0; // 숫자로 변환
     if (Object.values(category).every((value) => value === "")) {
       toast.error("설정한 용돈 금액에 맞춰 계획 금액을 입력해 주세요");
-    } else if (total !== planMoney) {
+    } else if (total !== numericPlanMoney) {
       toast.error(
         "받은 용돈과 계획한 금액이 일치하지 않아요. 다시 입력해 주세요."
       );
     } else {
-      navi("/moneyPlan/planchart", { state: { category, planMoney } });
+      navi("/moneyPlan/planchart", {
+        state: { category, planMoney: numericPlanMoney },
+      });
     }
   };
 
@@ -88,10 +91,10 @@ function PlanWrite(props) {
       [key]: value.replace(/,/g, "") || "",
     }));
   };
-  console.log(category);
+
   return (
     <div className="mock-container">
-      <Header title="용돈 계획 세우기"></Header>
+      <Header title="용돈 계획 세우기" />
       <div className="planwrite-content">
         <p>
           일주일 동안 <span>{planMoney}원</span>을<br />
@@ -109,14 +112,14 @@ function PlanWrite(props) {
             handleInputChange={handleInputChange}
             index={index}
             isLast={index === images.length - 1}
-          ></InputComponent>
+          />
         ))}
         <p>{message}</p>
       </div>
       <button className="planwrite-button" onClick={handleNext}>
         다음
       </button>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 }

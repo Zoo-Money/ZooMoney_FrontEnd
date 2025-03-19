@@ -1,27 +1,15 @@
-/* 전체 화면을 아이폰 14 프로 크기로 설정 */
-/* .mock-container {
-  width: 100vw;
-  max-width: 393px;
-  height: 100vh;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-
-/* 메인 콘텐츠 */
-.content {
+.stockBegin-content {
   margin-top: 50px;
   text-align: center;
 }
 
-.main-image {
+.StockBegin-image {
   width: 158px;
   height: auto;
   margin-bottom: 20px;
 }
 
-.description {
+.SB-description {
   font-size: 15px;
   color: #5a5a5a;
   line-height: 1.5;
@@ -29,7 +17,7 @@
   margin: 10px 25px 10px 25px;
 }
 
-.question {
+.StockBegin-question {
   font-size: 16px;
   font-weight: bold;
   margin: 20px 0;
@@ -37,20 +25,14 @@
 }
 
 /* 참여하기 버튼 */
-.join-button {
+.joinStock-button {
   width: 80%;
   height: 45px;
-  background-color: #f9a825;
+  background-color: #ff9500;
   color: white;
   font-size: 14px;
   font-weight: bold;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-}
-
-/* 네비게이션 바 */
-.menu {
-  width: 100vw;
-  max-width: 393px;
 }

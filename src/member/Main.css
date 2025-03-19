@@ -1,216 +1,39 @@
-.cardMain-container {
-  max-height: calc(
-    100vh - 180px
-  ); /* header와 footer를 제외한 영역만 차지하도록 설정 */
-  overflow-y: auto;
-  padding-top: 5%;
-}
-
-.zoo-money {
+.main-zoomoney-text {
   width: 80%;
-  font-size: 24px; /* 글자 크기 */
-  font-weight: 900; /* 굵은 글씨 */
-  display: flex; /* Zoo와 Money를 가로 정렬 */
-  align-items: center; /* 세로 중앙 정렬 */
-  margin-top: 50px; /* 상단 공백 추가 */
-  justify-content: space-between;
-}
-.zoo-money .zoo {
-  color: #f7a048; /* 주황색 */
-}
-.zoo-money .money {
-  color: #1a1a1a; /* 검정색 */
-}
-/* 프로필 이미지 (겹치지 않도록 조정) */
-.profile-image {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  border: 2px solid white; /* 테두리 추가로 가독성 향상 */
-}
-/* 추가된 사용자 표시 (+1) */
-.profile-more {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #d1d5db; /* 회색 배경 */
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-}
-/* 용돈 정보 카드 */
-.allowance-card {
-  background-color: white;
-  width: 85%;
-  height: auto; /* 높이를 자동 조절 */
-  border-radius: 12px; /* 둥근 모서리 */
-  border: 2px solid #f7a048; /* 주황색 테두리 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  padding: 20px; /* 내부 여백 */
-  margin-bottom: 30px;
-}
-/* 카드 상단 레이아웃 */
-.card-header {
-  display: flex;
-  justify-content: space-between; /* 양쪽 정렬 */
-  align-items: center; /* 세로 중앙 정렬 */
-}
-/* 용돈 정보 텍스트 */
-.allowance-text {
-  display: flex;
-  flex-direction: column;
-}
-/* 타이틀 스타일 */
-.allowance-title {
-  font-size: 14px;
-  color: black;
-  font-weight: bold;
-}
-/* 금액 스타일 */
-.allowance-amount {
   font-size: 24px;
   font-weight: bold;
-}
-/* 소비내역 확인 버튼 */
-.consumptionhistory-button {
-  background-color: #fde4c3;
-  color: black;
-  font-size: 14px;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 10px;
-  font-weight: 600;
-  margin-top: 0; /* 위로 이동 */
-  cursor: pointer;
-}
-/* 송금하기 버튼 hover 효과 */
-.consumptionhistory-button:hover {
-  background-color: #ffc881;
-}
-/* 버튼 스타일링 */
-.sendmoney-button {
-  flex: 1; /* 버튼들이 균등하게 배치되도록 설정 */
-  height: 45px;
-  background-color: #f9a825; /* 기존 버튼 배경색 */
-  color: white; /* 글자색 */
-  font-size: 14px; /* 글자 크기 */
-  font-weight: bold; /* 글자 두껍게 */
-  border: none; /* 경계선 제거 */
-  cursor: pointer; /* 마우스 포인터 */
-  transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
-  border-right: 1px solid #fff; /* 버튼들 사이에 구분선 추가 */
-}
-/* 송금하기 버튼 hover 효과 */
-.sendmoney-button:hover {
-  background-color: #e68a2e;
-}
-/* 기능 카드 스타일 */
-.feature-card {
-  width: 150px; /* 카드 크기 */
-  height: 150px;
-  border-radius: 20px; /* 모서리 둥글게 */
   display: flex;
-  flex-direction: column; /* 세로 정렬 */
-  align-items: center; /* 중앙 정렬 */
-  justify-content: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
-  font-weight: bold;
-  font-size: 16px;
-  color: #333;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+.main-zoo {
+  color: #ff9500;
+  font-weight: bolder;
+}
+.main-money {
+  color: #1a1a1a;
+}
+.card-main-container {
+  max-height: calc(100vh - 140px);
+}
+.card-main-box {
   text-align: center;
-  transition: transform 0.2s ease-in-out;
-  margin: auto;
-  text-decoration: none; /* 링크 밑줄 제거 */
 }
-.grid {
-  display: grid !important; /* 강제로 grid 적용 */
-  grid-template-columns: repeat(2, 1fr); /* 2열 그리드 */
-  gap: 10px; /* 카드 사이 간격 */
-  width: 100%;
-  max-width: 400px;
-}
-.feature-card img {
-  width: 80px; /* 아이콘 크기 */
-  height: auto;
-  margin-bottom: 10px; /* 아이콘과 텍스트 간격 */
-}
-/* 개별 카드 배경색 */
-.card-skyblue {
-  background-color: #c2f1ff;
-  margin-right: 0;
-}
-.card-blue {
-  background-color: #8da4f2;
-  margin-left: 0;
-}
-.card-yellow {
-  background-color: #fff4c2;
-  margin-right: 0;
-}
-.card-pink {
-  background-color: #fca5a5;
-  margin-left: 0;
-}
-/* 카드 hover 효과 */
-.feature-card:hover {
-  transform: scale(1.05); /* 마우스 올리면 확대 */
-}
-.card-preview {
+.mycard-preview {
   width: 300px;
   height: 188px;
-  overflow: hidden;
   border-radius: 12px;
-  position: relative;
+  margin-left: 10px;
 }
-
-.card-image {
+.mycard-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 12px;
-}
-/* 버튼 그룹 스타일링 */
-.button-group {
-  display: flex; /* 버튼들을 나란히 배치 */
-  align-items: center; /* 버튼들 세로 정렬 */
-  width: 100%;
-  border-radius: 10px; /* 전체 버튼 그룹의 모서리 둥글게 */
-  background-color: #f9a825; /* 버튼 그룹 배경색 */
-  overflow: hidden; /* 버튼들이 그룹 밖으로 나가지 않도록 */
-}
-/* 구분선 버튼 스타일 */
-.separator-button {
-  background-color: #f9a825; /* 구분선 색상 */
-  color: white;
-  border: none;
-  padding: 0 10px; /* 구분선 크기 조정 */
-  font-size: 18px; /* 구분선 글자 크기 */
-  cursor: default; /* 클릭 불가 */
-  user-select: none; /* 텍스트 선택 방지 */
-}
-/* 마지막 버튼 오른쪽 경계선 없애기 */
-.sendmoney-button:last-child {
-  border-right: none;
-}
-.mycard-preview {
-  width: 300px; /* 가로 크기 */
-  height: 188px; /* 세로 크기 */
-  border-radius: 12px; /* 모서리 둥글게 */
-  position: relative;
-  /* overflow-y: scroll; */
-}
-
-.mycard-image {
-  width: 100%; /* 부모 요소에 맞게 너비를 100%로 설정 */
-  height: 100%; /* 부모 요소에 맞게 높이를 100%로 설정 */
-  object-fit: cover; /* 비율을 유지하면서 채우기 */
-  border-radius: 12px; /* 이미지 모서리 둥글게 */
-  position: absolute; /* 부모 요소에 맞게 이미지 위치 조정 */
   overflow: hidden;
 }
-
 .custom-image {
   object-fit: contain; /* 이미지 비율을 유지하면서 잘리지 않게 */
   transform: rotate(270deg); /* 이미지를 90도 회전하여 가로로 표시 */
@@ -222,11 +45,160 @@
   transform-origin: center; /* 이미지의 회전 중심을 중앙으로 설정 */
   transform: translate(-50%, -50%) rotate(270deg); /* 중앙 정렬 후 회전 */
 }
-
 .default-image {
-  object-fit: cover; /* 기본 이미지 비율 유지하면서 채우기 */
+  object-fit: cover;
+}
+/* 용돈 정보 카드 */
+.main-allowance-box {
+  background-color: white;
+  width: auto;
+  min-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  border: 3px solid #ff9500;
+  padding: 20px;
+  margin-bottom: 14px;
+  margin-top: 8px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* 총 포인트 박스 */
+.main-point-box {
+  display: flex; /* 가로 정렬 */
+  justify-content: flex-end; /* 우측 정렬 */
+  gap: 3px; /* 이미지와 포인트 사이 간격 */
+  align-items: center; /* 수직 중앙 정렬 */
+  margin-bottom: 3px;
+  margin-right: 3px;
 }
 
+/* 포인트 이미지 */
+.main-point-image {
+  width: 18px;
+  height: 18px;
+  margin-left: 70%;
+}
+
+/* 포인트 숫자 */
+.main-point-num p {
+  font-size: 15px;
+  font-weight: 900;
+  color: #787878;
+  margin: 0;
+}
+
+/* 용돈 정보 텍스트 */
+.main-allowance-text {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  margin-bottom: 10px;
+}
+.main-allowance-text span {
+  display: inline;
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;
+}
+/* 버튼 그룹 스타일링 */
+.main-button-group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 10px;
+  justify-content: space-around;
+}
+.main-button-group button {
+  min-width: 125px;
+  min-height: 50px;
+  background-color: #ff9500;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.main-button-group button:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+.main-grid {
+  display: grid !important; /* 강제로 grid 적용 */
+  grid-template-columns: repeat(2, 1fr); /* 2열 그리드 */
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+/* 메뉴 기능 박스 스타일 */
+.main-grid-box {
+  width: 150px;
+  height: 145px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  margin: auto;
+  text-decoration: none;
+  transition: 0.5s ease;
+}
+/* 개별 카드 배경색 */
+.box-skyblue {
+  background-color: #c2f1ff;
+  margin-right: 0;
+}
+.box-blue {
+  background-color: #fec7c0;
+  margin-left: 0;
+}
+.box-yellow {
+  background-color: #fff4c2;
+  margin-right: 0;
+}
+.box-pink {
+  background-color: #caffc2;
+  margin-left: 0;
+}
+/* 카드 hover 효과 */
+.main-grid-box:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+.mycard-preview {
+  width: 300px;
+  height: 188px;
+  overflow: hidden;
+  border-radius: 12px;
+  position: relative;
+}
+.card-pig {
+  width: 70px;
+  margin-right: 5px;
+  margin-bottom: 7px;
+}
+.card-rabbit {
+  width: 70px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.card-deer {
+  width: 70px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.card-giraffe {
+  width: 70px;
+  margin-left: 10px;
+}
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
 @keyframes bell-shake {
   0% {
     transform: rotate(0deg);
@@ -244,7 +216,6 @@
     transform: rotate(0deg);
   }
 }
-
 .bell-shake {
   animation: bell-shake 0.5s ease-in-out;
 }

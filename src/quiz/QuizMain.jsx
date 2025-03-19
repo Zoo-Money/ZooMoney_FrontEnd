@@ -14,10 +14,14 @@ const QuizMain = () => {
   const [correctAnswerCount, setCorrectAnswerCount] = useState(0); // 맞힌 정답 개수
   const [answerList, setAnswerList] = useState([]); // 푼 퀴즈 데이터 리스트
 
+  const memberNum = sessionStorage.getItem("member_num");
+
   useEffect(() => {
     // 📌 도전한 퀴즈 개수 가져오기
     axios
-      .get("http://localhost:7777/zoomoney/quiz/count")
+      .get("http://localhost:7777/zoomoney/quiz/count", {
+        params: { memberNum: memberNum },
+      })
       .then((response) => {
         setQuizCount(response.data.quizCount);
       })
@@ -27,7 +31,9 @@ const QuizMain = () => {
 
     // 📌 맞힌 정답 개수 가져오기
     axios
-      .get("http://localhost:7777/zoomoney/quiz/total")
+      .get("http://localhost:7777/zoomoney/quiz/total", {
+        params: { memberNum: memberNum },
+      })
       .then((response) => {
         setCorrectAnswerCount(response.data.correctAnswerCount);
       })
@@ -37,20 +43,22 @@ const QuizMain = () => {
 
     //  📌 문제별 정답 여부 List 가져오기
     axios
-      .get("http://localhost:7777/zoomoney/quiz/answerlist")
+      .get("http://localhost:7777/zoomoney/quiz/answerlist", {
+        params: { memberNum: memberNum },
+      })
       .then((response) => {
         setAnswerList(response.data.answerList || []); // 만약 answerList가 undefined이면 빈 배열로 설정
       })
       .catch((error) =>
         console.error("❌ 정답 리스트를 가져오는 데 실패했습니다.", error)
       );
-  }, []);
+  });
 
   const navigate = useNavigate();
 
   const startQuiz = () => {
     if (quizCount >= 5) {
-      navigate("/card/main"); // 자녀 메인 페이지로 이동
+      navigate("/main"); // 자녀 메인 페이지로 이동
     } else {
       navigate("/quiz/quiz"); // 퀴즈 출제 페이지로 이동
     }
@@ -81,11 +89,7 @@ const QuizMain = () => {
 
       {/* 메인 콘텐츠 */}
       <div className="quizmain-content">
-        <img
-          src={giraffe04}
-          alt="giraffe04"
-          className="quizmain-image"
-        />
+        <img src={giraffe04} alt="giraffe04" className="quizmain-image" />
         {/* 총 점수 */}
         <div className="quizmain-total-box">
           <div className="quizmain-total">
@@ -120,6 +124,10 @@ const QuizMain = () => {
             <button className="quizmain-button" onClick={startQuiz}>
               시작하기
             </button>
+            {/* 주의사항 */}
+            <p className="quizmain-check">
+              <strong>꼭 확인해주세요</strong>
+            </p>
           </>
         ) : (
           <>
@@ -129,10 +137,6 @@ const QuizMain = () => {
             </button>
           </>
         )}
-        {/* 주의사항 */}
-        <p className="quizmain-check">
-          <strong>꼭 확인해주세요</strong>
-        </p>
         <p className="quizmain-description">
           <li>매일 5개의 퀴즈에 도전할 수 있어요.</li>
           <li>퀴즈를 맞힐 때마다 100P를 받아요.</li>

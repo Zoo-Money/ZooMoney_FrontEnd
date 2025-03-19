@@ -5,20 +5,22 @@ import ContractRouter from "./ContractRouter";
 import DailyRouter from "./DailyRouter";
 import MemberRouter from "./MemberRouter";
 import MoneyPlanRouter from "./MoneyPlanRouter";
+import ParentRouter from "./ParentRouter";
 import QuizRouter from "./QuizRouter";
 import StockRouter from "./StockRouter";
 
 function Routers() {
   return (
     <div>
-      <StockRouter />
       <AccountRouter />
       <CardRouter />
       <ContractRouter />
-      <QuizRouter />
-      <MoneyPlanRouter />
       <DailyRouter />
       <MemberRouter />
+      <MoneyPlanRouter />
+      <ParentRouter />
+      <QuizRouter />
+      <StockRouter />
     </div>
   );
 }

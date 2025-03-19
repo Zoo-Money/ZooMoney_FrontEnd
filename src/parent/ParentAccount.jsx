@@ -1,13 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Footer from "../../common/Footer";
-import Header from "../../common/Header";
+import { useLocation, useNavigate } from "react-router-dom";
+import Footer from "../common/Footer";
+import Header from "../common/Header";
 import { Button } from "react-bootstrap";
 
 const ParentAccount = () => {
-  // 세션 값 불러오기
-  const memberNum = sessionStorage.getItem("member_num");
+  const location = useLocation(); // 상태를 받아오기 위해 useLocation 사용
   const navigate = useNavigate();
 
   const [accountList, setAccountList] = useState([]);
@@ -15,12 +14,15 @@ const ParentAccount = () => {
 
   const colorList = ["#FFCB9A", "#C2F1FF", "#FFF4C2", "#FEC7C0", "#CAFFC2"];
 
+  // state에서 추출
+  const target = location.state?.target;
+
   useEffect(() => {
     // 사용자의 저금통 목록 조회
     const list = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/account/list/${memberNum}`
+          `http://localhost:7777/zoomoney/account/list/${target}`
         );
         setAccountList(response.data);
       } catch (error) {
@@ -31,7 +33,7 @@ const ParentAccount = () => {
     };
 
     list();
-  }, [memberNum]);
+  }, [target]);
 
   // 데이터 로드 후 렌더링
   if (loading) return null;
@@ -45,7 +47,7 @@ const ParentAccount = () => {
 
       // 해지 알림 전송
       await axios.post("http://localhost:7777/zoomoney/notify/send", {
-        memberNum: 1,
+        memberNum: target,
         notifyContent: `🐷 ${accountName}<br>저금통 해지 요청이 승인되었어요`,
         notifyUrl: "/account",
       });
@@ -69,7 +71,7 @@ const ParentAccount = () => {
 
       // 해지 요청 거절 알림 전송
       await axios.post("http://localhost:7777/zoomoney/notify/send", {
-        memberNum: 1,
+        memberNum: target,
         notifyContent: `🐷 ${accountName}<br>저금통 해지 요청이 거절되었어요`,
         notifyUrl: "/account",
       });
@@ -103,7 +105,7 @@ const ParentAccount = () => {
                   style={{
                     backgroundColor:
                       account.accountGoal - account.accountNow <= 0
-                        ? "#f9a825" // 목표 금액 달성 시 색상
+                        ? "#ff9500" // 목표 금액 달성 시 색상
                         : new Date().setHours(0, 0, 0, 0) >
                           new Date(account.accountEnd)
                         ? "#c4c0ba" // 만기된 저금통 색상
