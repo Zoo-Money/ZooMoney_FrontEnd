@@ -58,7 +58,10 @@ function StockHistory(props) {
     return d.toISOString().split("T")[0].replace(/-/g, ".");
   };
 
-  const labels = ranking.map((item) => item.result_date);
+  const labels = ranking.map((item) => {
+    const date = new Date(item.result_date);
+    return date.toISOString().split("T")[0].replace(/-/g, ".");
+  });
   const resultRate = ranking.map((item) => item.result_rate);
 
   //차트데이터
@@ -91,7 +94,12 @@ function StockHistory(props) {
     },
     plugins: {
       legend: {
-        display: false,
+        display: true,
+        position: "bottom",
+        labels:{
+          usePointStyle: true,
+          padding: 4,
+        }
       },
       tooltip: {
         enabled: true,
