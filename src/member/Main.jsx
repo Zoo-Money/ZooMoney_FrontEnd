@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchCardInfo, fetchMetadata } from "../card/CardService";
 import Footer from "../common/Footer";
-import defaultCardImage from "../images/cardmain.png"; // 기본 이미지 경로
+import defaultCardImage from "../images/card/card00.png"; // 기본 이미지 경로
 import pig00 from "../images/pig/pig00.png";
 import deer02 from "../images/deer/deer02.png";
 import rabbit01 from "../images/rabbit/rabbit01.png";
@@ -43,10 +43,7 @@ const Main = () => {
       eventSource.addEventListener("NOTIFY", async () => {
         // 알림 아이콘 애니메이션
         setShake(true);
-
-        setTimeout(() => {
-          setShake(false);
-        }, 500);
+        setTimeout(() => setShake(false), 500);
 
         // 알림 정보 갱신
         await list();
@@ -129,16 +126,10 @@ const Main = () => {
     fetchData();
   }, [memberNum]);
 
-  // 데이터 로드 후 렌더링
-  if (loading) return null;
-
-  const handleBellClick = () => {
+  const animate = () => {
     // 알림 아이콘 애니메이션
     setShake(true);
-
-    setTimeout(() => {
-      setShake(false);
-    }, 500);
+    setTimeout(() => setShake(false), 500);
 
     setView(!view);
   };
@@ -155,6 +146,9 @@ const Main = () => {
 
     navigate(notifyUrl);
   };
+
+  // 데이터 로드 후 렌더링
+  if (loading) return null;
 
   // 알림 시간 계산
   function time(timestamp) {
@@ -197,7 +191,7 @@ const Main = () => {
             <NotificationsIcon
               className={shake ? "bell-shake" : ""}
               color="action"
-              onClick={handleBellClick}
+              onClick={animate}
               style={{ fontSize: "1.5rem", cursor: "pointer" }}
             />
           </Badge>
@@ -210,7 +204,7 @@ const Main = () => {
                 padding: "10px",
                 paddingBottom: "5px",
                 position: "absolute",
-                right: "-10px",
+                right: "-30px",
                 minWidth: "200px",
                 minHeight: "300px",
                 backgroundColor: "#fff",
@@ -277,34 +271,13 @@ const Main = () => {
         {/* 카드 이미지 미리보기 */}
         <div className="card-main-box">
           <div className="mycard-preview">
-            {loading ? (
-              <div className="loading-overlay">로딩 중...</div> // 로딩 중 UI (예: 텍스트나 애니메이션)
-            ) : (
-              <>
-                <img
-                  src={
-                    metadata && metadata.image
-                      ? metadata.image
-                      : defaultCardImage // metadata가 있을 때만 이미지 사용, 없으면 기본 이미지
-                  }
-                  alt="카드 미리보기"
-                  className={
-                    metadata && metadata.image
-                      ? "mycard-image custom-image"
-                      : "mycard-image default-image"
-                  }
-                />
-                {!metadata?.image && (
-                  <Link to="/card/create">
-                    <img
-                      src={defaultCardImage} // 기본 이미지를 사용
-                      alt="기본 카드 이미지"
-                      className="mycard-image default-image"
-                    />
-                  </Link>
-                )}
-              </>
-            )}
+            <>
+              <img
+                src={defaultCardImage} // 기본 이미지를 사용
+                alt="기본 카드 이미지"
+                className="mycard-image custom-image"
+              />
+            </>
           </div>
         </div>
 
@@ -322,32 +295,15 @@ const Main = () => {
           </div>
 
           <div className="main-button-group">
-            <a
-              href={
-                metadata && metadata.image ? "/card/usehistory" : "/card/create"
-              }
-            >
-              카드사용내역
-            </a>
+            <a href="/card/usehistory">카드사용내역</a>
             <span>|</span>
-            <a
-              href={
-                metadata && metadata.image
-                  ? "/contract/contractSelect"
-                  : "/card/create"
-              }
-            >
-              용돈 계약서
-            </a>
+            <a href="/contract/contractSelect">용돈 계약서</a>
           </div>
         </div>
 
         {/* 기능 카드 버튼 */}
         <div className="main-grid grid-cols-2 gap-2 mt-1 w-full">
-          <a
-            href={metadata && metadata.image ? "/card/pattern" : "/card/create"}
-            className="main-grid-box box-skyblue"
-          >
+          <a href="/card/pattern" className="main-grid-box box-skyblue">
             <div>
               <img
                 src={rabbit01}
@@ -357,12 +313,7 @@ const Main = () => {
               <p>소비 패턴 분석</p>
             </div>
           </a>
-          <a
-            href={
-              metadata && metadata.image ? "/moneyplan/main" : "/card/create"
-            }
-            className="main-grid-box box-blue"
-          >
+          <a href="/moneyplan/main" className="main-grid-box box-blue">
             <div>
               <img src={deer02} className="card-deer" alt="용돈 계획 세우기" />
               <p>용돈 계획 세우기</p>

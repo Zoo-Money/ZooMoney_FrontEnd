@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import SignatureCanvas from "react-signature-canvas";
+import { toast } from "react-toastify";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractWrite.css";
-import { toast } from "react-toastify";
-import { Navigate, useNavigate } from "react-router-dom";
 
 const getFormattedDate = () => {
   const today = new Date();
@@ -42,7 +42,7 @@ const ContractWrite = () => {
         // console.error("부모이름 불러오기 실패:" + error);
         setParentName("부모이름 불러오기 실패"); // 실패시 기본값
       });
-  }, []);
+  });
 
   const [isFormValid, setIsFormValid] = useState(false);
 

@@ -22,7 +22,7 @@ const QuizEnd = () => {
       .catch((error) =>
         console.error("맞춘 퀴즈의 개수를 알 수 없습니다.", error)
       );
-  }, []);
+  });
 
   const navigate = useNavigate();
 

@@ -27,14 +27,16 @@ function StockInfoDetail() {
         <img className="stockinfo-image" src={rabbit2} alt="토끼 이미지" />
       </div>
       <div className="stockinfo_content">
-        {infoDetail.infoContent.split("\n").map((line, index) => {
-          return (
+        {!infoDetail ? (
+          <p>로딩 중...</p>
+        ) : (
+          infoDetail.infoContent.split("\n").map((line, index) => (
             <span key={index}>
               {line}
               <br />
             </span>
-          );
-        })}
+          ))
+        )}
       </div>
     </div>
   );
