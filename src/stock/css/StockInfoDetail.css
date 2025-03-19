@@ -31,7 +31,13 @@
   padding: 0 20px 0 20px;
   margin-bottom: 50px;
   overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+.stockinfo_content::-webkit-scrollbar {
+  display: none;
+}
+
 .stockinfo_content span {
   font-size: 18px;
 }
