@@ -75,7 +75,7 @@ const QuizQuiz = () => {
 
   return (
     <div className="mock-container">
-      <Header title="QUIZ 풀기" />
+      <Header title="오늘의 금융퀴즈" />
       <div className="quizquiz-content">
         <img src={giraffe05} alt="giraffe05" className="quizquiz-image" />
         <div className="quizquiz-board">
@@ -109,7 +109,7 @@ const QuizQuiz = () => {
           </button>
         </div>
         <button className="quizquiz-answer-button" onClick={handleSubmit}>
-          정답제출
+          정답 제출
         </button>
       </div>
       <Footer />

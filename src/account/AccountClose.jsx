@@ -68,7 +68,7 @@ const AccountClose = () => {
         <div style={{ marginTop: "2rem" }}>
           <button
             style={{
-              backgroundColor: "#f9a825",
+              backgroundColor: "#ff9500",
             }}
             onClick={() => navigate(-1)}
           >

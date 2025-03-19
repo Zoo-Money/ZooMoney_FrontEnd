@@ -58,7 +58,7 @@
 }
 .stock-main-button {
   width: 80%;
-  background-color: #f9a825;
+  background-color: #ff9500;
   color: white;
   font-size: 14px;
   height: 45px;
@@ -73,6 +73,15 @@
   border-collapse: collapse;
   margin-top: 20px;
 }
+.stock-main-mystock-list-box33 {
+  max-height: calc(100vh - 580px);
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.stock-main-mystock-list-box33::-webkit-scrollbar {
+  display: none;
+}
 
 .stock-table th,
 .stock-table td {
@@ -80,6 +89,7 @@
   border-bottom: 1px solid #ddd;
   padding: 10px;
   text-align: center;
+  font-size: 12px;
 }
 
 .stock-table th {
@@ -98,7 +108,7 @@
 }
 
 .current-price {
-  font-size: 14px;
+  font-size: 12px;
   color: #666;
 }
 
@@ -120,9 +130,12 @@
   width: 80%;
 }
 
-.stock-table td {
-  font-size: 12px;
+.myStock-tableName {
+  width: 80%;
+  margin-top: 5%;
+  margin-bottom: 2%;
 }
-.stock-table th {
-  font-size: 12px;
+
+.stock-table {
+  margin-top: 0px;
 }

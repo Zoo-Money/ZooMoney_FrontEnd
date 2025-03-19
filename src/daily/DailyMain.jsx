@@ -27,7 +27,7 @@ const DailyMain = () => {
         console.error("출석 체크 여부 확인 실패", error);
         setIsLoading(false);
       });
-  }, []);
+  });
 
   // ✅ 출석 체크 (버튼 눌렀을 때만 실행)
   const handleAttendance = () => {

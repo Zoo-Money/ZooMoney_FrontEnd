@@ -23,7 +23,7 @@
   font-size: 14px;
   font-weight: bold;
   border: none;
-  border-radius: 15px;
+  border-radius: 10px;
   margin: 0 auto 40px auto; /* 가운데 정렬 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: left;
@@ -116,12 +116,12 @@
 .quizmain-button {
   width: 80%;
   height: 45px;
-  background-color: #f9a825;
+  background-color: #ff9500;
   color: white;
   font-size: 14px;
   font-weight: bold;
   border: none;
-  border-radius: 15px;
+  border-radius: 10px;
   cursor: pointer;
   margin-bottom: 30px;
   transition: 0.5s ease;

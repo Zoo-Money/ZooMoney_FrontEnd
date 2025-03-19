@@ -47,7 +47,7 @@ const QuizSuccess = () => {
 
   return (
     <div className="mock-container">
-      <Header title="QUIZ 결과" />
+      <Header title="오늘의 금융퀴즈" />
 
       {/* 메인 콘텐츠 */}
       <div className="quizsuccess-content">
@@ -77,13 +77,13 @@ const QuizSuccess = () => {
               오늘의 퀴즈를 모두 응시했어요!
             </p>
             <button className="quizsuccess-point-button" onClick={goToEnd}>
-              포인트는 총 몇점?
+              결과 보기
             </button>
           </>
         ) : (
           <>
             <button className="quizsuccess-button" onClick={nextQuiz}>
-              다음 QUIZ 풀기
+              다음 퀴즈 풀기
             </button>
             <button className="quizsuccess-button-stop" onClick={goToMain}>
               그만 풀기

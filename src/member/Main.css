@@ -105,18 +105,21 @@
   align-items: center;
   width: 100%;
   border-radius: 10px;
-  background-color: #ff9500; /* 버튼 그룹 배경색 */
   justify-content: space-around;
-  padding: 10px;
 }
-.main-button-group a {
-  margin-left: 5px;
-  text-decoration: none;
+.main-button-group button {
+  min-width: 125px;
+  min-height: 50px;
+  background-color: #ff9500;
+  border: none;
+  border-radius: 10px;
   color: #fff;
+  cursor: pointer;
+  transition: 0.5s ease;
 }
-.main-button-group span {
-  color: #fff;
-  font-weight: bold;
+.main-button-group button:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 .main-grid {
   display: grid !important; /* 강제로 grid 적용 */
@@ -138,9 +141,9 @@
   font-size: 16px;
   color: #333;
   text-align: center;
-  transition: transform 0.2s ease-in-out;
   margin: auto;
   text-decoration: none;
+  transition: 0.5s ease;
 }
 /* 개별 카드 배경색 */
 .box-skyblue {
@@ -161,7 +164,8 @@
 }
 /* 카드 hover 효과 */
 .main-grid-box:hover {
-  transform: scale(1.05); /* 마우스 올리면 확대 */
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 .mycard-preview {
   width: 300px;
@@ -172,9 +176,8 @@
 }
 .card-pig {
   width: 70px;
-  margin-top: 20px;
   margin-right: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
 }
 .card-rabbit {
   width: 70px;
@@ -187,7 +190,7 @@
   margin-top: 10px;
 }
 .card-giraffe {
-  width: 180px;
+  width: 70px;
   margin-left: 10px;
 }
 .card-image {

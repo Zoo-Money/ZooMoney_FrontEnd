@@ -22,7 +22,6 @@ function CardHistory() {
         })
 
         .then((response) => {
-          console.log("@@:" + response.data);
           setHistoryList(response.data);
         })
         .catch((error) => {
