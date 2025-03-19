@@ -49,8 +49,7 @@ function PatternChart() {
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/card/select", {
-        params: { period: "all" },
-        headers: { member_num: memberNum },
+        params: { member_num: memberNum },
       })
       .then((response) => {
         if (!Array.isArray(response.data) || response.data.length === 0) {
