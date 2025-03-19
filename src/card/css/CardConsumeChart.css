@@ -29,16 +29,21 @@
 .patternmain-button {
   width: 80%;
   height: 45px;
-  background-color: #f9a825;
+  background-color: #ff9500;
   color: white;
   font-size: 14px;
   font-weight: bold;
   border: none;
   border-radius: 10px;
-  cursor: pointer;
   display: inline;
   margin-top: 15%;
   margin-bottom: auto;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.patternmain-button:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 /* planChart */
 .patternmain-box {

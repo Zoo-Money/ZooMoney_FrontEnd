@@ -29,7 +29,7 @@ const ContractDetail = () => {
         setContracts(response.data); // 데이터를 상태에 저장
       })
       .catch((error) => {
-        console.log("과거 계약서 로드 오류:", error);
+        console.error("과거 계약서 로드 오류:", error);
       });
   }, []);
 

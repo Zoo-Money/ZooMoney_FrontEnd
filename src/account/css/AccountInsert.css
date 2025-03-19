@@ -12,7 +12,7 @@
 .AccountInsertView {
   width: 350px;
   height: 225px;
-  border: 2px solid #f9a825;
+  border: 2px solid #ff9500;
   border-radius: 10px;
   padding: 20px;
   display: flex;
@@ -35,7 +35,7 @@
 .AccountInsertContent button {
   min-width: 350px;
   min-height: 45px;
-  background-color: #f9a825;
+  background-color: #ff9500;
   color: #fff;
   border: none;
   border-radius: 10px;

@@ -38,7 +38,7 @@ function PlanWrite(props) {
         setPlanMoney(formattedMoney);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
 
@@ -49,7 +49,6 @@ function PlanWrite(props) {
       0
     );
     const numericPlanMoney = Number(planMoney?.replace(/,/g, "")) || 0; // 숫자로 변환
-    console.log("총합", total, "용돈:", numericPlanMoney);
     if (Object.values(category).every((value) => value === "")) {
       setMessage("설정한 용돈 금액에 맞춰 계획 금액을 입력해주세요");
     } else if (total === numericPlanMoney) {
@@ -61,7 +60,7 @@ function PlanWrite(props) {
     }
   }, [category, planMoney]);
 
-  //이동+유효성검사+데이터전달달
+  //이동+유효성검사+데이터전달
   const handleNext = () => {
     const total = Object.values(category).reduce(
       (acc, curr) => acc + Number(curr),
@@ -92,10 +91,10 @@ function PlanWrite(props) {
       [key]: value.replace(/,/g, "") || "",
     }));
   };
-  console.log(category);
+
   return (
     <div className="mock-container">
-      <Header title="용돈 계획 세우기"></Header>
+      <Header title="용돈 계획 세우기" />
       <div className="planwrite-content">
         <p>
           일주일 동안 <span>{planMoney}원</span>을<br />
@@ -113,14 +112,14 @@ function PlanWrite(props) {
             handleInputChange={handleInputChange}
             index={index}
             isLast={index === images.length - 1}
-          ></InputComponent>
+          />
         ))}
         <p>{message}</p>
       </div>
       <button className="planwrite-button" onClick={handleNext}>
         다음
       </button>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 }

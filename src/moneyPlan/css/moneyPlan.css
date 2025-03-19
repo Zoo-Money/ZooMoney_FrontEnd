@@ -19,7 +19,7 @@
   margin-top: -20px;
   align-items: flex-end;
 }
-.planmain-description p{
+.planmain-description p {
   margin-left: 35px;
 }
 .planmain-box {
@@ -40,7 +40,7 @@
 .planmain-button {
   width: 80%;
   height: 45px;
-  background-color: #f9a825;
+  background-color: #ff9500;
   color: white;
   font-size: 14px;
   font-weight: bold;
@@ -48,8 +48,13 @@
   border-radius: 10px;
   cursor: pointer;
   display: inline;
-  margin-left: 10px;
   margin-top: -15px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.planmain-button:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 /* PlanWrite */
@@ -64,14 +69,14 @@
   color: #ff5454;
 }
 
-.planwrite-container p{
+.planwrite-container p {
   font-size: 14px;
   text-align: center;
   margin-top: 30px;
 }
 .planwrite-input-list:nth-child(1) {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin: 0 auto;
   border-radius: 15px;
@@ -80,12 +85,12 @@
   background-color: #ffcb9a;
   margin-bottom: 20px;
 }
-.planwrite-input-list span{
+.planwrite-input-list span {
   display: flex;
   width: 50px;
   margin-right: 20px;
 }
-.planwrite-input-list img{
+.planwrite-input-list img {
   width: 60px;
   display: flex;
   margin-right: 25px;
@@ -95,11 +100,10 @@
   width: 150px;
   border: none;
   background-color: transparent;
-  margin-right: 5px;
+  margin-right: 10px;
   text-align: right;
-  margin-bottom: 8px;
 }
-.planwrite-input-list input:focus{
+.planwrite-input-list input:focus {
   outline: none;
 }
 .planwrite-input-list:nth-child(2) {
@@ -155,15 +159,19 @@
 .planwrite-button {
   width: 80%;
   height: 45px;
-  background-color: #f9a825;
+  background-color: #ff9500;
   color: white;
   font-size: 14px;
   font-weight: bold;
   border: none;
   border-radius: 10px;
-  cursor: pointer;
   display: inline;
-  margin-left: 10px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.planwrite-button:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 /* planChart */
 .planchart-box {

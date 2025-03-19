@@ -2,15 +2,15 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Badge } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { fetchCardInfo, fetchMetadata } from "../card/CardService";
 import Footer from "../common/Footer";
 import defaultCardImage from "../images/card/card00.png"; // 기본 이미지 경로
-import pig00 from "../images/pig/pig00.png";
 import deer02 from "../images/deer/deer02.png";
-import rabbit01 from "../images/rabbit/rabbit01.png";
+import giraffe05 from "../images/giraffe/giraffe05.png";
+import pig00 from "../images/pig/pig00.png";
 import point01 from "../images/point/point01.jpg";
-import quiz from "../images/quiz.png";
+import rabbit01 from "../images/rabbit/rabbit01.png";
 import "./Main.css";
 
 const Main = () => {
@@ -204,9 +204,9 @@ const Main = () => {
                 padding: "10px",
                 paddingBottom: "5px",
                 position: "absolute",
-                right: "-30px",
+                right: "-15px",
                 minWidth: "200px",
-                minHeight: "300px",
+                minHeight: "350px",
                 backgroundColor: "#fff",
                 border: "1px solid #ccc",
                 borderRadius: "10px",
@@ -219,7 +219,7 @@ const Main = () => {
               <div
                 className="AccountMainResult"
                 style={{
-                  maxHeight: "300px",
+                  maxHeight: "325px",
                   overflowY: "auto",
                 }}
               >
@@ -293,11 +293,36 @@ const Main = () => {
             <span>나의 용돈</span>
             <span>{allowanceAmount}</span>
           </div>
-
-          <div className="main-button-group">
-            <a href="/card/usehistory">카드사용내역</a>
-            <span>|</span>
-            <a href="/contract/contractSelect">용돈 계약서</a>
+          <div
+            className="main-button-group"
+            style={{
+              marginTop: "10px",
+              display: "flex",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <button
+              onClick={() =>
+                navigate(
+                  metadata && metadata.image
+                    ? "/card/usehistory"
+                    : "/card/create"
+                )
+              }
+            >
+              카드사용내역
+            </button>
+            <button
+              onClick={() =>
+                navigate(
+                  metadata && metadata.image
+                    ? "/contract/contractSelect"
+                    : "/card/create"
+                )
+              }
+            >
+              용돈 계약서
+            </button>
           </div>
         </div>
 
@@ -321,7 +346,7 @@ const Main = () => {
           </a>
           <a href="/quiz/main" className="main-grid-box box-yellow">
             <div>
-              <img src={quiz} className="card-giraffe" alt="금융퀴즈" />
+              <img src={giraffe05} className="card-giraffe" alt="금융퀴즈" />
               <p>금융 퀴즈</p>
             </div>
           </a>

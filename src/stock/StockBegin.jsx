@@ -12,8 +12,6 @@ const StockBegin = () => {
   const navigate = useNavigate();
 
   const handleJoin = () => {
-    console.log("버튼 클릭됨!");
-    console.log(memberNum);
     axios
       .post("http://localhost:7777/zoomoney/stock/start", { memberNum })
       .then((response) => {

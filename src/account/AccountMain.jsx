@@ -77,7 +77,7 @@ const AccountMain = () => {
                   style={{
                     backgroundColor:
                       account.accountGoal - account.accountNow <= 0
-                        ? "#f9a825" // 목표 금액 달성 시 색상
+                        ? "#ff9500" // 목표 금액 달성 시 색상
                         : new Date().setHours(0, 0, 0, 0) >
                           new Date(account.accountEnd)
                         ? "#c4c0ba" // 만기된 저금통 색상

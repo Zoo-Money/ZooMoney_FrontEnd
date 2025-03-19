@@ -127,7 +127,7 @@
 .quizsuccess-button {
   width: 90%;
   height: 45px;
-  background-color: #f9a825;
+  background-color: #ff9500;
   color: white;
   font-size: 14px;
   font-weight: bold;
@@ -146,7 +146,7 @@
 .quizsuccess-button-stop {
   width: 90%;
   height: 45px;
-  background-color: #b3b3b3;
+  background-color: #c4c0ba;
   color: white;
   font-size: 14px;
   font-weight: bold;
@@ -167,7 +167,7 @@
 .quizsuccess-point-button {
   width: 90%;
   height: 45px;
-  background-color: #f9a825;
+  background-color: #ff9500;
   color: white;
   font-size: 14px;
   font-weight: bold;

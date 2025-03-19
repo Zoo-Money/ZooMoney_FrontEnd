@@ -117,7 +117,7 @@ const AccountInsert = () => {
       <div className="AccountInsertContent">
         <div>
           <span style={{ fontSize: "1.5rem" }}>
-            얼마 <span style={{ color: "#f9a825" }}>저금</span>하시겠어요?
+            얼마 <span style={{ color: "#ff9500" }}>저금</span>하시겠어요?
           </span>
         </div>
         <div className="AccountInsertView">
