@@ -13,13 +13,13 @@ function CardHistory() {
   const [, setMetadataUrl] = useState("");
   const [, setLoading] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState("all");
-  const memberNum = sessionStorage.getItem("member_num");
+  const member_num = sessionStorage.getItem("member_num");
 
   useEffect(() => {
     const loadOrders = (period) => {
       axios
         .get("http://localhost:7777/zoomoney/card/select", {
-          params: { period, memberNum },
+          params: { period, member_num },
         })
         .then((response) => {
           setHistoryList(response.data);
@@ -34,7 +34,7 @@ function CardHistory() {
 
     // 세션에 카드 정보가 없으면 백엔드에서 메타데이터 가져오기
     fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
-  }, [selectedPeriod, memberNum]);
+  }, [selectedPeriod, member_num]);
 
   return (
     <div className="mock-container">
