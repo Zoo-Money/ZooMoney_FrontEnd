@@ -49,13 +49,13 @@ function StockHistory(props) {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  });
 
   //일주일 뒤 날짜 폼폼
   const afterOneWeek = (date) => {
     const d = new Date(date);
     d.setDate(d.getDate() + 6);
-    return d.toISOString().split("T")[0].replace(/\-/g, ".");
+    return d.toISOString().split("T")[0].replace(/-/g, ".");
   };
 
   const labels = ranking.map((item) => item.result_date);

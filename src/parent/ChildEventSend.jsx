@@ -41,7 +41,8 @@ const ChildEventSend = () => {
     };
 
     fetchAccountInfo();
-  }, []);
+  });
+
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/contract/getChildByParent", {
@@ -61,7 +62,7 @@ const ChildEventSend = () => {
       .catch((error) => {
         console.error("자녀 목록 불러오기 실패:", error);
       });
-  }, []);
+  });
 
   useEffect(() => {
     if (selectedChild) {
