@@ -7,7 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const StockBegin = () => {
-  const [hasJoined, setHasJoined] = useState(false);
+  const [, setHasJoined] = useState(false);
   const memberNum = sessionStorage.getItem("member_num");
   const navigate = useNavigate();
 

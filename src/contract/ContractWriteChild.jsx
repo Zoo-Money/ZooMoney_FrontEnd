@@ -26,14 +26,14 @@ const ContractWriteChild = () => {
   const memberNum = sessionStorage.getItem("member_num");
 
   // 오늘 날짜를 'YYYY-MM-DD' 형식으로 설정
-  const today = new Date().toISOString().split("T")[0];
+  // const today = new Date().toISOString().split("T")[0];
   const [contractDetails, setContractDetails] = useState(""); // 부모가 작성한 계약 내용
 
   useEffect(() => {
     if (!memberNum) {
       toast.error("아이 정보 관련 세션값이 없습니다.");
     }
-  }, []);
+  });
 
   useEffect(() => {
     axios
@@ -46,7 +46,7 @@ const ContractWriteChild = () => {
       .catch((error) => {
         setChildName("아이이름 불러오기 실패");
       });
-  }, []);
+  });
 
   // 부모가 작성한 계약 내용
   useEffect(() => {

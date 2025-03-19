@@ -69,7 +69,7 @@ const QuizQuiz = () => {
         setQuizCount(response.data.quizCount); // 상태 업데이트
       })
       .catch((error) => console.error("퀴즈의 개수를 알 수 없습니다.", error));
-  }, []);
+  });
 
   if (!quiz) return <QuizLoading />; // 퀴즈 로딩 화면
 
