@@ -9,6 +9,7 @@ import defaultCardImage from "../images/card/card00.png"; // 기본 이미지 �
 import pig00 from "../images/pig/pig00.png";
 import deer02 from "../images/deer/deer02.png";
 import rabbit01 from "../images/rabbit/rabbit01.png";
+import point01 from "../images/point/point01.jpg";
 import quiz from "../images/quiz.png";
 import "./Main.css";
 
@@ -26,6 +27,7 @@ const Main = () => {
   const [count, setCount] = useState(0);
   const [view, setView] = useState(false);
   const [shake, setShake] = useState(false);
+  const [memberPoint, setMemberPoint] = useState("0");
 
   useEffect(() => {
     // 서버와 SSE 연결
@@ -102,6 +104,23 @@ const Main = () => {
         setLoading(false); // 모든 작업이 끝난 후 로딩 상태 변경
       }
     };
+
+    // 포인트 조회
+    const fetchMemberPoint = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:7777/zoomoney/member/point/${memberNum}`
+        );
+        const formattedPoint = Number(
+          response.data.member_point
+        ).toLocaleString(); // 숫자에 , 추가
+        setMemberPoint(`${formattedPoint}`);
+      } catch (error) {
+        console.error("포인트 불러오기 실패", error);
+      }
+    };
+
+    fetchMemberPoint();
 
     conn();
     fetchData();
@@ -264,6 +283,12 @@ const Main = () => {
 
         {/* 용돈 정보 카드 */}
         <div className="main-allowance-box">
+          <div className="main-point-box">
+            <img src={point01} alt="point01" className="main-point-image" />
+            <div className="main-point-num">
+              <p>{memberPoint}</p>
+            </div>
+          </div>
           <div className="main-allowance-text">
             <span>나의 용돈</span>
             <span>{allowanceAmount}</span>
