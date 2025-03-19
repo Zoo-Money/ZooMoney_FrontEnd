@@ -48,9 +48,11 @@ function PlanWrite(props) {
       (acc, curr) => acc + Number(curr),
       0
     );
+    const numericPlanMoney = Number(planMoney?.replace(/,/g, "")) || 0; // 숫자로 변환
+    console.log("총합", total, "용돈:", numericPlanMoney);
     if (Object.values(category).every((value) => value === "")) {
       setMessage("설정한 용돈 금액에 맞춰 계획 금액을 입력해주세요");
-    } else if (total === planMoney) {
+    } else if (total === numericPlanMoney) {
       setMessage("받은 용돈과 계획한 금액이 일치합니다.");
     } else {
       setMessage(
@@ -65,15 +67,17 @@ function PlanWrite(props) {
       (acc, curr) => acc + Number(curr),
       0
     );
-
+    const numericPlanMoney = Number(planMoney?.replace(/,/g, "")) || 0; // 숫자로 변환
     if (Object.values(category).every((value) => value === "")) {
       toast.error("설정한 용돈 금액에 맞춰 계획 금액을 입력해 주세요");
-    } else if (total !== planMoney) {
+    } else if (total !== numericPlanMoney) {
       toast.error(
         "받은 용돈과 계획한 금액이 일치하지 않아요. 다시 입력해 주세요."
       );
     } else {
-      navi("/moneyPlan/planchart", { state: { category, planMoney } });
+      navi("/moneyPlan/planchart", {
+        state: { category, planMoney: numericPlanMoney },
+      });
     }
   };
 
