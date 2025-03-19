@@ -41,10 +41,7 @@ const Main = () => {
       eventSource.addEventListener("NOTIFY", async () => {
         // 알림 아이콘 애니메이션
         setShake(true);
-
-        setTimeout(() => {
-          setShake(false);
-        }, 500);
+        setTimeout(() => setShake(false), 500);
 
         // 알림 정보 갱신
         await list();
@@ -110,16 +107,10 @@ const Main = () => {
     fetchData();
   }, [memberNum]);
 
-  // 데이터 로드 후 렌더링
-  if (loading) return null;
-
-  const handleBellClick = () => {
+  const animate = () => {
     // 알림 아이콘 애니메이션
     setShake(true);
-
-    setTimeout(() => {
-      setShake(false);
-    }, 500);
+    setTimeout(() => setShake(false), 500);
 
     setView(!view);
   };
@@ -136,6 +127,9 @@ const Main = () => {
 
     navigate(notifyUrl);
   };
+
+  // 데이터 로드 후 렌더링
+  if (loading) return null;
 
   // 알림 시간 계산
   function time(timestamp) {
@@ -178,7 +172,7 @@ const Main = () => {
             <NotificationsIcon
               className={shake ? "bell-shake" : ""}
               color="action"
-              onClick={handleBellClick}
+              onClick={animate}
               style={{ fontSize: "1.5rem", cursor: "pointer" }}
             />
           </Badge>
@@ -191,7 +185,7 @@ const Main = () => {
                 padding: "10px",
                 paddingBottom: "5px",
                 position: "absolute",
-                right: "-10px",
+                right: "-30px",
                 minWidth: "200px",
                 minHeight: "300px",
                 backgroundColor: "#fff",

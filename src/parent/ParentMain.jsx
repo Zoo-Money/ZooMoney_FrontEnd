@@ -53,7 +53,7 @@ const ParentMain = () => {
       .catch((error) => {
         console.error("자녀 목록 불러오기 실패:", error);
       });
-  }, [location]); // location 추가
+  }, [location, parentId]); // location 추가
 
   useEffect(() => {
     if (selectedChild) {
