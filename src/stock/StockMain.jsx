@@ -11,6 +11,9 @@ function StockMain(props) {
   const goStockList = () => {
     navi("/stock/list");
   };
+  const goToProfit = () => {
+    navi("/stock/myStockProfit");
+  };
   return (
     <div className="mock-container">
       <Header title="모의투자" />
@@ -23,7 +26,7 @@ function StockMain(props) {
         </Link>
         <img src={rabbit01} alt="rabbit01" />
       </div>
-      <div className="stock-main-box">
+      <div className="stock-main-box" onClick={goToProfit}>
         <h2>내 투자</h2>
         <div className="stock-main-box-amount">771,900 원</div>
         <div className="stock-main-box-text">예상 수수료 * 세금 포함</div>
