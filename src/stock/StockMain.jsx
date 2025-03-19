@@ -18,8 +18,8 @@ function StockMain(props) {
   const goToProfit = () => {
     navi("/stock/myStockProfit");
   };
-  const goToSell = () => {
-    navi("/stock/stockSell");
+  const goToSell = (stockId) => {
+    navi("/stock/stockSell", { state: { stockId } });
   };
 
   useEffect(() => {
@@ -35,7 +35,24 @@ function StockMain(props) {
       });
   }, [memberNum]);
 
-  console.log("myStockData:", myStockData);
+  // 1. 일간 수익 계산
+  const dailyProfit = myStockData.reduce((total, stock) => {
+    return total + (stock.stockPrice - stock.stockhistPrice) * stock.quantity;
+  }, 0);
+
+  // 2. 현재 평가 금액 (현재가 * 보유량)
+  const totalCurrentValue = myStockData.reduce((total, stock) => {
+    return total + stock.stockPrice * stock.quantity;
+  }, 0);
+
+  // 3. 총 매수 금액 (매수 평균가 * 보유량)
+  const totalInvested = myStockData.reduce((total, stock) => {
+    return total + stock.averagePrice * stock.quantity;
+  }, 0);
+
+  // 4. 총 수익률 (%) 계산
+  const totalProfitRate =
+    ((totalCurrentValue - totalInvested) / totalInvested) * 100;
 
   const totalInvestment = myStockData.reduce(
     (sum, stock) => sum + stock.totalValue,
@@ -62,22 +79,21 @@ function StockMain(props) {
         <div className="stock-main-box-text">예상 수수료 * 세금 포함</div>
         <div className="stock-main-box-detail">
           <div>
-            <span>원금</span>
-            <span>7,194원</span>
-          </div>
-          <div>
             <span>총 수익</span>
-            <span class="loss">- 3,724원 ( 51.8% )</span>
+            <span class="loss">
+              {(totalInvestment - 1000000).toLocaleString()} 원
+            </span>
           </div>
           <div>
-            <span>일간 수익</span>
-            <span class="loss">- 61원 ( 0.8% )</span>
+            <span>총 수익율</span>
+            <span class="loss">{totalProfitRate.toFixed(2)} %</span>
           </div>
         </div>
       </div>
 
-      <div className="stock-main-mystock-list-box">
-        <p>보유 주식</p>
+      <p className="myStock-tableName">보유 주식</p>
+
+      <div className="stock-main-mystock-list-box33">
         <table className="stock-table">
           <thead>
             <tr>
@@ -87,7 +103,7 @@ function StockMain(props) {
               <th>매도</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="stock-main-mystock-list-box">
             {myStockData.length > 0 ? (
               myStockData.map((stock, index) => {
                 const profitRate =
@@ -98,21 +114,24 @@ function StockMain(props) {
                   <tr key={index}>
                     <td>{stock.stockName}</td>
                     <td>
-                      <span className={profitRate >= 0 ? "profit" : "loss"}>
-                        {profitRate.toFixed(1)}%
-                      </span>
-                      <br />
                       {stock.averagePrice.toLocaleString()}원
+                      <br />
+                      <span className={profitRate >= 0 ? "profit" : "loss"}>
+                        ( {profitRate.toFixed(1)}% )
+                      </span>
                     </td>
                     <td>
                       {stock.totalValue.toLocaleString()}원
                       <br />
                       <span className="current-price">
-                        현재가 {stock.stockPrice.toLocaleString()}원
+                        (현재가 {stock.stockPrice.toLocaleString()}원)
                       </span>
                     </td>
                     <td>
-                      <button className="sell-button" onClick={{ goToSell }}>
+                      <button
+                        className="sell-button"
+                        onClick={() => goToSell(stock.stockId)}
+                      >
                         매도하기
                       </button>
                     </td>
