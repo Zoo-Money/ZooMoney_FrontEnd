@@ -15,7 +15,7 @@ const QuizQuiz = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const navigate = useNavigate();
 
-  // const memberNum = sessionStorage.getItem("member_num");
+  const memberNum = sessionStorage.getItem("member_num");
 
   // ✅ 백엔드에서 퀴즈 가져오기
   useEffect(() => {
@@ -38,7 +38,9 @@ const QuizQuiz = () => {
     };
 
     axios
-      .post("http://localhost:7777/zoomoney/quiz/submit", payload)
+      .post("http://localhost:7777/zoomoney/quiz/submit", payload, {
+        params: { memberNum: memberNum },
+      })
       .then((response) => {
         const isCorrect = response.data.isCorrect; // 백엔드에서 받은 정답 여부
         if (isCorrect === true) {
@@ -60,7 +62,9 @@ const QuizQuiz = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/quiz/count")
+      .get("http://localhost:7777/zoomoney/quiz/count", {
+        params: { memberNum: memberNum },
+      })
       .then((response) => {
         setQuizCount(response.data.quizCount); // 상태 업데이트
       })

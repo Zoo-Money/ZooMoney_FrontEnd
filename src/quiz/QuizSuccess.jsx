@@ -12,11 +12,15 @@ const QuizSuccess = () => {
   const navigate = useNavigate();
   const quiz = location.state?.quiz; // ✅ 전달된 퀴즈 데이터 가져오기
 
+  const memberNum = sessionStorage.getItem("member_num");
+
   const [quizCount, setQuizCount] = useState(0); // 퀴즈 데이터 개수를 저장할 상태
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/quiz/count")
+      .get("http://localhost:7777/zoomoney/quiz/count", {
+        params: { memberNum: memberNum },
+      })
       .then((response) => {
         setQuizCount(response.data.quizCount); // 상태 업데이트
       })
