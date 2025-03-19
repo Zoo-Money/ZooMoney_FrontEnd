@@ -28,8 +28,11 @@
   width: 100%;
 }
 .faqDetail {
-  max-height: calc(
-    100vh - 160px
-  ); /* header와 footer를 제외한 영역만 차지하도록 설정 */
+  max-height: calc(100vh - 160px);
   overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.faqDetail::-webkit-scrollbar {
+  display: none;
 }
