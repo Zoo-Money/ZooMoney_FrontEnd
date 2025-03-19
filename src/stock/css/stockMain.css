@@ -1,4 +1,4 @@
-.stock-main-box{
+.stock-main-box {
   border: 1px solid #fb923c;
   padding: 16px;
   border-radius: 20px;
@@ -6,65 +6,65 @@
   width: 100%;
   max-width: 360px;
 }
-.stock-main-header{
-    margin-top: 50px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.stock-main-header {
+  margin-top: 50px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.stock-main-info{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-left: -120px;
-    margin-bottom: 5px;
+.stock-main-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: -120px;
+  margin-bottom: 5px;
 }
-.questionmark{
-    font-size: 18px;
+.questionmark {
+  font-size: 18px;
 }
-.stock-main-header img{
-    width: 80px;
-    position: absolute;
-    left: 100px;
-    bottom: -10px;
+.stock-main-header img {
+  width: 65px;
+  position: absolute;
+  left: 100px;
+  bottom: -10px;
 }
 .stock-main-box h2 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: bold;
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
 }
-.stock-main-box-amount{
-    font-size: 24px;
-    font-weight: bold;
-    margin: 10px 0;
+.stock-main-box-amount {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
 }
 .stock-main-box-text {
-    color: gray;
-    font-size: 12px;
+  color: gray;
+  font-size: 12px;
 }
 .stock-main-box-detail {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 .stock-main-box-detail div {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin: 5px 0;
 }
 .loss {
-    color: blue;
-    font-weight: bold;
+  color: blue;
+  font-weight: bold;
 }
-.stock-main-button{
-    width: 80%;
-    background-color: #f9a825;
-    color: white;
-    font-size: 14px;
-    height: 45px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 10px;
-    margin-top: 20px;
+.stock-main-button {
+  width: 80%;
+  background-color: #f9a825;
+  color: white;
+  font-size: 14px;
+  height: 45px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-top: 20px;
 }

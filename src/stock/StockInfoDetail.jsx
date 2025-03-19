@@ -20,8 +20,6 @@ function StockInfoDetail() {
       });
   }, [infoNum]);
 
-  if (!infoDetail) return <div>Loading...</div>;
-
   return (
     <div className="mock-container">
       <div className="stockinfo-header">
