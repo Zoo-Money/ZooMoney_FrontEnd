@@ -1,7 +1,6 @@
 .patternmain-content {
   text-align: center;
 }
-
 .patternmain-description {
   font-size: 16px;
   /* text-align: center; */
@@ -21,10 +20,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: left;
 }
-
-.patternmain-description span {
-  font-weight: bold;
-  color: #ff5454;
+.chart-box {
+  margin-top: 20px;
 }
 .patternmain-button {
   width: 80%;
@@ -45,6 +42,10 @@
   opacity: 0.8;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
+.patternchart-icon {
+  text-align: center;
+  justify-content: center;
+}
 /* planChart */
 .patternmain-box {
   width: 100%;
@@ -53,36 +54,30 @@
   border: none;
   border-radius: 15px;
   margin: 0 auto 40px auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   text-align: left;
-}
-/* SelectChart */
-canvas {
-  width: 300px;
-  height: 300px;
 }
 .patternchart-box {
   display: flex;
-  height: 350px;
-}
-.patternchart-icon {
-  margin: 20px;
 }
 .patternchart-back {
   float: left;
+  width: 30px;
+  margin-top: 5px;
 }
 .patternchart-forward {
   float: right;
+  width: 30px;
+  margin-top: 5px;
 }
-.patternetc {
-  margin-left: 20px;
+.available-money {
+  font-size: 16px;
+  margin-top: -10%;
 }
-.patterndescription {
-  font-size: 15px;
-  color: #5a5a5a;
-  line-height: 1.5;
-  font-weight: 500;
-  margin: 10px 25px 100px 25px;
+.available-money p span {
+  color: #ff9500;
+  font-weight: bold;
+  font-size: 20px;
 }
 /* PlanChart와 버튼을 겹치지 않게 배치 */
 .pattern-write-container {
@@ -101,4 +96,12 @@ canvas {
 .patternlink-style {
   text-decoration: none;
   color: inherit;
+}
+.highest-category {
+  font-size: 18px;
+}
+.highest-category p span {
+  color: #ff9500;
+  font-weight: bold;
+  font-size: 20px;
 }
