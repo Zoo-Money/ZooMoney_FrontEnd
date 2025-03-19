@@ -16,9 +16,7 @@
   color: #1a1a1a;
 }
 .card-main-container {
-  max-height: calc(
-    100vh - 140px
-  );
+  max-height: calc(100vh - 140px);
 }
 .card-main-box {
   text-align: center;
@@ -56,13 +54,38 @@
   width: auto;
   min-width: 100%;
   height: auto;
-  border-radius: 12px;
+  border-radius: 15px;
   border: 3px solid #ff9500;
   padding: 20px;
   margin-bottom: 14px;
   margin-top: 8px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
 }
+/* 총 포인트 박스 */
+.main-point-box {
+  display: flex; /* 가로 정렬 */
+  justify-content: flex-end; /* 우측 정렬 */
+  gap: 3px; /* 이미지와 포인트 사이 간격 */
+  align-items: center; /* 수직 중앙 정렬 */
+  margin-bottom: 3px;
+  margin-right: 3px;
+}
+
+/* 포인트 이미지 */
+.main-point-image {
+  width: 18px;
+  height: 18px;
+  margin-left: 70%;
+}
+
+/* 포인트 숫자 */
+.main-point-num p {
+  font-size: 15px;
+  font-weight: 900;
+  color: #787878;
+  margin: 0;
+}
+
 /* 용돈 정보 텍스트 */
 .main-allowance-text {
   display: flex;
@@ -83,7 +106,7 @@
   width: 100%;
   border-radius: 10px;
   background-color: #ff9500; /* 버튼 그룹 배경색 */
-  gap: 30px;
+  justify-content: space-around;
   padding: 10px;
 }
 .main-button-group a {

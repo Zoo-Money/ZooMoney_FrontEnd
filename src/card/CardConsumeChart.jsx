@@ -1,30 +1,29 @@
 import axios from "axios";
 import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
-import dayjs from "dayjs";
 import React, { useEffect, useRef, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { Link } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/CardConsumeChart.css";
 import { categoryName } from "./resources/patternCommon";
-import { Link } from "react-router-dom";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 // 날짜를 1주일 단위로 나누는 함수
-const getWeekRange = (date) => {
-  const startOfWeek = dayjs(date).startOf("week");
-  const endOfWeek = startOfWeek.add(6, "day");
-  return `${startOfWeek.format("YYYY-MM-DD")} ~ ${endOfWeek.format(
-    "YYYY-MM-DD"
-  )}`;
-};
+// const getWeekRange = (date) => {
+//   const startOfWeek = dayjs(date).startOf("week");
+//   const endOfWeek = startOfWeek.add(6, "day");
+//   return `${startOfWeek.format("YYYY-MM-DD")} ~ ${endOfWeek.format(
+//     "YYYY-MM-DD"
+//   )}`;
+// };
 
 function PatternChart() {
+  // const [categorizedData, setCategorizedData] = useState({}); // 카테고리별 데이터 상태
+  // const [historyList, setHistoryList] = useState([]); // 소비 내역 원본
   const [planMoney, setPlanMoney] = useState();
-  const [categorizedData, setCategorizedData] = useState({}); // 카테고리별 데이터 상태
-  const [historyList, setHistoryList] = useState([]); // 소비 내역 원본
   const [groupedData, setGroupedData] = useState({}); // 1주일 단위로 그룹화된 데이터
   const [currentCardNum, setCurrentCardNum] = useState(0); // 현재 보고 있는 주차 인덱스
   const [highestCategory, setHighestCategory] = useState(""); // 가장 많이 소비한 카테고리
@@ -44,7 +43,7 @@ function PatternChart() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  });
 
   useEffect(() => {
     axios

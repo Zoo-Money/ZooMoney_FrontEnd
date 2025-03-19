@@ -52,7 +52,7 @@ const QuizMain = () => {
       .catch((error) =>
         console.error("❌ 정답 리스트를 가져오는 데 실패했습니다.", error)
       );
-  }, []);
+  });
 
   const navigate = useNavigate();
 

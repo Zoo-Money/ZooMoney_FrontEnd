@@ -1,15 +1,14 @@
 import axios from "axios";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { fetchMetadata } from "../card/CardService";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
-import { fetchMetadata } from "../card/CardService";
 import "./css/CardHistory.css";
 
 function CardHistory() {
   const [historyList, setHistoryList] = useState([]);
-  const [metadata, setMetadata] = useState(null);
+  const [, setMetadata] = useState(null);
   const [, setMetadataUrl] = useState("");
   const [, setLoading] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState("all");

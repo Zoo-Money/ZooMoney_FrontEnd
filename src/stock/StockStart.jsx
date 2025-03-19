@@ -16,7 +16,7 @@ function StockStart(props) {
       .catch((error) => {
         console.error("Error fetching stock info:", error);
       });
-  }, []);
+  });
   console.log(hasMemberNum);
   return <div>{hasMemberNum ? <StockMain /> : <StockBegin />}</div>;
 }
