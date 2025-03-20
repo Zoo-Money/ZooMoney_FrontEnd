@@ -104,7 +104,7 @@ function PlanChart(props) {
                   <p>{Math.floor((amount / planMoney) * 100)}%</p>
                 </div>
                 <div className="box-amount">
-                  <p>{amount.toLocaleString()}원</p>
+                  <p>{(amount || 0).toLocaleString()}원</p>
                 </div>
               </div>
             );

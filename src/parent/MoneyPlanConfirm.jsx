@@ -1,25 +1,20 @@
 import React from "react";
 import FooterParent from "../common/FooterParent";
 import Header from "../common/Header";
-import deer01 from "../images/deer/deer01.png";
 import SelectChartParent from "./SelectChartParent";
-
+import "../parent/css/moneyPlanConfirm.css";
 function MoneyPlanConfirm(props) {
   return (
     <div className="mock-container">
       <Header title="용돈 계획 세우기" />
-      <div className="planmain-content">
-        <div className="planmain-description">
-          <p style={{ fontSize: "18px", marginRight: "10px", marginLeft: "10px" }}>
-            아이의 <span>용돈 계획</span>을
-            함께 살펴보세요.
+      <div className="parent-planmain-content">
+        <div className="parent-planmain-description">
+            아이의 <span>용돈 계획</span>을 함께 살펴보세요.
             <br />
             올바른 소비 습관을 응원해주세요
-          </p>
-          {/* <img src={deer01} alt="deer01" className="img-deer" /> */}
         </div>
-        <div className="planmain-box">
-          <div className="planmain-chart-box">
+        <div className="parent-planmain-box">
+          <div className="parent-planmain-chart-box">
             <SelectChartParent />
           </div>
         </div>

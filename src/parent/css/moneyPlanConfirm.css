@@ -1,0 +1,25 @@
+.parent-planmain-content {
+  text-align: center;
+  position: relative;
+  align-items: center;
+  width: 90%;
+}
+.parent-planmain-description {
+  font-size: 18px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  text-align: center;
+}
+.parent-planmain-description span {
+  color: #ff9500;
+}
+.parent-planmain-box {
+  padding-top: 10px;
+  width: 90%;
+  background-color: #f8f4f1;
+  border: none;
+  border-radius: 15px;
+  margin: 0 auto 40px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}

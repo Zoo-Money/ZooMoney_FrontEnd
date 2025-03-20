@@ -8,6 +8,7 @@ import Header from "../common/Header";
 // css -> moneyplan 의 planMain.css, selectChart.css 사용
 import deer01 from "../images/deer/deer01.png";
 import { categoryName, categoryColor, categoryHoverColor } from "../moneyPlan/resource/planCommon";
+import { useNavigate } from "react-router-dom";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
@@ -17,7 +18,10 @@ function PatternChart() {
   const [highestCategory, setHighestCategory] = useState(""); // 가장 많이 소비한 카테고리
   const memberNum = sessionStorage.getItem("member_num");
   const previousHighestCategoryRef = useRef(""); // 이전 카테고리를 추적
-
+  const navi = useNavigate();
+  const goToMain = () => {
+    navi("/main");
+  };
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/card/select", {
@@ -224,8 +228,8 @@ function PatternChart() {
           </div>
         </div>
       </div>
-        <button className="planmain-button" >
-          용돈 계획 세우기
+        <button className="planmain-button" onClick={goToMain}>
+          메인
         </button>
       <Footer />
     </div>
