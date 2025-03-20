@@ -7,7 +7,7 @@ import game from "../images/game.png";
 import pig from "../images/pig.png";
 import etc from "../images/etc.png";
 import axios from "axios";
-import "../moneyPlan/css/moneyPlan.css";
+import "../moneyPlan/css/planWrite.css";
 import { useNavigate } from "react-router-dom";
 import InputComponent from "./InputComponent";
 import { categoryName } from "../moneyPlan/resource/planCommon.js";

@@ -4,8 +4,8 @@ import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { categoryColor, categoryName } from "../moneyPlan/resource/planCommon.js";
-
+import { categoryColor, categoryHoverColor, categoryName } from "../moneyPlan/resource/planCommon.js";
+import "../moneyPlan/css/selectChart.css"
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function SelectChart() {
@@ -87,13 +87,7 @@ function SelectChart() {
         {
           data: data,
           backgroundColor: categoryColor,
-          hoverBackgroundColor: [
-            "#e6b183",
-            "#a6d7e6",
-            "#e6dbab",
-            "#e6ada6",
-            "#acd9a6",
-          ],
+          hoverBackgroundColor: categoryHoverColor,
         },
       ],
     };
