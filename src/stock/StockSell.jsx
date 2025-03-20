@@ -4,7 +4,6 @@ import Footer from "../common/Footer";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "../stock/css/stockBuy.css";
-import { LocationSearching } from "@mui/icons-material";
 
 function StockSell(props) {
   const location = useLocation();
@@ -15,16 +14,9 @@ function StockSell(props) {
 
   // 주식 번호 및 가격 설정
   const [stockId] = useState(location.state?.stockId || 1);
+  const [price] = useState(location.state?.stockPrice || 1);
   const [stockName] = useState(location.state?.stockName || "Unknown");
-  const [price, setPrice] = useState(location.state?.latestPrice || ""); // 가격 입력 가능
   const [amount, setAmount] = useState(""); // 수량 입력 상태
-
-  // 가격이 바뀌면 업데이트
-  useEffect(() => {
-    if (location.state?.latestPrice) {
-      setPrice(location.state.latestPrice);
-    }
-  }, [location.state?.latestPrice]);
 
   // 판매 요청
   const handleSell = async () => {
@@ -73,7 +65,7 @@ function StockSell(props) {
     <div className="mock-container">
       <Header title="판매하기" />
       <div className="buy-header">
-        주식을 <span>매도</span>하면,
+        주식을 <span style={{ color: "red" }}>매도</span>하면,
         <br />
         해당 주식을 <span>소유자</span>가 아니에요.
         <img src={rabbit07} alt="rabbit07" className="buy-rabbit07" />
@@ -84,7 +76,7 @@ function StockSell(props) {
           <input
             type="number"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            readOnly
             placeholder="가격을 입력하세요."
           />
         </div>
