@@ -4,6 +4,7 @@ import Footer from "../common/Footer";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "../stock/css/stockBuy.css";
+import { toast } from "react-toastify";
 
 function StockBuy(props) {
   const location = useLocation();
@@ -28,7 +29,7 @@ function StockBuy(props) {
   // 구매 요청
   const handleBuy = async () => {
     if (!price || !amount) {
-      alert("가격과 수량을 입력해주세요.");
+      toast.error("가격과 수량을 입력해주세요.");
       return;
     }
 
@@ -47,9 +48,6 @@ function StockBuy(props) {
         }),
       });
 
-      const result = await response.text();
-      alert(result); // 응답 메시지 출력
-
       if (response.ok) {
         navigate("/stock/buyDone", {
           state: {
@@ -61,7 +59,7 @@ function StockBuy(props) {
       }
     } catch (error) {
       console.error("매수 실패:", error);
-      alert("매수 중 오류가 발생했습니다.");
+      alert.error("매수 중 오류가 발생했습니다.");
     }
   };
 
@@ -69,7 +67,7 @@ function StockBuy(props) {
     <div className="mock-container">
       <Header title="구매하기" />
       <div className="buy-header">
-        주식을 <span>매수</span>하면,
+        주식을 <span style={{ color: "red" }}>매수</span>하면,
         <br />
         해당 주식의 <span>소유자</span>가 돼요.
         <br />
@@ -80,12 +78,13 @@ function StockBuy(props) {
       </div>
       <div className="buy-container">
         <div className="buy-box">
-          현재 <span>매수</span> 가격
+          현재 <span>주식</span> 가격
           <input
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            placeholder="가격을 입력하세요."
+            placeholder="가격 입력"
+            readOnly
           />
         </div>
         <div className="buy-box">
@@ -94,7 +93,7 @@ function StockBuy(props) {
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            placeholder="수량을 입력해주세요."
+            placeholder="수량 입력"
           />
         </div>
       </div>

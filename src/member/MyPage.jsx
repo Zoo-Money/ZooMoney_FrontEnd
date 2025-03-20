@@ -25,9 +25,8 @@ function MyPage() {
         console.error("Error fetching member info:", error);
       });
   }, [memberNum]);
-  if (!memberInfo) {
-    return <div>Loading...</div>; // 데이터가 로딩되지 않았을 때 화면에 로딩 메시지를 보여줍니다.
-  }
+
+  if (!memberInfo) return null;
 
   return (
     <div className="mock-container">
@@ -62,34 +61,36 @@ function MyPage() {
             </div>
           </div>
 
-          <div className="card-box">
-            <div className="info-row2">
-              <span className="label">카드 관리</span>
-              <Link to="/card/modify">
+          <Link to="/card/modify" className="link-no-underline">
+            <div className="card-box">
+              <div className="info-row2">
+                <span className="label">카드 관리</span>
                 <IoArrowForwardCircleOutline
                   size={22}
                   style={{ color: "black" }}
                 />
-              </Link>
+              </div>
+              <p className="card-subtext">
+                5,000P / 10,000P 포인트를 사용하여
+                <br />
+                나만의 카드 꾸미기
+              </p>
             </div>
-            <p className="card-subtext">
-              5,000P / 10,000P 포인트를 사용하여<br/>나만의 카드 꾸미기
-            </p>
-          </div>
-          <div className="card-box">
-            <div className="info-row2">
-              <span className="label">모의 주식</span>
-              <Link to="/stock/stockHistory">
+          </Link>
+          <Link to="/stock/stockHistory" className="link-no-underline">
+            <div className="card-box">
+              <div className="info-row2">
+                <span className="label">모의 주식</span>
                 <IoArrowForwardCircleOutline
                   size={22}
                   style={{ color: "black" }}
                 />
-              </Link>
+              </div>
+              <p className="card-subtext">
+                나의 모의 투자 거래 내역과 모의 투자 결과를 확인하세요
+              </p>
             </div>
-            <p className="card-subtext">
-              나의 모의 투자 거래 내역과 모의 투자 결과를 확인하세요
-            </p>
-          </div>
+          </Link>
         </div>
       </div>
 

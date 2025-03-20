@@ -5,9 +5,12 @@
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 360px;
+  cursor: pointer;
+  transition: 0.5s ease;
 }
-.stock-main-box:hover{
+.stock-main-box:hover {
   opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 .stock-main-header {
   margin-top: 50px;
@@ -23,11 +26,14 @@
   margin-left: -120px;
   margin-bottom: 5px;
   color: #333;
+  cursor: pointer;
+  transition: 0.5s ease;
 }
-.stock-main-info:hover{
+.stock-main-info:hover {
+  color: #ff9500;
   opacity: 0.8;
 }
-.link-no-underline{
+.link-no-underline {
   text-decoration: none;
 }
 .questionmark {
@@ -70,14 +76,19 @@
 .stock-main-button {
   width: 80%;
   background-color: #ff9500;
-  color: white;
+  color: #fff;
   font-size: 14px;
   height: 45px;
   border: none;
   font-weight: bold;
-  cursor: pointer;
   border-radius: 10px;
-  margin-top: 20px;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.stock-main-button:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 .stock-table {
   width: 100%;
@@ -104,7 +115,7 @@
 }
 
 .stock-table th {
-  background-color: #f4f4f4;
+  background-color: #f5f5f5;
   font-weight: bold;
 }
 
@@ -145,6 +156,8 @@
   width: 80%;
   margin-top: 5%;
   margin-bottom: 2%;
+  font-size: 1.25rem;
+  font-weight: bold;
 }
 
 .stock-table {

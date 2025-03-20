@@ -209,7 +209,7 @@ const Main = () => {
                 minHeight: "350px",
                 backgroundColor: "#fff",
                 border: "1px solid #ccc",
-                borderRadius: "10px",
+                borderRadius: "20px",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                 zIndex: 1,
                 fontSize: "1rem",

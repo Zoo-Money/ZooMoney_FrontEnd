@@ -18,9 +18,7 @@ function StockStart(props) {
       });
   });
 
-  if (hasMemberNum === 2) {
-    return <div>Loading...</div>; // 로딩 중일 때 보여줄 컴포넌트
-  }
+  if (hasMemberNum === 2) return null;
 
   return <div>{hasMemberNum === 1 ? <StockMain /> : <StockBegin />}</div>;
 }
