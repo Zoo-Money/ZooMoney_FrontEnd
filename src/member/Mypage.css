@@ -18,7 +18,6 @@
 
 .InfoTitle {
   font-size: 1rem;
-  font-weight: bold;
   color: #333;
   margin: 0;
   padding: 0;
@@ -76,12 +75,10 @@
   opacity: 0.8;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
-.bold {
-  font-weight: bold;
-}
+
 
 .point-text {
-  color: #ff9800;
+  color: #ff9500;
 }
 
 .card-box {
@@ -101,7 +98,6 @@
 }
 .card-title {
   font-size: 16px;
-  font-weight: bold;
   margin-bottom: 5px;
 }
 
@@ -113,7 +109,6 @@
 
 .card-link {
   color: #ea580c;
-  font-weight: bold;
   text-align: left;
   display: block;
 }

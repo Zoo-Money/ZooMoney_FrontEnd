@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../common/Header";
+import Footer from "../common/Footer";
 import rabbit05 from "../images/rabbit/rabbit05.png";
 import "./css/stockHistoryDetail.css";
 import axios from "axios";
@@ -58,13 +59,18 @@ function StockHistoryDetail(props) {
                 <span className="history-detail-list-count">
                   {item.stockhist_amount}주
                 </span>
-                <span className={`history-detail-list-price ${item.stockhist_type === "1" ? "buy" : "sell"}`}>
+                <span
+                  className={`history-detail-list-price ${
+                    item.stockhist_type === "1" ? "buy" : "sell"
+                  }`}
+                >
                   {item.stockhist_price.toLocaleString()}
                 </span>
               </div>
             ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

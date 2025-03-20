@@ -21,7 +21,6 @@
   background-color: #fff4c2;
   color: rgb(0, 0, 0);
   font-size: 14px;
-  font-weight: bold;
   border: none;
   border-radius: 10px;
   margin: 0 auto 40px auto; /* 가운데 정렬 */
@@ -119,7 +118,6 @@
   background-color: #ff9500;
   color: white;
   font-size: 14px;
-  font-weight: bold;
   border: none;
   border-radius: 10px;
   cursor: pointer;

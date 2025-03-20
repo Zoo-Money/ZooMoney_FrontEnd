@@ -14,7 +14,6 @@
 }
 .newsItem p {
   margin: 0;
-  font-weight: bold;
   cursor: pointer;
   font-size: 14px;
 }
@@ -32,6 +31,5 @@
 
 .news-item-title {
   margin: 0;
-  font-weight: bold;
   cursor: pointer;
 }

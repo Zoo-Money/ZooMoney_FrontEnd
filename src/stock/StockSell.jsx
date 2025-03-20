@@ -4,6 +4,7 @@ import Footer from "../common/Footer";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "../stock/css/stockBuy.css";
+import { toast } from "react-toastify";
 
 function StockSell(props) {
   const location = useLocation();
@@ -14,8 +15,8 @@ function StockSell(props) {
 
   // 주식 번호 및 가격 설정
   const [stockId] = useState(location.state?.stockId || 1);
-  const [stockName] = useState(location.state?.stockName || "Unknown");
   const [price, setPrice] = useState(location.state?.latestPrice || ""); // 가격 입력 가능
+  const [stockName] = useState(location.state?.stockName || "Unknown");
   const [amount, setAmount] = useState(""); // 수량 입력 상태
 
   // 최초 로드 시, price가 없으면 latestPrice를 기본값으로 설정
@@ -50,9 +51,6 @@ function StockSell(props) {
         }
       );
 
-      const result = await response.text();
-      alert(result); // 응답 메시지 출력
-
       if (response.ok) {
         navigate("/stock/TradeDone", {
           state: {
@@ -64,7 +62,7 @@ function StockSell(props) {
       }
     } catch (error) {
       console.error("매도 실패:", error);
-      alert("매도 중 오류가 발생했습니다.");
+      toast.error("매도 중 오류가 발생했습니다.");
     }
   };
 
@@ -72,7 +70,7 @@ function StockSell(props) {
     <div className="mock-container">
       <Header title="판매하기" />
       <div className="buy-header">
-        주식을 <span>매도</span>하면,
+        주식을 <span style={{ color: "red" }}>매도</span>하면,
         <br />
         해당 주식을 <span>소유자</span>가 아니에요.
         <img src={rabbit07} alt="rabbit07" className="buy-rabbit07" />
@@ -83,7 +81,7 @@ function StockSell(props) {
           <input
             type="number"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            readOnly
             placeholder="가격을 입력하세요."
           />
         </div>
@@ -97,7 +95,11 @@ function StockSell(props) {
           />
         </div>
       </div>
-      <button className="buy-button" onClick={handleSell}>
+      <button
+        className="buy-button"
+        style={{ backgroundColor: "blue" }}
+        onClick={handleSell}
+      >
         판매하기
       </button>
       <Footer />
