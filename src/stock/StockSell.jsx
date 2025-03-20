@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "../stock/css/stockBuy.css";
+import { toast } from "react-toastify";
 
 function StockSell(props) {
   const location = useLocation();
@@ -43,9 +44,6 @@ function StockSell(props) {
         }
       );
 
-      const result = await response.text();
-      alert(result); // 응답 메시지 출력
-
       if (response.ok) {
         navigate("/stock/TradeDone", {
           state: {
@@ -57,7 +55,7 @@ function StockSell(props) {
       }
     } catch (error) {
       console.error("매도 실패:", error);
-      alert("매도 중 오류가 발생했습니다.");
+      toast.error("매도 중 오류가 발생했습니다.");
     }
   };
 
@@ -90,7 +88,11 @@ function StockSell(props) {
           />
         </div>
       </div>
-      <button className="buy-button" onClick={handleSell}>
+      <button
+        className="buy-button"
+        style={{ backgroundColor: "blue" }}
+        onClick={handleSell}
+      >
         판매하기
       </button>
       <Footer />
