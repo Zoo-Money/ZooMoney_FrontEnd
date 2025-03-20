@@ -1,31 +1,39 @@
 .buy-container {
-  /* margin-top: 50px; */
   width: 80%;
   border: 2px solid #ff9500;
-  padding: 30px;
+  padding: 8% 8% 8% 15%;
   border-radius: 20px;
-  height: 45%;
+  height: 35%;
 }
 .buy-header {
-  margin-top: 30px;
+  margin-top: 20%;
   margin-bottom: 10px;
   text-align: left;
-  align-items: baseline;
   width: 80%;
   margin-left: 20px;
+  font-size: 16px;
+  line-height: 1.2;
+  position: relative;
 }
+
 .buy-header span {
   color: #ff9500;
   font-weight: bold;
+  display: inline;
 }
+
 .buy-rabbit07 {
   position: absolute;
-  right: 50px;
-  top: 70px;
-  width: 80px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-65%);
+  max-width: 80px;
+  height: auto;
 }
+
 .buy-box {
-  margin-bottom: 60px;
+  margin-bottom: 20%;
+  margin-top: 10%;
   font-size: 20px;
   font-weight: bold;
 }

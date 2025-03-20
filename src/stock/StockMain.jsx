@@ -25,8 +25,8 @@ function StockMain(props) {
       },
     });
   };
-  const goToSell = (stockId, stockName) => {
-    navi("/stock/stockSell", { state: { stockId, stockName } });
+  const goToSell = (stockId, stockPrice, stockName) => {
+    navi("/stock/stockSell", { state: { stockId, stockPrice, stockName } });
   };
 
   useEffect(() => {
@@ -41,11 +41,6 @@ function StockMain(props) {
         console.error("Error fetching stock detail:", error);
       });
   }, [memberNum]);
-
-  // 1. 일간 수익 계산
-  // const dailyProfit = myStockData.reduce((total, stock) => {
-  //   return total + (stock.stockPrice - stock.stockhistPrice) * stock.quantity;
-  // }, 0);
 
   // 2. 현재 평가 금액 (현재가 * 보유량)
   const totalCurrentValue = myStockData.reduce((total, stock) => {
@@ -150,7 +145,13 @@ function StockMain(props) {
                     <td>
                       <button
                         className="sell-button"
-                        onClick={() => goToSell(stock.stockId, stock.stockName)}
+                        onClick={() =>
+                          goToSell(
+                            stock.stockId,
+                            stock.stockPrice,
+                            stock.stockName
+                          )
+                        }
                       >
                         매도하기
                       </button>
