@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Footer from "../common/Footer";
+import FooterParent from "../common/FooterParent";
 import Header from "../common/Header";
 import "./css/childEventSend.css";
 
@@ -199,8 +199,9 @@ const ChildEventSend = () => {
               용돈 보내기
             </button>
           </div>
+
           {/* 하단 네비게이션 */}
-          <Footer />
+          <FooterParent />
         </div>
       </div>
     </div>

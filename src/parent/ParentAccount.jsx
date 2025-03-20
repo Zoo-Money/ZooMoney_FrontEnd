@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
-import Header from "../common/Header";
 import { Button } from "react-bootstrap";
+import { useLocation, useNavigate } from "react-router-dom";
+import FooterParent from "../common/FooterParent";
+import Header from "../common/Header";
 
 const ParentAccount = () => {
   const location = useLocation(); // 상태를 받아오기 위해 useLocation 사용
@@ -193,7 +193,9 @@ const ParentAccount = () => {
                         <Button
                           variant="success"
                           style={{ minWidth: "100px" }}
-                          onClick={() => selectApply(account.accountNum, account.accountName)}
+                          onClick={() =>
+                            selectApply(account.accountNum, account.accountName)
+                          }
                         >
                           승인
                         </Button>
@@ -201,7 +203,12 @@ const ParentAccount = () => {
                         <Button
                           variant="danger"
                           style={{ minWidth: "100px" }}
-                          onClick={() => selectReject(account.accountNum, account.accountName)}
+                          onClick={() =>
+                            selectReject(
+                              account.accountNum,
+                              account.accountName
+                            )
+                          }
                         >
                           거절
                         </Button>
@@ -220,7 +227,7 @@ const ParentAccount = () => {
       </div>
 
       {/* 하단 네비게이션 */}
-      <Footer />
+      <FooterParent />
     </div>
   );
 };

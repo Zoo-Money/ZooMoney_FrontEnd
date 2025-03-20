@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
+import FooterParent from "../common/FooterParent";
+import rabbit02 from "../images//rabbit/rabbit02.png";
 import bear04 from "../images/bear/bear04.png";
 import deer02 from "../images/deer/deer02.png";
-import rabbit02 from "../images//rabbit/rabbit02.png";
 import pig02 from "../images/pig/pig02.png";
 import profile1 from "../images/profile1.png";
 import profile2 from "../images/profile2.png";
@@ -183,7 +183,7 @@ const ParentMain = () => {
       </div>
 
       {/* 하단 네비게이션 바 */}
-      <Footer />
+      <FooterParent />
     </div>
   );
 };

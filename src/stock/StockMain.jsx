@@ -113,11 +113,13 @@ function StockMain(props) {
           <thead>
             <tr>
               <th>종목명</th>
-              <th>1주평균금액</th>
+              <th>평균 매입가</th>
               <th>총 금액</th>
               <th>매도</th>
             </tr>
           </thead>
+        </table>
+        <table className="stock-table">
           <tbody className="stock-main-mystock-list-box">
             {myStockData.length > 0 ? (
               myStockData.map((stock, index) => {
