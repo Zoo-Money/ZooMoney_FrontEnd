@@ -5,7 +5,6 @@ import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import FooterParent from "../common/FooterParent";
 import Header from "../common/Header";
-import "./css/CardConsumeChart.css";
 import { categoryColor, categoryHoverColor, categoryName } from "../moneyPlan/resource/planCommon.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
@@ -169,63 +168,65 @@ function PatternChart() {
   return (
     <div className="mock-container">
       <Header title="자녀 소비 내역" />
-      <div className="parent-pattern-container">
-        <div className="parent-pattern-text">
+      <div className="parent-planmain-content">
+        <div className="parent-planmain-description">
           <p>
             우리 아이의 일주일 소비 내역!
             <br />
             좋은 <span>소비 습관</span>을 위해 조언해 주세요
           </p>
         </div>
-        <div className="parent-pattern-box">
-          <div className="parent-pattern-icon">
-            <span>{chartData.weekLabel}</span>
-            <IoIosArrowBack
-              className="parent-pattern-icon-back"
-              onClick={() => handleChartChange("prev")}
-            />
-            <IoIosArrowForward
-              className="parent-pattern-icon-forward"
-              onClick={() => handleChartChange("next")}
-            />
-          </div>
-          <div className="parent-pattern-total-amount">
-            <p>사용한 총 용돈은 {chartData?.totalAmount?.toLocaleString()}원</p>
-          </div>
-          <div className="highest-category">
-            <p>{highestCategory}에 가장 많이 사용했어요</p>
-          </div>
-          <div className="parent-pattern-chart-box">
-            <Doughnut data={chartData} options={chartOptions} />
-          </div>
-          <div className="parent-pattern-chart-legend">
-            {chartData?.datasets[0]?.data?.map((amount, index) => (
-              <div className="parent-pattern-box-list" key={index}>
-                <div className="name-box">
-                  <div
-                    className="select-eat"
-                    style={{
-                      backgroundColor: categoryColor[index],
-                      borderRadius: "50%",
-                      width: "15px",
-                      height: "15px",
-                    }}
-                  ></div>
-                  <p>{categoryName[index]}</p>
+        <div className="parent-planmain-box">
+          <div className="parent-planmain-chart-box">
+            <div className="selectchart-icon">
+              <span>{chartData.weekLabel}</span>
+              <IoIosArrowBack
+                className="selectchart-back"
+                onClick={() => handleChartChange("prev")}
+              />
+              <IoIosArrowForward
+                className="selectchart-forward"
+                onClick={() => handleChartChange("next")}
+              />
+            </div>
+            <div className="chart-total-amount">
+              사용한 총 용돈은{" "}
+              <span>{chartData?.totalAmount?.toLocaleString()}원</span>
+              <br />
+              <span>{highestCategory}</span>에 가장 많이 사용했어요
+            </div>
+            <div className="selectchart-box">
+              <Doughnut data={chartData} options={chartOptions} />
+            </div>
+            <div className="select-chart-legend">
+              {chartData?.datasets[0]?.data?.map((amount, index) => (
+                <div className="select-box-list" key={index}>
+                  <div className="name-box">
+                    <div
+                      className="select-eat"
+                      style={{
+                        backgroundColor: categoryColor[index],
+                        borderRadius: "50%",
+                        width: "15px",
+                        height: "15px",
+                      }}
+                    ></div>
+                    <p>{categoryName[index]}</p>
+                  </div>
+                  <div className="percent">
+                    <p>
+                      {chartData?.totalAmount > 0
+                        ? Math.floor((amount / chartData.totalAmount) * 100)
+                        : 0}
+                      %
+                    </p>
+                  </div>
+                  <div className="box-amount">
+                    <p>{amount.toLocaleString()}원</p>
+                  </div>
                 </div>
-                <div className="percent">
-                  <p>
-                    {chartData?.totalAmount > 0
-                      ? Math.floor((amount / chartData.totalAmount) * 100)
-                      : 0}
-                    %
-                  </p>
-                </div>
-                <div className="box-amount">
-                  <p>{amount.toLocaleString()}원</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

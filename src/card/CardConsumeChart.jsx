@@ -22,6 +22,7 @@ function PatternChart() {
   const goToMain = () => {
     navi("/main");
   };
+
   useEffect(() => {
     axios
       .get("http://localhost:7777/zoomoney/card/select", {
@@ -84,7 +85,7 @@ function PatternChart() {
       return acc;
     }, {});
     weekData.transactions.forEach((item) => {
-      const category = item.category?.categoryName?.trim() || "기타"; // category 객체에서 categoryName을 가져오고 없으면 "기타"로 처리
+      const category = item.category?.categoryName?.trim() || "기타";
       const money = Number(item.usehistMoney) || 0; // 금액 값 가져오기
       // 카테고리가 존재하고, categoryName 배열에 포함되면 해당 카테고리에 금액을 추가
       if (categoryName.includes(category)) {
@@ -133,7 +134,7 @@ function PatternChart() {
     const categorizedData = groupDataByCategory(dataForWeek);
     const chartData = categoryName.map((category) => categorizedData[category]);
     return {
-      labels: categoryName, // labels에 카테고리 이름 설정
+      labels: categoryName,
       datasets: [
         {
           data: chartData,
