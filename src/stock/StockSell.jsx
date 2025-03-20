@@ -63,7 +63,7 @@ function StockSell(props) {
     <div className="mock-container">
       <Header title="판매하기" />
       <div className="buy-header">
-        주식을 <span style={{ color: "red" }}>매도</span>하면,
+        주식을 <span style={{ color: "blue" }}>매도</span>하면,
         <br />
         해당 주식을 <span>소유자</span>가 아니에요.
         <img src={rabbit07} alt="rabbit07" className="buy-rabbit07" />

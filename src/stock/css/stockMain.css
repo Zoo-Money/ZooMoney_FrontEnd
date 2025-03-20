@@ -13,6 +13,7 @@
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 .stock-main-header {
+  width: 20%;
   margin-top: 50px;
   position: relative;
   display: flex;
@@ -52,7 +53,7 @@
 }
 .stock-main-box-amount {
   font-size: 24px;
-  margin: 10px 0;
+  margin-top: 10px;
 }
 .stock-main-box-text {
   color: gray;
@@ -66,9 +67,6 @@
   justify-content: space-between;
   font-size: 14px;
   margin: 5px 0;
-}
-.loss {
-  color: blue;
 }
 .stock-main-button {
   width: 80%;
@@ -128,17 +126,18 @@
 }
 
 .sell-button {
-  background-color: white;
-  border: 1px solid orange;
+  background-color: #c2f1ff;
+  border: none;
   padding: 5px 10px;
   border-radius: 5px;
-  color: orange;
+  color: #000;
   cursor: pointer;
+  transition: 0.5s ease;
 }
 
 .sell-button:hover {
-  background-color: orange;
-  color: white;
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 .stock-main-mystock-list-box {
