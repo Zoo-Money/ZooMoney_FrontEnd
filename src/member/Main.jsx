@@ -341,7 +341,7 @@ const Main = () => {
           <a href="/moneyplan/main" className="main-grid-box box-blue">
             <div>
               <img src={deer02} className="card-deer" alt="용돈 계획 세우기" />
-              <p>용돈 계획 세우기</p>
+              <p>용돈 계획</p>
             </div>
           </a>
           <a href="/quiz/main" className="main-grid-box box-yellow">
