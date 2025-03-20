@@ -25,7 +25,6 @@
 /* 계약서 안내 텍스트 스타일 */
 .info-text {
   font-size: 14px; /* 기존보다 작은 글씨 크기 */
-  font-weight: bold; /* 굵은 글씨 */
   margin-bottom: 1px; /* 아래 여백 추가 */
 }
 
@@ -93,7 +92,6 @@
   padding: 3px 6px;
   cursor: pointer;
   font-size: 9px;
-  font-weight: bold;
   transition: background-color 0.3s ease, color 0.3s ease;
   width: 60px;
   text-align: center;
@@ -119,7 +117,6 @@
 .amount-input-containerTop label {
   font-size: 14px;
   margin-bottom: 5px;
-  font-weight: bold;
 }
 .amount-input-container {
   display: flex;
@@ -163,7 +160,6 @@
 .parent-contract-input-box label {
   font-size: 14px;
   margin-bottom: 5px;
-  font-weight: bold;
 }
 
 .parent-contract-input-box input {
@@ -173,7 +169,6 @@
   font-size: 16px;
   text-align: center;
   background-color: #fff;
-  font-weight: bold;
 }
 
 /* 지급 요일 선택 */
@@ -184,7 +179,6 @@
 
 .day-select label {
   font-size: 14px;
-  font-weight: bold;
   margin-bottom: 5px;
 }
 
@@ -219,14 +213,12 @@
 
 .signature-box label {
   font-size: 14px;
-  font-weight: bold;
   margin-bottom: 5px;
 }
 
 .signature {
   justify-content: space-between;
   font-size: 16px;
-  font-weight: bold;
   padding: 10px;
   border: 1px solid #ffa500;
   border-radius: 8px;
@@ -270,7 +262,6 @@
   border-radius: 8px;
   cursor: pointer;
   text-align: center;
-  font-weight: bold;
   width: 100%;
 }
 

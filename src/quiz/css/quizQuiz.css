@@ -55,7 +55,6 @@
   background-color: #ffffff;
   color: #ffe2b3;
   font-size: 14px;
-  font-weight: bold;
   border: 2px solid;
   border-radius: 15px;
   margin: 0 auto 20px auto; /* 가운데 정렬 */
@@ -156,7 +155,6 @@
   background-color: #ff9500;
   color: white;
   font-size: 14px;
-  font-weight: bold;
   border: none;
   border-radius: 15px;
   cursor: pointer;

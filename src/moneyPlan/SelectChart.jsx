@@ -39,7 +39,7 @@ function SelectChart() {
       .catch((error) => {
         console.error("데이터 로딩 오류: ", error);
       });
-  });
+  },[]);
 
   // plan_num별로 데이터를 그룹화
   const groupByPlanNum = (data) => {

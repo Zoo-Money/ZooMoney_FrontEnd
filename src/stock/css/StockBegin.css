@@ -19,7 +19,6 @@
 
 .StockBegin-question {
   font-size: 16px;
-  font-weight: bold;
   margin: 20px 0;
   color: #5a5a5a;
 }
@@ -31,7 +30,6 @@
   background-color: #ff9500;
   color: white;
   font-size: 14px;
-  font-weight: bold;
   border: none;
   border-radius: 10px;
   cursor: pointer;
