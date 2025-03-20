@@ -3,7 +3,6 @@
   background-color: #ff9500;
   color: white;
   font-size: 14px;
-  font-weight: bold;
   border: none;
   border-radius: 10px;
   margin-top: 20px;
@@ -25,7 +24,6 @@
 }
 
 .history-box span {
-  font-weight: bold;
   color: #ff9500;
   font-size: 1.2em;
 }
@@ -47,14 +45,12 @@
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 .history-list-title {
-  font-weight: bold;
   margin-right: 15px;
 }
 .history-list-date {
   margin-right: 15px;
 }
 .history-list-rank {
-  font-weight: bold;
   margin-right: 8px;
 }
 .forwardIcon {

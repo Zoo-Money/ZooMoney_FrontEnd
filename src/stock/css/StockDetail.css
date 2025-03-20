@@ -21,7 +21,6 @@
   background-color: #c4c0ba;
   color: white;
   font-size: 14px;
-  font-weight: bold;
   border: none;
   border-radius: 7px;
   cursor: pointer;
@@ -53,7 +52,6 @@
   background-color: red;
   color: white;
   font-size: 14px;
-  font-weight: bold;
   border: none;
   border-radius: 10px;
   cursor: pointer;
