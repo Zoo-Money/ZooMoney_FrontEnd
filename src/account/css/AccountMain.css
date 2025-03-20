@@ -86,9 +86,11 @@
 }
 
 .AccountMainImage {
-  position: fixed;
-  right: 50px;
-  width: 25%;
+  position: absolute;
+  width: 30%;
+  top: 12px;
+  right: -10px;
+  z-index: 1;
 }
 
 .AccountMainEmpty {
