@@ -45,8 +45,9 @@ function PlanChart(props) {
       planMoney: planMoney,
       categoryAmounts: category,
     };
+    const memberNum = sessionStorage.getItem("member_num");
     axios
-      .post("http://localhost:7777/zoomoney/moneyplan/save", requestData, {
+      .post(`http://localhost:7777/zoomoney/moneyplan/save/${memberNum}`, requestData, {
         headers: {
           "Content-Type": "application/json",
         },
