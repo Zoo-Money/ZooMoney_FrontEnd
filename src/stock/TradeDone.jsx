@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../common/Header";
 import rabbit04 from "../images/rabbit/rabbit04.png";
 import "../stock/css/stockBuy.css";

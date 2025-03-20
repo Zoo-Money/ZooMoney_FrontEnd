@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Footer from "../common/Footer";
+import FooterParent from "../common/FooterParent";
 import Header from "../common/Header";
 import "./css/childEventSend.css";
 
@@ -121,7 +121,7 @@ const ChildEventSend = () => {
       navigate(`/parent/main`); // childNum 전달
     } catch (error) {
       console.error("송금 실패:", error);
-      toast.error("송금에 실패했습니다. 다시시도해주세요");
+      toast.error("송금에 실패했습니다. 다시 시도해주세요.");
     }
   };
 
@@ -199,8 +199,9 @@ const ChildEventSend = () => {
               용돈 보내기
             </button>
           </div>
+
           {/* 하단 네비게이션 */}
-          <Footer />
+          <FooterParent />
         </div>
       </div>
     </div>

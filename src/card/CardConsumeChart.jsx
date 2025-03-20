@@ -8,8 +8,11 @@ import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/CardConsumeChart.css";
 import { categoryName } from "./resources/patternCommon";
+
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
+
 function PatternChart() {
+
   const navigate = useNavigate();
   const [groupedData, setGroupedData] = useState({}); // 1주일 단위로 그룹화된 데이터
   const [currentCardNum, setCurrentCardNum] = useState(0); // 현재 보고 있는 주차 인덱스
@@ -40,8 +43,9 @@ function PatternChart() {
       })
       .catch((error) => {});
   }, [memberNum]); // memberNum이 변경될 때만 실행
+
   const groupDataByWeek = (data) => {
-    return data.reduce((acc, item) => {
+    const groupedData = data.reduce((acc, item) => {
       const date = new Date(item.usehistDate);
       const weekStart = new Date(date);
       weekStart.setDate(date.getDate() - date.getDay()); // 해당 주의 시작
@@ -51,17 +55,26 @@ function PatternChart() {
       const weekKey = `${weekStart.toISOString().split("T")[0]} ~ ${
         weekEnd.toISOString().split("T")[0]
       }`;
-      // 날짜 범위가 이미 존재하는지 확인하여 겹치지 않게 처리
+
       if (!acc[weekKey]) {
         acc[weekKey] = { totalAmount: 0, transactions: [] };
       }
-      // :흰색_확인_표시: NaN 방지를 위해 숫자로 변환 후 합산
       const money = Number(item.usehistMoney) || 0;
       acc[weekKey].totalAmount += money;
       acc[weekKey].transactions.push(item);
       return acc;
     }, {});
+
+    // 날짜를 내림차순으로 정렬하여 반환
+    const sortedGroupedData = Object.keys(groupedData)
+      .sort((a, b) => new Date(b.split(" ~ ")[0]) - new Date(a.split(" ~ ")[0])) // 주 시작 날짜 기준 내림차순
+      .reduce((acc, key) => {
+        acc[key] = groupedData[key];
+        return acc;
+      }, {});
+    return sortedGroupedData; // 내림차순 정렬된 데이터를 반환
   };
+
   // 카테고리별 금액 합산 함수
   const groupDataByCategory = (weekData) => {
     const categorizedData = categoryName.reduce((acc, category) => {
@@ -91,6 +104,7 @@ function PatternChart() {
     }
     return categorizedData;
   };
+
   // 차트 변경 함수
   const handleChartChange = (direction) => {
     const patternsKeys = Object.keys(groupedData);
@@ -104,6 +118,7 @@ function PatternChart() {
       );
     }
   };
+
   // 현재 주차 데이터 가져오기
   const getCurrentChartData = () => {
     const weeks = Object.keys(groupedData);
@@ -168,66 +183,48 @@ function PatternChart() {
             `${tooltipItem.label}: ${tooltipItem.raw.toLocaleString()}원`,
         },
       },
-      doughnutlabel: {
-        id: "doughnutlabel",
-        beforeDraw: (chart) => {
-          const { ctx, chartArea } = chart;
-          // 차트 중앙에 금액 표시
-          ctx.save();
-          ctx.font = "bold 24px Arial";
-          ctx.fillStyle = "#000";
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-          ctx.fillText(
-            `{availableMoney}원`,
-            chartArea.width / 2,
-            chartArea.height / 2
-          );
-          ctx.restore();
-        },
-      },
     },
     responsive: true,
-    cutout: "70%",
+    cutout: "60%",
   };
   return (
     <div className="mock-container">
       <Header title="소비 내역" />
-      <div className="patternmain-content">
+      <div className="pattern-main-content">
         <p>
           짜임새 있는 소비 내역을 분석하고,
           <br />
           알뜰한 <span>소비 습관</span>을 길러봐요!
         </p>
-        <div className="patternmain-box">
-          <div className="patternchart-icon">
+        <div className="pattern-main-box">
+          <div className="pattern-chart-icon">
             <span>{chartData.weekLabel}</span>
             <IoIosArrowBack
-              className="patternchart-back"
+              className="pattern-chart-back"
               onClick={() => handleChartChange("prev")}
             />
             <IoIosArrowForward
-              className="patternchart-forward"
+              className="pattern-chart-forward"
               onClick={() => handleChartChange("next")}
             />
           </div>
           <div className="chart-box">
             <Doughnut data={chartData} options={chartOptions} />
           </div>
+          <div className="available-money">
+            <p>
+              사용한 총 용돈은{" "}
+              <span>{chartData.totalAmount.toLocaleString()}원</span>
+            </p>
+          </div>
+          <div className="highest-category">
+            <p>
+              <span>{highestCategory}</span>에 가장 많이 사용했어요
+            </p>
+          </div>
         </div>
       </div>
-      <div className="available-money">
-        <p>
-          사용한 총 용돈은
-          <span>{chartData.totalAmount.toLocaleString()}원</span>
-        </p>
-      </div>
-      <div className="highest-category">
-        <p>
-          <span>{highestCategory}</span>에 가장 많이 사용했어요
-        </p>
-      </div>
-      <button className="patternmain-button" onClick={() => navigate("/main")}>
+      <button className="pattern-main-button" onClick={() => navigate("/main")}>
         메인 페이지
       </button>
       <Footer />

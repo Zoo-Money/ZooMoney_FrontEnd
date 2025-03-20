@@ -32,7 +32,7 @@ const AccountInsert = () => {
         // 카드 잔액 조회
         const response = await axios.get(
           `http://localhost:7777/zoomoney/card/get`, {
-            headers: {
+            params: {
               member_num: memberNum,
             }
           }

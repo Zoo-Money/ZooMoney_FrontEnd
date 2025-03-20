@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
@@ -15,23 +16,13 @@ function StockBuy(props) {
   // 주식 번호 및 가격 설정
   const [stockId] = useState(location.state?.stockId || 1);
   const [stockName] = useState(location.state?.stockName || "Unknown");
-  const [price, setPrice] = useState(location.state?.latestPrice || ""); // 가격 입력 가능
+  const [price] = useState(location.state?.latestPrice || 0);
   const [amount, setAmount] = useState(""); // 수량 입력 상태
-
-  // stockName이 정상적으로 들어오는지 확인
-  console.log("StockBuy - stockName:", stockName);
-
-  // 가격이 바뀌면 업데이트
-  useEffect(() => {
-    if (location.state?.latestPrice) {
-      setPrice(location.state.latestPrice);
-    }
-  }, [location.state?.latestPrice]);
 
   // 구매 요청
   const handleBuy = async () => {
     if (!price || !amount) {
-      alert("가격과 수량을 입력해주세요.");
+      toast.error("가격과 수량을 입력해주세요.");
       return;
     }
 
@@ -50,9 +41,6 @@ function StockBuy(props) {
         }),
       });
 
-      const result = await response.text();
-      alert(result); // 응답 메시지 출력
-
       if (response.ok) {
         navigate("/stock/buyDone", {
           state: {
@@ -64,7 +52,7 @@ function StockBuy(props) {
       }
     } catch (error) {
       console.error("매수 실패:", error);
-      alert("매수 중 오류가 발생했습니다.");
+      alert.error("매수 중 오류가 발생했습니다.");
     }
   };
 
@@ -72,7 +60,7 @@ function StockBuy(props) {
     <div className="mock-container">
       <Header title="구매하기" />
       <div className="buy-header">
-        주식을 <span>매수</span>하면,
+        주식을 <span style={{ color: "red" }}>매수</span>하면,
         <br />
         해당 주식의 <span>소유자</span>가 돼요.
         <br />
@@ -83,13 +71,8 @@ function StockBuy(props) {
       </div>
       <div className="buy-container">
         <div className="buy-box">
-          현재 <span>매수</span> 가격
-          <input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            placeholder="가격을 입력하세요."
-          />
+          현재 <span>주식</span> 가격
+          <input type="number" value={price} placeholder="가격 입력" readOnly />
         </div>
         <div className="buy-box">
           구매 <span>수량</span>
@@ -97,7 +80,7 @@ function StockBuy(props) {
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            placeholder="수량을 입력해주세요."
+            placeholder="수량 입력"
           />
         </div>
       </div>

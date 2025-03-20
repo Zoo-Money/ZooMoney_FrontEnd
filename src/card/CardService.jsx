@@ -228,7 +228,7 @@ export const fetchMetadata = async (
     const uri = await contract.tokenURI(tokenId);
 
     if (!uri || uri === "0x") {
-      toast.error("유효한 tokenURI가 아닙니다.");
+      toast.error("유효한 값이 아닙니다.");
       setLoading(false);
       return;
     }

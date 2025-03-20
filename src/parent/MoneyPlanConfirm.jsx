@@ -1,11 +1,10 @@
-import React from 'react';
-import Header from '../common/Header';
+import React from "react";
+import FooterParent from "../common/FooterParent";
+import Header from "../common/Header";
 import deer01 from "../images/deer/deer01.png";
-import SelectChart from '../moneyPlan/SelectChart';
-import Footer from '../common/Footer';
+import SelectChart from "../moneyPlan/SelectChart";
 
 function MoneyPlanConfirm(props) {
-
   return (
     <div className="mock-container">
       <Header title="용돈 계획 세우기" />
@@ -24,7 +23,7 @@ function MoneyPlanConfirm(props) {
           </div>
         </div>
       </div>
-      <Footer />
+      <FooterParent />
     </div>
   );
 }

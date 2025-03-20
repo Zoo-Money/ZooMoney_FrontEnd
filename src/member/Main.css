@@ -1,7 +1,6 @@
 .main-zoomoney-text {
   width: 80%;
   font-size: 24px;
-  font-weight: bold;
   display: flex;
   align-items: center;
   margin-top: 20px;
@@ -10,7 +9,6 @@
 }
 .main-zoo {
   color: #ff9500;
-  font-weight: bolder;
 }
 .main-money {
   color: #1a1a1a;
@@ -20,12 +18,6 @@
 }
 .card-main-box {
   text-align: center;
-}
-.mycard-preview {
-  width: 300px;
-  height: 188px;
-  border-radius: 12px;
-  margin-left: 10px;
 }
 .mycard-image {
   width: 100%;
@@ -97,7 +89,6 @@
   display: inline;
   font-size: 20px;
   color: #333;
-  font-weight: bold;
 }
 /* 버튼 그룹 스타일링 */
 .main-button-group {
@@ -137,7 +128,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
   font-size: 16px;
   color: #333;
   text-align: center;
@@ -169,10 +159,11 @@
 }
 .mycard-preview {
   width: 300px;
-  height: 188px;
+  height: 200px;
   overflow: hidden;
   border-radius: 12px;
   position: relative;
+  margin: auto;
 }
 .card-pig {
   width: 70px;

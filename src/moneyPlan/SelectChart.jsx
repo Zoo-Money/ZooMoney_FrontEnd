@@ -1,6 +1,5 @@
 import axios from "axios";
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
-import Chart from "chart.js/auto";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
@@ -9,34 +8,13 @@ import { categoryName } from "../moneyPlan/resource/planCommon.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const centerTextPlugin = {
-  id: "centerTextPlugin",
-  beforeDraw: (chart) => {
-    const { width, height, ctx } = chart;
-    const text = chart.options.plugins.centerTextPlugin.text || "";
-
-    ctx.save();
-    ctx.font = "bold 18px Arial";
-    ctx.fillStyle = "#333";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-
-    const centerX = width / 2;
-    const centerY = height / 2;
-
-    ctx.fillText(text, centerX, centerY);
-    ctx.restore();
-  },
-};
-
-Chart.register(centerTextPlugin);
-
 function SelectChart() {
   const [plansData, setPlansData] = useState({}); //각 plan_num별 데이터 저장
   const [currentPlanNum, setCurrentPlanNum] = useState(0); //현재 보여줄 plan_num
   const [planDate, setPlanDate] = useState([]);
+  const memberNum = sessionStorage.getItem("member_num");
 
-  // plan_date를 형식에 맞게 변환하는 함수
+  // plan_date를 일주일 단위로 변환
   const formatPlanDate = (dateString) => {
     const formattedStart = dayjs(dateString).format("YYYY-MM-DD");
     const formattedEnd = dayjs(dateString).add(7, "day").format("YYYY-MM-DD");
@@ -44,14 +22,16 @@ function SelectChart() {
   };
 
   // 데이터 받아오기
-  const dateArr = [];
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/moneyplan/select")
+      .get(`http://localhost:7777/zoomoney/moneyplan/select/${memberNum}`, {
+        params: { memberNum },
+      })
       .then((response) => {
-        response.data.forEach((plan) => {
-          dateArr.push(plan.plan_date.split("T")[0]);
-        });
+        const sortedData = response.data.sort(
+          (a, b) => b.plan_num - a.plan_num
+        );
+        const dateArr = sortedData.map((plan) => plan.plan_date.split("T")[0]);
         setPlanDate(dateArr);
         const plansGroupedByNum = groupByPlanNum(response.data);
         setPlansData(plansGroupedByNum); // plan_num 별로 그룹화된 데이터 저장
@@ -73,8 +53,14 @@ function SelectChart() {
     }, {});
   };
 
+  // 총합을 구하는 로직
+  const getTotalAmount = (planDetails) => {
+    return planDetails.reduce((sum, item) => sum + item.detail_money, 0);
+  };
+
   // plan_num에 해당하는 차트 데이터 생성
   const getChartData = (planDetails) => {
+    // const totalAmount = getTotalAmount(planDetails); //총합계산
     const data = categoryName.map((category, index) => {
       const detail = planDetails.find(
         (item) => item.category_num === index + 1
@@ -122,7 +108,7 @@ function SelectChart() {
           },
           usePointStyle: true,
           boxWidth: 40,
-          padding: 10,
+          padding: 20,
           font: {
             size: 12,
           },
@@ -135,15 +121,6 @@ function SelectChart() {
             return `${tooltipItem.label}: ${value.toLocaleString()}원`;
           },
         },
-      },
-      title: {
-        display: true,
-        text: `${formatPlanDate(planDate[currentPlanNum]) || "날짜없음"}`,
-        font: {
-          size: 18,
-          weight: "bold",
-        },
-        color: "#333",
       },
     },
   };
@@ -168,10 +145,12 @@ function SelectChart() {
   }
 
   const currentPlanDetails = plansData[Object.keys(plansData)[currentPlanNum]];
+  const totalAmout = getTotalAmount(currentPlanDetails);
 
   return (
     <>
       <div className="selectchart-icon">
+        <span>{formatPlanDate(planDate[currentPlanNum]) || "날짜없음"}</span>
         <IoIosArrowBack
           className="selectchart-back"
           onClick={() => handleChartChange("prev")}
@@ -180,6 +159,11 @@ function SelectChart() {
           className="selectchart-forward"
           onClick={() => handleChartChange("next")}
         />
+      </div>
+      <div className="chart-total-amount">
+        <p>
+          일주일 용돈 <span>{totalAmout.toLocaleString()}원</span>
+        </p>
       </div>
       <div className="selectchart-box">
         <Doughnut

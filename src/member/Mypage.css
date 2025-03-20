@@ -18,7 +18,6 @@
 
 .InfoTitle {
   font-size: 1rem;
-  font-weight: bold;
   color: #333;
   margin: 0;
   padding: 0;
@@ -36,12 +35,14 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.8rem 0;
+  color: #333;
 }
 .info-row2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.3rem 0;
+  color: #333;
 }
 
 .label {
@@ -62,35 +63,40 @@
 }
 
 .edit-btn {
-  background-color: #f97316;
+  background-color: #ff9500;
   color: white;
   padding: 0rem 1rem;
   border-radius: 0.5rem;
   border: none;
   cursor: pointer;
+  transition: 0.5s ease;
 }
-
-.bold {
-  font-weight: bold;
+.edit-btn:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 .point-text {
-  color: #ff9800;
+  color: #ff9500;
 }
 
 .card-box {
-  border: 1px solid #fb923c;
+  border: 2px solid #ff9500;
   padding: 16px;
   border-radius: 20px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 360px;
-  margin-top: 12px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: 0.5s ease;
 }
-
+.card-box:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
 .card-title {
   font-size: 16px;
-  font-weight: bold;
   margin-bottom: 5px;
 }
 
@@ -102,7 +108,6 @@
 
 .card-link {
   color: #ea580c;
-  font-weight: bold;
   text-align: left;
   display: block;
 }

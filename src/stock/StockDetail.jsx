@@ -9,17 +9,16 @@ import "./css/StockDetail.css";
 import StockNews from "./StockNews";
 
 Chart.register(...registerables);
+
 const StockDetail = () => {
   const { stockId, stockName } = useParams();
   const [tr_key] = useState(stockId);
-
   const [activeTab, setActiveTab] = useState("company");
   const [latestPrice, setLatestPrice] = useState(null);
-
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate("/stock/stockBuy", { state: { stockId, latestPrice } });
+    navigate("/stock/stockBuy", { state: { stockId, latestPrice, stockName } });
   };
 
   const [chartData, setChartData] = useState({
@@ -28,47 +27,54 @@ const StockDetail = () => {
       {
         label: "실시간 체결가",
         data: [],
-        borderColor: "rgb(255, 40, 40)",
+        borderColor: "rgb(255, 40, 40)", // 기존 빨간색 유지
         fill: false,
+        tension: 0.2, // 곡선 부드럽게 유지
       },
     ],
   });
+
   useEffect(() => {
     const ws = new WebSocket(`ws://192.168.0.104:7777/zoomoney/ws/stocks`);
     ws.onopen = () => {
       ws.send(JSON.stringify({ type: "subscribe", symbol: tr_key }));
     };
+
     ws.onmessage = (event) => {
       const text = event.data;
-
-      // 응답 데이터 파싱
       const parts = text.split("|");
+
       if (parts.length > 3) {
         const stockInfo = parts[3].split("^");
         if (stockInfo.length > 3) {
           const currentPrice = parseFloat(stockInfo[2]); // 현재가
-          const time = stockInfo[1]; // 체결 시간
-          const timeString = String(time); // time 값을 문자열로 변환
+          const timeString = String(stockInfo[1]); // 체결 시간
 
-          // 데이터 추가 (최대 50개로 제한)
           setChartData((prevData) => {
-            const newLabels = [...prevData.labels, timeString]; // 시간
-            const newData = [...prevData.datasets[0].data, currentPrice]; // 가격
+            const newLabels = [...prevData.labels, timeString].slice(-50); // 최대 50개 유지
+            const newData = [...prevData.datasets[0].data, currentPrice].slice(
+              -50
+            ); // 최대 50개 유지
+
             return {
               labels: newLabels,
               datasets: [
                 {
                   label: "체결가",
                   data: newData,
-                  borderColor: "rgb(255, 40, 40)",
+                  borderColor: "rgb(255, 40, 40)", // 기존 빨간색 유지
                   fill: false,
+                  tension: 0.2, // 부드러운 곡선 적용
                 },
               ],
             };
-          }, setLatestPrice(currentPrice));
+          });
+
+          setLatestPrice(currentPrice);
         }
       }
     };
+
     ws.onerror = (error) => {
       console.error("WebSocket 에러 발생:", error);
     };
@@ -77,13 +83,14 @@ const StockDetail = () => {
       ws.close();
     };
   }, [tr_key]);
+
   return (
     <div className="mock-container">
       <Header title="모의 투자 종목" />
 
       <div className="StockDetail-info">
         {stockName}의 현재 가격은 <br />
-        {latestPrice}원 이에요
+        {latestPrice?.toLocaleString() || "0"}원 이에요
       </div>
 
       <div style={{ margin: "5%" }}>
@@ -110,13 +117,15 @@ const StockDetail = () => {
                   display: false,
                 },
                 ticks: {
-                  display: false,
+                  display: true,
                 },
+                suggestedMin: Math.min(...chartData.datasets[0].data) * 0.999, // 최소값을 2% 낮게
+                suggestedMax: Math.max(...chartData.datasets[0].data) * 1.001, // 최대값을 2% 높게
               },
             },
             elements: {
               point: {
-                radius: 0,
+                radius: 0, // 점 없애기
               },
             },
           }}
@@ -143,6 +152,7 @@ const StockDetail = () => {
       <div className="DetailOption-content">
         {activeTab === "company" ? <CompanyInfo /> : <StockNews />}
       </div>
+
       {activeTab === "company" && (
         <div>
           <button className="goToBuy-button" onClick={handleButtonClick}>
@@ -150,8 +160,10 @@ const StockDetail = () => {
           </button>
         </div>
       )}
+
       <Footer />
     </div>
   );
 };
+
 export default StockDetail;

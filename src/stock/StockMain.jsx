@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaQuestionCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
@@ -5,7 +6,6 @@ import Footer from "../common/Footer";
 import Header from "../common/Header";
 import rabbit01 from "../images/rabbit/rabbit01.png";
 import "./css/stockMain.css";
-import axios from "axios";
 
 function StockMain(props) {
   const memberNum = sessionStorage.getItem("member_num");
@@ -25,8 +25,8 @@ function StockMain(props) {
       },
     });
   };
-  const goToSell = (stockId, stockName) => {
-    navi("/stock/stockSell", { state: { stockId, stockName } });
+  const goToSell = (stockId, stockPrice, stockName) => {
+    navi("/stock/stockSell", { state: { stockId, stockPrice, stockName } });
   };
 
   useEffect(() => {
@@ -41,11 +41,6 @@ function StockMain(props) {
         console.error("Error fetching stock detail:", error);
       });
   }, [memberNum]);
-
-  // 1. 일간 수익 계산
-  const dailyProfit = myStockData.reduce((total, stock) => {
-    return total + (stock.stockPrice - stock.stockhistPrice) * stock.quantity;
-  }, 0);
 
   // 2. 현재 평가 금액 (현재가 * 보유량)
   const totalCurrentValue = myStockData.reduce((total, stock) => {
@@ -79,12 +74,11 @@ function StockMain(props) {
   // 평가손익 계산 (총평가 - 총매입)
   const evaluationProfitLoss = totalEvaluation - totalPurchase;
 
-  console.log(totalInvestment);
   return (
     <div className="mock-container">
       <Header title="모의투자" />
       <div className="stock-main-header">
-        <Link to="/stock/info">
+        <Link to="/stock/info" className="link-no-underline">
           <div className="stock-main-info">
             <FaQuestionCircle className="questionmark" />
             <span>주식에 대해 궁금해요!</span>
@@ -119,11 +113,13 @@ function StockMain(props) {
           <thead>
             <tr>
               <th>종목명</th>
-              <th>1주평균금액</th>
+              <th>평균 매입가</th>
               <th>총 금액</th>
               <th>매도</th>
             </tr>
           </thead>
+        </table>
+        <table className="stock-table">
           <tbody className="stock-main-mystock-list-box">
             {myStockData.length > 0 ? (
               myStockData.map((stock, index) => {
@@ -133,7 +129,10 @@ function StockMain(props) {
                   100;
                 return (
                   <tr key={index}>
-                    <td>{stock.stockName}</td>
+                    <td>
+                      {stock.stockName}
+                      <br />( {stock.quantity}주 )
+                    </td>
                     <td>
                       {Math.floor(stock.averagePrice).toLocaleString("ko-KR")}원
                       <br />
@@ -151,7 +150,13 @@ function StockMain(props) {
                     <td>
                       <button
                         className="sell-button"
-                        onClick={() => goToSell(stock.stockId, stock.stockName)}
+                        onClick={() =>
+                          goToSell(
+                            stock.stockId,
+                            stock.stockPrice,
+                            stock.stockName
+                          )
+                        }
                       >
                         매도하기
                       </button>

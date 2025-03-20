@@ -24,7 +24,6 @@
 /* 계약서 안내 텍스트 스타일 */
 .contractWrtieChild-info-text {
   font-size: 14px; /* 기존보다 작은 글씨 크기 */
-  font-weight: bold; /* 굵은 글씨 */
   margin-bottom: 1px; /* 아래 여백 추가 */
 }
 
@@ -82,7 +81,6 @@
 .contractWrtieChild-amount-input-containerTop label {
   font-size: 14px;
   margin-bottom: 5px;
-  font-weight: bold;
 }
 
 .contractWrtieChild-amount-input-container {
@@ -92,12 +90,10 @@
   border-radius: 8px;
   padding: 10px;
   font-size: 16px;
-  font-weight: bold;
   text-align: center;
 }
 .contractWrtieChild-amount-number {
   color: #ff5454;
-  font-weight: bold;
 }
 
 .amount-input-container input {
@@ -133,7 +129,6 @@
 .contractWrtieChild-input-box label {
   font-size: 14px;
   margin-bottom: 5px;
-  font-weight: bold;
 }
 
 .contractWrtieChild-input-box input {
@@ -143,7 +138,6 @@
   font-size: 16px;
   text-align: center;
   background-color: #fff;
-  font-weight: bold;
 }
 
 /* 지급 요일 선택 */
@@ -154,7 +148,6 @@
 
 .day-select label {
   font-size: 14px;
-  font-weight: bold;
   margin-bottom: 5px;
 }
 
@@ -186,16 +179,14 @@
 
 .signature-box label {
   font-size: 14px;
-  font-weight: bold;
   margin-bottom: 5px;
 }
 
 .contractWrtieChild-signature {
   justify-content: space-between;
   font-size: 16px;
-  font-weight: bold;
   padding: 10px;
-  border: 1px solid #ffa500;
+  border: 1px solid #ff9500;
   border-radius: 8px;
   text-align: center;
 }
@@ -232,7 +223,7 @@
 
 /* 제출 버튼 */
 .contractWrtieChild-submit-button {
-  background-color: #ffa500;
+  background-color: #ff9500;
   color: white;
   border: none;
   padding: 12px;
@@ -240,7 +231,6 @@
   border-radius: 8px;
   cursor: pointer;
   text-align: center;
-  font-weight: bold;
 }
 
 .submit-button:hover {

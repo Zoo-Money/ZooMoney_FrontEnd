@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "./css/stockHistory.css";
+import Footer from "../common/Footer";
 
 ChartJS.register(
   LineElement,
@@ -51,14 +52,17 @@ function StockHistory(props) {
       });
   });
 
-  //일주일 뒤 날짜 폼폼
+  //일주일 뒤 날짜 폼
   const afterOneWeek = (date) => {
     const d = new Date(date);
     d.setDate(d.getDate() + 6);
     return d.toISOString().split("T")[0].replace(/-/g, ".");
   };
 
-  const labels = ranking.map((item) => item.result_date);
+  const labels = ranking.map((item) => {
+    const date = new Date(item.result_date);
+    return date.toISOString().split("T")[0].replace(/-/g, ".");
+  });
   const resultRate = ranking.map((item) => item.result_rate);
 
   //차트데이터
@@ -91,7 +95,12 @@ function StockHistory(props) {
     },
     plugins: {
       legend: {
-        display: false,
+        display: true,
+        position: "bottom",
+        labels: {
+          usePointStyle: true,
+          padding: 4,
+        },
       },
       tooltip: {
         enabled: true,
@@ -130,7 +139,7 @@ function StockHistory(props) {
       <div className="history-list-box">
         {ranking &&
           ranking.map((item, index) => (
-            <div className="history-list" key={index}>
+            <div className="history-list" key={index} onClick={() => goHistoryDetail(item)}>
               <span className="history-list-title">시즌{index + 1}</span>
               <span className="history-list-date">
                 {new Date(item.result_date).toLocaleString("ko-KR", {
@@ -141,16 +150,14 @@ function StockHistory(props) {
                 ~ {afterOneWeek(item.result_date)}
               </span>
               <span className="history-list-rank">{item.result_rank}위</span>
-              <IoIosArrowForward
-                className="forwardIcon"
-                onClick={() => goHistoryDetail(item)}
-              />
+              <IoIosArrowForward className="forwardIcon" />
             </div>
           ))}
       </div>
       <button className="history-button" onClick={goStockMain}>
         모의 투자 하러 가기
       </button>
+      <Footer />
     </div>
   );
 }

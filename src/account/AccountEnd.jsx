@@ -25,7 +25,7 @@ const AccountEnd = () => {
         <>
           <span>저금통을 만들었어요</span>
           <br />
-          <span style={{ fontSize: "1rem", fontWeight: "normal" }}>
+          <span style={{ fontSize: "1rem" }}>
             꾸준히 관리하면서 <br />
             목표금액까지 모아보세요!
           </span>

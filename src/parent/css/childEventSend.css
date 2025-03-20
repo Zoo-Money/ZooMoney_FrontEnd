@@ -26,15 +26,13 @@
 }
 
 .Child-Event-Send-highlight {
-  color: #ff7f00;
-  font-weight: bold;
+  color: #ff9500;
   margin-bottom: 30px;
 }
 .Child-Event-Send-balance {
   color: #999; /* 연한 회색 */
   font-size: 14px;
   margin-bottom: 10px;
-  font-weight: bold;
 }
 
 .Child-Event-Send-amount-buttons {
@@ -45,7 +43,7 @@
 
 .Child-Event-Send-amount-btn {
   flex: 1;
-  background-color: #ff7f00;
+  background-color: #ff9500;
   color: #fff;
   border: none;
   padding: 5px;
@@ -61,12 +59,11 @@
 .Child-Event-Send-amount-input-containerTop label {
   font-size: 14px;
   margin-bottom: 5px;
-  font-weight: bold;
 }
 .Child-Event-Send-amount-input-container {
   display: flex;
   align-items: center;
-  border: 1px solid #ffa500;
+  border: 1px solid #ff9500;
   border-radius: 8px;
   padding: 10px;
   font-size: 16px;
@@ -89,7 +86,7 @@
 .Child-Event-Send-message-input {
   width: 100%;
   padding: 10px;
-  border: 2px solid #ff7f00;
+  border: 2px solid #ff9500;
   border-radius: 8px;
   margin-top: 5px;
 }
@@ -98,7 +95,7 @@
   display: flex;
   align-items: center;
   background-color: #eef2f7;
-  border: 2px solid #ff7f00;
+  border: 2px solid #ff9500;
   border-radius: 8px;
   padding: 10px;
 }
@@ -106,7 +103,6 @@
 .Child-Event-Send-amount-account-containerTop label {
   font-size: 14px;
   margin-bottom: 5px;
-  font-weight: bold;
 }
 .Child-Event-Send-amount-account-container {
   display: flex;
@@ -117,7 +113,6 @@
   padding: 10px 0;
   height: 50px;
   font-size: 16px;
-  font-weight: bold;
 }
 .Child-Event-Send-amount-account-container p {
   margin: 0 !important; /* 상속된 불필요한 여백 제거 */
@@ -125,7 +120,6 @@
   width: 100%;
   text-align: center;
   line-height: 50px;
-  font-weight: bold;
   font-size: 16px;
 }
 
@@ -143,7 +137,7 @@
 
 /*용돈 보내기 버튼 */
 .Child-Event-Send-submit-button {
-  background-color: #ffa500;
+  background-color: #ff9500;
   color: white;
   border: none;
   padding: 12px;
@@ -151,7 +145,6 @@
   border-radius: 8px;
   cursor: pointer;
   text-align: center;
-  font-weight: bold;
   width: 100%;
   margin-top: 20px;
 }

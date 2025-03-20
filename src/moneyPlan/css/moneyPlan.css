@@ -5,12 +5,6 @@
   align-items: center;
   justify-content: space-between;
 }
-.planmain-deer {
-  width: 120px;
-  height: auto;
-  transform: scaleX(-1);
-  margin-left: auto;
-}
 .planmain-description {
   display: flex;
   font-size: 16px;
@@ -22,20 +16,24 @@
 .planmain-description p {
   margin-left: 35px;
 }
+.planmain-deer {
+  width: 120px;
+  height: auto;
+  transform: scaleX(-1);
+  margin-left: auto;
+}
+.planmain-description span {
+  color: #ff5454;
+}
 .planmain-box {
   padding-top: 10px;
   width: 90%;
-  height: auto;
   background-color: #f8f4f1;
   border: none;
   border-radius: 15px;
-  margin: 0 auto 40px auto; /* 가운데 정렬 */
+  margin: 0 auto 40px auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: left;
-}
-.planmain-description span {
-  font-weight: bold;
-  color: #ff5454;
 }
 .planmain-button {
   width: 80%;
@@ -43,7 +41,6 @@
   background-color: #ff9500;
   color: white;
   font-size: 14px;
-  font-weight: bold;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -54,9 +51,39 @@
 }
 .planmain-button:hover {
   opacity: 0.8;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px 
+  rgba(0, 0, 0, 0.2);
 }
-
+/* SelectChart */
+.selectchart-icon {
+  margin: 10px 20px;
+  text-align: center;
+}
+.selectchart-icon span{
+  text-align: center;
+}
+.selectchart-back {
+  float: left;
+  width: 22px;
+  height: 22px;
+}
+.selectchart-forward {
+  float: right;
+  width: 22px;
+  height: 22px;
+}
+.chart-total-amount {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+}
+.chart-total-amount span{
+  color: #ff9500;
+}
+.selectchart-box {
+  display: flex;
+  height: 350px;
+}
 /* PlanWrite */
 .planwrite-content {
   margin-top: 10px;
@@ -65,15 +92,37 @@
 }
 .planwrite-content span {
   font-size: 1.5rem;
-  font-weight: bold;
   color: #ff5454;
 }
-
 .planwrite-container p {
   font-size: 14px;
   text-align: center;
   margin-top: 30px;
 }
+.planwrite-container {
+  width: 90%;
+  font-size: 18px;
+}
+.planwrite-container img:nth-child(1) {
+  margin-left: 7px;
+}
+.planwrite-button {
+  width: 80%;
+  height: 45px;
+  background-color: #ff9500;
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+  display: inline;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.planwrite-button:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+/* InputComponent */
 .planwrite-input-list:nth-child(1) {
   display: flex;
   justify-content: space-between;
@@ -149,61 +198,33 @@
   margin-bottom: 20px;
   background-color: #caffc2;
 }
-.planwrite-container {
-  width: 90%;
-  font-size: 18px;
-}
-.planwrite-container img:nth-child(1) {
-  margin-left: 7px;
-}
-.planwrite-button {
-  width: 80%;
-  height: 45px;
-  background-color: #ff9500;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  display: inline;
-  cursor: pointer;
-  transition: 0.5s ease;
-}
-.planwrite-button:hover {
+
+.planwrite-input-list:hover{
   opacity: 0.8;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 /* planChart */
+.chart-deer03{
+  margin-left: 200px;
+  width: 80px;
+}
 .planchart-box {
-  width: 90%;
+  width: 80%;
   height: auto;
   background-color: #f8f4f1;
   border: none;
   border-radius: 15px;
   margin: 0 auto 40px auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: left;
+  /* text-align: left; */
 }
-/* SelectChart */
-.selectchart-box {
-  display: flex;
-  height: 350px;
-  margin-top: 50px;
+.plan-chart-content{
+  text-align: center;
+  margin-top: 15px;
+  font-size: 18px;
 }
-.selectchart-icon {
-  margin: 20px;
-}
-.selectchart-back {
-  float: left;
-  width: 22px;
-  height: 22px;
-  margin-top: 8px;
-}
-.selectchart-forward {
-  float: right;
-  width: 22px;
-  height: 22px;
-  margin-top: 8px;
+.plan-chart-content span{
+  color: #ff9500;
 }
 
 /* PlanChart와 버튼을 겹치지 않게 배치 */
@@ -236,6 +257,6 @@
   margin-bottom: 30px;
 }
 .plancomplete-description span {
-  color: #ff5454;
-  font-weight: bold;
+  color: #ff9500;
+  font-size: 20px;
 }

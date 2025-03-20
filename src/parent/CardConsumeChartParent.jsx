@@ -5,7 +5,7 @@ import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { categoryName } from "../card/resources/patternCommon";
-import Footer from "../common/Footer";
+import FooterParent from "../common/FooterParent";
 import Header from "../common/Header";
 import "./css/CardConsumeChart.css";
 
@@ -292,7 +292,7 @@ function PatternChart() {
         </Link>
       </button>
 
-      <Footer />
+      <FooterParent />
     </div>
   );
 }
