@@ -59,7 +59,18 @@ const ContractWrite = () => {
 
     // 모든 조건 충족 시 true 설정
     setIsFormValid(hasDetails && hasAmount && hasDate && hasSignature);
-  }, [details, amount, date, signatureRef]); // 🔹 의존성 배열 추가
+  }, [details, amount, date]); // 의존성 배열 추가
+
+  // 서명 완료시 유효성 검사 다시 실행(서명시 강제 onEnd 트리거)
+  const handleSignatureEnd = () => {
+    const hasDetails = details.length > 0;
+    const hasAmount = !!amount;
+    const hasDate = !!date;
+    const hasSignature =
+      signatureRef.current && !signatureRef.current.isEmpty();
+
+    setIsFormValid(hasDetails && hasAmount && hasDate && hasSignature);
+  };
 
   // 서명 지우기
   const clearSignature = () => {
@@ -252,6 +263,7 @@ const ContractWrite = () => {
               <SignatureCanvas
                 ref={signatureRef}
                 penColor="black"
+                onEnd={handleSignatureEnd} // ✅ 서명 후 유효성 검사 강제 트리거
                 canvasProps={{
                   className: "parent-signCanvas",
                   width: 300,

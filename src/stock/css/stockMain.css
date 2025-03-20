@@ -1,10 +1,13 @@
 .stock-main-box {
-  border: 1px solid #fb923c;
+  border: 2px solid #ff9500;
   padding: 16px;
   border-radius: 20px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 360px;
+}
+.stock-main-box:hover{
+  opacity: 0.8;
 }
 .stock-main-header {
   margin-top: 50px;
@@ -19,15 +22,23 @@
   gap: 5px;
   margin-left: -120px;
   margin-bottom: 5px;
+  color: #333;
+}
+.stock-main-info:hover{
+  opacity: 0.8;
+}
+.link-no-underline{
+  text-decoration: none;
 }
 .questionmark {
   font-size: 18px;
 }
 .stock-main-header img {
-  width: 65px;
+  width: 80px;
   position: absolute;
   left: 100px;
   bottom: -10px;
+  transform: scaleX(-1);
 }
 .stock-main-box h2 {
   margin: 0;

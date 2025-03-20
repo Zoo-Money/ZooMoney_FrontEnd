@@ -64,7 +64,7 @@ function MyPage() {
 
           <div className="card-box">
             <div className="info-row2">
-              <span className="label">카드관리</span>
+              <span className="label">카드 관리</span>
               <Link to="/card/modify">
                 <IoArrowForwardCircleOutline
                   size={22}
@@ -73,12 +73,12 @@ function MyPage() {
               </Link>
             </div>
             <p className="card-subtext">
-              5,000P / 10,000P 포인트를 사용하여 나만의 카드 꾸미기
+              5,000P / 10,000P 포인트를 사용하여<br/>나만의 카드 꾸미기
             </p>
           </div>
           <div className="card-box">
             <div className="info-row2">
-              <span className="label">모의주식</span>
+              <span className="label">모의 주식</span>
               <Link to="/stock/stockHistory">
                 <IoArrowForwardCircleOutline
                   size={22}
@@ -87,7 +87,7 @@ function MyPage() {
               </Link>
             </div>
             <p className="card-subtext">
-              나의 모의투자거래 내역과 모의투자 결과를 확인하세요
+              나의 모의 투자 거래 내역과 모의 투자 결과를 확인하세요
             </p>
           </div>
         </div>

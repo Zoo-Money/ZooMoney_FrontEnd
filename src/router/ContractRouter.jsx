@@ -5,6 +5,8 @@ import ContractSelect from "../contract/ContractSelect";
 import ContractWrite from "../contract/ContractWrite";
 import ContractWriteChild from "../contract/ContractWriteChild";
 import MoneyContractManage from "../contract/MoneyContractManage";
+import ContractSelectChild from "../contract/ContractSelectChild";
+import ContractDetailChild from "../contract/ContractDetailChild";
 
 function ContractRouter() {
   return (
@@ -23,8 +25,16 @@ function ContractRouter() {
         element={<ContractSelect />}
       ></Route>
       <Route
-        path="/contract/contractDetail1"
+        path="/contract/contractDetail"
         element={<ContractDetail />}
+      ></Route>
+      <Route
+        path="/contract/contractSelectChild"
+        element={<ContractSelectChild />}
+      ></Route>
+      <Route
+        path="/contract/contractDetailChild"
+        element={<ContractDetailChild />}
       ></Route>
     </Routes>
   );

@@ -25,8 +25,8 @@ function StockMain(props) {
       },
     });
   };
-  const goToSell = (stockId) => {
-    navi("/stock/stockSell", { state: { stockId } });
+  const goToSell = (stockId, stockName) => {
+    navi("/stock/stockSell", { state: { stockId, stockName } });
   };
 
   useEffect(() => {
@@ -84,7 +84,7 @@ function StockMain(props) {
     <div className="mock-container">
       <Header title="모의투자" />
       <div className="stock-main-header">
-        <Link to="/stock/info">
+        <Link to="/stock/info" className="link-no-underline">
           <div className="stock-main-info">
             <FaQuestionCircle className="questionmark" />
             <span>주식에 대해 궁금해요!</span>
@@ -151,7 +151,7 @@ function StockMain(props) {
                     <td>
                       <button
                         className="sell-button"
-                        onClick={() => goToSell(stock.stockId)}
+                        onClick={() => goToSell(stock.stockId, stock.stockName)}
                       >
                         매도하기
                       </button>
