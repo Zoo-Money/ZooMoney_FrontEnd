@@ -4,7 +4,6 @@ import Header from '../common/Header';
 import "../moneyPlan/css/moneyPlan.css";
 import { useNavigate } from 'react-router-dom';
 
-
 function PlanComplete(props) {
   const navi = useNavigate();
   const handleMain = () => {

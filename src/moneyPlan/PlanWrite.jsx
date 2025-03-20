@@ -25,14 +25,14 @@ function PlanWrite(props) {
   const [message, setMessage] = useState();
   const navi = useNavigate();
   const images = [hamburger, cart, game, pig, etc];
-
+  const memberNum = sessionStorage.getItem("member_num");
+  
   //용돈가져오기
   useEffect(() => {
-    const memberNum = 1;
-    axios({
-      url: `http://localhost:7777/zoomoney/moneyplan/getAllowance?memberNum=${memberNum}`,
-      method: "get",
-    })
+    axios.get(`http://localhost:7777/zoomoney/moneyplan/getAllowance?memberNum=${memberNum}`,{
+      params:{ memberNum }
+    },
+    )
       .then((resposeData) => {
         const formattedMoney = new Intl.NumberFormat().format(resposeData.data);
         setPlanMoney(formattedMoney);
