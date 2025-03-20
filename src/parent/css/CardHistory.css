@@ -6,7 +6,6 @@
   position: relative;
 }
 .cardHistory-header {
-  font-family: "Arial", sans-serif;
   background-color: #ffd6a7;
   height: 300px;
   margin: 0 0 20px 0;
@@ -43,7 +42,6 @@
   background-color: #ff9500;
   color: #ffff;
   font-size: 14px;
-  font-weight: bold;
   border: none;
   border-radius: 6px;
   cursor: pointer;

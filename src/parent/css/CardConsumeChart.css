@@ -23,7 +23,6 @@
 }
 
 .patternmain-description span {
-  font-weight: bold;
   color: #ff5454;
 }
 .patternmain-button {
@@ -32,7 +31,6 @@
   background-color: #ff9500;
   color: white;
   font-size: 14px;
-  font-weight: bold;
   border: none;
   border-radius: 10px;
   cursor: pointer;
