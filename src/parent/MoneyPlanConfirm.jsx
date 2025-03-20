@@ -2,7 +2,8 @@ import React from "react";
 import FooterParent from "../common/FooterParent";
 import Header from "../common/Header";
 import deer01 from "../images/deer/deer01.png";
-import SelectChart from "../moneyPlan/SelectChart";
+
+import SelectChartParent from "./SelectChartParent";
 
 function MoneyPlanConfirm(props) {
   return (
@@ -19,7 +20,7 @@ function MoneyPlanConfirm(props) {
         </div>
         <div className="planmain-box">
           <div className="planmain-chart-box">
-            <SelectChart />
+            <SelectChartParent />
           </div>
         </div>
       </div>
