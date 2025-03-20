@@ -20,17 +20,17 @@
     padding: 10px;
     border-radius: 15px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    
 }
 .history-detail-list-title{
     font-weight: bold;
-    margin-right: 15px;
 }
 .history-detail-list-date{
-    margin-right: 15px;
 }
 .history-detail-list-count{
     font-weight: bold;
-    margin-right: 8px;
 }
 .buy{
     color: blue;
