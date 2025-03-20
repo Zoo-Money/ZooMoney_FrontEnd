@@ -4,7 +4,6 @@ import Footer from "../common/Footer";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "../stock/css/stockBuy.css";
-import { LocationSearching } from "@mui/icons-material";
 
 function StockSell(props) {
   const location = useLocation();
@@ -19,9 +18,9 @@ function StockSell(props) {
   const [price, setPrice] = useState(location.state?.latestPrice || ""); // 가격 입력 가능
   const [amount, setAmount] = useState(""); // 수량 입력 상태
 
-  // 가격이 바뀌면 업데이트
+  // 최초 로드 시, price가 없으면 latestPrice를 기본값으로 설정
   useEffect(() => {
-    if (location.state?.latestPrice) {
+    if (!price && location.state?.latestPrice) {
       setPrice(location.state.latestPrice);
     }
   }, [location.state?.latestPrice]);
