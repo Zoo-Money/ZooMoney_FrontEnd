@@ -71,12 +71,7 @@ function StockSell(props) {
       <div className="buy-container">
         <div className="buy-box">
           현재 <span>매도</span> 가격
-          <input
-            type="number"
-            value={price}
-            readOnly
-            placeholder="가격을 입력하세요."
-          />
+          <p className="buy-text-left">{price.toLocaleString()}원</p>
         </div>
         <div className="buy-box">
           판매 <span>수량</span>
