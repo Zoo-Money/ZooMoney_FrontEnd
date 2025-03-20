@@ -61,6 +61,7 @@
 }
 .selectchart-icon span{
   text-align: center;
+  font-size: 17px;
 }
 .selectchart-back {
   float: left;
@@ -75,14 +76,61 @@
 .chart-total-amount {
   text-align: center;
   margin-top: 10px;
-  font-size: 18px;
+  font-size: 20px;
 }
 .chart-total-amount span{
   color: #ff9500;
 }
 .selectchart-box {
   display: flex;
-  height: 350px;
+  height: 200px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.select-chart-legend {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 수평 가운데 정렬 */
+  gap: 10px; /* 항목 간의 간격 */
+}
+
+.select-box-list {
+  display: flex;
+  justify-content: space-evenly; /* 세 요소를 양 끝에 배치 */
+  align-items: center; /* 각 요소를 수직 가운데 정렬 */
+  width: 100%; /* 각 항목이 가로로 늘어나도록 설정 */
+  gap: 10px; /* 각 요소 간의 간격 */
+}
+
+.name-box {
+  display: flex;
+  align-items: center;  /* 아이콘과 텍스트 수직 가운데 정렬 */
+  gap: 5px;  /* name-box 안의 요소들 간의 간격 */
+}
+
+.percent,
+.box-amount {
+  display: flex;
+  width: 70px;
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: center;
+}
+
+.select-eat {
+  background-color: #3498db; /* 기본 색상 (필요시 동적으로 적용 가능) */
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+}
+
+.select-box-list p {
+  margin: 0; /* p 태그 기본 여백 제거 */
+}
+
+.percent p,
+.box-amount p {
+  margin: 0;
 }
 /* PlanWrite */
 .planwrite-content {

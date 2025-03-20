@@ -4,14 +4,15 @@ import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { categoryName } from "../moneyPlan/resource/planCommon.js";
+import { categoryColor, categoryName } from "../moneyPlan/resource/planCommon.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function SelectChart() {
   const [plansData, setPlansData] = useState({}); //각 plan_num별 데이터 저장
   const [currentPlanNum, setCurrentPlanNum] = useState(0); //현재 보여줄 plan_num
-  const [planDate, setPlanDate] = useState([]);
+  const [planDate, setPlanDate] = useState([]); //날짜짜
+  const [legendData, setLegendData] = useState([]); //범례
   const memberNum = sessionStorage.getItem("member_num");
 
   // plan_date를 일주일 단위로 변환
@@ -21,7 +22,7 @@ function SelectChart() {
     return `${formattedStart} ~ ${formattedEnd}`;
   };
 
-  // 데이터 받아오기
+  // plan_num 별로 그룹화된 데이터 저장
   useEffect(() => {
     axios
       .get(`http://localhost:7777/zoomoney/moneyplan/select/${memberNum}`, {
@@ -34,12 +35,25 @@ function SelectChart() {
         const dateArr = sortedData.map((plan) => plan.plan_date.split("T")[0]);
         setPlanDate(dateArr);
         const plansGroupedByNum = groupByPlanNum(response.data);
-        setPlansData(plansGroupedByNum); // plan_num 별로 그룹화된 데이터 저장
+        setPlansData(plansGroupedByNum);
       })
       .catch((error) => {
         console.error("데이터 로딩 오류: ", error);
       });
-  });
+  }, []);
+
+  //카테고리별 세부 금액
+  useEffect(() => {
+    const currentPlanDetails =
+      plansData[Object.keys(plansData)[currentPlanNum]] || [];
+    const data = categoryName.map((category, index) => {
+      const detail = currentPlanDetails.find(
+        (item) => item.category_num === index + 1
+      );
+      return detail ? detail.detail_money : 0;
+    });
+    setLegendData(data); // legendData 업데이트
+  }, [currentPlanNum, plansData]);
 
   // plan_num별로 데이터를 그룹화
   const groupByPlanNum = (data) => {
@@ -53,14 +67,13 @@ function SelectChart() {
     }, {});
   };
 
-  // 총합을 구하는 로직
+  // 입력 값 총합
   const getTotalAmount = (planDetails) => {
     return planDetails.reduce((sum, item) => sum + item.detail_money, 0);
   };
 
   // plan_num에 해당하는 차트 데이터 생성
   const getChartData = (planDetails) => {
-    // const totalAmount = getTotalAmount(planDetails); //총합계산
     const data = categoryName.map((category, index) => {
       const detail = planDetails.find(
         (item) => item.category_num === index + 1
@@ -73,13 +86,7 @@ function SelectChart() {
       datasets: [
         {
           data: data,
-          backgroundColor: [
-            "#ffcb9a",
-            "#c2f1ff",
-            "#fff4c2",
-            "#fec7c0",
-            "#caffc2",
-          ],
+          backgroundColor: categoryColor,
           hoverBackgroundColor: [
             "#e6b183",
             "#a6d7e6",
@@ -92,27 +99,11 @@ function SelectChart() {
     };
   };
 
-  // 차트 옵션
+  //차트 옵션
   const chartOptions = {
     plugins: {
       legend: {
-        position: "bottom",
-        fullSize: true,
-        labels: {
-          generateLabels: (chart) => {
-            const data = chart.data.datasets[0].data;
-            return chart.data.labels.map((label, i) => ({
-              text: `${label}: ${data[i].toLocaleString()}원`,
-              fillStyle: chart.data.datasets[0].backgroundColor[i],
-            }));
-          },
-          usePointStyle: true,
-          boxWidth: 40,
-          padding: 20,
-          font: {
-            size: 12,
-          },
-        },
+        display: false,
       },
       tooltip: {
         callbacks: {
@@ -171,6 +162,30 @@ function SelectChart() {
           data={getChartData(currentPlanDetails)}
           options={chartOptions}
         />
+      </div>
+      <div className="select-chart-legend">
+        {legendData.map((amount, index) => (
+          <div className="select-box-list" key={index}>
+            <div className="name-box">
+              <div
+                className="select-eat"
+                style={{
+                  backgroundColor: categoryColor[index],
+                  borderRadius: "50%",
+                  width: "15px",
+                  height: "15px",
+                }}
+              ></div>
+              <p>{categoryName[index]}</p>
+            </div>
+            <div className="percent">
+              <p>{Math.floor((amount / totalAmout) * 100)}%</p>
+            </div>
+            <div className="box-amount">
+              <p>{amount.toLocaleString()}원</p>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );
