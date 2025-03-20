@@ -13,7 +13,7 @@
 .stock-list {
   background: white;
   border-radius: 8px;
-  width: 70%;
+  width: 80%;
   max-height: calc(100vh - 150px);
   overflow-y: auto;
   -ms-overflow-style: none;
@@ -31,7 +31,9 @@
   border-bottom: 1px solid #eee;
   padding: 12px 0;
 }
-
+.stock-item:hover{
+  opacity: 0.8;
+}
 .stock-info {
   display: flex;
   align-items: center;
@@ -67,10 +69,11 @@
 }
 
 .stockList-image {
-  width: 40px;
+  width: 50px;
   height: auto;
   align-self: self-end;
   margin-right: 15%;
+  transform: scaleX(-1);
 }
 
 .stockList-image img {

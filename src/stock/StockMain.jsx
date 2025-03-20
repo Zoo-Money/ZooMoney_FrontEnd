@@ -84,7 +84,7 @@ function StockMain(props) {
     <div className="mock-container">
       <Header title="모의투자" />
       <div className="stock-main-header">
-        <Link to="/stock/info">
+        <Link to="/stock/info" className="link-no-underline">
           <div className="stock-main-info">
             <FaQuestionCircle className="questionmark" />
             <span>주식에 대해 궁금해요!</span>
