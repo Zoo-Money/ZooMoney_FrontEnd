@@ -150,7 +150,7 @@ const ContractWrite = () => {
         notifyUrl: "/contract/contractWriteChild",
       });
 
-      toast.error("서명 저장 성공: " + response.data);
+      toast.success("서명 저장 성공: " + response.data);
       navigate("/parent/main"); // ✅ useNavigate()를 통한 페이지 이동
     } catch (error) {
       console.error("서명 저장 실패:", error);
