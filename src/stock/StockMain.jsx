@@ -13,6 +13,10 @@ function StockMain(props) {
 
   const navi = useNavigate();
   const goStockList = () => {
+    if (isMarketClosed) {
+      alert("장이 마감되어 매도가 불가능합니다.");
+      return;
+    }
     navi("/stock/list");
   };
   const goToProfit = () => {
@@ -26,8 +30,19 @@ function StockMain(props) {
     });
   };
   const goToSell = (stockId, stockPrice, stockName) => {
+    if (isMarketClosed) {
+      alert("장이 마감되어 매도가 불가능합니다.");
+      return;
+    }
     navi("/stock/stockSell", { state: { stockId, stockPrice, stockName } });
   };
+
+  // 장 마감 시간 설정 (기준은 3시)
+  const marketCloseTime = new Date();
+  marketCloseTime.setHours(15, 0, 0, 0);
+
+  // 현재 시간과 비교하여 장마감인지 체크
+  const isMarketClosed = new Date() > marketCloseTime;
 
   useEffect(() => {
     axios
