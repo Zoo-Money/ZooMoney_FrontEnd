@@ -18,9 +18,6 @@ function StockBuy(props) {
   const [price, setPrice] = useState(location.state?.latestPrice || ""); // 가격 입력 가능
   const [amount, setAmount] = useState(""); // 수량 입력 상태
 
-  // stockName이 정상적으로 들어오는지 확인
-  console.log("StockBuy - stockName:", stockName);
-
   // 가격이 바뀌면 업데이트
   useEffect(() => {
     if (location.state?.latestPrice) {
