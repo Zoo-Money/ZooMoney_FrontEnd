@@ -1,11 +1,10 @@
 .footer {
   position: fixed;
-  /* position: static; */
   bottom: 0;
   /* left: 50%; */
   /* transform: translateX(-50%); */
   width: 360px;
-  height: 58px;
+  height: 60px;
   background-color: #e5e5e5;
   display: flex;
   justify-content: space-around;
@@ -16,22 +15,26 @@
   border-radius: 15px;
 }
 
-.icon {
-  width: 32px;
-  height: 32px;
-  color: black;
-  stroke-width: 0.5;
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #333;
 }
-.iconMypage {
-  width: 32px;
-  height: 32px;
-  color: black;
-  stroke-width: 1.7;
+
+.footer-icon {
+  font-size: 40px !important;
+  color: #999;
+  cursor: pointer;
+  transition: 0.5s ease !important;
 }
-.iconPig {
-  width: 35px;
-  height: 35px;
-  color: black;
-  transform: scaleX(-1);
-  stroke-width: 1.7;
+
+.footer-icon:hover {
+  color: #ff9500;
+  opacity: 0.8;
+}
+
+.footer-icon.active {
+  color: #ff9500;
 }

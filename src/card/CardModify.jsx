@@ -163,9 +163,7 @@ const CardModify = () => {
             </span>
             <div className="modifytext-container">
               <span className="text-lg font-semibold">
-                원하는 이미지 추가하기
-                <br />
-                <span className="text-sm text-gray-500">(10,000P 차감)</span>
+                나만의 이미지 추가
               </span>
             </div>
             <input type="file" onChange={handleFileChange} className="hidden" />
@@ -179,7 +177,7 @@ const CardModify = () => {
         disabled={minting}
         className="modibutton-style"
       >
-        {minting ? "" : "카드 변경"}
+        {minting ? "" : "다음"}
       </button>
 
       {/* 하단 네비게이션 */}

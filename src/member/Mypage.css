@@ -76,7 +76,6 @@
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
-
 .point-text {
   color: #ff9500;
 }
@@ -88,7 +87,7 @@
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 360px;
-  margin-top: 12px;
+  margin-top: 20px;
   cursor: pointer;
   transition: 0.5s ease;
 }

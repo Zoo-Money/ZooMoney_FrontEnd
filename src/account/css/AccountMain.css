@@ -34,7 +34,6 @@
   flex-direction: column;
   align-items: center;
   font-size: 1.25rem;
-  font-weight: bold;
 }
 
 .AccountMainContent {
@@ -43,7 +42,6 @@
   flex-direction: column;
   align-items: flex-start;
   font-size: 1.25rem;
-  font-weight: bold;
   overflow-y: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -87,6 +85,12 @@
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
+.AccountMainImage {
+  position: fixed;
+  right: 50px;
+  width: 25%;
+}
+
 .AccountMainEmpty {
   min-height: 400px;
   display: flex;
@@ -94,7 +98,6 @@
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
-  font-weight: bold;
 }
 
 .AccountMainCreate {
@@ -113,7 +116,6 @@
   background-color: transparent;
   border: none;
   font-size: 1.25rem;
-  font-weight: bold;
   color: #000;
   display: flex;
   align-items: center;

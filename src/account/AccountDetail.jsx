@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
+import stamp from "../images/stamp.png";
 import "./css/AccountDetail.css";
 import { burnTokens } from "./resources/AccountService";
 
@@ -115,21 +116,21 @@ const AccountDetail = () => {
               className="AccountDetailForm"
               style={{
                 backgroundColor:
-                  account.accountGoal - account.accountNow <= 0
-                    ? "#ff9500" // 목표 금액 달성 시 색상
-                    : new Date().setHours(0, 0, 0, 0) >
-                      new Date(account.accountEnd)
+                  new Date().setHours(0, 0, 0, 0) > new Date(account.accountEnd)
                     ? "#c4c0ba" // 만기된 저금통 색상
                     : colorList[index % colorList.length],
               }}
             >
+              {account.accountGoal - account.accountNow <= 0 ? (
+                <img className="AccountMainImage" src={stamp} alt="stamp"></img>
+              ) : null}
               <div
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
                 }}
               >
-                <span style={{ fontSize: "0.75rem" }}>
+                <span style={{ fontSize: "0.9rem" }}>
                   {(() => {
                     const daysLeft = Math.ceil(
                       (new Date(account.accountEnd) - new Date()) /
@@ -143,18 +144,16 @@ const AccountDetail = () => {
                       : `${daysLeft}일 남음`; // 남은 일수가 1일 이상일 때
                   })()}
                 </span>
-                <span style={{ fontSize: "0.75rem" }}>
-                  {account.accountGoal - account.accountNow <= 0
-                    ? "목표 달성 완료 💘" // 목표 달성 시 표시
-                    : Math.floor(
-                        (account.accountNow / account.accountGoal) * 100
-                      ) + "% 달성"}
+                <span style={{ fontSize: "0.9rem" }}>
+                  {Math.floor(
+                    (account.accountNow / account.accountGoal) * 100
+                  ) + "% 달성"}
                 </span>
               </div>
-              <div style={{ marginTop: "20px" }}>
+              <div style={{ marginTop: "10px" }}>
                 <span>{account.accountNow.toLocaleString()} 원</span>
               </div>
-              <div style={{ marginBottom: "20px" }}>
+              <div style={{ marginBottom: "10px" }}>
                 <span>{account.accountName}</span>
               </div>
               <div>
@@ -181,7 +180,7 @@ const AccountDetail = () => {
               </div>
               <div
                 style={{
-                  fontSize: "0.75rem",
+                  fontSize: "0.9rem",
                   marginTop: "10px",
                   display: "flex",
                   justifyContent: "space-between",
