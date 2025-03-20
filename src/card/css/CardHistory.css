@@ -39,11 +39,14 @@
   background-color: #ff9500;
   color: #ffff;
   border: none;
-  cursor: pointer;
+  border-radius: 10px;
   flex-shrink: 0;
+  cursor: pointer;
+  transition: 0.5s ease;
 }
 .card-hist-go-to-account:hover {
-  background-color: #0056b3;
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 .card-history-content {
   overflow-y: auto;

@@ -1,6 +1,5 @@
 import axios from "axios";
-import { ArcElement, Chart as ChartJS, Legend, plugins, Tooltip } from "chart.js";
-import Chart from "chart.js/auto";
+import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
@@ -29,7 +28,9 @@ function SelectChart() {
         params: {memberNum},
       })
       .then((response) => {
-        const sortedData = response.data.sort((a,b) => b.plan_num - a.plan_num);
+        const sortedData = response.data.sort(
+          (a, b) => b.plan_num - a.plan_num
+        );
         const dateArr = sortedData.map((plan) => plan.plan_date.split("T")[0]);
         setPlanDate(dateArr);
         const plansGroupedByNum = groupByPlanNum(response.data);
@@ -38,7 +39,7 @@ function SelectChart() {
       .catch((error) => {
         console.error("데이터 로딩 오류: ", error);
       });
-  },[]);
+  });
 
   // plan_num별로 데이터를 그룹화
   const groupByPlanNum = (data) => {
@@ -59,7 +60,7 @@ function SelectChart() {
 
   // plan_num에 해당하는 차트 데이터 생성
   const getChartData = (planDetails) => {
-    const totalAmount = getTotalAmount(planDetails); //총합계산
+    // const totalAmount = getTotalAmount(planDetails); //총합계산
     const data = categoryName.map((category, index) => {
       const detail = planDetails.find(
         (item) => item.category_num === index + 1
@@ -121,7 +122,6 @@ function SelectChart() {
           },
         },
       },
-      
     },
   };
 

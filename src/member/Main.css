@@ -21,12 +21,6 @@
 .card-main-box {
   text-align: center;
 }
-.mycard-preview {
-  width: 300px;
-  height: 188px;
-  border-radius: 12px;
-  margin-left: 10px;
-}
 .mycard-image {
   width: 100%;
   height: 100%;
@@ -169,10 +163,11 @@
 }
 .mycard-preview {
   width: 300px;
-  height: 188px;
+  height: 200px;
   overflow: hidden;
   border-radius: 12px;
   position: relative;
+  margin: auto;
 }
 .card-pig {
   width: 70px;

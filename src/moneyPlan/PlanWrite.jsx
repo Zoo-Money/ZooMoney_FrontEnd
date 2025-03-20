@@ -40,7 +40,7 @@ function PlanWrite(props) {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  });
 
   //유효성검사
   useEffect(() => {

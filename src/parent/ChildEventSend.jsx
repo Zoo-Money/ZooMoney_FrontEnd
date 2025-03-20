@@ -117,11 +117,11 @@ const ChildEventSend = () => {
         `http://localhost:7777/zoomoney/contract/sendAllowance/${storedChildNum}`,
         { amount: Number(amount) }
       );
-      toast.error("용돈 송금에 성공했습니다.");
+      toast.success("용돈 송금에 성공했습니다.");
       navigate(`/parent/main?childNum=${storedChildNum}`); // childNum 전달
     } catch (error) {
       console.error("송금 실패:", error);
-      toast.error("송금에 실패했습니다. 다시시도해주세요");
+      toast.error("송금에 실패했습니다. 다시 시도해주세요.");
     }
   };
 

@@ -112,7 +112,7 @@ const ContractWriteChild = () => {
         notifyUrl: "/contract/contractSelect",
       });
 
-      toast.error("서명 저장 성공! 계약이 완료되었습니다.");
+      toast.success("서명 저장 성공! 계약이 완료되었습니다.");
       navigate("/main");
     } catch (error) {
       console.error("서명 저장 실패:", error);

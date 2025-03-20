@@ -80,8 +80,14 @@
   font-weight: bold; /* 글자 두께 */
   border: none; /* 테두리 없앰 */
   border-radius: 10px; /* 둥근 모서리 */
+  margin-top: 50px;
   cursor: pointer; /* 마우스 커서 */
-  margin-top: 10px;
+  transition: 0.5s ease;
+}
+
+.modibutton-style:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 /* 비활성화된 버튼 */
