@@ -80,7 +80,7 @@ function MyPage() {
           <Link to="/stock/stockHistory" className="link-no-underline">
             <div className="card-box">
               <div className="info-row2">
-                <span className="label">모의 주식</span>
+                <span className="label">나의 모의투자내역 보기</span>
                 <IoArrowForwardCircleOutline
                   size={22}
                   style={{ color: "black" }}

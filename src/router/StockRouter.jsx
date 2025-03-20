@@ -14,6 +14,8 @@ import MyStockProfit from "../stock/MyStockProfit";
 import StockBuy from "../stock/StockBuy";
 import StockBuyDone from "../stock/StockBuyDone";
 import StockStart from "../stock/StockStart";
+import StockSell from "../stock/StockSell";
+import TradeDone from "../stock/TradeDone";
 
 function StockRouter() {
   return (
@@ -33,9 +35,9 @@ function StockRouter() {
         ></Route>
 
         <Route path="/stock/myStockProfit" element={<MyStockProfit />}></Route>
-        {/* 
+
         <Route path="/stock/stockSell" element={<StockSell />}></Route>
-        <Route path="/stock/tradeDone" element={<TradeDone />}></Route> */}
+        <Route path="/stock/tradeDone" element={<TradeDone />}></Route>
 
         <Route path="/stock/stockHistory" element={<StockHistory />}></Route>
         <Route
