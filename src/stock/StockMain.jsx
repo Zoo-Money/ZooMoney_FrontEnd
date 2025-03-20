@@ -127,7 +127,10 @@ function StockMain(props) {
                   100;
                 return (
                   <tr key={index}>
-                    <td>{stock.stockName}</td>
+                    <td>
+                      {stock.stockName}
+                      <br />( {stock.quantity}주 )
+                    </td>
                     <td>
                       {Math.floor(stock.averagePrice).toLocaleString("ko-KR")}원
                       <br />
