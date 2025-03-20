@@ -13,7 +13,7 @@ function SelectChartParent() {
   const [currentPlanNum, setCurrentPlanNum] = useState(0); //현재 보여줄 plan_num
   const [planDate, setPlanDate] = useState([]); //날짜짜
   const [legendData, setLegendData] = useState([]); //범례
-  const childNum = sessionStorage.getItem("child_num");
+  const childNum = sessionStorage.getItem("childNum");
 
   // plan_date를 일주일 단위로 변환
   const formatPlanDate = (dateString) => {

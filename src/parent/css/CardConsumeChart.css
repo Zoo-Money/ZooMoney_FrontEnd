@@ -1,6 +1,107 @@
-.patternmain-content {
+.parent-pattern-container {
+  text-align: center;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+}
+.parent-pattern-text{
+  display: flex;
+  font-size: 16px;
+  text-align: right;
+  margin-bottom: -10px;
+  margin-top: -20px;
+  align-items: flex-end;
+}
+.parent-pattern-text span{
+  color: #ff9500;
+}
+.parent-pattern-box{
+  padding-top: 10px;
+  width: 90%;
+  background-color: #f8f4f1;
+  border: none;
+  border-radius: 15px;
+  margin: 0 auto 40px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+.parent-pattern-icon{
+   margin: 10px 20px;
   text-align: center;
 }
+.parent-pattern-icon-back{
+    float: left;
+  width: 22px;
+  height: 22px;
+}
+.parent-pattern-icon-forward{
+    float: right;
+  width: 22px;
+  height: 22px;
+}
+.parent-pattern-total-amount{
+text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+}
+/* highest-category */
+.parent-pattern-chart-box{
+    display: flex;
+  height: 200px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.parent-pattern-chart-legend{
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 수평 가운데 정렬 */
+  gap: 10px; /* 항목 간의 간격 */
+}
+.parent-pattern-box-list{
+    display: flex;
+  justify-content: space-evenly; /* 세 요소를 양 끝에 배치 */
+  align-items: center; /* 각 요소를 수직 가운데 정렬 */
+  width: 100%; /* 각 항목이 가로로 늘어나도록 설정 */
+  gap: 10px; /* 각 요소 간의 간격 */
+}
+.name-box {
+  display: flex;
+  align-items: center;  /* 아이콘과 텍스트 수직 가운데 정렬 */
+  gap: 5px;  /* name-box 안의 요소들 간의 간격 */
+}
+
+.percent,
+.box-amount {
+  display: flex;
+  width: 70px;
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: center;
+}
+.select-eat {
+  background-color: #3498db; /* 기본 색상 (필요시 동적으로 적용 가능) */
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+}
+
+.select-box-list p {
+  margin: 0; /* p 태그 기본 여백 제거 */
+}
+
+.percent p,
+.box-amount p {
+  margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
 
 .patternmain-description {
   font-size: 16px;
