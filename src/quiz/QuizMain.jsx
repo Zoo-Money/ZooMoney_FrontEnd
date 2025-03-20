@@ -17,6 +17,8 @@ const QuizMain = () => {
   const memberNum = sessionStorage.getItem("member_num");
 
   useEffect(() => {
+    if (!memberNum) return; // memberNum이 없으면 API 요청하지 않음
+
     // 📌 도전한 퀴즈 개수 가져오기
     axios
       .get("http://localhost:7777/zoomoney/quiz/count", {
@@ -52,7 +54,7 @@ const QuizMain = () => {
       .catch((error) =>
         console.error("❌ 정답 리스트를 가져오는 데 실패했습니다.", error)
       );
-  });
+  }, [memberNum]);
 
   const navigate = useNavigate();
 
