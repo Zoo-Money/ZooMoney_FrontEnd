@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import rabbit01 from "../images/rabbit/rabbit01.png";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./css/stockMain.css";
 
 function StockMain(props) {
@@ -14,7 +16,11 @@ function StockMain(props) {
   const navi = useNavigate();
   const goStockList = () => {
     if (isMarketClosed) {
-      alert("장이 마감되어 매도가 불가능합니다.");
+      toast.error("장이 마감되어 매도가 불가능합니다.", {
+        position: "top-center",
+        autoClose: 2000,
+      });
+
       return;
     }
     navi("/stock/list");
@@ -31,7 +37,10 @@ function StockMain(props) {
   };
   const goToSell = (stockId, stockPrice, stockName) => {
     if (isMarketClosed) {
-      alert("장이 마감되어 매도가 불가능합니다.");
+      toast.error("장이 마감되어 매도가 불가능합니다.", {
+        position: "top-center",
+        autoClose: 2000,
+      });
       return;
     }
     navi("/stock/stockSell", { state: { stockId, stockPrice, stockName } });
