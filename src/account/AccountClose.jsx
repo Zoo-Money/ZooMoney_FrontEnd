@@ -51,7 +51,7 @@ const AccountClose = () => {
 
       {/* 메인 콘텐츠 */}
       <div className="AccountCloseContent">
-        <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+        <div style={{ fontSize: "1.5rem" }}>
           목표금액까지
           <br />
           <span style={{ color: "#ff9500" }}>
