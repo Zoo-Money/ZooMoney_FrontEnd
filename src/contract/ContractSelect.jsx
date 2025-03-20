@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractSelect.css";
+import FooterParent from "../common/FooterParent";
 
 // 최신 버전에 맞는 worker 경로 설정 (pdfjs-dist@4.8.69 대응)
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.8.69/build/pdf.worker.min.js`;
@@ -85,7 +86,7 @@ const ContractSelect = () => {
         </div>
 
         {/* 하단 네비게이션 */}
-        <Footer />
+        <FooterParent />
       </div>
     </div>
   );

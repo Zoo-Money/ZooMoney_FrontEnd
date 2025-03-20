@@ -7,6 +7,7 @@ import "react-pdf/dist/Page/TextLayer.css";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractDetail.css";
+import FooterParent from "../common/FooterParent";
 
 // PDF Worker 설정
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.js`;
@@ -69,7 +70,7 @@ const ContractDetail = () => {
 
         {/* 하단 네비게이션 */}
         <div className="footer">
-          <Footer />
+          <FooterParent />
         </div>
       </div>
     </div>
