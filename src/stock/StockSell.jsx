@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
@@ -15,16 +15,9 @@ function StockSell(props) {
 
   // 주식 번호 및 가격 설정
   const [stockId] = useState(location.state?.stockId || 1);
-  const [price, setPrice] = useState(location.state?.latestPrice || ""); // 가격 입력 가능
+  const [price] = useState(location.state?.stockPrice || 1);
   const [stockName] = useState(location.state?.stockName || "Unknown");
   const [amount, setAmount] = useState(""); // 수량 입력 상태
-
-  // 최초 로드 시, price가 없으면 latestPrice를 기본값으로 설정
-  useEffect(() => {
-    if (!price && location.state?.latestPrice) {
-      setPrice(location.state.latestPrice);
-    }
-  }, [location.state?.latestPrice]);
 
   // 판매 요청
   const handleSell = async () => {
@@ -78,12 +71,7 @@ function StockSell(props) {
       <div className="buy-container">
         <div className="buy-box">
           현재 <span>매도</span> 가격
-          <input
-            type="number"
-            value={price}
-            readOnly
-            placeholder="가격을 입력하세요."
-          />
+          <p className="buy-text-left">{price.toLocaleString()}원</p>
         </div>
         <div className="buy-box">
           판매 <span>수량</span>

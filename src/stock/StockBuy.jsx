@@ -72,11 +72,12 @@ function StockBuy(props) {
       <div className="buy-container">
         <div className="buy-box">
           현재 <span>주식</span> 가격
-          <input type="number" value={price} placeholder="가격 입력" readOnly />
+          <br />
+          <p>{price.toLocaleString()}</p>
         </div>
         <div className="buy-box">
           구매 <span>수량</span>
-          <input
+          <inpput
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
