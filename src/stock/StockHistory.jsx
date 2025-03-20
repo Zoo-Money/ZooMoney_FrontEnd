@@ -50,7 +50,7 @@ function StockHistory(props) {
       .catch((err) => {
         console.error(err);
       });
-  },[]);
+  });
 
   //일주일 뒤 날짜 폼
   const afterOneWeek = (date) => {
