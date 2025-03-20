@@ -35,8 +35,6 @@ function StockRouter() {
         ></Route>
 
         <Route path="/stock/myStockProfit" element={<MyStockProfit />}></Route>
-        <Route path="/stock/stockSell" element={<StockSell />}></Route>
-        <Route path="/stock/tradeDone" element={<TradeDone />}></Route>
         {/* 
         <Route path="/stock/stockSell" element={<StockSell />}></Route>
         <Route path="/stock/tradeDone" element={<TradeDone />}></Route> */}
