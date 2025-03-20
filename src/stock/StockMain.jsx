@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaQuestionCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
@@ -5,7 +6,6 @@ import Footer from "../common/Footer";
 import Header from "../common/Header";
 import rabbit01 from "../images/rabbit/rabbit01.png";
 import "./css/stockMain.css";
-import axios from "axios";
 
 function StockMain(props) {
   const memberNum = sessionStorage.getItem("member_num");
@@ -43,9 +43,9 @@ function StockMain(props) {
   }, [memberNum]);
 
   // 1. 일간 수익 계산
-  const dailyProfit = myStockData.reduce((total, stock) => {
-    return total + (stock.stockPrice - stock.stockhistPrice) * stock.quantity;
-  }, 0);
+  // const dailyProfit = myStockData.reduce((total, stock) => {
+  //   return total + (stock.stockPrice - stock.stockhistPrice) * stock.quantity;
+  // }, 0);
 
   // 2. 현재 평가 금액 (현재가 * 보유량)
   const totalCurrentValue = myStockData.reduce((total, stock) => {
@@ -79,7 +79,6 @@ function StockMain(props) {
   // 평가손익 계산 (총평가 - 총매입)
   const evaluationProfitLoss = totalEvaluation - totalPurchase;
 
-  console.log(totalInvestment);
   return (
     <div className="mock-container">
       <Header title="모의투자" />

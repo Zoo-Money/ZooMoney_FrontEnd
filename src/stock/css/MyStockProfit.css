@@ -12,8 +12,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f7931a;
-  color: white;
+  background: #ff9500;
+  color: #fff;
   padding: 6% 0% 6% 6%;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -21,12 +21,16 @@
   height: 4px;
   border-radius: 15px;
   margin-bottom: 4%;
+  cursor: pointer;
+  transition: 0.5s ease;
 }
-
+.myStockProfit-item:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
 .myStockProfit-item span {
   display: flex;
   align-items: center;
-  gap: 5px; /* 아이콘과 텍스트 사이 간격 조정 */
 }
 
 .myStockProfit-value {

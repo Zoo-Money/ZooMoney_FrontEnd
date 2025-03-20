@@ -97,10 +97,10 @@ function StockHistory(props) {
       legend: {
         display: true,
         position: "bottom",
-        labels:{
+        labels: {
           usePointStyle: true,
           padding: 4,
-        }
+        },
       },
       tooltip: {
         enabled: true,
@@ -139,7 +139,7 @@ function StockHistory(props) {
       <div className="history-list-box">
         {ranking &&
           ranking.map((item, index) => (
-            <div className="history-list" key={index}>
+            <div className="history-list" key={index} onClick={() => goHistoryDetail(item)}>
               <span className="history-list-title">시즌{index + 1}</span>
               <span className="history-list-date">
                 {new Date(item.result_date).toLocaleString("ko-KR", {
@@ -150,17 +150,14 @@ function StockHistory(props) {
                 ~ {afterOneWeek(item.result_date)}
               </span>
               <span className="history-list-rank">{item.result_rank}위</span>
-              <IoIosArrowForward
-                className="forwardIcon"
-                onClick={() => goHistoryDetail(item)}
-              />
+              <IoIosArrowForward className="forwardIcon" />
             </div>
           ))}
       </div>
       <button className="history-button" onClick={goStockMain}>
         모의 투자 하러 가기
       </button>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

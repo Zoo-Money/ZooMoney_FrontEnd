@@ -7,6 +7,7 @@ import Header from "../common/Header";
 import { fetchMetadata } from "./CardService";
 import "../card/css/CardHistory.css";
 import cardimage from "../images/card/card00.png";
+import { Dropdown } from "react-bootstrap";
 
 function CardHistory() {
   const [historyList, setHistoryList] = useState([]);
@@ -37,22 +38,39 @@ function CardHistory() {
     fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
   }, [selectedPeriod, member_num]);
 
+  const handleSelect = (eventKey) => {
+    setSelectedPeriod(eventKey);
+  };
+
   return (
     <div className="mock-container">
-      <Header title="카드 사용 내역" />
+      <Header title="카드 사용내역" />
       <div className="card-history-box">
         <img className="card-history-img" src={cardimage} alt="카드 이미지" />
         <div className="card-history-period-box">
-          <select
-            id="periodSelect"
-            value={selectedPeriod}
-            onChange={(e) => setSelectedPeriod(e.target.value)}
-          >
-            <option value="all">전체 기간</option>
-            <option value="1">최근 1개월</option>
-            <option value="2">최근 2개월</option>
-            <option value="3">최근 3개월</option>
-          </select>
+          <Dropdown onSelect={handleSelect}>
+            <Dropdown.Toggle variant="transparent" id="periodSelect">
+              {selectedPeriod === "all"
+                ? "전체 기간"
+                : `최근 ${selectedPeriod}개월`}
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item eventKey="all" active={selectedPeriod === "all"}>
+                전체 기간
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="1" active={selectedPeriod === "1"}>
+                최근 1개월
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="2" active={selectedPeriod === "2"}>
+                최근 2개월
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="3" active={selectedPeriod === "3"}>
+                최근 3개월
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+
           <Link to="/account">
             <button className="card-hist-go-to-account">저금하기</button>
           </Link>

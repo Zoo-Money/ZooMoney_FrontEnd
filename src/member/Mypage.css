@@ -36,12 +36,14 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.8rem 0;
+  color: #333;
 }
 .info-row2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.3rem 0;
+  color: #333;
 }
 
 .label {
@@ -62,14 +64,15 @@
 }
 
 .edit-btn {
-  background-color: #f97316;
+  background-color: #ff9500;
   color: white;
   padding: 0rem 1rem;
   border-radius: 0.5rem;
   border: none;
   cursor: pointer;
+  transition: 0.5s ease;
 }
-.edit-btn:hover{
+.edit-btn:hover {
   opacity: 0.8;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
@@ -89,8 +92,13 @@
   width: 100%;
   max-width: 360px;
   margin-top: 12px;
+  cursor: pointer;
+  transition: 0.5s ease;
 }
-
+.card-box:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
 .card-title {
   font-size: 16px;
   font-weight: bold;

@@ -9,29 +9,33 @@
 .tabOption-container {
   display: flex;
   justify-content: space-around;
-  background: #f5f5f5;
   padding: 5px;
   border-radius: 8px;
-  width: 50%;
+  width: 80%;
+  height: 2.5rem;
 }
 
 .Detailtab-button {
   width: 45%;
   height: 100%;
-  background-color: #ff9500;
+  background-color: #c4c0ba;
   color: white;
   font-size: 14px;
   font-weight: bold;
   border: none;
   border-radius: 7px;
   cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.Deatailtab-button:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 /* 활성화된 버튼 스타일 */
 .Detailtab-button.active {
   background: #ff9500;
-  color: black;
-  font-weight: bold;
 }
 
 .DetailOption-content {
@@ -46,11 +50,17 @@
 .goToBuy-button {
   width: 180px;
   height: 45px;
-  background-color: #f92525b3;
+  background-color: red;
   color: white;
   font-size: 14px;
   font-weight: bold;
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.goToBuy-button:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }

@@ -1,6 +1,5 @@
 import axios from "axios";
-import { ArcElement, Chart as ChartJS, Legend, plugins, Tooltip } from "chart.js";
-import Chart from "chart.js/auto";
+import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
@@ -9,33 +8,11 @@ import { categoryName } from "../moneyPlan/resource/planCommon.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-//차트 중앙에 텍스트 표현
-// const centerTextPlugin = {
-//   id: "centerTextPlugin",
-//   beforeDraw: (chart) => {
-//     const { width, height, ctx } = chart;
-//     const text = chart.options.plugins.centerText?.text || "";
-
-//     ctx.save();
-//     ctx.font = "bold 18px Arial";
-//     ctx.fillStyle = "#333";
-//     ctx.textAlign = "center";
-//     ctx.textBaseline = "middle";
-
-//     const centerX = width / 2;
-//     const centerY = height / 2;
-
-//     ctx.fillText(text, centerX, centerY);
-//     ctx.restore();
-//   },
-// };
-
-// Chart.register(centerTextPlugin);
-
 function SelectChart() {
   const [plansData, setPlansData] = useState({}); //각 plan_num별 데이터 저장
   const [currentPlanNum, setCurrentPlanNum] = useState(0); //현재 보여줄 plan_num
   const [planDate, setPlanDate] = useState([]);
+  const memberNum = sessionStorage.getItem("member_num");
 
   // plan_date를 일주일 단위로 변환
   const formatPlanDate = (dateString) => {
@@ -47,9 +24,13 @@ function SelectChart() {
   // 데이터 받아오기
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/moneyplan/select")
+      .get(`http://localhost:7777/zoomoney/moneyplan/select/${memberNum}`, {
+        params: {memberNum},
+      })
       .then((response) => {
-        const sortedData = response.data.sort((a,b) => b.plan_num - a.plan_num);
+        const sortedData = response.data.sort(
+          (a, b) => b.plan_num - a.plan_num
+        );
         const dateArr = sortedData.map((plan) => plan.plan_date.split("T")[0]);
         setPlanDate(dateArr);
         const plansGroupedByNum = groupByPlanNum(response.data);
@@ -58,7 +39,7 @@ function SelectChart() {
       .catch((error) => {
         console.error("데이터 로딩 오류: ", error);
       });
-  },[]);
+  });
 
   // plan_num별로 데이터를 그룹화
   const groupByPlanNum = (data) => {
@@ -79,8 +60,7 @@ function SelectChart() {
 
   // plan_num에 해당하는 차트 데이터 생성
   const getChartData = (planDetails) => {
-    const totalAmount = getTotalAmount(planDetails); //총합계산
-    console.log(totalAmount);
+    // const totalAmount = getTotalAmount(planDetails); //총합계산
     const data = categoryName.map((category, index) => {
       const detail = planDetails.find(
         (item) => item.category_num === index + 1
@@ -109,9 +89,6 @@ function SelectChart() {
           ],
         },
       ],
-      // plugins:{
-      //   centerText: {text : `${totalAmount.toLocaleString()}원`} ,
-      // }
     };
   };
 
@@ -145,7 +122,6 @@ function SelectChart() {
           },
         },
       },
-      
     },
   };
 
