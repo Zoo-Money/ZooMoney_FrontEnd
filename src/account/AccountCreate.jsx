@@ -39,6 +39,15 @@ const AccountTest = () => {
     }
   };
 
+  //천원단위가공
+  const handleInputChange = (e, key) => {
+    let value = e.target.value.replace(/[^0-9]/g, "");
+    if (value) {
+      value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    setGoal(value.replace(/,/g, ""));
+  };
+
   return (
     <div className="mock-container">
       {/* 헤더 */}
@@ -65,10 +74,10 @@ const AccountTest = () => {
         </div>
         <InputGroup className="AccountCreateInput">
           <Form.Control
-            type="number"
+            type="text"
             placeholder="목표 금액"
-            value={goal}
-            onChange={(e) => setGoal(e.target.value)}
+            value={goal ? goal.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : ""}
+            onChange={(e) => handleInputChange(e, "goal")}
           />
           <InputGroup.Text>원</InputGroup.Text>
         </InputGroup>
