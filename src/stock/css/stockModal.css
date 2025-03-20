@@ -1,32 +1,32 @@
 /* 모달 배경 */
 .modal-background {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7); /* 어두운 배경 */
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   z-index: 9999; /* 모달이 화면 위에 위치하도록 */
 }
 
 /* 모달 컨텐츠 */
-.modal-dialog{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
+
 .modal-content {
+  position: absolute;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  width: 80%;
-  max-width: 600px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
-  position: relative;
+  max-width: 380px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* 모달 닫기 버튼 */
@@ -47,7 +47,7 @@
 
 /* 모달 제목 */
 .modal-title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 15px;
 }
@@ -62,7 +62,7 @@
 /* 링크 스타일 */
 .modal-body a {
   text-decoration: none;
-  color: #333
+  color: #333;
 }
 
 .modal-body a:hover {

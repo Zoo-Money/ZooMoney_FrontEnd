@@ -25,8 +25,8 @@ function StockMain(props) {
       },
     });
   };
-  const goToSell = (stockId, stockName) => {
-    navi("/stock/stockSell", { state: { stockId, stockName } });
+  const goToSell = (stockId, stockPrice, stockName) => {
+    navi("/stock/stockSell", { state: { stockId, stockPrice, stockName } });
   };
 
   useEffect(() => {
@@ -41,11 +41,6 @@ function StockMain(props) {
         console.error("Error fetching stock detail:", error);
       });
   }, [memberNum]);
-
-  // 1. 일간 수익 계산
-  // const dailyProfit = myStockData.reduce((total, stock) => {
-  //   return total + (stock.stockPrice - stock.stockhistPrice) * stock.quantity;
-  // }, 0);
 
   // 2. 현재 평가 금액 (현재가 * 보유량)
   const totalCurrentValue = myStockData.reduce((total, stock) => {
@@ -118,11 +113,13 @@ function StockMain(props) {
           <thead>
             <tr>
               <th>종목명</th>
-              <th>1주평균금액</th>
+              <th>평균 매입가</th>
               <th>총 금액</th>
               <th>매도</th>
             </tr>
           </thead>
+        </table>
+        <table className="stock-table">
           <tbody className="stock-main-mystock-list-box">
             {myStockData.length > 0 ? (
               myStockData.map((stock, index) => {
@@ -132,7 +129,10 @@ function StockMain(props) {
                   100;
                 return (
                   <tr key={index}>
-                    <td>{stock.stockName}</td>
+                    <td>
+                      {stock.stockName}
+                      <br />( {stock.quantity}주 )
+                    </td>
                     <td>
                       {Math.floor(stock.averagePrice).toLocaleString("ko-KR")}원
                       <br />
@@ -150,7 +150,13 @@ function StockMain(props) {
                     <td>
                       <button
                         className="sell-button"
-                        onClick={() => goToSell(stock.stockId, stock.stockName)}
+                        onClick={() =>
+                          goToSell(
+                            stock.stockId,
+                            stock.stockPrice,
+                            stock.stockName
+                          )
+                        }
                       >
                         매도하기
                       </button>

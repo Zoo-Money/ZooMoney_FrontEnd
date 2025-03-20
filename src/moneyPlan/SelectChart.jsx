@@ -25,7 +25,7 @@ function SelectChart() {
   useEffect(() => {
     axios
       .get(`http://localhost:7777/zoomoney/moneyplan/select/${memberNum}`, {
-        params: {memberNum},
+        params: { memberNum },
       })
       .then((response) => {
         const sortedData = response.data.sort(

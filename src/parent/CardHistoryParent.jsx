@@ -2,7 +2,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { fetchMetadata } from "../card/CardService";
-import Footer from "../common/Footer";
+import FooterParent from "../common/FooterParent";
 import Header from "../common/Header";
 import "./css/CardHistory.css";
 
@@ -89,7 +89,7 @@ function CardHistory() {
           )}
         </div>
       </div>
-      <Footer />
+      <FooterParent />
     </div>
   );
 }

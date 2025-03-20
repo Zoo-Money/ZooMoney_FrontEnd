@@ -213,7 +213,6 @@ const Main = () => {
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                 zIndex: 1,
                 fontSize: "1rem",
-                fontWeight: "bold",
               }}
             >
               <div
@@ -247,7 +246,6 @@ const Main = () => {
                       style={{
                         textAlign: "right",
                         fontSize: "0.75rem",
-                        fontWeight: "none",
                         color: "#666",
                       }}
                     >

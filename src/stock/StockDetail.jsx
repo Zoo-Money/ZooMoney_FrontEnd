@@ -18,7 +18,7 @@ const StockDetail = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate("/stock/stockBuy", { state: { stockId, latestPrice } });
+    navigate("/stock/stockBuy", { state: { stockId, latestPrice, stockName } });
   };
 
   const [chartData, setChartData] = useState({
