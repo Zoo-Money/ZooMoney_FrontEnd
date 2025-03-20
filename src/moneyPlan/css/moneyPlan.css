@@ -23,7 +23,6 @@
   margin-left: auto;
 }
 .planmain-description span {
-  font-weight: bold;
   color: #ff5454;
 }
 .planmain-box {
@@ -42,7 +41,6 @@
   background-color: #ff9500;
   color: white;
   font-size: 14px;
-  font-weight: bold;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -80,7 +78,6 @@
   font-size: 18px;
 }
 .chart-total-amount span{
-  font-weight: bold;
   color: #ff9500;
 }
 .selectchart-box {
@@ -95,7 +92,6 @@
 }
 .planwrite-content span {
   font-size: 1.5rem;
-  font-weight: bold;
   color: #ff5454;
 }
 .planwrite-container p {
@@ -116,7 +112,6 @@
   background-color: #ff9500;
   color: white;
   font-size: 14px;
-  font-weight: bold;
   border: none;
   border-radius: 10px;
   display: inline;
@@ -229,7 +224,6 @@
   font-size: 18px;
 }
 .plan-chart-content span{
-  font-weight: bold;
   color: #ff9500;
 }
 
@@ -264,6 +258,5 @@
 }
 .plancomplete-description span {
   color: #ff9500;
-  font-weight: bold;
   font-size: 20px;
 }

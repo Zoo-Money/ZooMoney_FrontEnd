@@ -16,7 +16,6 @@
 }
 .buy-header span {
   color: #ff9500;
-  font-weight: bold;
 }
 .buy-rabbit07 {
   position: absolute;
@@ -27,7 +26,6 @@
 .buy-box {
   margin-bottom: 60px;
   font-size: 20px;
-  font-weight: bold;
 }
 .buy-box span {
   color: #ff9500;
@@ -48,7 +46,6 @@
   font-size: 14px;
   height: 45px;
   border: none;
-  font-weight: bold;
   border-radius: 10px;
   margin-top: 20px;
   cursor: pointer;
@@ -75,7 +72,6 @@
 }
 .buy-done-message span {
   color: #ff9500;
-  font-weight: bold;
 }
 .buy-done-total {
   text-align: center;
@@ -83,7 +79,6 @@
 }
 .buy-done-total span {
   color: #ff9500;
-  font-weight: bold;
 }
 .buy-done-button {
   width: 80%;
@@ -92,7 +87,6 @@
   font-size: 14px;
   height: 45px;
   border: none;
-  font-weight: bold;
   cursor: pointer;
   border-radius: 10px;
   margin-top: 20px;

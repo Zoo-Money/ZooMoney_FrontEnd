@@ -11,7 +11,6 @@
 }
 .history-detail-box span{
     font-size: 24px;
-    font-weight: bold;
     color: #ff9500;
 }
 .history-detail-list{
@@ -24,14 +23,7 @@
     justify-content: space-between;
     
 }
-.history-detail-list-title{
-    font-weight: bold;
-}
-.history-detail-list-date{
-}
-.history-detail-list-count{
-    font-weight: bold;
-}
+
 .buy{
     color: blue;
 }
