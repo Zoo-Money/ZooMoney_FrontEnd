@@ -1,16 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Modak&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Modak&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Modak&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Modak&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 /* ZooMoney 로고 스타일 */
 .parent-main-zoo-money-title {
-  /* width: 80%; */
-  font-size: 30px;
+  width: 80%;
+  font-size: 24px;
   display: flex;
   align-items: center;
   margin-top: 20px;
+  margin-bottom: 20px;
   justify-content: space-between;
-  font-family: "Modak", system-ui;
 }
 .parent-main-zoo {
   color: #ff9500;
@@ -41,9 +37,6 @@
   border: 2px solid #ddd; /* 🔹 테두리 추가 */
 }
 .profile-name {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: normal;
 }
 
 /* 용돈 정보 카드 */
@@ -93,9 +86,6 @@
   align-items: center;
   margin-left: 10px;
   margin-bottom: 10px;
-  font-family: "Black Han Sans", sans-serif;
-  font-weight: 400;
-  font-style: normal;
 }
 
 /* 소비내역 확인 버튼 */
@@ -110,9 +100,6 @@
   font-weight: 600;
   margin-top: 30px;
   cursor: pointer;
-  font-family: "Jua", sans-serif;
-  font-weight: 400;
-  font-style: normal;
 }
 
 /* 소비내역 확인 버튼 hover 효과 */
@@ -130,9 +117,6 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  font-family: "Jua", sans-serif;
-  font-weight: 400;
-  font-style: normal;
 }
 
 /* 송금하기 버튼 hover 효과 */
@@ -156,9 +140,6 @@
   transition: transform 0.2s ease-in-out;
   margin: auto;
   cursor: pointer;
-  font-family: "Jua", sans-serif;
-  font-weight: lighter;
-  font-style: normal;
 }
 
 .parent-grid {

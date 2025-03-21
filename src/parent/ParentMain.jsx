@@ -227,7 +227,7 @@ const ParentMain = () => {
             <NotificationsIcon
               className={shake ? "bell-shake" : ""}
               color="action"
-              // onClick={animate}
+              onClick={animate}
               style={{ fontSize: "1.5rem", cursor: "pointer" }}
             />
           </Badge>
@@ -274,9 +274,8 @@ const ParentMain = () => {
                           ? "2px solid #FF9500"
                           : "none",
                     }}
-                    onClick={
-                      () => <p></p>
-                      //selectNotify(notify.notifyNum, notify.notifyUrl)
+                    onClick={() =>
+                      selectNotify(notify.notifyNum, notify.notifyUrl)
                     }
                   >
                     <div
@@ -287,7 +286,7 @@ const ParentMain = () => {
                         color: "#666",
                       }}
                     >
-                      {/* {time(notify.notifyTime)} */}
+                      {time(notify.notifyTime)}
                     </div>
                     <div
                       dangerouslySetInnerHTML={{

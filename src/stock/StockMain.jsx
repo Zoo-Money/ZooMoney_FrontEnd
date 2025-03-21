@@ -5,16 +5,58 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import rabbit01 from "../images/rabbit/rabbit01.png";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./css/stockMain.css";
 
 function StockMain(props) {
   const memberNum = sessionStorage.getItem("member_num");
   const [myStockData, setMyStockData] = useState([]);
+  const [isMarketClosed, setIsMarketClosed] = useState(false);
+  const [toastId, setToastId] = useState(null);
 
   const navi = useNavigate();
+
+  // 장 마감 체크 함수
+  useEffect(() => {
+    const checkMarketStatus = () => {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+
+      // 9~15시까지 오픈
+      const marketOpen = hours >= 9 && hours <= 15;
+
+      // 장이 닫혀 있으면 true, 열려 있으면 false
+      setIsMarketClosed(!marketOpen);
+    };
+
+    checkMarketStatus();
+    // 1초마다 상태 갱신
+    const interval = setInterval(checkMarketStatus, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const showMarketClosedToast = () => {
+    if (!toast.isActive(toastId)) {
+      const id = toast.error("장이 마감되었습니다! 내일 다시 이용해주세요.", {
+        position: "top-center",
+        autoClose: 1000,
+        toastId: "marketClosedToast",
+      });
+      setToastId(id);
+    }
+  };
+
   const goStockList = () => {
+    if (isMarketClosed) {
+      showMarketClosedToast();
+      return;
+    }
     navi("/stock/list");
   };
+
   const goToProfit = () => {
     navi("/stock/myStockProfit", {
       state: {
@@ -26,8 +68,21 @@ function StockMain(props) {
     });
   };
   const goToSell = (stockId, stockPrice, stockName) => {
+    if (isMarketClosed) {
+      showMarketClosedToast();
+      return;
+    }
+
     navi("/stock/stockSell", { state: { stockId, stockPrice, stockName } });
   };
+
+  // 장 마감 시간 설정 (기준은 3시)
+  const marketCloseTime = new Date();
+  marketCloseTime.setHours(15, 0, 0, 0);
+
+  // 장 오픈 시간 설정 (기준은 오전 9시)
+  const marketOpenTime = new Date();
+  marketOpenTime.setHours(9, 0, 0, 0);
 
   useEffect(() => {
     axios
