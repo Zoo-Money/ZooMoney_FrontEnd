@@ -1,32 +1,47 @@
-.history-detail-box{
-    text-align: center;
+.history-detail-box {
+  text-align: center;
 }
-.history-detail-box img{
-    width: 140px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+.history-detail-box img {
+  width: 140px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
-.history-detail-box p{
-    font-size: 20px;
+.history-detail-box p {
+  font-size: 20px;
 }
-.history-detail-box span{
-    font-size: 24px;
-    color: #ff9500;
+.history-detail-box span {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff9500;
 }
-.history-detail-list{
-    width: 342.4px; /*상위 버튼이랑 넓이 똑같게 고정*/
-    border: solid 1px #ccc;
-    padding: 10px;
-    border-radius: 15px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    
+.history-detail-list {
+  width: 342.4px; /*상위 버튼이랑 넓이 똑같게 고정*/
+  border: solid 1px #ccc;
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.history-detail-list-title {
+  font-weight: bold;
 }
 
-.buy{
-    color: blue;
+.history-detail-list-count {
+  font-weight: bold;
 }
-.sell{
-    color: red;
+.buy {
+  color: #0059ff;
+}
+.sell {
+  color: #FF2200;
+}
+.history-detail-list-box {
+  max-height: calc(100vh - 450px);
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.history-detail-list-box::-webkit-scrollbar {
+  display: none;
 }

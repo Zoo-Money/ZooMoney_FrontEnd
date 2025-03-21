@@ -175,8 +175,8 @@ const ContractWriteChild = () => {
                 penColor="black"
                 canvasProps={{
                   className: "sigCanvas",
-                  width: 300,
-                  height: 100,
+                  width: "300px",
+                  height: "100px",
                 }}
               />
             </div>

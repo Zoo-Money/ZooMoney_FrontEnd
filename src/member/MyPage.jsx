@@ -26,6 +26,10 @@ function MyPage() {
       });
   }, [memberNum]);
 
+  const masking = (num) => {
+    return num.replace(num.substring(9), "****");
+  };
+
   if (!memberInfo) return null;
 
   return (
@@ -34,7 +38,7 @@ function MyPage() {
 
       <div className="mypageInfo">
         <div className="myDetail">
-          <p className="mytitle">내정보</p>
+          <p className="mytitle">내 정보</p>
           <div className="info-card">
             <img src={bear02} alt="bear02" className="bear-img" />
             <div className="info-row">
@@ -51,7 +55,7 @@ function MyPage() {
             </div>
             <div className="info-row">
               <span className="label">전화번호</span>
-              <span className="InfoTitle">{memberInfo.memberPhone}</span>
+              <span className="InfoTitle">{masking(memberInfo.memberPhone)}</span>
             </div>
             <div className="info-row">
               <span className="label">포인트</span>
@@ -70,17 +74,13 @@ function MyPage() {
                   style={{ color: "black" }}
                 />
               </div>
-              <p className="card-subtext">
-                5,000P / 10,000P 포인트를 사용하여
-                <br />
-                나만의 카드 꾸미기
-              </p>
+              <p className="card-subtext">나만의 카드 꾸미기 (10,000P 필요)</p>
             </div>
           </Link>
           <Link to="/stock/stockHistory" className="link-no-underline">
             <div className="card-box">
               <div className="info-row2">
-                <span className="label">모의 주식</span>
+                <span className="label">나의 모의투자내역 보기</span>
                 <IoArrowForwardCircleOutline
                   size={22}
                   style={{ color: "black" }}

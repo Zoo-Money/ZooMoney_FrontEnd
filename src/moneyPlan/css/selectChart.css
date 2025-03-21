@@ -1,0 +1,82 @@
+
+/* SelectChart */
+.selectchart-icon {
+  margin: 10px 20px;
+  text-align: center;
+}
+.selectchart-icon span{
+  text-align: center;
+  font-size: 17px;
+}
+.selectchart-back {
+  float: left;
+  width: 22px;
+  height: 22px;
+}
+.selectchart-forward {
+  float: right;
+  width: 22px;
+  height: 22px;
+}
+.chart-total-amount {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+}
+.chart-total-amount span{
+  color: #ff9500;
+}
+.selectchart-box {
+  display: flex;
+  height: 200px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.select-chart-legend {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 수평 가운데 정렬 */
+  gap: 10px; /* 항목 간의 간격 */
+}
+
+.select-box-list {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 5px; /*아이쪽에서 안맞으면 삭제*/
+}
+.select-box-list:last-of-type{
+  margin-bottom: 15px;
+}
+
+.name-box {
+  display: flex;
+  align-items: center;  /* 아이콘과 텍스트 수직 가운데 정렬 */
+  gap: 5px;  /* name-box 안의 요소들 간의 간격 */
+}
+
+.percent,
+.box-amount {
+  display: flex;
+  width: 70px;
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: center;
+}
+
+
+
+.select-box-list p {
+  margin: 0; /* p 태그 기본 여백 제거 */
+}
+
+.percent p,
+.box-amount p {
+  margin: 0;
+}
+/* ------------------- */
+.planmain-description p{
+  font-size: 20px;
+}

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Footer from "../common/Footer";
+import FooterParent from "../common/FooterParent";
 import Header from "../common/Header";
 import "./css/childEventSend.css";
 
@@ -82,9 +82,13 @@ const ChildEventSend = () => {
 
   // 금액 버튼 클릭 시
   const handleAmountClick = (value) => {
-    setAmount(amount + value);
+    // setAmount(amount + value);
+    // setSelectedAmount(value);
+    // setIsCustomInput(false); //직접입력 종료
+    const numericAmount = Number(amount); // 🔥 숫자 변환 추가
+    setAmount(numericAmount + value);
     setSelectedAmount(value);
-    setIsCustomInput(false); //직접입력 종료
+    setIsCustomInput(false); // 직접입력 종료
   };
 
   // 송금 금액 직접입력버튼 클릭시
@@ -97,7 +101,8 @@ const ChildEventSend = () => {
   // 직접입력시 금액 입력 핸들러
   const handleAmountChange = (e) => {
     const numericValue = e.target.value.replace(/\D/g, ""); // 숫자만 입력
-    setAmount(numericValue);
+    // setAmount(numericValue);
+    setAmount(Number(numericValue)); // 🔥 숫자 변환 추가
   };
 
   const handleSendAllowance = async () => {
@@ -117,8 +122,8 @@ const ChildEventSend = () => {
         `http://localhost:7777/zoomoney/contract/sendAllowance/${storedChildNum}`,
         { amount: Number(amount) }
       );
-      toast.success("용돈 송금에 성공했습니다.");
-      navigate(`/parent/main?childNum=${storedChildNum}`); // childNum 전달
+      toast.error("용돈 송금에 성공했습니다.");
+      navigate(`/parent/main`); // childNum 전달
     } catch (error) {
       console.error("송금 실패:", error);
       toast.error("송금에 실패했습니다. 다시 시도해주세요.");
@@ -199,8 +204,9 @@ const ChildEventSend = () => {
               용돈 보내기
             </button>
           </div>
+
           {/* 하단 네비게이션 */}
-          <Footer />
+          <FooterParent />
         </div>
       </div>
     </div>

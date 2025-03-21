@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../common/Footer";
 import pig00 from "../images/pig/pig00.png";
 import plus from "../images/plus.png";
+import stamp from "../images/stamp.png";
 import "./css/AccountMain.css";
 
 const AccountMain = () => {
@@ -76,80 +77,85 @@ const AccountMain = () => {
                   className="AccountMainForm"
                   style={{
                     backgroundColor:
-                      account.accountGoal - account.accountNow <= 0
-                        ? "#ff9500" // 목표 금액 달성 시 색상
-                        : new Date().setHours(0, 0, 0, 0) >
-                          new Date(account.accountEnd)
+                      new Date().setHours(0, 0, 0, 0) >
+                      new Date(account.accountEnd)
                         ? "#c4c0ba" // 만기된 저금통 색상
                         : colorList[index % colorList.length],
                   }}
                   onClick={() => selectAccount(account.accountNum, index)}
                 >
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <span style={{ fontSize: "0.75rem" }}>
-                      {/* 남은 일수 계산 */}
-                      {(() => {
-                        const daysLeft = Math.ceil(
-                          (new Date(account.accountEnd) - new Date()) /
-                            (1000 * 60 * 60 * 24)
-                        );
-                        return new Date().setHours(0, 0, 0, 0) >
-                          new Date(account.accountEnd)
-                          ? "만기일 지남" // 만기일이 지났을 때
-                          : daysLeft < 1
-                          ? "1일 미만 남음" // 남은 일수가 1일 미만일 때
-                          : `${daysLeft}일 남음`; // 남은 일수가 1일 이상일 때
-                      })()}
-                    </span>
-                    <span style={{ fontSize: "0.75rem" }}>
-                      {account.accountGoal - account.accountNow <= 0
-                        ? "목표 달성 완료 💘" // 목표 달성 시 표시
-                        : Math.floor(
-                            (account.accountNow / account.accountGoal) * 100
-                          ) + "% 달성"}
-                    </span>
-                  </div>
-                  <div style={{ marginTop: "20px" }}>
-                    <span>{account.accountNow.toLocaleString()} 원</span>
-                  </div>
-                  <div style={{ marginBottom: "20px" }}>
-                    <span>{account.accountName}</span>
-                  </div>
-                  <div>
+                  <div style={{ position: "relative" }}>
+                    {account.accountGoal - account.accountNow <= 0 ? (
+                      <img
+                        className="AccountMainImage"
+                        src={stamp}
+                        alt="stamp"
+                      />
+                    ) : null}
                     <div
-                      className="progress bg-secondary bg-opacity-50"
-                      style={{ height: "0.5rem" }}
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
                     >
-                      <div
-                        className="progress bg-light"
-                        role="progressbar"
-                        style={{
-                          width:
-                            (account.accountNow / account.accountGoal) * 100 +
-                            "%",
-                          height: "0.5rem",
-                        }}
-                        aria-valuenow={
+                      <span style={{ fontSize: "0.9rem" }}>
+                        {/* 남은 일수 계산 */}
+                        {(() => {
+                          const daysLeft = Math.ceil(
+                            (new Date(account.accountEnd) - new Date()) /
+                              (1000 * 60 * 60 * 24)
+                          );
+                          return new Date().setHours(0, 0, 0, 0) >
+                            new Date(account.accountEnd)
+                            ? "만기일 지남"
+                            : daysLeft < 1
+                            ? "1일 미만 남음"
+                            : `${daysLeft}일 남음`;
+                        })()}
+                      </span>
+                      <span style={{ fontSize: "0.9rem" }}>
+                        {Math.floor(
                           (account.accountNow / account.accountGoal) * 100
-                        }
-                      ></div>
+                        ) + "% 달성"}
+                      </span>
                     </div>
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "0.75rem",
-                      marginTop: "10px",
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <label>목표 금액</label>
-                    <span>{account.accountGoal.toLocaleString()} 원</span>
+                    <div style={{ marginTop: "10px" }}>
+                      <span>{account.accountNow.toLocaleString()} 원</span>
+                    </div>
+                    <div style={{ marginBottom: "10px" }}>
+                      <span>{account.accountName}</span>
+                    </div>
+                    <div>
+                      <div
+                        className="progress bg-secondary bg-opacity-50"
+                        style={{ height: "0.5rem" }}
+                      >
+                        <div
+                          className="progress bg-light"
+                          role="progressbar"
+                          style={{
+                            width:
+                              (account.accountNow / account.accountGoal) * 100 +
+                              "%",
+                            height: "0.5rem",
+                          }}
+                          aria-valuenow={
+                            (account.accountNow / account.accountGoal) * 100
+                          }
+                        ></div>
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "0.9rem",
+                        marginTop: "10px",
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <label>목표 금액</label>
+                      <span>{account.accountGoal.toLocaleString()} 원</span>
+                    </div>
                   </div>
                 </form>
               );

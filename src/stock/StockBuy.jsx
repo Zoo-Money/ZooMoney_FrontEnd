@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "../stock/css/stockBuy.css";
-import { toast } from "react-toastify";
 
 function StockBuy(props) {
   const location = useLocation();
@@ -16,15 +16,8 @@ function StockBuy(props) {
   // 주식 번호 및 가격 설정
   const [stockId] = useState(location.state?.stockId || 1);
   const [stockName] = useState(location.state?.stockName || "Unknown");
-  const [price, setPrice] = useState(location.state?.latestPrice || ""); // 가격 입력 가능
+  const [price] = useState(location.state?.latestPrice || 0);
   const [amount, setAmount] = useState(""); // 수량 입력 상태
-
-  // 가격이 바뀌면 업데이트
-  useEffect(() => {
-    if (location.state?.latestPrice) {
-      setPrice(location.state.latestPrice);
-    }
-  }, [location.state?.latestPrice]);
 
   // 구매 요청
   const handleBuy = async () => {
@@ -79,17 +72,12 @@ function StockBuy(props) {
       <div className="buy-container">
         <div className="buy-box">
           현재 <span>주식</span> 가격
-          <input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            placeholder="가격 입력"
-            readOnly
-          />
+          <br />
+          <p>{price.toLocaleString()}</p>
         </div>
         <div className="buy-box">
           구매 <span>수량</span>
-          <input
+          <inpput
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}

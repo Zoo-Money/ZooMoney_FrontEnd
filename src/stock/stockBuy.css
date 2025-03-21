@@ -15,6 +15,11 @@
   line-height: 1.2;
   position: relative;
 }
+.buy-text-left {
+  text-align: right;
+  width: 220px;
+  border-bottom: 1px solid #ccc;
+}
 
 .buy-header span {
   color: #ff9500;

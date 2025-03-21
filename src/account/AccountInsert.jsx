@@ -106,6 +106,15 @@ const AccountInsert = () => {
     }
   };
 
+  //천원단위가공
+  const handleInputChange = (e, key) => {
+    let value = e.target.value.replace(/[^0-9]/g, "");
+    if (value) {
+      value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    setAmount(value.replace(/,/g, ""));
+  };
+
   return (
     <div className="mock-container">
       {/* 헤더 */}
@@ -144,10 +153,10 @@ const AccountInsert = () => {
         <div style={{ width: "90%" }}>
           <InputGroup className="AccountInsertInput">
             <Form.Control
-              type="number"
+              type="text"
               placeholder="저금할 금액"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              value={amount ? amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : ""}
+              onChange={(e) => handleInputChange(e, "amount")}
               disabled={isready}
             />
             <InputGroup.Text>원</InputGroup.Text>
