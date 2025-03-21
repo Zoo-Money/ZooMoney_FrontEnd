@@ -67,7 +67,7 @@ const DailyMain = () => {
         ) : (
           <>
             <p className="daily-description">
-              하루 한 번 <strong>10 포인트</strong>를 지급해드려요!
+              하루 한 번 <span>10 포인트</span>를 지급해드려요!
             </p>
             <button className="daily-button" onClick={handleAttendance}>
               출석체크 하기

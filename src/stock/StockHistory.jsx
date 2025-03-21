@@ -51,10 +51,10 @@ function StockHistory(props) {
       });
   });
 
-  //일주일 뒤 날짜 폼
+  //2주일 뒤 날짜 폼
   const afterOneWeek = (date) => {
     const d = new Date(date);
-    d.setDate(d.getDate() + 6);
+    d.setDate(d.getDate() + 13);
     return d.toISOString().split("T")[0].replace(/-/g, ".");
   };
 

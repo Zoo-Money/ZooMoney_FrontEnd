@@ -39,7 +39,7 @@ const QuizEnd = () => {
         <p className="quizend-description">
           풀 수 있는 퀴즈를 다 풀었어요
           <br />
-          오늘 총 <strong>{String(correctAnswerCount) * 100} 포인트</strong>를
+          오늘 총 <span>{String(correctAnswerCount) * 100} 포인트</span>를
           획득했어요
         </p>
         <p className="quizend-description">내일 다시 만나요!</p>

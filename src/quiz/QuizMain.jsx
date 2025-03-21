@@ -126,9 +126,7 @@ const QuizMain = () => {
               시작하기
             </button>
             {/* 주의사항 */}
-            <p className="quizmain-check">
-              <strong>꼭 확인해주세요</strong>
-            </p>
+            <p className="quizmain-check">꼭 확인해주세요</p>
           </>
         ) : (
           <>
