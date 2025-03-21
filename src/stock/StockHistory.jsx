@@ -29,7 +29,7 @@ function StockHistory(props) {
   const navi = useNavigate();
   const [ranking, setRanking] = useState([]);
   const memberNum = sessionStorage.getItem("member_num");
-  //디테일 값 가지고 페이지 넘어가기
+  // 디테일 값 가지고 페이지 넘어가기
   const goHistoryDetail = (item) => {
     navi("/stock/stockHistoryDetail", { state: { item } });
   };
@@ -37,7 +37,7 @@ function StockHistory(props) {
     navi("/stock/main");
   };
 
-  //시즌별 결과 받아오기기
+  // 시즌별 결과 받아오기
   useEffect(() => {
     axios
       .get(`http://localhost:7777/zoomoney/stock/result/list/${memberNum}`, {
@@ -51,7 +51,7 @@ function StockHistory(props) {
       });
   });
 
-  //2주일 뒤 날짜 폼
+  // 2주일 뒤 날짜 폼
   const afterOneWeek = (date) => {
     const d = new Date(date);
     d.setDate(d.getDate() + 13);
@@ -64,7 +64,7 @@ function StockHistory(props) {
   });
   const resultRate = ranking.map((item) => item.result_rate);
 
-  //차트데이터
+  // 차트데이터
   const chartData = {
     labels: labels,
     datasets: [
@@ -81,7 +81,7 @@ function StockHistory(props) {
     ],
   };
 
-  //차트스타일
+  // 차트스타일
   const options = {
     responsive: true,
     scales: {
@@ -119,21 +119,22 @@ function StockHistory(props) {
 
   return (
     <div className="mock-container">
-      <Header title="나의 랭킹 히스토리"></Header>
+      <Header title="모의투자 기록" />
       <div className="history-box">
         <p>
           내가 참여한 모든 시즌들의
           <br />
-          나의 <span>랭킹</span>을 모아놨어요
+          <span>기록</span>들을 모아놨어요
           <br />
-          내가 얼마나 <span>성장</span>했는지
           <br />
-          확인할 수 있어요.
+          내 투자 실력이 얼마나
+          <br />
+          <span>성장</span>했는지 확인할 수 있어요
         </p>
         <img className="rabbit07" src={rabbit07} alt="rabbit07" />
       </div>
       <div className="history-detail-chart">
-        <Line data={chartData} options={options}></Line>
+        <Line data={chartData} options={options} />
       </div>
       <div className="history-list-box">
         {ranking &&
@@ -158,7 +159,7 @@ function StockHistory(props) {
           ))}
       </div>
       <button className="history-button" onClick={goStockMain}>
-        모의 투자 하러 가기
+        모의투자 하러 가기
       </button>
     </div>
   );

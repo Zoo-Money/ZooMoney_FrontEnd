@@ -194,16 +194,16 @@ function StockMain(props) {
           <table className="stock-table">
             <thead>
               <tr>
-                <th>종목명</th>
-                <th>평균 매입가</th>
-                <th>총 금액</th>
-                <th>매도</th>
+                <th style={{width: "80px"}}>종목명</th>
+                <th style={{width: "80px"}}>평균 매입가</th>
+                <th style={{width: "120px"}}>총 금액</th>
+                <th style={{width: "80px"}}>매도</th>
               </tr>
             </thead>
           </table>
         </div>
         <div className="table-body">
-          <table className="stock-table">
+          <table className="stock-table" style={{marginBottom: "50px"}}>
             <tbody className="stock-main-mystock-list-box">
               {myStockData.length > 0 ? (
                 myStockData.map((stock, index) => {

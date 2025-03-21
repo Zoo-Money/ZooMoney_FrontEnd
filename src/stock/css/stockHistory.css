@@ -17,10 +17,10 @@
 }
 .history-box {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-end;
+  gap: 20px;
   padding: 0 20px; /* 좌우 여백을 20px로 설정 */
-  text-align: right;
+  text-align: left;
 }
 
 .history-box span {

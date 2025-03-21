@@ -47,7 +47,7 @@ function MyPage() {
             </div>
             <div className="password-section">
               <span className="label">비밀번호</span>
-              <button className="edit-btn">수정</button>
+              <button className="edit-btn">변경</button>
             </div>
             <div className="info-row">
               <span className="label">이름</span>
@@ -62,7 +62,7 @@ function MyPage() {
             <div className="info-row">
               <span className="label">포인트</span>
               <span className="InfoTitle bold point-text">
-                {memberInfo.memberPoint}P
+                {(memberInfo.memberPoint).toLocaleString()} P
               </span>
             </div>
           </div>
@@ -86,14 +86,14 @@ function MyPage() {
               <Link to="/stock/stockHistory" className="link-no-underline">
                 <div className="card-box">
                   <div className="info-row2">
-                    <span className="label">나의 모의투자내역 보기</span>
+                    <span className="label">모의투자 기록</span>
                     <IoArrowForwardCircleOutline
                       size={22}
                       style={{ color: "black" }}
                     />
                   </div>
                   <p className="card-subtext">
-                    나의 모의 투자 거래 내역과 모의 투자 결과를 확인하세요
+                    모의투자 거래 내역과 랭킹 확인하기
                   </p>
                 </div>
               </Link>
