@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import deer01 from "../images/deer/deer01.png";
-import "../moneyPlan/css/moneyPlan.css"
+import "../moneyPlan/css/planMain.css"
 import { useNavigate } from 'react-router-dom';
 import SelectChart from './SelectChart';
 

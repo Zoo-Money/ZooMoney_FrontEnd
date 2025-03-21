@@ -1,10 +1,14 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import "../moneyPlan/css/moneyPlan.css";
 import PlanChart from "../moneyPlan/PlanChart";
 import PlanComplete from "../moneyPlan/PlanComplete";
 import PlanMain from "../moneyPlan/PlanMain";
 import PlanWrite from "../moneyPlan/PlanWrite";
+import "../moneyPlan/css/planChart.css";
+import "../moneyPlan/css/planComplete.css";
+import "../moneyPlan/css/planMain.css";
+import "../moneyPlan/css/planWrite.css";
+import "../moneyPlan/css/selectChart.css";
 
 function MoneyPlanRouter(props) {
   return (

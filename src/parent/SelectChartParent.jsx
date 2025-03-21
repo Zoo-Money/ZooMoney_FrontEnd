@@ -8,12 +8,12 @@ import { categoryColor, categoryHoverColor, categoryName } from "../moneyPlan/re
 import "../moneyPlan/css/selectChart.css"
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function SelectChart() {
+function SelectChartParent() {
   const [plansData, setPlansData] = useState({}); //각 plan_num별 데이터 저장
   const [currentPlanNum, setCurrentPlanNum] = useState(0); //현재 보여줄 plan_num
   const [planDate, setPlanDate] = useState([]); //날짜짜
   const [legendData, setLegendData] = useState([]); //범례
-  const memberNum = sessionStorage.getItem("member_num");
+  const childNum = sessionStorage.getItem("childNum");
 
   // plan_date를 일주일 단위로 변환
   const formatPlanDate = (dateString) => {
@@ -25,8 +25,8 @@ function SelectChart() {
   // plan_num 별로 그룹화된 데이터 저장
   useEffect(() => {
     axios
-      .get(`http://localhost:7777/zoomoney/moneyplan/select/${memberNum}`, {
-        params: { memberNum },
+      .get(`http://localhost:7777/zoomoney/moneyplan/select/${childNum}`, {
+        params: { childNum },
       })
       .then((response) => {
         const sortedData = response.data.sort(
@@ -185,4 +185,4 @@ function SelectChart() {
   );
 }
 
-export default SelectChart;
+export default SelectChartParent;

@@ -1,0 +1,29 @@
+/* planChart */
+.chart-deer03{
+  margin-left: 200px;
+  width: 80px;
+}
+.planchart-box {
+  width: 80%;
+  height: auto;
+  background-color: #f8f4f1;
+  border: none;
+  border-radius: 15px;
+  margin: 0 auto 40px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  justify-content: center;
+}
+.plan-chart-content{
+  text-align: center;
+  margin-top: 15px;
+  font-size: 20px;
+}
+.plan-chart-content span{
+  color: #ff9500;
+}
+.plan-confirm-chart{
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
