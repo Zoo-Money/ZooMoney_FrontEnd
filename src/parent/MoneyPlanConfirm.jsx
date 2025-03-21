@@ -1,12 +1,11 @@
 import React from "react";
-import FooterParent from "../common/FooterParent";
 import Header from "../common/Header";
-import SelectChartParent from "./SelectChartParent";
 import "../parent/css/moneyPlanConfirm.css";
+import SelectChartParent from "./SelectChartParent";
 function MoneyPlanConfirm(props) {
   return (
     <div className="mock-container">
-      <Header title="용돈 계획 세우기" />
+      <Header title="용돈 계획 확인" />
       <div className="parent-planmain-content">
         <div className="parent-planmain-description">
             아이의 <span>용돈 계획</span>을 함께 살펴보세요.
@@ -19,7 +18,6 @@ function MoneyPlanConfirm(props) {
           </div>
         </div>
       </div>
-      <FooterParent />
     </div>
   );
 }

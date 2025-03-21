@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
-import hamburger from "../images/hamburger.png";
-import cart from "../images/cart.png";
-import game from "../images/game.png";
-import pig from "../images/pig.png";
-import etc from "../images/etc.png";
 import axios from "axios";
-import "../moneyPlan/css/planWrite.css";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import InputComponent from "./InputComponent";
-import { categoryName } from "../moneyPlan/resource/planCommon.js";
 import { toast } from "react-toastify";
+import Header from "../common/Header";
+import cart from "../images/cart.png";
+import etc from "../images/etc.png";
+import game from "../images/game.png";
+import hamburger from "../images/hamburger.png";
+import pig from "../images/pig.png";
+import "../moneyPlan/css/planWrite.css";
+import { categoryName } from "../moneyPlan/resource/planCommon.js";
+import InputComponent from "./InputComponent";
 
 function PlanWrite(props) {
   const [planMoney, setPlanMoney] = useState();
@@ -119,7 +118,6 @@ function PlanWrite(props) {
       <button className="planwrite-button" onClick={handleNext}>
         다음
       </button>
-      <Footer />
     </div>
   );
 }

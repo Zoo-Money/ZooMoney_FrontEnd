@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { fetchMetadata } from "./CardService";
+import { fetchMetadata } from "./resources/CardService";
 
 const NFTViewer = () => {
   const [tokenId, setTokenId] = useState("");
   const [metadata, setMetadata] = useState(null);
-  const [metadataUrl, setMetadataUrl] = useState("");
+  const [, setMetadataUrl] = useState("");
   const [loading, setLoading] = useState(false);
 
   return (

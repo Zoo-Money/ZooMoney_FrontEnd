@@ -1,12 +1,11 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Document, Page, pdfjs } from "react-pdf";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // ▼▲ 화살표 추가
+import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractDetail.css";
-import axios from "axios";
 
 // PDF Worker 설정
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.js`;
@@ -65,11 +64,6 @@ const ContractDetail = () => {
               )}
             </div>
           ))}
-        </div>
-
-        {/* 하단 네비게이션 */}
-        <div className="footer">
-          <Footer />
         </div>
       </div>
     </div>

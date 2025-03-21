@@ -23,7 +23,7 @@ function TradeDone(props) {
 
   return (
     <div className="mock-container">
-      <Header title="판매 완료"></Header>
+      <Header title="판매 완료" />
       <div className="buy-done-box">
         <img src={rabbit04} alt="rabbit04" className="done-rabbit04" />
         <div className="buy-done-message">

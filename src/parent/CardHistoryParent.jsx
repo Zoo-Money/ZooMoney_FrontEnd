@@ -1,10 +1,10 @@
 import axios from "axios";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
-import { fetchMetadata } from "../card/CardService";
-import FooterParent from "../common/FooterParent";
+import { fetchMetadata } from "../card/resources/CardService";
 import Header from "../common/Header";
 import "./css/CardHistory.css";
+import { Dropdown } from "react-bootstrap";
 
 function CardHistory() {
   const [historyList, setHistoryList] = useState([]);
@@ -36,39 +36,36 @@ function CardHistory() {
     fetchMetadata(tokenId, setMetadata, setMetadataUrl, setLoading);
   }, [selectedPeriod, memberNum]);
 
+  const handleSelect = (eventKey) => {
+    setSelectedPeriod(eventKey);
+  };
+
   return (
     <div className="mock-container">
-      <div className="cardHistory-header">
-        <Header title="" />
-        {/* <img
-          className="cardHist-image"
-          src={metadata?.image}
-          alt="카드 이미지"
-        /> */}
-        <br />
-        <div>
-          {/* <button className="cardHist-gotoAccount">
-            <Link
-              to="/account"
-              style={{ color: "inherit", textDecoration: "none" }}
-            >
-              저금하기
-            </Link>
-          </button> */}
-        </div>
-      </div>
-
+      <Header title="" />
       <div className="cardhist-period">
-        <select
-          id="periodSelect"
-          value={selectedPeriod}
-          onChange={(e) => setSelectedPeriod(e.target.value)}
-        >
-          <option value="all">전체 기간</option>
-          <option value="1">최근 1개월</option>
-          <option value="2">최근 2개월</option>
-          <option value="3">최근 3개월</option>
-        </select>
+        <Dropdown onSelect={handleSelect}>
+          <Dropdown.Toggle variant="transparent" id="periodSelect">
+            {selectedPeriod === "all"
+              ? "전체 기간"
+              : `최근 ${selectedPeriod}개월`}
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item eventKey="all" active={selectedPeriod === "all"}>
+              전체 기간
+            </Dropdown.Item>
+            <Dropdown.Item eventKey="1" active={selectedPeriod === "1"}>
+              최근 1개월
+            </Dropdown.Item>
+            <Dropdown.Item eventKey="2" active={selectedPeriod === "2"}>
+              최근 2개월
+            </Dropdown.Item>
+            <Dropdown.Item eventKey="3" active={selectedPeriod === "3"}>
+              최근 3개월
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
       <div className="cardHist-content">
         <div className="card-history">
@@ -89,7 +86,6 @@ function CardHistory() {
           )}
         </div>
       </div>
-      <FooterParent />
     </div>
   );
 }

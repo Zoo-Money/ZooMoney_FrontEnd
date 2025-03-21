@@ -4,10 +4,8 @@ import { Form, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractWrite.css";
-import FooterParent from "../common/FooterParent";
 
 const getFormattedDate = () => {
   const today = new Date();
@@ -172,9 +170,8 @@ const ContractWrite = () => {
 
   return (
     <div className="mock-container">
+      <Header title="용돈계약서 작성" />
       <div className="container">
-        <Header title="용돈계약서 작성" />
-
         <div className="contract-form">
           <p className="info-text">용돈 지급에 관한 세부사항을 작성하세요.</p>
           {/* 세부사항 입력 */}
@@ -293,8 +290,6 @@ const ContractWrite = () => {
             </button>
           </div>
         </div>
-
-        <FooterParent />
       </div>
     </div>
   );

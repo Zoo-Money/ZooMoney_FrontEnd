@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import giraffe02 from "../images/giraffe/giraffe02.png";
 import "./css/quizEnd.css";
@@ -48,9 +47,6 @@ const QuizEnd = () => {
           확인
         </button>
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

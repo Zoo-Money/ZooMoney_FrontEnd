@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import giraffe05 from "../images/giraffe/giraffe05.png";
 import O from "../images/quiz/O.png";
@@ -91,9 +90,6 @@ const QuizSuccess = () => {
           </>
         )}
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

@@ -1,11 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { InputGroup, Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
+import { toast } from "react-toastify";
 import Header from "../common/Header";
 import "./css/AccountCreate.css";
-import { toast } from "react-toastify";
 
 const AccountTest = () => {
   // 세션 값 불러오기
@@ -100,9 +99,6 @@ const AccountTest = () => {
           <span>다음</span>
         </button>
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

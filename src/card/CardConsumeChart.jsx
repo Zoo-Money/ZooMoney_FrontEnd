@@ -3,12 +3,11 @@ import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
 import React, { useEffect, useRef, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 // css -> moneyplan 의 planMain.css, selectChart.css 사용
-import deer01 from "../images/deer/deer01.png";
-import { categoryName, categoryColor, categoryHoverColor } from "../moneyPlan/resource/planCommon";
 import { useNavigate } from "react-router-dom";
+import deer01 from "../images/deer/deer01.png";
+import { categoryColor, categoryHoverColor, categoryName } from "../moneyPlan/resource/planCommon";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
@@ -232,7 +231,6 @@ function PatternChart() {
         <button className="planmain-button" onClick={goToMain}>
           메인
         </button>
-      <Footer />
     </div>
   );
 }

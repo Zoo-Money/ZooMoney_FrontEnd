@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/StockInfo.css";
 
@@ -35,7 +34,6 @@ function StockInfo() {
           })}
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
