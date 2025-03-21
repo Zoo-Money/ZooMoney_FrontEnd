@@ -27,9 +27,10 @@
   align-items: center;
   justify-content: center;
 }
+
 .header-title {
   font-size: 18px;
-  font-weight: bold;
+  /* font-weight: bold; */
   margin: 0;
   white-space: nowrap; /* 줄바꿈 방지 */
 }

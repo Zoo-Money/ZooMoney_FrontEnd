@@ -15,20 +15,24 @@
 
 /* 매일매일 출석체크 */
 .daily-check {
-  font-size: 17px;
+  font-size: 20px;
   color: #5a5a5a;
   line-height: 1.5;
-  font-weight: 900;
   margin: 30px 25px 20px 25px;
 }
 
 /* 설명 */
 .daily-description {
-  font-size: 15px;
+  font-size: 18px;
   color: #5a5a5a;
   line-height: 1.5;
-  font-weight: 900;
   margin: 30px 25px 20px 25px;
+}
+
+.daily-description span {
+  font-size: 18px;
+  color: #ff9500;
+  line-height: 1.5;
 }
 
 /* 출석 체크 완료 버튼 */
@@ -37,8 +41,7 @@
   height: 45px;
   background-color: #ff9500;
   color: white;
-  font-size: 14px;
-  font-weight: 900;
+  font-size: 18px;
   border: none;
   border-radius: 15px;
   cursor: pointer;
