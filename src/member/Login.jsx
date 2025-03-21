@@ -49,7 +49,7 @@ function Login(props) {
         }
       })
       .catch((err) => {
-        console.error("로그인 중 오류", err);
+        console.error("로그인 오류 발생", err);
       });
   };
 
