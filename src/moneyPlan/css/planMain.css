@@ -1,0 +1,56 @@
+/* PlanMain */
+.planmain-content {
+  text-align: center;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+}
+.planmain-description {
+  display: flex;
+  font-size: 16px;
+  text-align: right;
+  margin-bottom: -10px;
+  margin-top: -20px;
+  align-items: flex-end;
+}
+.planmain-description p {
+  margin-left: 35px;
+}
+.planmain-deer {
+  width: 120px;
+  height: auto;
+  transform: scaleX(-1);
+  margin-left: auto;
+}
+.planmain-description span {
+  color: #ff9500;
+}
+.planmain-box {
+  padding-top: 10px;
+  width: 90%;
+  background-color: #f8f4f1;
+  border: none;
+  border-radius: 15px;
+  margin: 0 auto 40px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+.planmain-button {
+  width: 80%;
+  height: 45px;
+  background-color: #ff9500;
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline;
+  margin-top: -15px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.planmain-button:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px 
+  rgba(0, 0, 0, 0.2);
+}

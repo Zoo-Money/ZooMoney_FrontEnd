@@ -1,7 +1,7 @@
 import React from 'react';
 import deer02 from "../images/deer/deer02.png";
 import Header from '../common/Header';
-import "../moneyPlan/css/moneyPlan.css";
+import "../moneyPlan/css/planComplete.css";
 import { useNavigate } from 'react-router-dom';
 
 function PlanComplete(props) {
