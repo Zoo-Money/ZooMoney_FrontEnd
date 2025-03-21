@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import StockBegin from "./StockBegin";
 import StockMain from "./StockMain";
@@ -9,7 +10,7 @@ function StockStart(props) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:7777/zoomoney/stock/userStatus", { memberNum })
+      .post(`${API_PATH}/zoomoney/stock/userStatus`, { memberNum })
       .then((response) => {
         setHasMemberNum(response.data);
       })

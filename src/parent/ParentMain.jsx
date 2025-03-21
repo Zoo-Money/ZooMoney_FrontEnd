@@ -1,6 +1,7 @@
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Badge } from "@mui/material";
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import rabbit02 from "../images//rabbit/rabbit02.png";
@@ -39,7 +40,7 @@ const ParentMain = () => {
       return;
     }
     await axios
-      .get("http://localhost:7777/zoomoney/contract/getChildByParent", {
+      .get(`${API_PATH}/zoomoney/contract/getChildByParent`, {
         params: { parentId: parentId },
       })
       .then((response) => {
@@ -68,7 +69,7 @@ const ParentMain = () => {
     }
 
     await axios
-      .get("http://localhost:7777/zoomoney/contract/child/money", {
+      .get(`${API_PATH}/zoomoney/contract/child/money`, {
         params: { memberNum: Number(child) },
       })
       .then((response) => {
@@ -101,7 +102,7 @@ const ParentMain = () => {
     // 서버와 SSE 연결
     const conn = () => {
       const eventSource = new EventSource(
-        `http://localhost:7777/zoomoney/notify/subscribe/${parentId}`
+        `${API_PATH}/zoomoney/notify/subscribe/${parentId}`
       );
 
       // 알림 정보 갱신
@@ -123,7 +124,7 @@ const ParentMain = () => {
     const list = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/notify/list/${parentId}`
+          `${API_PATH}/zoomoney/notify/list/${parentId}`
         );
         setNotifyList(response.data);
       } catch (error) {
@@ -137,7 +138,7 @@ const ParentMain = () => {
     const count = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/notify/unread/${parentId}`
+          `${API_PATH}/zoomoney/notify/unread/${parentId}`
         );
         setCount(response.data);
       } catch (error) {
@@ -160,9 +161,7 @@ const ParentMain = () => {
   const selectNotify = async (notifyNum, notifyUrl) => {
     // 알림 상태(읽음 여부) 변경
     try {
-      await axios.put(
-        `http://localhost:7777/zoomoney/notify/check/${notifyNum}`
-      );
+      await axios.put(`${API_PATH}/zoomoney/notify/check/${notifyNum}`);
     } catch (error) {
       console.error("알림 상태변경 실패", error);
     }

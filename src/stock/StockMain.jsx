@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { FaQuestionCircle } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
@@ -88,7 +89,7 @@ function StockMain(props) {
   useEffect(() => {
     // 보유 주식 불러오기
     axios
-      .get("http://localhost:7777/zoomoney/stock/owned", {
+      .get(`${API_PATH}/zoomoney/stock/owned`, {
         params: { memberNum },
       })
       .then((response) => {
@@ -99,7 +100,7 @@ function StockMain(props) {
       });
     // 잔고 불러오기 추가
     axios
-      .get("http://localhost:7777/zoomoney/stock/getmoney", {
+      .get(`${API_PATH}/zoomoney/stock/getmoney`, {
         params: { memberNum },
       })
       .then((response) => {

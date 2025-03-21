@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../common/Header";
@@ -20,7 +21,7 @@ const AccountClose = () => {
     try {
       // 저금통 해지 요청
       await axios.put(
-        `http://localhost:7777/zoomoney/account/request/${accountNum}`,
+        `${API_PATH}/zoomoney/account/request/${accountNum}`,
         null,
         {
           params: { request: true }, // 쿼리 파라미터로 request 전달
@@ -28,7 +29,7 @@ const AccountClose = () => {
       );
 
       // 해지 요청 알림 전송
-      await axios.post("http://localhost:7777/zoomoney/notify/send", {
+      await axios.post(`${API_PATH}/zoomoney/notify/send`, {
         memberNum: target,
         notifyContent: `🐷 ${member_name}님이 저금통 해지 요청을 보냈어요`,
         notifyUrl: "/parent/account",
