@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
@@ -20,7 +21,7 @@ const QuizMain = () => {
 
     // 📌 도전한 퀴즈 개수 가져오기
     axios
-      .get("http://localhost:7777/zoomoney/quiz/count", {
+      .get(`${API_PATH}/zoomoney/quiz/count`, {
         params: { memberNum: memberNum },
       })
       .then((response) => {
@@ -32,7 +33,7 @@ const QuizMain = () => {
 
     // 📌 맞힌 정답 개수 가져오기
     axios
-      .get("http://localhost:7777/zoomoney/quiz/total", {
+      .get(`${API_PATH}/zoomoney/quiz/total`, {
         params: { memberNum: memberNum },
       })
       .then((response) => {
@@ -44,7 +45,7 @@ const QuizMain = () => {
 
     //  📌 문제별 정답 여부 List 가져오기
     axios
-      .get("http://localhost:7777/zoomoney/quiz/answerlist", {
+      .get(`${API_PATH}/zoomoney/quiz/answerlist`, {
         params: { memberNum: memberNum },
       })
       .then((response) => {

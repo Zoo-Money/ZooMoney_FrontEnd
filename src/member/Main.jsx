@@ -1,6 +1,7 @@
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Badge } from "@mui/material";
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchCardInfo, fetchMetadata } from "../card/resources/CardService";
@@ -32,7 +33,7 @@ const Main = () => {
     // 서버와 SSE 연결
     const conn = () => {
       const eventSource = new EventSource(
-        `http://localhost:7777/zoomoney/notify/subscribe/${memberNum}`
+        `${API_PATH}/zoomoney/notify/subscribe/${memberNum}`
       );
 
       // 알림 정보 갱신
@@ -54,7 +55,7 @@ const Main = () => {
     const list = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/notify/list/${memberNum}`
+          `${API_PATH}/zoomoney/notify/list/${memberNum}`
         );
         setNotifyList(response.data);
       } catch (error) {
@@ -68,7 +69,7 @@ const Main = () => {
     const count = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/notify/unread/${memberNum}`
+          `${API_PATH}/zoomoney/notify/unread/${memberNum}`
         );
         setCount(response.data);
       } catch (error) {
@@ -108,7 +109,7 @@ const Main = () => {
     const fetchMemberPoint = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/member/point/${memberNum}`
+          `${API_PATH}/zoomoney/member/point/${memberNum}`
         );
         const formattedPoint = Number(
           response.data.member_point
@@ -136,9 +137,7 @@ const Main = () => {
   const selectNotify = async (notifyNum, notifyUrl) => {
     // 알림 상태(읽음 여부) 변경
     try {
-      await axios.put(
-        `http://localhost:7777/zoomoney/notify/check/${notifyNum}`
-      );
+      await axios.put(`${API_PATH}/zoomoney/notify/check/${notifyNum}`);
     } catch (error) {
       console.error("알림 상태변경 실패", error);
     }

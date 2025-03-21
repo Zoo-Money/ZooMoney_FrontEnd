@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "../stock/css/stockBuy.css";
+import { API_PATH } from "../common/config.js";
 
 function StockBuy(props) {
   const location = useLocation();
@@ -26,7 +27,7 @@ function StockBuy(props) {
     }
 
     try {
-      const response = await fetch("http://localhost:7777/zoomoney/stock/buy", {
+      const response = await fetch(`${API_PATH}/zoomoney/stock/buy`, {
         method: "POST",
         mode: "cors",
         headers: {

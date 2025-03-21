@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import pig00 from "../images/pig/pig00.png";
@@ -22,7 +23,7 @@ const AccountMain = () => {
     const list = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/account/list/${memberNum}`
+          `${API_PATH}/zoomoney/account/list/${memberNum}`
         );
         setAccountList(response.data);
 

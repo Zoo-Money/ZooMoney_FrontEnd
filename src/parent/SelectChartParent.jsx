@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
@@ -29,7 +30,7 @@ function SelectChartParent() {
   // plan_num 별로 그룹화된 데이터 저장
   useEffect(() => {
     axios
-      .get(`http://localhost:7777/zoomoney/moneyplan/select/${childNum}`, {
+      .get(`${API_PATH}/zoomoney/moneyplan/select/${childNum}`, {
         params: { childNum },
       })
       .then((response) => {

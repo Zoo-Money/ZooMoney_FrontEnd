@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -22,7 +23,7 @@ const ParentAccount = () => {
     const list = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/account/list/${target}`
+          `${API_PATH}/zoomoney/account/list/${target}`
         );
         setAccountList(response.data);
       } catch (error) {
@@ -41,12 +42,10 @@ const ParentAccount = () => {
   const selectApply = async (accountNum, accountName) => {
     try {
       // 저금통 상태 변경
-      await axios.put(
-        `http://localhost:7777/zoomoney/account/close/${accountNum}`
-      );
+      await axios.put(`${API_PATH}/zoomoney/account/close/${accountNum}`);
 
       // 해지 알림 전송
-      await axios.post("http://localhost:7777/zoomoney/notify/send", {
+      await axios.post(`${API_PATH}/zoomoney/notify/send`, {
         memberNum: target,
         notifyContent: `🐷 ${accountName}<br>저금통 해지 요청이 승인되었어요`,
         notifyUrl: "/account",
@@ -62,7 +61,7 @@ const ParentAccount = () => {
     try {
       // 저금통 해지 요청 거절
       await axios.put(
-        `http://localhost:7777/zoomoney/account/request/${accountNum}`,
+        `${API_PATH}/zoomoney/account/request/${accountNum}`,
         null,
         {
           params: { request: false }, // 쿼리 파라미터로 request 전달
@@ -70,7 +69,7 @@ const ParentAccount = () => {
       );
 
       // 해지 요청 거절 알림 전송
-      await axios.post("http://localhost:7777/zoomoney/notify/send", {
+      await axios.post(`${API_PATH}/zoomoney/notify/send`, {
         memberNum: target,
         notifyContent: `🐷 ${accountName}<br>저금통 해지 요청이 거절되었어요`,
         notifyUrl: "/account",
