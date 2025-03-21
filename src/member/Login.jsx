@@ -1,14 +1,13 @@
+import axios from "axios";
 import React, { useState } from "react";
-import Header from "../common/Header";
+import { useNavigate } from "react-router-dom";
 import bear03 from "../images/bear/bear03.png";
 import "./login.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Login(props) {
   const [memberId, setMemberId] = useState("");
   const [memberPw, setMemberPw] = useState("");
-  const [message, setMessage] = useState("");
   const navi = useNavigate();
 
   const handleSubmit = (e) => {
@@ -24,7 +23,6 @@ function Login(props) {
     })
       .then((responseData) => {
         if (responseData.data.message === "로그인 성공") {
-          setMessage("로그인 성공!");
           const {
             member_id,
             member_num,
@@ -47,7 +45,7 @@ function Login(props) {
             navi("/main");
           }
         } else {
-          setMessage("로그인 실패!");
+          toast.error("아이디 또는 비밀번호가 일치하지 않습니다.");
         }
       })
       .catch((err) => {
@@ -57,7 +55,6 @@ function Login(props) {
 
   return (
     <div className="mock-container">
-      <Header title="로그인"></Header>
       <div className="login-container">
         <div className="login-header">
           <span>Zoo</span>Money
@@ -84,13 +81,11 @@ function Login(props) {
               onChange={(e) => setMemberPw(e.target.value)}
             />
           </div>
-          {message && <p className="login-error">{message}</p>}
           <button type="submit" className="login-button">
             로그인
           </button>
         </form>
       </div>
-      <button className="login-forgotPW">비밀번호를 잊으셨나요?</button>
     </div>
   );
 }
