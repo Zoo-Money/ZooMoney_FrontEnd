@@ -31,10 +31,11 @@ const AccountInsert = () => {
       try {
         // 카드 잔액 조회
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/card/get`, {
-            headers: {
+          `http://localhost:7777/zoomoney/card/get`,
+          {
+            params: {
               member_num: memberNum,
-            }
+            },
           }
         );
         setCardMoneyLeft(response.data.cardMoney);
