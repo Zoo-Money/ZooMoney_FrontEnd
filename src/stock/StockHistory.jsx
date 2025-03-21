@@ -52,10 +52,10 @@ function StockHistory(props) {
       });
   });
 
-  //일주일 뒤 날짜 폼
+  //2주일 뒤 날짜 폼
   const afterOneWeek = (date) => {
     const d = new Date(date);
-    d.setDate(d.getDate() + 6);
+    d.setDate(d.getDate() + 13);
     return d.toISOString().split("T")[0].replace(/-/g, ".");
   };
 
@@ -139,7 +139,11 @@ function StockHistory(props) {
       <div className="history-list-box">
         {ranking &&
           ranking.map((item, index) => (
-            <div className="history-list" key={index} onClick={() => goHistoryDetail(item)}>
+            <div
+              className="history-list"
+              key={index}
+              onClick={() => goHistoryDetail(item)}
+            >
               <span className="history-list-title">시즌{index + 1}</span>
               <span className="history-list-date">
                 {new Date(item.result_date).toLocaleString("ko-KR", {
