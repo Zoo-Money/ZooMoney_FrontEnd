@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
 import dayjs from "dayjs";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { categoryColor, categoryHoverColor, categoryName } from "../moneyPlan/resource/planCommon.js";
@@ -11,8 +11,9 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 function SelectChart() {
   const [plansData, setPlansData] = useState({}); //각 plan_num별 데이터 저장
   const [currentPlanNum, setCurrentPlanNum] = useState(0); //현재 보여줄 plan_num
-  const [planDate, setPlanDate] = useState([]); //날짜짜
+  const [planDate, setPlanDate] = useState([]); //날짜
   const [legendData, setLegendData] = useState([]); //범례
+  const chartInstanceRef = useRef(null); // 차트 인스턴스 저장
   const memberNum = sessionStorage.getItem("member_num");
 
   // plan_date를 일주일 단위로 변환
@@ -108,9 +109,10 @@ function SelectChart() {
         },
       },
     },
+    responsive: true,
+    maintainAspectRatio: false, // 비율 고정 해제
   };
 
-  // 차트 전환 함수
   const handleChartChange = (direction) => {
     const planKeys = Object.keys(plansData);
     const totalPlans = planKeys.length;
@@ -122,6 +124,12 @@ function SelectChart() {
         prevIndex === 0 ? totalPlans - 1 : prevIndex - 1
       );
     }
+
+    setTimeout(() => {
+      if (chartInstanceRef.current) {
+        chartInstanceRef.current.resize();
+      }
+    }, 100); // 리사이징 강제 적용
   };
 
   // 데이터가 없다면 차트가 표시되지 않도록
