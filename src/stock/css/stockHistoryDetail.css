@@ -31,10 +31,10 @@
   font-weight: bold;
 }
 .buy {
-  color: blue;
+  color: #0059ff;
 }
 .sell {
-  color: red;
+  color: #FF2200;
 }
 .history-detail-list-box {
   max-height: calc(100vh - 450px);

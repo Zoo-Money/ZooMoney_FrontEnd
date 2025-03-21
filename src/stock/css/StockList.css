@@ -60,11 +60,12 @@
 }
 
 .stock-change.up {
-  color: red;
+  color: #FF2200;
 }
 
 .stock-change.down {
-  color: blue;
+  color: 
+  #0059ff;
 }
 
 .stockList-image {

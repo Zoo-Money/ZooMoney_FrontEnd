@@ -8,6 +8,7 @@ import rabbit01 from "../images/rabbit/rabbit01.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./css/stockMain.css";
+import { IoIosArrowForward } from "react-icons/io";
 
 function StockMain(props) {
   const memberNum = sessionStorage.getItem("member_num");
@@ -137,12 +138,14 @@ function StockMain(props) {
           <div className="stock-main-info">
             <FaQuestionCircle className="questionmark" />
             <span>주식에 대해 궁금해요!</span>
+            <IoIosArrowForward className="selectchart-forward" />
           </div>
         </Link>
-        <img src={rabbit01} alt="rabbit01" />
+        <img src={rabbit01} alt="rabbit01" style={{zIndex:"2"}}/>
       </div>
       <div className="stock-main-box" onClick={goToProfit}>
         <h2>내 투자</h2>
+        <IoIosArrowForward style={{width:"50px",height:"30px", float:"right", color:"#333"}}/>
         <div className="stock-main-box-amount">
           {totalInvestment.toLocaleString()} 원
         </div>
@@ -164,68 +167,73 @@ function StockMain(props) {
       <p className="myStock-tableName">보유 주식</p>
 
       <div className="stock-main-mystock-list-box33">
-        <table className="stock-table">
-          <thead>
-            <tr>
-              <th>종목명</th>
-              <th>평균 매입가</th>
-              <th>총 금액</th>
-              <th>매도</th>
-            </tr>
-          </thead>
-        </table>
-        <table className="stock-table">
-          <tbody className="stock-main-mystock-list-box">
-            {myStockData.length > 0 ? (
-              myStockData.map((stock, index) => {
-                const profitRate =
-                  ((stock.stockPrice - stock.averagePrice) /
-                    stock.averagePrice) *
-                  100;
-                return (
-                  <tr key={index}>
-                    <td>
-                      {stock.stockName}
-                      <br />( {stock.quantity}주 )
-                    </td>
-                    <td>
-                      {Math.floor(stock.averagePrice).toLocaleString("ko-KR")}원
-                      <br />
-                      <span className={profitRate >= 0 ? "profit" : "loss"}>
-                        ( {profitRate.toFixed(1)}% )
-                      </span>
-                    </td>
-                    <td>
-                      {stock.totalValue.toLocaleString()}원
-                      <br />
-                      <span className="current-price">
-                        (현재가 {stock.stockPrice.toLocaleString()}원)
-                      </span>
-                    </td>
-                    <td>
-                      <button
-                        className="sell-button"
-                        onClick={() =>
-                          goToSell(
-                            stock.stockId,
-                            stock.stockPrice,
-                            stock.stockName
-                          )
-                        }
-                      >
-                        매도하기
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })
-            ) : (
+        <div className="table-header">
+          <table className="stock-table">
+            <thead>
               <tr>
-                <td colSpan="4">보유한 주식이 없습니다.</td>
+                <th>종목명</th>
+                <th>평균 매입가</th>
+                <th>총 금액</th>
+                <th>매도</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+          </table>
+        </div>
+        <div className="table-body">
+          <table className="stock-table">
+            <tbody className="stock-main-mystock-list-box">
+              {myStockData.length > 0 ? (
+                myStockData.map((stock, index) => {
+                  const profitRate =
+                    ((stock.stockPrice - stock.averagePrice) /
+                      stock.averagePrice) *
+                    100;
+                  return (
+                    <tr key={index}>
+                      <td>
+                        {stock.stockName}
+                        <br />( {stock.quantity}주 )
+                      </td>
+                      <td>
+                        {Math.floor(stock.averagePrice).toLocaleString("ko-KR")}
+                        원
+                        <br />
+                        <span className={profitRate >= 0 ? "profit" : "loss"}>
+                          ( {profitRate.toFixed(1)}% )
+                        </span>
+                      </td>
+                      <td>
+                        {stock.totalValue.toLocaleString()}원
+                        <br />
+                        <span className="current-price">
+                          (현재가 {stock.stockPrice.toLocaleString()}원)
+                        </span>
+                      </td>
+                      <td>
+                        <button
+                          className="sell-button"
+                          onClick={() =>
+                            goToSell(
+                              stock.stockId,
+                              stock.stockPrice,
+                              stock.stockName
+                            )
+                          }
+                        >
+                          매도하기
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td colSpan="4">보유한 주식이 없습니다.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <button className="stock-main-button" onClick={goStockList}>
