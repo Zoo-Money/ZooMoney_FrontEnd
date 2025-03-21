@@ -18,7 +18,7 @@ const FooterParent = () => {
         <HomeRoundedIcon
           className={`footer-icon ${isActive("/main") ? "active" : ""}`}
           onClick={() => {
-            navigate("/main");
+            navigate("/parent/main");
           }}
         />
         홈

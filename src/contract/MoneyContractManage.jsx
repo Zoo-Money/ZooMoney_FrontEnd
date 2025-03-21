@@ -5,6 +5,7 @@ import allowanceContract from "../images/allowanceContract.png";
 import allowanceContractCheck from "../images/allowanceContractCheck.png";
 import "./css/moneyContractManage.css";
 import { useNavigate } from "react-router-dom";
+import FooterParent from "../common/FooterParent";
 
 const MoneyContractManage = () => {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ const MoneyContractManage = () => {
       </div>
 
       {/* 하단 네비게이션 */}
-      <Footer />
+      <FooterParent />
     </div>
   );
 };

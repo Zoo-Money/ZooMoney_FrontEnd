@@ -192,13 +192,16 @@
 }
 
 /* 서명 캔버스 */
-.contractWrtieChild-signature-canvas {
+.contractWrtieChild-signature-canvas canvas {
+  width: 100% !important; /* 부모 요소에 맞게 캔버스 크기 자동 조정 */
+  max-width: 400px; /* 최대 크기 제한 */
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: white;
   width: 100%;
   height: 100px;
   margin-top: 10px;
+  overflow: hidden; /* 캔버스 벗어나는 부분 방지 */
 }
 
 /* 서명 지우기 버튼 */
