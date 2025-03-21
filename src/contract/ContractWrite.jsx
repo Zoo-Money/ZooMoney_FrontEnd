@@ -4,10 +4,8 @@ import { Form, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractWrite.css";
-import FooterParent from "../common/FooterParent";
 
 const getFormattedDate = () => {
   const today = new Date();
@@ -293,8 +291,6 @@ const ContractWrite = () => {
             </button>
           </div>
         </div>
-
-        <FooterParent />
       </div>
     </div>
   );

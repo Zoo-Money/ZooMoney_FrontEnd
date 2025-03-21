@@ -3,7 +3,6 @@ import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
 import React, { useEffect, useRef, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import FooterParent from "../common/FooterParent";
 import Header from "../common/Header";
 import { categoryColor, categoryHoverColor, categoryName } from "../moneyPlan/resource/planCommon.js";
 
@@ -230,7 +229,6 @@ function PatternChart() {
           </div>
         </div>
       </div>
-      <FooterParent />
     </div>
   );
 }

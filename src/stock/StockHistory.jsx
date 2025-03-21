@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "./css/stockHistory.css";
-import Footer from "../common/Footer";
 
 ChartJS.register(
   LineElement,
@@ -161,7 +160,6 @@ function StockHistory(props) {
       <button className="history-button" onClick={goStockMain}>
         모의 투자 하러 가기
       </button>
-      <Footer />
     </div>
   );
 }

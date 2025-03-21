@@ -3,8 +3,7 @@ import { Badge } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchCardInfo, fetchMetadata } from "../card/CardService";
-import Footer from "../common/Footer";
+import { fetchCardInfo, fetchMetadata } from "../card/resources/CardService";
 import defaultCardImage from "../images/card/card00.png"; // 기본 이미지 경로
 import deer02 from "../images/deer/deer02.png";
 import giraffe05 from "../images/giraffe/giraffe05.png";
@@ -191,8 +190,12 @@ const Main = () => {
             <NotificationsIcon
               className={shake ? "bell-shake" : ""}
               color="action"
+              style={{
+                color: view ? "#ff9500" : "",
+                fontSize: "1.5rem",
+                cursor: "pointer",
+              }}
               onClick={animate}
-              style={{ fontSize: "1.5rem", cursor: "pointer" }}
             />
           </Badge>
 
@@ -356,7 +359,6 @@ const Main = () => {
           </a>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

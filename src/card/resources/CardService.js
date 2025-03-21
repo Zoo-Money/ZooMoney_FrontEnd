@@ -1,8 +1,9 @@
 import axios from "axios";
 import { ethers } from "ethers";
-import card00 from "../images/card/card00.png";
-import CardABI from "./resources/CardABI.json"; // 스마트 컨트랙트 ABI
+import card00 from "../../images/card/card00.png";
+import CardABI from "./CardABI.json"; // 스마트 컨트랙트 ABI
 import { toast } from "react-toastify";
+
 const contractAddress = process.env.REACT_APP_NFT_CONTRACT_ADDRESS;
 const pinataApiKey = process.env.REACT_APP_PINATA_API_KEY;
 const pinataSecretApiKey = process.env.REACT_APP_PINATA_SECRET_API_KEY;

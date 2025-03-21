@@ -1,13 +1,12 @@
 import axios from "axios";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Footer from "../common/Footer";
-import Header from "../common/Header";
-import { fetchMetadata } from "./CardService";
-import "../card/css/CardHistory.css";
-import cardimage from "../images/card/card00.png";
 import { Dropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "../card/css/CardHistory.css";
+import Header from "../common/Header";
+import cardimage from "../images/card/card00.png";
+import { fetchMetadata } from "./resources/CardService";
 
 function CardHistory() {
   const [historyList, setHistoryList] = useState([]);
@@ -98,7 +97,6 @@ function CardHistory() {
           )}
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

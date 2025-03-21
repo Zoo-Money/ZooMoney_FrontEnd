@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "../stock/css/stockBuy.css";
@@ -88,7 +87,6 @@ function StockBuy(props) {
       <button className="buy-button" onClick={handleBuy}>
         구매하기
       </button>
-      <Footer />
     </div>
   );
 }

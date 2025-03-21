@@ -1,10 +1,9 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../common/Header";
-import Footer from "../common/Footer";
 import rabbit05 from "../images/rabbit/rabbit05.png";
 import "./css/stockHistoryDetail.css";
-import axios from "axios";
 
 function StockHistoryDetail(props) {
   const location = useLocation();
@@ -70,7 +69,6 @@ function StockHistoryDetail(props) {
             ))}
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

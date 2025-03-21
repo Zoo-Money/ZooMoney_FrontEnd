@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
+import { toast } from "react-toastify";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "../stock/css/stockBuy.css";
-import { toast } from "react-toastify";
 
 function StockSell(props) {
   const location = useLocation();
@@ -90,7 +89,6 @@ function StockSell(props) {
       >
         판매하기
       </button>
-      <Footer />
     </div>
   );
 }

@@ -1,8 +1,7 @@
 import axios from "axios";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
-import { fetchMetadata } from "../card/CardService";
-import FooterParent from "../common/FooterParent";
+import { fetchMetadata } from "../card/resources/CardService";
 import Header from "../common/Header";
 import "./css/CardHistory.css";
 
@@ -89,7 +88,6 @@ function CardHistory() {
           )}
         </div>
       </div>
-      <FooterParent />
     </div>
   );
 }
