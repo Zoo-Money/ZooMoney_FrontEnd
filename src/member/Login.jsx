@@ -66,7 +66,7 @@ function Login(props) {
             <input
               className="login-input"
               type="text"
-              placeholder="아이디를 입력하세요"
+              placeholder="아이디를 입력해주세요"
               value={memberId}
               onChange={(e) => setMemberId(e.target.value)}
             />
@@ -76,7 +76,7 @@ function Login(props) {
             <input
               type="password"
               className="login-input"
-              placeholder="비밀번호를 입력하세요"
+              placeholder="비밀번호를 입력해주세요"
               value={memberPw}
               onChange={(e) => setMemberPw(e.target.value)}
             />
