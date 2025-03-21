@@ -55,8 +55,8 @@ const ContractSelect = () => {
 
   return (
     <div className="mock-container">
+      <Header title="용돈계약서 조회" />
       <div className="ContractSelect-contract-container">
-        <Header title="용돈계약서 조회" />
         <div className="ContractSelect-content">
           <h2 className="ContractSelect-subtitle">현재 유효한 용돈계약서</h2>
 
