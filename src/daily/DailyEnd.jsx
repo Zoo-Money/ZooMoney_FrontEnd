@@ -20,7 +20,7 @@ const DailyEnd = () => {
         <p className="dailyend-description">
           오늘의 출석체크 완료로
           <br />
-          <strong>10 포인트</strong>를 획득했어요!
+          <span>10 포인트</span>를 획득했어요!
         </p>
         <p className="dailyend-description">내일 다시 만나요!</p>
         <button className="dailyend-button" onClick={goToMain}>

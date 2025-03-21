@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractWrite.css";
+import FooterParent from "../common/FooterParent";
 
 const getFormattedDate = () => {
   const today = new Date();
@@ -293,7 +294,7 @@ const ContractWrite = () => {
           </div>
         </div>
 
-        <Footer />
+        <FooterParent />
       </div>
     </div>
   );

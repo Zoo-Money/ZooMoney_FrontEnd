@@ -11,7 +11,7 @@
   height: auto;
   margin-left: 240px;
   margin-bottom: -8px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 /* 총 점수 판 */
@@ -35,11 +35,11 @@
 }
 
 .quizmain-total-title {
-  font-size: 17px;
+  font-size: 20px;
   color: #000000;
   line-height: 1.5;
-  font-weight: 500;
-  margin: 10px 25px 20px 25px;
+  margin: 10px 25px 15px 25px;
+  font-weight: lighter;
 }
 
 .quizmain-total-content {
@@ -56,7 +56,7 @@
 }
 
 .quizmain-total-left {
-  font-size: 15px;
+  font-size: 16px;
   color: #000000;
   font-weight: 500;
   text-align: left;
@@ -64,7 +64,7 @@
 }
 
 .quizmain-total-right {
-  font-size: 15px;
+  font-size: 16px;
   color: #000000;
   font-weight: 500;
   text-align: right;
@@ -95,7 +95,7 @@
 
 /* 오늘 푼 퀴즈/확인 */
 .quizmain-today {
-  font-size: 15px;
+  font-size: 16px;
   color: #5a5a5a;
   line-height: 1.5;
   font-weight: 500;
@@ -117,7 +117,7 @@
   height: 45px;
   background-color: #ff9500;
   color: white;
-  font-size: 14px;
+  font-size: 18px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -132,17 +132,16 @@
 
 /* 꼭 확인해주세요 */
 .quizmain-check {
-  font-size: 15px;
+  font-size: 18px;
   color: #5a5a5a;
   line-height: 1.5;
-  font-weight: 900;
   margin: 10px 50px 10px 50px;
   text-align: left;
 }
 
 /* 확인 내용 */
 .quizmain-description {
-  font-size: 15px;
+  font-size: 16px;
   color: #5a5a5a;
   line-height: 2.5;
   font-weight: 300;

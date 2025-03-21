@@ -17,14 +17,13 @@
 .quizfailure-num-image {
   display: flex; /* 가로 정렬 */
   justify-content: center; /* 가운데 정렬 */
-  gap: 170px; /* 글씨와 이미지 사이 간격 */
-  margin-top: 22px;
+  gap: 165px; /* 글씨와 이미지 사이 간격 */
+  margin-top: 12px;
 }
 
 /* 퀴즈번호 */
 .quizfailure-number {
-  font-size: 17px;
-  font-weight: 900;
+  font-size: 20px;
   color: #000000;
   margin-top: 60px;
 }
@@ -77,7 +76,6 @@
 /* 오답이에요! */
 .quizfailure-answer {
   font-size: 20px;
-  font-weight: 900;
   margin-bottom: 15px;
   color: #000000;
 }
@@ -89,7 +87,6 @@
   height: auto;
   background-color: #ffffff;
   color: #ffe2b3;
-  font-size: 14px;
   border: 2px solid;
   border-radius: 15px;
   margin: 0 auto 20px auto; /* 가운데 정렬 */
@@ -98,10 +95,10 @@
 
 /* 퀴즈 해설 */
 .quizfailure-description {
-  font-size: 15px;
+  font-size: 18px;
   color: #000000;
   line-height: 1.5;
-  font-weight: 700;
+  font-weight: lighter;
   margin: 10px 25px 10px 25px;
 }
 
@@ -109,13 +106,12 @@
 .quizfailure-point {
   font-size: 18px;
   color: #5a5a5a;
-  font-weight: 700;
-  margin: 30px auto 30px auto;
+  margin: 30px auto 20px auto;
 }
 
 /* 오늘의 퀴즈 완료 */
 .quizfailure-quiz-done {
-  font-size: 15px;
+  font-size: 18px;
   color: #5a5a5a;
   line-height: 1.5;
   font-weight: 500;
@@ -128,7 +124,7 @@
   height: 45px;
   background-color: #ff9500;
   color: white;
-  font-size: 14px;
+  font-size: 18px;
   border: none;
   border-radius: 15px;
   cursor: pointer;
@@ -146,7 +142,7 @@
   height: 45px;
   background-color: #c4c0ba;
   color: white;
-  font-size: 14px;
+  font-size: 18px;
   border: none;
   border-radius: 15px;
   cursor: pointer;
@@ -166,7 +162,7 @@
   height: 45px;
   background-color: #ff9500;
   color: white;
-  font-size: 14px;
+  font-size: 18px;
   border: none;
   border-radius: 15px;
   cursor: pointer;
