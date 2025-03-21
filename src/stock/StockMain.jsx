@@ -14,7 +14,7 @@ function StockMain(props) {
   const [myStockData, setMyStockData] = useState([]);
   const [isMarketClosed, setIsMarketClosed] = useState(false);
   const [toastId, setToastId] = useState(null);
-  const [totalPrice, setStockPrice] = useState(0);
+  const [stockMoney, setStockMoney] = useState(0);
 
   const navi = useNavigate();
 
@@ -97,17 +97,16 @@ function StockMain(props) {
       .catch((error) => {
         console.error("Error fetching stock detail:", error);
       });
-
-    // 보유 잔고 불러오기
+    // 잔고 불러오기 추가
     axios
-      .get("http://localhost:7777/zoomoney/stock/money", {
+      .get("http://localhost:7777/zoomoney/stock/getmoney", {
         params: { memberNum },
       })
       .then((response) => {
-        setStockPrice(response.data);
+        setStockMoney(response.data); // 상태값에 저장
       })
       .catch((error) => {
-        console.error("Error fetching stock money", error);
+        console.error("Error fetching stock money:", error);
       });
   }, [memberNum]);
 
@@ -174,7 +173,7 @@ function StockMain(props) {
           </div>
           <div>
             <span>예수금</span>
-            <span class="loss">{totalPrice} 원</span>
+            <span class="loss">{stockMoney.toLocaleString()} 원</span>
           </div>
         </div>
       </div>
