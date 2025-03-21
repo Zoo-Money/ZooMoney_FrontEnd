@@ -42,14 +42,19 @@
   padding-left: 7%;
   padding-right: 7%;
   max-height: calc(100vh - 450px);
-  overflow-y: auto;
   width: 100%;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.DetailOption-content::-webkit-scrollbar {
+  display: none;
 }
 
 .goToBuy-button {
   width: 180px;
   height: 45px;
-  background-color: #FF2200;
+  background-color: #ff2200;
   color: white;
   font-size: 14px;
   border: none;
