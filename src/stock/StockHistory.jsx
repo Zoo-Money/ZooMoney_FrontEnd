@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "./css/stockHistory.css";
-import Footer from "../common/Footer";
 
 ChartJS.register(
   LineElement,
@@ -139,7 +138,11 @@ function StockHistory(props) {
       <div className="history-list-box">
         {ranking &&
           ranking.map((item, index) => (
-            <div className="history-list" key={index} onClick={() => goHistoryDetail(item)}>
+            <div
+              className="history-list"
+              key={index}
+              onClick={() => goHistoryDetail(item)}
+            >
               <span className="history-list-title">시즌{index + 1}</span>
               <span className="history-list-date">
                 {new Date(item.result_date).toLocaleString("ko-KR", {
@@ -157,7 +160,6 @@ function StockHistory(props) {
       <button className="history-button" onClick={goStockMain}>
         모의 투자 하러 가기
       </button>
-      <Footer />
     </div>
   );
 }

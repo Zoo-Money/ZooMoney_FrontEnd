@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import giraffe01 from "../images/giraffe/giraffe01.png";
 import "./dailyMain.css";
@@ -76,8 +75,6 @@ const DailyMain = () => {
           </>
         )}
       </div>
-
-      <Footer />
     </div>
   );
 };

@@ -1,14 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaQuestionCircle } from "react-icons/fa";
+import { IoIosArrowForward } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
-import Header from "../common/Header";
-import rabbit01 from "../images/rabbit/rabbit01.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Header from "../common/Header";
+import rabbit01 from "../images/rabbit/rabbit01.png";
 import "./css/stockMain.css";
-import { IoIosArrowForward } from "react-icons/io";
 
 function StockMain(props) {
   const memberNum = sessionStorage.getItem("member_num");
@@ -23,7 +22,7 @@ function StockMain(props) {
     const checkMarketStatus = () => {
       const now = new Date();
       const hours = now.getHours();
-      const minutes = now.getMinutes();
+      // const minutes = now.getMinutes();
 
       // 9~15시까지 오픈
       const marketOpen = hours >= 9 && hours <= 15;
@@ -141,11 +140,18 @@ function StockMain(props) {
             <IoIosArrowForward className="selectchart-forward" />
           </div>
         </Link>
-        <img src={rabbit01} alt="rabbit01" style={{zIndex:"2"}}/>
+        <img src={rabbit01} alt="rabbit01" style={{ zIndex: "2" }} />
       </div>
       <div className="stock-main-box" onClick={goToProfit}>
         <h2>내 투자</h2>
-        <IoIosArrowForward style={{width:"50px",height:"30px", float:"right", color:"#333"}}/>
+        <IoIosArrowForward
+          style={{
+            width: "50px",
+            height: "30px",
+            float: "right",
+            color: "#333",
+          }}
+        />
         <div className="stock-main-box-amount">
           {totalInvestment.toLocaleString()} 원
         </div>
@@ -239,7 +245,6 @@ function StockMain(props) {
       <button className="stock-main-button" onClick={goStockList}>
         투자하러 가기
       </button>
-      <Footer />
     </div>
   );
 }

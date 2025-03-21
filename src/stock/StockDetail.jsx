@@ -2,7 +2,6 @@ import { Chart, registerables } from "chart.js";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { useNavigate, useParams } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import CompanyInfo from "./CompanyInfo";
 import "./css/StockDetail.css";
@@ -160,8 +159,6 @@ const StockDetail = () => {
           </button>
         </div>
       )}
-
-      <Footer />
     </div>
   );
 };

@@ -1,12 +1,11 @@
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractWriteChild.css";
-import { useNavigate } from "react-router-dom";
 
 const getFormattedDate = () => {
   const today = new Date();
@@ -197,8 +196,6 @@ const ContractWriteChild = () => {
             서명 완료
           </button>
         </div>
-
-        <Footer />
       </div>
     </div>
   );

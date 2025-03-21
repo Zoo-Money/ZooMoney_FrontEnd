@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
-import emptyStamp from "../images/quiz/empty_stamp.avif";
 import giraffe04 from "../images/giraffe/giraffe04.png";
+import emptyStamp from "../images/quiz/empty_stamp.avif";
 import oStamp from "../images/quiz/o_stamp.png";
 import xStamp from "../images/quiz/x_stamp.png";
 import "./css/quizMain.css";
@@ -144,9 +143,6 @@ const QuizMain = () => {
           <li>퀴즈를 맞힐 때마다 100P를 받아요.</li>
         </p>
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

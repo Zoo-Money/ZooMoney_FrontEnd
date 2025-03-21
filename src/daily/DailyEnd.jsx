@@ -1,9 +1,8 @@
 import React from "react";
-import Footer from "../common/Footer";
+import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
 import giraffe02 from "../images/giraffe/giraffe02.png";
 import "./dailyEnd.css";
-import { useNavigate } from "react-router-dom";
 
 const DailyEnd = () => {
   const navigate = useNavigate();
@@ -27,9 +26,6 @@ const DailyEnd = () => {
           메인으로 돌아가기
         </button>
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

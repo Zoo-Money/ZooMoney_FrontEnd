@@ -8,7 +8,6 @@ import "react-pdf/dist/esm/Page/TextLayer.css"; //  텍스트 레이어 스타�
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import { useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractSelect.css";
 
@@ -83,9 +82,6 @@ const ContractSelect = () => {
             <FaChevronRight className="ContractSelect-arrow-icon" />
           </div>
         </div>
-
-        {/* 하단 네비게이션 */}
-        <Footer />
       </div>
     </div>
   );

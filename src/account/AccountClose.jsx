@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/AccountClose.css";
 
@@ -86,9 +85,6 @@ const AccountClose = () => {
           </button>
         </div>
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import { Badge } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import FooterParent from "../common/FooterParent";
+import { useNavigate } from "react-router-dom";
 import rabbit02 from "../images//rabbit/rabbit02.png";
 import bear04 from "../images/bear/bear04.png";
 import deer02 from "../images/deer/deer02.png";
@@ -10,7 +10,6 @@ import pig02 from "../images/pig/pig02.png";
 import profile1 from "../images/profile1.png";
 import profile2 from "../images/profile2.png";
 import "./css/parentMain.css";
-import { Badge } from "@mui/material";
 
 const ParentMain = () => {
   const navigate = useNavigate();
@@ -39,7 +38,6 @@ const ParentMain = () => {
       console.error("부모 ID가 없습니다. 로그인 후 시도하세요.");
       return;
     }
-    console.log("부모 ID:", parentId);
     await axios
       .get("http://localhost:7777/zoomoney/contract/getChildByParent", {
         params: { parentId: parentId },
@@ -77,7 +75,7 @@ const ParentMain = () => {
         setCardMoney(response.data.cardMoney);
       })
       .catch((error) => {
-        console.error("@@카드 정보 불러오기 실패:", error);
+        console.error("카드 정보 불러오기 실패:", error);
         setCardMoney(0); // 카드 데이터가 없을 경우 기본 값 0 설정
       });
   };
@@ -87,11 +85,11 @@ const ParentMain = () => {
       f_getChildren();
       isFirstLoad.current = false; //
     }
-  }, []);
+  });
 
   useEffect(() => {
     f_getChildMoney();
-  }, [selectedChild]);
+  });
 
   // 자녀 선택 시 상태 업데이트
   const handleChildSelect = (childNum) => {
@@ -227,8 +225,12 @@ const ParentMain = () => {
             <NotificationsIcon
               className={shake ? "bell-shake" : ""}
               color="action"
+              style={{
+                color: view ? "#ff9500" : "",
+                fontSize: "1.5rem",
+                cursor: "pointer",
+              }}
               onClick={animate}
-              style={{ fontSize: "1.5rem", cursor: "pointer" }}
             />
           </Badge>
           {/* 알림 리스트 */}
@@ -380,8 +382,6 @@ const ParentMain = () => {
           <p>저금통 확인</p>
         </div>
       </div>
-      {/* 하단 네비게이션 바 */}
-      <FooterParent />
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import stamp from "../images/stamp.png";
 import "./css/AccountDetail.css";
@@ -248,9 +247,6 @@ const AccountDetail = () => {
           </div>
         ) : null}
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

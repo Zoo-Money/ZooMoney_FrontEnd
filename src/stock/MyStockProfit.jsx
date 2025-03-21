@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineQuestionCircle } from "react-icons/ai";
-import Footer from "../common/Footer";
+import { useLocation } from "react-router-dom";
 import Header from "../common/Header";
 import rabbit from "../images/rabbit/rabbit02.png";
 import "./css/MyStockProfit.css";
-import { useLocation } from "react-router-dom";
 
 const descriptions = {
   총매입:
@@ -120,7 +119,6 @@ const MyStockProfit = () => {
           </div>
         )}
       </div>
-      <Footer />
     </div>
   );
 };

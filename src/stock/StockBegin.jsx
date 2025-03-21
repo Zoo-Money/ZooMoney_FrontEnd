@@ -1,10 +1,9 @@
+import axios from "axios";
 import React, { useState } from "react";
-import Footer from "../common/Footer";
+import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
 import rabbit1 from "../images/rabbit/rabbit01.png";
 import "./css/StockBegin.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const StockBegin = () => {
   const [, setHasJoined] = useState(false);
@@ -48,8 +47,6 @@ const StockBegin = () => {
           참여하기
         </button>
       </div>
-
-      <Footer />
     </div>
   );
 };

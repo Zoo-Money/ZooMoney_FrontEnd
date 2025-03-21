@@ -2,11 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
+import { toast } from "react-toastify";
 import Header from "../common/Header";
 import "./css/AccountInsert.css";
 import { mintTokens } from "./resources/AccountService";
-import { toast } from "react-toastify";
 
 const AccountInsert = () => {
   // 세션 값 불러오기
@@ -167,9 +166,6 @@ const AccountInsert = () => {
           {isready ? "처리 중..." : "다음"}
         </button>
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

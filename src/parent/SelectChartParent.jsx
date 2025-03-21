@@ -4,8 +4,12 @@ import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { categoryColor, categoryHoverColor, categoryName } from "../moneyPlan/resource/planCommon.js";
-import "../moneyPlan/css/selectChart.css"
+import {
+  categoryColor,
+  categoryHoverColor,
+  categoryName,
+} from "../moneyPlan/resource/planCommon.js";
+import "../moneyPlan/css/selectChart.css";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function SelectChartParent() {
@@ -40,7 +44,7 @@ function SelectChartParent() {
       .catch((error) => {
         console.error("데이터 로딩 오류: ", error);
       });
-  }, []);
+  });
 
   //카테고리별 세부 금액
   useEffect(() => {
