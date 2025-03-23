@@ -60,7 +60,7 @@ function StockBuy(props) {
     <div className="mock-container">
       <Header title="구매하기" />
       <div className="buy-header">
-        주식을 <span style={{ color: "red" }}>매수</span>하면,
+        주식을 <span style={{ color: "#FF2200" }}>매수</span>하면,
         <br />
         해당 주식의 <span>소유자</span>가 돼요.
         <br />
@@ -73,15 +73,15 @@ function StockBuy(props) {
         <div className="buy-box">
           현재 <span>주식</span> 가격
           <br />
-          <p>{price.toLocaleString()}</p>
+          <p>{price.toLocaleString()}원</p>
         </div>
         <div className="buy-box">
           구매 <span>수량</span>
-          <inpput
+          <input
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            placeholder="수량 입력"
+            placeholder="수량을 입력해주세요."
           />
         </div>
       </div>

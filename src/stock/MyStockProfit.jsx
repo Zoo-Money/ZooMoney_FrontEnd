@@ -49,7 +49,7 @@ const MyStockProfit = () => {
         <div className="myStockProfit-item" onClick={() => openModal("총매입")}>
           <span>
             총매입
-            <AiOutlineQuestionCircle />
+            <AiOutlineQuestionCircle className="question-white"/>
           </span>
           <span className="myStockProfit-value">
             {totalPurchase.toLocaleString()} 원
@@ -58,7 +58,7 @@ const MyStockProfit = () => {
         <div className="myStockProfit-item" onClick={() => openModal("총평가")}>
           <span>
             총평가
-            <AiOutlineQuestionCircle />
+            <AiOutlineQuestionCircle className="question-white"/>
           </span>
           <span className="myStockProfit-value">
             {totalEvaluation.toLocaleString()} 원
@@ -70,7 +70,7 @@ const MyStockProfit = () => {
         >
           <span>
             평가손익
-            <AiOutlineQuestionCircle />
+            <AiOutlineQuestionCircle className="question-white"/>
           </span>
           <span className="myStockProfit-value highlight">
             {evaluationProfitLoss.toLocaleString()} 원
@@ -79,7 +79,7 @@ const MyStockProfit = () => {
         <div className="myStockProfit-item" onClick={() => openModal("수익률")}>
           <span>
             수익률
-            <AiOutlineQuestionCircle />
+            <AiOutlineQuestionCircle className="question-white"/>
           </span>
           <span className="myStockProfit-value highlight">
             {totalProfitRate.toFixed(2)} %
@@ -91,7 +91,7 @@ const MyStockProfit = () => {
         >
           <span>
             추정자산
-            <AiOutlineQuestionCircle />
+            <AiOutlineQuestionCircle className="question-white"/>
           </span>
           <span className="myStockProfit-value">
             {totalEvaluation.toLocaleString()} 원
