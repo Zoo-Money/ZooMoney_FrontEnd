@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -19,7 +20,7 @@ const QuizQuiz = () => {
   // ✅ 백엔드에서 퀴즈 가져오기
   useEffect(() => {
     axios
-      .post("http://localhost:7777/zoomoney/quiz/generate")
+      .post(`${API_PATH}/zoomoney/quiz/generate`)
       .then((response) => setQuiz(response.data))
       .catch((error) => console.error("퀴즈 불러오기 실패", error));
   }, []);
@@ -37,7 +38,7 @@ const QuizQuiz = () => {
     };
 
     axios
-      .post("http://localhost:7777/zoomoney/quiz/submit", payload, {
+      .post(`${API_PATH}/zoomoney/quiz/submit`, payload, {
         params: { memberNum: memberNum },
       })
       .then((response) => {
@@ -61,7 +62,7 @@ const QuizQuiz = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/quiz/count", {
+      .get(`${API_PATH}/zoomoney/quiz/count`, {
         params: { memberNum: memberNum },
       })
       .then((response) => {

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -40,7 +41,7 @@ function StockHistory(props) {
   //시즌별 결과 받아오기기
   useEffect(() => {
     axios
-      .get(`http://localhost:7777/zoomoney/stock/result/list/${memberNum}`, {
+      .get(`${API_PATH}/zoomoney/stock/result/list/${memberNum}`, {
         params: { memberNum },
       })
       .then((responseData) => {

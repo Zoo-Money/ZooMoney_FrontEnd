@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API_PATH } from "../common/config.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Header from "../common/Header";
@@ -26,22 +27,19 @@ function StockSell(props) {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost:7777/zoomoney/stock/sell",
-        {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            memberNum,
-            stockId,
-            amount,
-            price,
-          }),
-        }
-      );
+      const response = await fetch(`${API_PATH}/zoomoney/stock/sell`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          memberNum,
+          stockId,
+          amount,
+          price,
+        }),
+      });
 
       if (response.ok) {
         navigate("/stock/TradeDone", {

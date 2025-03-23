@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -25,13 +26,16 @@ function PlanWrite(props) {
   const navi = useNavigate();
   const images = [hamburger, cart, game, pig, etc];
   const memberNum = sessionStorage.getItem("member_num");
-  
+
   //용돈가져오기
   useEffect(() => {
-    axios.get(`http://localhost:7777/zoomoney/moneyplan/getAllowance?memberNum=${memberNum}`,{
-      params:{ memberNum }
-    },
-    )
+    axios
+      .get(
+        `${API_PATH}/zoomoney/moneyplan/getAllowance?memberNum=${memberNum}`,
+        {
+          params: { memberNum },
+        }
+      )
       .then((resposeData) => {
         const formattedMoney = new Intl.NumberFormat().format(resposeData.data);
         setPlanMoney(formattedMoney);
@@ -39,7 +43,7 @@ function PlanWrite(props) {
       .catch((error) => {
         console.error(error);
       });
-  },[memberNum]);
+  }, [memberNum]);
 
   //유효성검사
   useEffect(() => {

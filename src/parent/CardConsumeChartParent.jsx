@@ -1,10 +1,15 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
 import React, { useEffect, useRef, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Header from "../common/Header";
-import { categoryColor, categoryHoverColor, categoryName } from "../moneyPlan/resource/planCommon.js";
+import {
+  categoryColor,
+  categoryHoverColor,
+  categoryName,
+} from "../moneyPlan/resource/planCommon.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
@@ -18,7 +23,7 @@ function PatternChart() {
   //카드 내역 가져오기
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/card/select", {
+      .get(`${API_PATH}/zoomoney/card/select`, {
         params: { member_num: childNum },
       })
       .then((response) => {

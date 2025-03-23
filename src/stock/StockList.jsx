@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { API_PATH } from "../common/config.js";
 import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
 import rabbit1 from "../images/rabbit/rabbit01.png";
@@ -9,7 +10,7 @@ const StockList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:7777/zoomoney/stock/rank")
+    fetch(`${API_PATH}/zoomoney/stock/rank`)
       .then((response) => response.json())
       .then((data) => {
         if (Array.isArray(data)) {

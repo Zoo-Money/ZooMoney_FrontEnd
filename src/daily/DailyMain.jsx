@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
@@ -15,7 +16,7 @@ const DailyMain = () => {
   // ✅ 출석 여부 확인 (DB 수정 X)
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/daily/status", {
+      .get(`${API_PATH}/zoomoney/daily/status`, {
         params: { memberNum: memberNum },
       })
       .then((response) => {
@@ -31,7 +32,7 @@ const DailyMain = () => {
   // ✅ 출석 체크 (버튼 눌렀을 때만 실행)
   const handleAttendance = () => {
     axios
-      .post(`http://localhost:7777/zoomoney/daily/check?memberNum=${memberNum}`)
+      .post(`${API_PATH}/zoomoney/daily/check?memberNum=${memberNum}`)
       .then((response) => {
         setIsChecked(true); // 출석 완료 상태 업데이트
         navigate("/daily/end"); // 출석 성공 시 이동

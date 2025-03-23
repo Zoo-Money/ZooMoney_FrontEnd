@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../../common/config.js";
 import { ethers } from "ethers";
 import card00 from "../../images/card/card00.png";
 import CardABI from "./CardABI.json"; // 스마트 컨트랙트 ABI
@@ -278,11 +279,7 @@ export const saveCardToDB = async (
     member_num: memberNum,
   };
   try {
-    await axios.post(
-      "http://localhost:7777/zoomoney/card/create",
-      cardData,
-      axiosHeader
-    );
+    await axios.post(`${API_PATH}/zoomoney/card/create`, cardData, axiosHeader);
   } catch (error) {
     console.error("카드 정보 저장 실패:", error);
   }
@@ -297,7 +294,7 @@ export const updateCardDate = async () => {
       throw new Error("세션에 memberNum이 없습니다.");
     }
     await axios.put(
-      "http://localhost:7777/zoomoney/card/update",
+      `${API_PATH}/zoomoney/card/update`,
       {
         card_num: cardNum,
         member_num: memberNum,
@@ -310,14 +307,11 @@ export const updateCardDate = async () => {
 };
 export const fetchCardInfo = async (memberNum, setTokenId, setNewLoading) => {
   try {
-    const response = await axios.get(
-      "http://localhost:7777/zoomoney/card/get",
-      {
-        params: {
-          member_num: memberNum, // 쿼리 파라미터로 전달
-        },
-      }
-    );
+    const response = await axios.get(`${API_PATH}/zoomoney/card/get`, {
+      params: {
+        member_num: memberNum, // 쿼리 파라미터로 전달
+      },
+    });
 
     if (response.data) {
       sessionStorage.setItem("tokenId", response.data.cardMetadata);
