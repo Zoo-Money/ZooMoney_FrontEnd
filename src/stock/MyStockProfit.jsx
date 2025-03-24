@@ -49,7 +49,7 @@ const MyStockProfit = () => {
         <div className="myStockProfit-item" onClick={() => openModal("총매입")}>
           <span>
             총매입
-            <AiOutlineQuestionCircle className="question-white" />
+            <AiOutlineQuestionCircle className="question-white2" />
           </span>
           <span className="myStockProfit-value">
             {totalPurchase.toLocaleString()} 원
@@ -58,7 +58,7 @@ const MyStockProfit = () => {
         <div className="myStockProfit-item" onClick={() => openModal("총평가")}>
           <span>
             총평가
-            <AiOutlineQuestionCircle className="question-white" />
+            <AiOutlineQuestionCircle className="question-white2" />
           </span>
           <span className="myStockProfit-value">
             {totalEvaluation.toLocaleString()} 원
@@ -79,7 +79,7 @@ const MyStockProfit = () => {
         <div className="myStockProfit-item" onClick={() => openModal("수익률")}>
           <span>
             수익률
-            <AiOutlineQuestionCircle className="question-white" />
+            <AiOutlineQuestionCircle className="question-white2" />
           </span>
           <span className={totalProfitRate >= 0 ? "my-profit" : "my-loss"}>
             {totalProfitRate.toFixed(2)} %
