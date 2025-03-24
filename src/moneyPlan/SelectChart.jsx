@@ -27,23 +27,9 @@ function SelectChart() {
   const [money, setMoney] = useState({});
   const chartInstanceRef = useRef(null); // 차트 인스턴스 저장
 
-  // plan_date를 일주일 단위로 변환
   const formatPlanDate = (dateString) => {
-    // 1. DB에서 UTC로 저장된 날짜를 가져옴
-    const formattedStart = dayjs
-      .utc(dateString)
-      .tz("Asia/Seoul", true)
-      .startOf("day")
-      .format("YYYY-MM-DD");
-
-    // 2. 시작 날짜를 기준으로 6일을 더해 종료 날짜 계산
-    const formattedEnd = dayjs
-      .utc(dateString)
-      .tz("Asia/Seoul", true)
-      .add(6, "days")
-      .startOf("day")
-      .format("YYYY-MM-DD");
-
+    const formattedStart = dayjs(dateString).format("YYYY-MM-DD");
+    const formattedEnd = dayjs(dateString).add(6, "day").format("YYYY-MM-DD");
     return `${formattedStart} ~ ${formattedEnd}`;
   };
 
@@ -54,40 +40,44 @@ function SelectChart() {
         params: { memberNum },
       })
       .then((response) => {
-        const sortedData = response.data.sort(
-          (a, b) => b.plan_num - a.plan_num
-        );
-
+        // console.log(response.data);
+        // const sortedData = response.data.sort(
+        //   (a, b) => b.plan_num - a.plan_num
+        // );
+        
+        const sortedData = response.data;
+        console.log(sortedData);
+      
         const dateArr = sortedData.map((plan) => plan.plan_date.split("T")[0]);
         setPlanDate(dateArr);
+        // console.log("날짜확인!", dateArr); // 날짜 확인
 
         // 각 plan_num별 plan_money 값을 배열로 저장
         const moneyArr = sortedData.map((plan) => plan.plan_money);
         setMoney(moneyArr);
+        // console.log(money);
 
-        const plansGroupedByNum = groupByPlanNum(response.data);
+        const plansGroupedByNum = groupByPlanNum(sortedData);
+        
         setPlansData(plansGroupedByNum);
+        // console.log(plansData);
       })
       .catch((error) => {
         console.error("데이터 로딩 오류: ", error);
       });
   }, [memberNum]);
 
-  //카테고리별 세부 금액
-  useEffect(() => {
-    const currentPlanDetails =
-      plansData[Object.keys(plansData)[currentPlanNum]] || [];
-    const data = categoryName.map((category, index) => {
-      const detail = currentPlanDetails.find(
-        (item) => item.category_num === index + 1
-      );
-      return detail ? detail.detail_money : 0;
-    });
-    setLegendData(data); // legendData 업데이트
-  }, [currentPlanNum, plansData]);
+  
 
+
+
+
+  // useEffect(() => {
+  //           console.log(plansData);
+  // }, [plansData]);
   // plan_num별로 데이터를 그룹화
   const groupByPlanNum = (data) => {
+    // console.log("data확인",data);
     return data.reduce((acc, plan) => {
       const { plan_num, planDetails } = plan;
       if (!acc[plan_num]) {
@@ -98,6 +88,25 @@ function SelectChart() {
     }, {});
   };
 
+  //카테고리별 세부 금액
+  useEffect(() => {
+    const currentPlanDetails =
+      plansData[Object.keys(plansData)[currentPlanNum]] || [];
+      // plansData[groupByPlanNum[currentPlanNum]] || [];
+    // 내림차순 정렬을 보장합니다.
+    const sortedPlanDetails = currentPlanDetails.sort(
+      (a, b) => b.plan_num - a.plan_num
+    );
+
+    const data = categoryName.map((category, index) => {
+      const detail = sortedPlanDetails.find(
+        (item) => item.category_num === index + 1
+      );
+      return detail ? detail.detail_money : 0;
+    });
+    setLegendData(data); // legendData 업데이트
+  }, [currentPlanNum, plansData]);
+
   // 입력 값 총합
   const getTotalAmount = (planDetails) => {
     return planDetails.reduce((sum, item) => sum + item.detail_money, 0);
@@ -105,13 +114,18 @@ function SelectChart() {
 
   // plan_num에 해당하는 차트 데이터 생성
   const getChartData = (planDetails) => {
+    const sortedPlanDetails = [...planDetails].sort(
+      (a, b) => b.plan_num - a.plan_num
+    );
+    // console.log("sortedPlanDetails", sortedPlanDetails);
     const data = categoryName.map((category, index) => {
-      const detail = planDetails.find(
+      const detail = sortedPlanDetails.find(
         (item) => item.category_num === index + 1
       );
+
       return detail ? detail.detail_money : 0;
     });
-
+    // console.log("data:", data);
     return {
       labels: categoryName,
       datasets: [
@@ -123,6 +137,8 @@ function SelectChart() {
       ],
     };
   };
+
+  //useEffect(()=>{}, []);
 
   //차트 옵션
   const chartOptions = {
