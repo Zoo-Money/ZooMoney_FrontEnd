@@ -24,7 +24,6 @@ function StockMain(props) {
     const checkMarketStatus = () => {
       const now = new Date();
       const hours = now.getHours();
-      // const minutes = now.getMinutes();
 
       // 9~15시까지 오픈
       const marketOpen = hours >= 9 && hours <= 15;
@@ -74,7 +73,6 @@ function StockMain(props) {
       showMarketClosedToast();
       return;
     }
-
     navi("/stock/stockSell", { state: { stockId, stockPrice, stockName } });
   };
 
@@ -173,17 +171,17 @@ function StockMain(props) {
         <div className="stock-main-box-detail">
           <div>
             <span>총 수익</span>
-            <span class="loss">
+            <span className={totalProfitRate >= 0 ? "profit" : "loss"}>
               {(totalInvestment - 1000000).toLocaleString()} 원
             </span>
           </div>
           <div>
             <span>총 수익률</span>
-            <span class="loss">{totalProfitRate.toFixed(2)} %</span>
+            <span span className={totalProfitRate >= 0 ? "profit" : "loss"}>{totalProfitRate.toFixed(2)} %</span>
           </div>
           <div>
             <span>예수금</span>
-            <span class="loss">{stockMoney.toLocaleString()} 원</span>
+            <span span className={totalProfitRate >= 0 ? "profit" : "loss"}>{stockMoney.toLocaleString()} 원</span>
           </div>
         </div>
       </div>
@@ -195,16 +193,16 @@ function StockMain(props) {
           <table className="stock-table">
             <thead>
               <tr>
-                <th>종목명</th>
-                <th>평균 매입가</th>
-                <th>총 금액</th>
-                <th>매도</th>
+                <th style={{width: "80px"}}>종목명</th>
+                <th style={{width: "80px"}}>평균 매입가</th>
+                <th style={{width: "120px"}}>총 금액</th>
+                <th style={{width: "80px"}}>매도</th>
               </tr>
             </thead>
           </table>
         </div>
         <div className="table-body">
-          <table className="stock-table">
+          <table className="stock-table" style={{marginBottom: "50px"}}>
             <tbody className="stock-main-mystock-list-box">
               {myStockData.length > 0 ? (
                 myStockData

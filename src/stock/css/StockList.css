@@ -29,6 +29,7 @@
   align-items: center;
   border-bottom: 1px solid #eee;
   padding: 12px 0;
+  cursor: pointer;
   transition: 0.5s ease;
 }
 .stock-item:hover {
@@ -87,8 +88,4 @@
 
 .stockList-image img {
   margin-right: 10px;
-}
-
-.clickable {
-  cursor: pointer;
 }

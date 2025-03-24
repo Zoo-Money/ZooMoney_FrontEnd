@@ -88,6 +88,7 @@ function StockSell(props) {
           판매 <span>수량</span>
           <input
             type="number"
+            min="0"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="수량을 입력해주세요."

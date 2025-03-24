@@ -6,7 +6,6 @@ import StockModal from "./StockModal";
 import "./css/stockNews.css";
 
 function StockNews(props) {
-  //초기값 가져오기기
   const { stockName } = useParams(); // URL에서 infoNum 가져오기
   const [newsList, setNewsList] = useState([]);
   const [selectedNews, setSelectedNews] = useState(null);

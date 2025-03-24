@@ -150,6 +150,7 @@ const ParentMain = () => {
 
     conn();
   }, [parentId]);
+
   const animate = () => {
     // 알림 아이콘 애니메이션
     setShake(true);
@@ -211,6 +212,7 @@ const ParentMain = () => {
   const goAccount = () => {
     navigate("/parent/account", { state: { target: selectedChild } }); // state로 전달
   };
+
   return (
     <div className="mock-container">
       <div className="parent-main-zoo-money-title">
@@ -249,7 +251,6 @@ const ParentMain = () => {
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                 zIndex: 1,
                 fontSize: "1rem",
-                fontWeight: "bold",
               }}
             >
               <div
@@ -283,7 +284,6 @@ const ParentMain = () => {
                       style={{
                         textAlign: "right",
                         fontSize: "0.75rem",
-                        fontWeight: "none",
                         color: "#666",
                       }}
                     >
@@ -304,7 +304,6 @@ const ParentMain = () => {
       </div>
       {/* 프로필 영역 */}
       <div className="parent-main-profile-container">
-        {" "}
         {/* 가로로 정렬을 위한 추가 */}
         {children.map((child) => (
           <div
@@ -326,7 +325,6 @@ const ParentMain = () => {
               alt={child.memberName}
             />
             <div className="profile-name">
-              {" "}
               {/* 이름을 프로필 아래에 위치 */}
               <span>{child.memberName}</span>
             </div>
@@ -339,12 +337,11 @@ const ParentMain = () => {
           <div className="parent-main-allowance-text">
             <p className="parent-main-allowance-title">
               <span className="parent-main-allowance-cild-name">
-                {selectedChildInfo ? selectedChildInfo.memberName : "자녀 없음"}{" "}
+                {selectedChildInfo ? selectedChildInfo.memberName : "자녀 없음"}
               </span>
-              의 용돈주머니
+              의 용돈
             </p>
             <p className="parent-main-allowance-amount">
-              {" "}
               {cardMoney.toLocaleString()} 원
             </p>
           </div>

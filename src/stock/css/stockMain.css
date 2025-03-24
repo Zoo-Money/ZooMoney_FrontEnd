@@ -3,7 +3,6 @@
   background-color: #fff2e2;
   padding: 16px;
   border-radius: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 360px;
   cursor: pointer;
@@ -11,7 +10,7 @@
 }
 .stock-main-box:hover {
   opacity: 0.8;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 .stock-main-header {
   width: 20%;
@@ -23,7 +22,7 @@
 }
 .stock-main-info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 5px;
   margin-left: -120px;
   margin-bottom: 5px;
@@ -99,17 +98,15 @@
 }
 /* 테이블 바디 영역 스크롤 */
 .table-body {
-  max-height: 300px; /* 스크롤 높이 조정 */
+  max-height: calc(100vh - 620px); /* 스크롤 높이 조정 */
   overflow-y: auto;
   display: block;
-}
-.stock-main-mystock-list-box33 {
-  max-height: calc(100vh - 580px);
-}
-.table-body {
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+.stock-main-mystock-list-box33 {
+  max-height: calc(100vh - 580px);
 }
 .table-body::-webkit-scrollbar {
   display: none;
