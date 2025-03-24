@@ -119,7 +119,7 @@ function StockMain(props) {
   //   return total + stock.averagePrice * stock.quantity;
   // }, 0);
 
-  const totalInvestment = totalCurrentValue + stockMoney;
+  // const totalInvestment = totalCurrentValue + stockMoney;
 
   // 4. 총 수익률 (%) 계산
   const totalProfitRate = (totalCurrentValue / 1000000) * 100;
