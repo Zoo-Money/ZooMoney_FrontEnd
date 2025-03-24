@@ -60,14 +60,15 @@ function MyPage() {
                 {masking(memberInfo.memberPhone)}
               </span>
             </div>
-            <div className="info-row">
-              <span className="label">포인트</span>
-              <span className="InfoTitle bold point-text">
-                {(memberInfo.memberPoint).toLocaleString()} P
-              </span>
-            </div>
+            {member_type === "parent" ? null : (
+              <div className="info-row">
+                <span className="label">포인트</span>
+                <span className="InfoTitle bold point-text">
+                  {memberInfo.memberPoint.toLocaleString()} P
+                </span>
+              </div>
+            )}
           </div>
-
           {member_type === "parent" ? null : (
             <>
               <Link to="/card/modify" className="link-no-underline">
