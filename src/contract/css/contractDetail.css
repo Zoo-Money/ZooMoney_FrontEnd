@@ -16,7 +16,6 @@
   margin-top: 0; /* 상단 간격 없애기 */
   background-color: #fff;
   height: calc(100vh - 60px); /* 전체 화면 높이에서 헤더/푸터 제외 */
-  font-family: "Arial", sans-serif;
 }
 /* 계약 항목 */
 .contractDetail1-item {
