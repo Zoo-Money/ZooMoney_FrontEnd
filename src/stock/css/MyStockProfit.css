@@ -7,7 +7,18 @@
 .question-white {
   width: 20px;
   height: 20px;
-  margin-left: 7px;
+  margin-left: 17px;
+}
+
+.question-white2 {
+  width: 20px;
+  height: 20px;
+  margin-left: 30px;
+}
+.question-white3 {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
 }
 .questionMark {
   text-align: center;
@@ -45,7 +56,7 @@
   border: 1px solid rgb(157, 157, 157);
   text-align: right;
   width: 72%;
-  height: 43px;
+  height: 43.5px;
   content: none !important;
 
   display: flex;
@@ -60,7 +71,7 @@
   border: 1px solid rgb(157, 157, 157);
   text-align: right;
   width: 72%;
-  height: 43px;
+  height: 43.5px;
   content: none !important;
 
   display: flex;

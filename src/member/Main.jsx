@@ -365,9 +365,9 @@ const Main = () => {
               <img
                 src={rabbit01}
                 className="card-rabbit"
-                alt="소비 패턴 분석"
+                alt="나의 소비 패턴"
               />
-              <p>소비 패턴 분석</p>
+              <p>나의 소비 패턴</p>
             </div>
           </div>
           <div
