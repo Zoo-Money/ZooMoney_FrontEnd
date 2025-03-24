@@ -340,7 +340,7 @@ const ParentMain = () => {
               <span className="parent-main-allowance-cild-name">
                 {selectedChildInfo ? selectedChildInfo.memberName : "자녀 없음"}
               </span>
-              의 용돈주머니
+              의 용돈
             </p>
             <p className="parent-main-allowance-amount">
               {cardMoney.toLocaleString()} 원
