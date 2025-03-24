@@ -22,7 +22,7 @@ function SelectChart() {
 
   const [plansData, setPlansData] = useState({}); //각 plan_num별 데이터 저장
   const [currentPlanNum, setCurrentPlanNum] = useState(0); //현재 보여줄 plan_num
-  const [planDate, setPlanDate] = useState([]); //날짜짜
+  const [planDate, setPlanDate] = useState([]); //날짜
   const [legendData, setLegendData] = useState([]); //범례
   const [money, setMoney] = useState({});
   const chartInstanceRef = useRef(null); // 차트 인스턴스 저장
@@ -40,41 +40,22 @@ function SelectChart() {
         params: { memberNum },
       })
       .then((response) => {
-        // console.log(response.data);
-        // const sortedData = response.data.sort(
-        //   (a, b) => b.plan_num - a.plan_num
-        // );
-        
         const sortedData = response.data;
-        console.log(sortedData);
-      
         const dateArr = sortedData.map((plan) => plan.plan_date.split("T")[0]);
         setPlanDate(dateArr);
-        // console.log("날짜확인!", dateArr); // 날짜 확인
-
         // 각 plan_num별 plan_money 값을 배열로 저장
         const moneyArr = sortedData.map((plan) => plan.plan_money);
         setMoney(moneyArr);
-        // console.log(money);
 
         const plansGroupedByNum = groupByPlanNum(sortedData);
-        
+
         setPlansData(plansGroupedByNum);
-        // console.log(plansData);
       })
       .catch((error) => {
         console.error("데이터 로딩 오류: ", error);
       });
   }, [memberNum]);
 
-  
-
-
-
-
-  // useEffect(() => {
-  //           console.log(plansData);
-  // }, [plansData]);
   // plan_num별로 데이터를 그룹화
   const groupByPlanNum = (data) => {
     // console.log("data확인",data);
@@ -87,12 +68,19 @@ function SelectChart() {
       return acc;
     }, {});
   };
-
+  
+  // 날짜에 맞는 plan_num 찾기
+  const findPlanNumByDate = (date) => {
+    const planIndex = planDate.findIndex((planDate) => planDate === date);
+    return planIndex >= 0 ? Object.keys(plansData)[planIndex] : null;
+  };
   //카테고리별 세부 금액
   useEffect(() => {
-    const currentPlanDetails =
-      plansData[Object.keys(plansData)[currentPlanNum]] || [];
-      // plansData[groupByPlanNum[currentPlanNum]] || [];
+    const selectedPlanNum = findPlanNumByDate(planDate[currentPlanNum]);
+    const currentPlanDetails = plansData[selectedPlanNum] || [];
+    // const currentPlanDetails =
+    //   plansData[Object.keys(plansData)[currentPlanNum]] || [];
+    // plansData[groupByPlanNum[currentPlanNum]] || [];
     // 내림차순 정렬을 보장합니다.
     const sortedPlanDetails = currentPlanDetails.sort(
       (a, b) => b.plan_num - a.plan_num
@@ -105,7 +93,7 @@ function SelectChart() {
       return detail ? detail.detail_money : 0;
     });
     setLegendData(data); // legendData 업데이트
-  }, [currentPlanNum, plansData]);
+  }, [currentPlanNum, plansData, planDate]);
 
   // 입력 값 총합
   const getTotalAmount = (planDetails) => {
@@ -180,11 +168,12 @@ function SelectChart() {
   };
 
   // 데이터가 없다면 차트가 표시되지 않도록
-  if (!Object.keys(plansData).length) return null;
-
-  const currentPlanDetails = plansData[Object.keys(plansData)[currentPlanNum]];
+  const selectedPlanNum = findPlanNumByDate(planDate[currentPlanNum]);
+  const currentPlanDetails = plansData[selectedPlanNum] || [];
   const totalAmout = getTotalAmount(currentPlanDetails);
   const currentPlanMoney = money[currentPlanNum];
+  
+  if (!Object.keys(plansData).length) return "현재 용돈 계획이 없어요 🥲";
 
   return (
     <>
