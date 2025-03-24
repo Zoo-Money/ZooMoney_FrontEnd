@@ -57,7 +57,6 @@ function SelectChart() {
           (a, b) => b.plan_num - a.plan_num
         );
         // setMoney(sortedData.plan_money);
-        console.log(sortedData);
 
         const dateArr = sortedData.map((plan) => plan.plan_date.split("T")[0]);
         setPlanDate(dateArr);
