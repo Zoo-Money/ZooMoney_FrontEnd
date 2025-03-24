@@ -61,7 +61,7 @@ const MyStockProfit = () => {
         >
           <span>
             총평가금액
-            <AiOutlineQuestionCircle className="question-white2" />
+            <AiOutlineQuestionCircle className="question-white3" />
           </span>
           <span className="myStockProfit-value">
             {totalEvaluation.toLocaleString()} 원
