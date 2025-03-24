@@ -109,9 +109,9 @@ function StockMain(props) {
       });
   }, [memberNum]);
 
-  // 2. 현재 평가 금액 (현재가 * 보유량)
+  // 총수익 (현재가 - 평군가 ) * 보유량
   const totalCurrentValue = myStockData.reduce((total, stock) => {
-    return total + stock.stockPrice * stock.quantity;
+    return total + (stock.stockPrice - stock.averagePrice) * stock.quantity;
   }, 0);
 
   // 3. 총 매수 금액 (매수 평균가 * 보유량)
@@ -119,14 +119,10 @@ function StockMain(props) {
     return total + stock.averagePrice * stock.quantity;
   }, 0);
 
-  // 4. 총 수익률 (%) 계산
-  const totalProfitRate =
-    ((totalCurrentValue - totalInvested) / totalInvested) * 100;
+  const totalInvestment = totalCurrentValue + stockMoney;
 
-  const totalInvestment = myStockData.reduce(
-    (sum, stock) => sum + stock.totalValue,
-    0
-  );
+  // 4. 총 수익률 (%) 계산
+  const totalProfitRate = (totalCurrentValue / 1000000) * 100;
 
   // 총매입 계산 (평단가 * 수량)
   const totalPurchase = myStockData.reduce((total, stock) => {
@@ -171,17 +167,19 @@ function StockMain(props) {
         <div className="stock-main-box-detail">
           <div>
             <span>총 수익</span>
-            <span className={totalProfitRate >= 0 ? "profit" : "loss"}>
-              {(totalInvestment - 1000000).toLocaleString()} 원
+            <span className={totalCurrentValue >= 0 ? "profit" : "loss"}>
+              {totalCurrentValue.toLocaleString()} 원
             </span>
           </div>
           <div>
             <span>총 수익률</span>
-            <span span className={totalProfitRate >= 0 ? "profit" : "loss"}>{totalProfitRate.toFixed(2)} %</span>
+            <span span className={totalProfitRate >= 0 ? "profit" : "loss"}>
+              {totalProfitRate.toFixed(2)} %
+            </span>
           </div>
           <div>
             <span>예수금</span>
-            <span span className={totalProfitRate >= 0 ? "profit" : "loss"}>{stockMoney.toLocaleString()} 원</span>
+            <span>{stockMoney.toLocaleString()} 원</span>
           </div>
         </div>
       </div>
@@ -193,16 +191,16 @@ function StockMain(props) {
           <table className="stock-table">
             <thead>
               <tr>
-                <th style={{width: "80px"}}>종목명</th>
-                <th style={{width: "80px"}}>평균 매입가</th>
-                <th style={{width: "120px"}}>총 금액</th>
-                <th style={{width: "80px"}}>매도</th>
+                <th style={{ width: "80px" }}>종목명</th>
+                <th style={{ width: "80px" }}>평균 매입가</th>
+                <th style={{ width: "120px" }}>총 금액</th>
+                <th style={{ width: "80px" }}>매도</th>
               </tr>
             </thead>
           </table>
         </div>
         <div className="table-body">
-          <table className="stock-table" style={{marginBottom: "50px"}}>
+          <table className="stock-table" style={{ marginBottom: "50px" }}>
             <tbody className="stock-main-mystock-list-box">
               {myStockData.length > 0 ? (
                 myStockData

@@ -43,23 +43,22 @@ function StockSell(props) {
 
       const resultText = await response.text();
 
-      if (response.ok) {
-        // 실패했을 때 메시지 토스트 출력
-        toast.error(resultText, {
+      // "매도 완료"인 경우에만 이동
+      if (response.ok && resultText.includes("매도 완료")) {
+        navigate("/stock/TradeDone", {
+          state: {
+            stockName,
+            amount,
+            totalPrice: amount * price,
+          },
+        });
+      } else {
+        // 실패 케이스는 토스트로 안내
+        toast.error(resultText || "매도에 실패했습니다.", {
           position: "top-center",
           autoClose: 2000,
         });
-        return; // 실패했으니 페이지 이동 막기
       }
-
-      // 성공한 경우에만 페이지 이동
-      navigate("/stock/TradeDone", {
-        state: {
-          stockName,
-          amount,
-          totalPrice: amount * price,
-        },
-      });
     } catch (error) {
       console.error("매도 실패:", error);
       toast.error("매도 중 오류가 발생했습니다.");
