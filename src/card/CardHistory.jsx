@@ -11,7 +11,7 @@ import { fetchMetadata } from "./resources/CardService";
 
 function CardHistory() {
   const [historyList, setHistoryList] = useState([]);
-  const [, setMetadata] = useState(null);
+  const [metadata, setMetadata] = useState(null);
   const [, setMetadataUrl] = useState("");
   const [, setLoading] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState("all");
@@ -46,7 +46,11 @@ function CardHistory() {
     <div className="mock-container">
       <Header title="카드 사용내역" />
       <div className="card-history-box">
-        <img className="card-history-img" src={cardimage} alt="카드 이미지" />
+        <img
+          className="card-history-img"
+          src={metadata?.image}
+          alt="카드 이미지"
+        />
         <div className="card-history-period-box">
           <Dropdown onSelect={handleSelect}>
             <Dropdown.Toggle variant="transparent" id="periodSelect">

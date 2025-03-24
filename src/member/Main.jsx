@@ -5,12 +5,13 @@ import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchCardInfo, fetchMetadata } from "../card/resources/CardService";
-import defaultCardImage from "../images/card/card00.png"; // 기본 이미지 경로
+import defaultCardImage from "../images/cardmain.png"; // 기본 이미지 경로
 import deer02 from "../images/deer/deer02.png";
 import giraffe05 from "../images/giraffe/giraffe05.png";
 import pig00 from "../images/pig/pig00.png";
 import point01 from "../images/point/point01.jpg";
 import rabbit01 from "../images/rabbit/rabbit01.png";
+import { Link } from "react-router-dom";
 import "./Main.css";
 
 const Main = () => {
@@ -271,13 +272,34 @@ const Main = () => {
         {/* 카드 이미지 미리보기 */}
         <div className="card-main-box">
           <div className="mycard-preview">
-            <>
-              <img
-                src={defaultCardImage} // 기본 이미지를 사용
-                alt="기본 카드 이미지"
-                className="mycard-image custom-image"
-              />
-            </>
+            {loading ? (
+              <div className="loading-overlay">로딩 중...</div> // 로딩 중 UI (예: 텍스트나 애니메이션)
+            ) : (
+              <>
+                <img
+                  src={
+                    metadata && metadata.image
+                      ? metadata.image
+                      : defaultCardImage // metadata가 있을 때만 이미지 사용, 없으면 기본 이미지
+                  }
+                  alt="카드 미리보기"
+                  className={
+                    metadata && metadata.image
+                      ? "mycard-image custom-image"
+                      : "mycard-image default-image"
+                  }
+                />
+                {!metadata?.image && (
+                  <Link to="/card/create">
+                    <img
+                      src={defaultCardImage} // 기본 이미지를 사용
+                      alt="기본 카드 이미지"
+                      className="mycard-image default-image"
+                    />
+                  </Link>
+                )}
+              </>
+            )}
           </div>
         </div>
 
@@ -330,7 +352,11 @@ const Main = () => {
         <div className="main-grid grid-cols-2 gap-2 mt-1 w-full">
           <div
             className="main-grid-box box-skyblue"
-            onClick={() => navigate("/card/pattern")}
+            onClick={() =>
+              navigate(
+                metadata && metadata.image ? "/card/pattern" : "/card/create"
+              )
+            }
           >
             <div>
               <img
@@ -343,7 +369,11 @@ const Main = () => {
           </div>
           <div
             className="main-grid-box box-blue"
-            onClick={() => navigate("/moneyplan/main")}
+            onClick={() =>
+              navigate(
+                metadata && metadata.image ? "/moneyplan/main" : "/card/create"
+              )
+            }
           >
             <div>
               <img src={deer02} className="card-deer" alt="용돈 계획 세우기" />
