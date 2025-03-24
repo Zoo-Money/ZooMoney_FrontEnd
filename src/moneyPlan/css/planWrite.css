@@ -1,4 +1,3 @@
-
 /* PlanWrite */
 .planwrite-content {
   margin-top: 10px;
@@ -38,6 +37,9 @@
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 /* InputComponent */
+.planwrite-input-list {
+  transition: 0.5s ease;
+}
 .planwrite-input-list:nth-child(1) {
   display: flex;
   justify-content: space-between;
@@ -114,9 +116,7 @@
   background-color: #caffc2;
 }
 
-.planwrite-input-list:hover{
+.planwrite-input-list:hover {
   opacity: 0.8;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
-
-

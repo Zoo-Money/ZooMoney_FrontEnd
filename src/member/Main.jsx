@@ -259,7 +259,7 @@ const Main = () => {
                       }}
                     />
                   </form>
-                ))}{" "}
+                ))}
               </div>
               <div style={{ margin: "0.5rem" }}></div>
             </div>

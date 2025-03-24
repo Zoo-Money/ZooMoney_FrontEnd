@@ -1,12 +1,11 @@
 import axios from "axios";
-import { API_PATH } from "../common/config.js";
 import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
 import React, { useEffect, useRef, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { API_PATH } from "../common/config.js";
 import Header from "../common/Header";
 // css -> moneyplan 의 planMain.css, selectChart.css 사용
-import { useNavigate } from "react-router-dom";
 import deer01 from "../images/deer/deer01.png";
 import {
   categoryColor,
@@ -22,10 +21,6 @@ function PatternChart() {
   const [highestCategory, setHighestCategory] = useState(""); // 가장 많이 소비한 카테고리
   const memberNum = sessionStorage.getItem("member_num");
   const previousHighestCategoryRef = useRef(""); // 이전 카테고리를 추적
-  const navi = useNavigate();
-  const goToMain = () => {
-    navi("/main");
-  };
 
   useEffect(() => {
     axios
@@ -193,7 +188,7 @@ function PatternChart() {
               />
             </div>
             <div className="chart-total-amount">
-              사용한 총 용돈은{" "}
+              사용한 총 용돈 :{" "}
               <span>{chartData.totalAmount.toLocaleString()}원</span>
               <br />
               <span>{highestCategory}</span>에 가장 많이 사용했어요
@@ -233,9 +228,6 @@ function PatternChart() {
           </div>
         </div>
       </div>
-      <button className="planmain-button" onClick={goToMain}>
-        메인
-      </button>
     </div>
   );
 }

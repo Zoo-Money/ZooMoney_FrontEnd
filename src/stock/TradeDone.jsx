@@ -33,7 +33,7 @@ function TradeDone(props) {
           <span>{amount}주</span>를 판매했어요!
         </div>
         <div className="buy-done-total">
-          총 <span>{totalPrice.toLocaleString()}원</span> 획득했어요
+          총 <span>{totalPrice.toLocaleString()}원</span>을 얻었어요
         </div>
       </div>
       <button className="buy-done-button" onClick={goStockMain}>

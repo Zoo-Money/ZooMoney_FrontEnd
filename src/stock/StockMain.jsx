@@ -115,9 +115,9 @@ function StockMain(props) {
   }, 0);
 
   // 3. 총 매수 금액 (매수 평균가 * 보유량)
-  const totalInvested = myStockData.reduce((total, stock) => {
-    return total + stock.averagePrice * stock.quantity;
-  }, 0);
+  // const totalInvested = myStockData.reduce((total, stock) => {
+  //   return total + stock.averagePrice * stock.quantity;
+  // }, 0);
 
   const totalInvestment = totalCurrentValue + stockMoney;
 
@@ -194,7 +194,7 @@ function StockMain(props) {
                 <th style={{ width: "80px" }}>종목명</th>
                 <th style={{ width: "80px" }}>평균 매입가</th>
                 <th style={{ width: "120px" }}>총 금액</th>
-                <th style={{ width: "80px" }}>매도</th>
+                <th style={{ width: "85px" }}>매도</th>
               </tr>
             </thead>
           </table>
@@ -212,11 +212,11 @@ function StockMain(props) {
                       100;
                     return (
                       <tr key={index}>
-                        <td>
+                        <td style={{ width: "80px" }}>
                           {stock.stockName}
                           <br />( {stock.quantity}주 )
                         </td>
-                        <td>
+                        <td style={{ width: "80px" }}>
                           {Math.floor(stock.averagePrice).toLocaleString(
                             "ko-KR"
                           )}
@@ -226,14 +226,14 @@ function StockMain(props) {
                             ( {profitRate.toFixed(1)}% )
                           </span>
                         </td>
-                        <td>
+                        <td style={{ width: "120px" }}>
                           {stock.totalValue.toLocaleString()}원
                           <br />
                           <span className="current-price">
                             (현재가 {stock.stockPrice.toLocaleString()}원)
                           </span>
                         </td>
-                        <td>
+                        <td style={{ width: "85px" }}>
                           <button
                             className="sell-button"
                             onClick={() =>
