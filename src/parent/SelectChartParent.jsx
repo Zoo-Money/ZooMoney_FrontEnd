@@ -1,11 +1,16 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { categoryColor, categoryHoverColor, categoryName } from "../moneyPlan/resource/planCommon.js";
-import "../moneyPlan/css/selectChart.css"
+import {
+  categoryColor,
+  categoryHoverColor,
+  categoryName,
+} from "../moneyPlan/resource/planCommon.js";
+import "../moneyPlan/css/selectChart.css";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function SelectChartParent() {
@@ -25,7 +30,7 @@ function SelectChartParent() {
   // plan_num 별로 그룹화된 데이터 저장
   useEffect(() => {
     axios
-      .get(`http://localhost:7777/zoomoney/moneyplan/select/${childNum}`, {
+      .get(`${API_PATH}/zoomoney/moneyplan/select/${childNum}`, {
         params: { childNum },
       })
       .then((response) => {
@@ -40,7 +45,7 @@ function SelectChartParent() {
       .catch((error) => {
         console.error("데이터 로딩 오류: ", error);
       });
-  }, []);
+  });
 
   //카테고리별 세부 금액
   useEffect(() => {

@@ -1,13 +1,12 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useRef, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractWrite.css";
-import FooterParent from "../common/FooterParent";
 
 const getFormattedDate = () => {
   const today = new Date();
@@ -33,7 +32,7 @@ const ContractWrite = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/contract/parentInfo", {
+      .get(`${API_PATH}/zoomoney/contract/parentInfo`, {
         params: { parentId: parentId },
       })
       .then((response) => {
@@ -149,14 +148,14 @@ const ContractWrite = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:7777/zoomoney/contract/saveDraft",
+        `${API_PATH}/zoomoney/contract/saveDraft`,
         contractData,
         {
           params: { parentId: sessionStorage.getItem("member_num") }, // params로 parentId 전달
         }
       );
 
-      await axios.post("http://localhost:7777/zoomoney/notify/send", {
+      await axios.post(`${API_PATH}/zoomoney/notify/send`, {
         memberNum: sessionStorage.getItem("childNum"),
         notifyContent: "📜 용돈계약서가 작성되었어요<br>확인하고 서명해주세요",
         notifyUrl: "/contract/contractWriteChild",
@@ -172,9 +171,8 @@ const ContractWrite = () => {
 
   return (
     <div className="mock-container">
+      <Header title="용돈계약서 작성" />
       <div className="container">
-        <Header title="용돈계약서 작성" />
-
         <div className="contract-form">
           <p className="info-text">용돈 지급에 관한 세부사항을 작성하세요.</p>
           {/* 세부사항 입력 */}
@@ -293,8 +291,6 @@ const ContractWrite = () => {
             </button>
           </div>
         </div>
-
-        <FooterParent />
       </div>
     </div>
   );

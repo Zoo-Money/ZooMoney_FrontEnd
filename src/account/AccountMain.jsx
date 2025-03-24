@@ -1,7 +1,7 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import pig00 from "../images/pig/pig00.png";
 import plus from "../images/plus.png";
 import stamp from "../images/stamp.png";
@@ -23,7 +23,7 @@ const AccountMain = () => {
     const list = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/account/list/${memberNum}`
+          `${API_PATH}/zoomoney/account/list/${memberNum}`
         );
         setAccountList(response.data);
 
@@ -107,10 +107,10 @@ const AccountMain = () => {
                           );
                           return new Date().setHours(0, 0, 0, 0) >
                             new Date(account.accountEnd)
-                            ? "만기일 지남"
+                            ? "만기일 지남" // 만기일이 지났을 때
                             : daysLeft < 1
-                            ? "1일 미만 남음"
-                            : `${daysLeft}일 남음`;
+                            ? "1일 미만 남음" // 남은 일수가 1일 미만일 때
+                            : `${daysLeft}일 남음`; // 남은 일수가 1일 이상일 때
                         })()}
                       </span>
                       <span style={{ fontSize: "0.9rem" }}>
@@ -177,9 +177,6 @@ const AccountMain = () => {
           </button>
         </Link>
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

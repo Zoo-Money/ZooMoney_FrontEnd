@@ -17,7 +17,7 @@
 .quizquiz-image {
   width: 80px;
   height: auto;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-left: 245px;
   margin-bottom: -8px;
 }
@@ -36,15 +36,14 @@
 
 /* 퀴즈번호 묶음 */
 .quizquiz-num {
-  margin: 20px;
+  margin: 15px 20px 10px 20px;
 }
 
 /* 퀴즈번호 */
 .quizquiz-number {
-  font-size: 17px;
-  font-weight: 900;
+  font-size: 20px;
   color: black;
-  margin-right: 210px;
+  margin-right: 200px;
 }
 
 /* 흰 박스 */
@@ -54,7 +53,6 @@
   height: auto;
   background-color: #ffffff;
   color: #ffe2b3;
-  font-size: 14px;
   border: 2px solid;
   border-radius: 15px;
   margin: 0 auto 20px auto; /* 가운데 정렬 */
@@ -62,10 +60,10 @@
 
 /* 퀴즈 */
 .quizquiz-description {
-  font-size: 15px;
+  font-size: 18px;
   color: #000000;
   line-height: 1.5;
-  font-weight: 500;
+  font-weight: lighter;
   margin: 10px 25px 10px 25px;
 }
 
@@ -154,7 +152,7 @@
   height: 45px;
   background-color: #ff9500;
   color: white;
-  font-size: 14px;
+  font-size: 18px;
   border: none;
   border-radius: 15px;
   cursor: pointer;

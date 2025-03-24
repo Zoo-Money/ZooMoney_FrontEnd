@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import giraffe04 from "../images/giraffe/giraffe04.png";
 import "./css/quizLoading.css";
@@ -15,9 +14,6 @@ const QuizLoading = () => {
 
         <p className="quizloading-description">잠시만 기다려주세요~</p>
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

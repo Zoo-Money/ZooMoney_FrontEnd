@@ -1,12 +1,12 @@
+import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
-import { Document, Page, pdfjs } from "react-pdf";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // ▼▲ 화살표 추가
+import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractDetail.css";
-import axios from "axios";
 
 // PDF Worker 설정
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.js`;
@@ -24,7 +24,7 @@ const ContractDetail = () => {
   useEffect(() => {
     const memberNum = sessionStorage.getItem("member_num"); // 세션 값 가져오기
     axios
-      .get(`http://localhost:7777/zoomoney/contract/pastContracts/${memberNum}`)
+      .get(`${API_PATH}/zoomoney/contract/pastContracts/${memberNum}`)
       .then((response) => {
         setContracts(response.data); // 데이터를 상태에 저장
       })
@@ -54,7 +54,7 @@ const ContractDetail = () => {
               {openContract === index && (
                 <div className="pdf-viewer">
                   <Document
-                    file={`http://localhost:7777/zoomoney${contract.contractFilepath}`}
+                    file={`${API_PATH}/zoomoney${contract.contractFilepath}`}
                     onLoadError={(error) =>
                       console.error("PDF 로드 오류:", error)
                     }
@@ -65,11 +65,6 @@ const ContractDetail = () => {
               )}
             </div>
           ))}
-        </div>
-
-        {/* 하단 네비게이션 */}
-        <div className="footer">
-          <Footer />
         </div>
       </div>
     </div>

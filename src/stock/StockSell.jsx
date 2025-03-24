@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { API_PATH } from "../common/config.js";
 import { useLocation, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
+import { toast } from "react-toastify";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "../stock/css/stockBuy.css";
-import { toast } from "react-toastify";
 
 function StockSell(props) {
   const location = useLocation();
@@ -27,22 +27,19 @@ function StockSell(props) {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost:7777/zoomoney/stock/sell",
-        {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            memberNum,
-            stockId,
-            amount,
-            price,
-          }),
-        }
-      );
+      const response = await fetch(`${API_PATH}/zoomoney/stock/sell`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          memberNum,
+          stockId,
+          amount,
+          price,
+        }),
+      });
 
       if (response.ok) {
         navigate("/stock/TradeDone", {
@@ -63,9 +60,13 @@ function StockSell(props) {
     <div className="mock-container">
       <Header title="판매하기" />
       <div className="buy-header">
-        주식을 <span style={{ color: "blue" }}>매도</span>하면,
+        주식을 <span style={{ color: "#2667E1" }}>매도</span>하면,
         <br />
-        해당 주식을 <span>소유자</span>가 아니에요.
+        해당 주식의 <span>소유권</span>이 사라져요.
+        <br />
+        매도한 금액은
+        <br />
+        다른 기회로 활용할 수 있어요!
         <img src={rabbit07} alt="rabbit07" className="buy-rabbit07" />
       </div>
       <div className="buy-container">
@@ -85,12 +86,11 @@ function StockSell(props) {
       </div>
       <button
         className="buy-button"
-        style={{ backgroundColor: "blue" }}
+        style={{ backgroundColor: "#2667e1" }}
         onClick={handleSell}
       >
         판매하기
       </button>
-      <Footer />
     </div>
   );
 }

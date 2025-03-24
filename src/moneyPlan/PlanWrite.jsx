@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
-import hamburger from "../images/hamburger.png";
-import cart from "../images/cart.png";
-import game from "../images/game.png";
-import pig from "../images/pig.png";
-import etc from "../images/etc.png";
 import axios from "axios";
-import "../moneyPlan/css/planWrite.css";
+import { API_PATH } from "../common/config.js";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import InputComponent from "./InputComponent";
-import { categoryName } from "../moneyPlan/resource/planCommon.js";
 import { toast } from "react-toastify";
+import Header from "../common/Header";
+import cart from "../images/cart.png";
+import etc from "../images/etc.png";
+import game from "../images/game.png";
+import hamburger from "../images/hamburger.png";
+import pig from "../images/pig.png";
+import "../moneyPlan/css/planWrite.css";
+import { categoryName } from "../moneyPlan/resource/planCommon.js";
+import InputComponent from "./InputComponent";
 
 function PlanWrite(props) {
   const [planMoney, setPlanMoney] = useState();
@@ -26,13 +26,16 @@ function PlanWrite(props) {
   const navi = useNavigate();
   const images = [hamburger, cart, game, pig, etc];
   const memberNum = sessionStorage.getItem("member_num");
-  
+
   //용돈가져오기
   useEffect(() => {
-    axios.get(`http://localhost:7777/zoomoney/moneyplan/getAllowance?memberNum=${memberNum}`,{
-      params:{ memberNum }
-    },
-    )
+    axios
+      .get(
+        `${API_PATH}/zoomoney/moneyplan/getAllowance?memberNum=${memberNum}`,
+        {
+          params: { memberNum },
+        }
+      )
       .then((resposeData) => {
         const formattedMoney = new Intl.NumberFormat().format(resposeData.data);
         setPlanMoney(formattedMoney);
@@ -40,7 +43,7 @@ function PlanWrite(props) {
       .catch((error) => {
         console.error(error);
       });
-  },[memberNum]);
+  }, [memberNum]);
 
   //유효성검사
   useEffect(() => {
@@ -119,7 +122,6 @@ function PlanWrite(props) {
       <button className="planwrite-button" onClick={handleNext}>
         다음
       </button>
-      <Footer />
     </div>
   );
 }

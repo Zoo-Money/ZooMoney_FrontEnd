@@ -1,20 +1,21 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { FaQuestionCircle } from "react-icons/fa";
+import { IoIosArrowForward } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
-import Header from "../common/Header";
-import rabbit01 from "../images/rabbit/rabbit01.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Header from "../common/Header";
+import rabbit01 from "../images/rabbit/rabbit01.png";
 import "./css/stockMain.css";
-import { IoIosArrowForward } from "react-icons/io";
 
 function StockMain(props) {
   const memberNum = sessionStorage.getItem("member_num");
   const [myStockData, setMyStockData] = useState([]);
   const [isMarketClosed, setIsMarketClosed] = useState(false);
   const [toastId, setToastId] = useState(null);
+  const [stockMoney, setStockMoney] = useState(0);
 
   const navi = useNavigate();
 
@@ -23,7 +24,7 @@ function StockMain(props) {
     const checkMarketStatus = () => {
       const now = new Date();
       const hours = now.getHours();
-      const minutes = now.getMinutes();
+      // const minutes = now.getMinutes();
 
       // 9~15시까지 오픈
       const marketOpen = hours >= 9 && hours <= 15;
@@ -86,8 +87,9 @@ function StockMain(props) {
   marketOpenTime.setHours(9, 0, 0, 0);
 
   useEffect(() => {
+    // 보유 주식 불러오기
     axios
-      .get("http://localhost:7777/zoomoney/stock/owned", {
+      .get(`${API_PATH}/zoomoney/stock/owned`, {
         params: { memberNum },
       })
       .then((response) => {
@@ -95,6 +97,17 @@ function StockMain(props) {
       })
       .catch((error) => {
         console.error("Error fetching stock detail:", error);
+      });
+    // 잔고 불러오기 추가
+    axios
+      .get(`${API_PATH}/zoomoney/stock/getmoney`, {
+        params: { memberNum },
+      })
+      .then((response) => {
+        setStockMoney(response.data); // 상태값에 저장
+      })
+      .catch((error) => {
+        console.error("Error fetching stock money:", error);
       });
   }, [memberNum]);
 
@@ -141,11 +154,18 @@ function StockMain(props) {
             <IoIosArrowForward className="selectchart-forward" />
           </div>
         </Link>
-        <img src={rabbit01} alt="rabbit01" style={{zIndex:"2"}}/>
+        <img src={rabbit01} alt="rabbit01" style={{ zIndex: "2" }} />
       </div>
       <div className="stock-main-box" onClick={goToProfit}>
         <h2>내 투자</h2>
-        <IoIosArrowForward style={{width:"50px",height:"30px", float:"right", color:"#333"}}/>
+        <IoIosArrowForward
+          style={{
+            width: "50px",
+            height: "30px",
+            float: "right",
+            color: "#333",
+          }}
+        />
         <div className="stock-main-box-amount">
           {totalInvestment.toLocaleString()} 원
         </div>
@@ -160,6 +180,10 @@ function StockMain(props) {
           <div>
             <span>총 수익률</span>
             <span class="loss">{totalProfitRate.toFixed(2)} %</span>
+          </div>
+          <div>
+            <span>예수금</span>
+            <span class="loss">{stockMoney.toLocaleString()} 원</span>
           </div>
         </div>
       </div>
@@ -239,7 +263,6 @@ function StockMain(props) {
       <button className="stock-main-button" onClick={goStockList}>
         투자하러 가기
       </button>
-      <Footer />
     </div>
   );
 }

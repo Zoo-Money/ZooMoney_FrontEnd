@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import Footer from "../common/Footer";
 import pig01 from "../images/pig/pig01.png";
 import pig02 from "../images/pig/pig02.png";
 import pig03 from "../images/pig/pig03.png";
@@ -71,9 +70,6 @@ const AccountEnd = () => {
           <button>확인</button>
         </Link>
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

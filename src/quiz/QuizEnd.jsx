@@ -1,7 +1,7 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import giraffe02 from "../images/giraffe/giraffe02.png";
 import "./css/quizEnd.css";
@@ -13,7 +13,7 @@ const QuizEnd = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/quiz/total", {
+      .get(`${API_PATH}/zoomoney/quiz/total`, {
         params: { memberNum: memberNum },
       })
       .then((response) => {
@@ -39,7 +39,8 @@ const QuizEnd = () => {
         <img src={giraffe02} alt="giraffe02" className="quizend-image" />
         <p className="quizend-description">
           풀 수 있는 퀴즈를 다 풀었어요
-          <br />오늘 총 <strong>{String(correctAnswerCount) * 100} 포인트</strong>를
+          <br />
+          오늘 총 <span>{String(correctAnswerCount) * 100} 포인트</span>를
           획득했어요
         </p>
         <p className="quizend-description">내일 다시 만나요!</p>
@@ -47,9 +48,6 @@ const QuizEnd = () => {
           확인
         </button>
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

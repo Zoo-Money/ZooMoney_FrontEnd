@@ -1,10 +1,10 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
-import emptyStamp from "../images/quiz/empty_stamp.avif";
 import giraffe04 from "../images/giraffe/giraffe04.png";
+import emptyStamp from "../images/quiz/empty_stamp.avif";
 import oStamp from "../images/quiz/o_stamp.png";
 import xStamp from "../images/quiz/x_stamp.png";
 import "./css/quizMain.css";
@@ -21,7 +21,7 @@ const QuizMain = () => {
 
     // 📌 도전한 퀴즈 개수 가져오기
     axios
-      .get("http://localhost:7777/zoomoney/quiz/count", {
+      .get(`${API_PATH}/zoomoney/quiz/count`, {
         params: { memberNum: memberNum },
       })
       .then((response) => {
@@ -33,7 +33,7 @@ const QuizMain = () => {
 
     // 📌 맞힌 정답 개수 가져오기
     axios
-      .get("http://localhost:7777/zoomoney/quiz/total", {
+      .get(`${API_PATH}/zoomoney/quiz/total`, {
         params: { memberNum: memberNum },
       })
       .then((response) => {
@@ -45,7 +45,7 @@ const QuizMain = () => {
 
     //  📌 문제별 정답 여부 List 가져오기
     axios
-      .get("http://localhost:7777/zoomoney/quiz/answerlist", {
+      .get(`${API_PATH}/zoomoney/quiz/answerlist`, {
         params: { memberNum: memberNum },
       })
       .then((response) => {
@@ -127,9 +127,7 @@ const QuizMain = () => {
               시작하기
             </button>
             {/* 주의사항 */}
-            <p className="quizmain-check">
-              <strong>꼭 확인해주세요</strong>
-            </p>
+            <p className="quizmain-check">꼭 확인해주세요</p>
           </>
         ) : (
           <>
@@ -144,9 +142,6 @@ const QuizMain = () => {
           <li>퀴즈를 맞힐 때마다 100P를 받아요.</li>
         </p>
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

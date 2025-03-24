@@ -1,8 +1,8 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import FooterParent from "../common/FooterParent";
 import Header from "../common/Header";
 import "./css/childEventSend.css";
 
@@ -31,7 +31,7 @@ const ChildEventSend = () => {
     const fetchAccountInfo = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/contract/account/${parentId}`
+          `${API_PATH}/zoomoney/contract/account/${parentId}`
         );
         const accountData = response.data["member_account"];
         setAccountInfo(accountData);
@@ -45,7 +45,7 @@ const ChildEventSend = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/contract/getChildByParent", {
+      .get(`${API_PATH}/zoomoney/contract/getChildByParent`, {
         params: { parentId: parentNum },
       })
       .then((response) => {
@@ -67,7 +67,7 @@ const ChildEventSend = () => {
   useEffect(() => {
     if (selectedChild) {
       axios
-        .get("http://localhost:7777/zoomoney/contract/child/money", {
+        .get(`${API_PATH}/zoomoney/contract/child/money`, {
           params: { memberNum: selectedChild }, // 선택한 자녀의 memberNum 전달
         })
         .then((response) => {
@@ -119,7 +119,7 @@ const ChildEventSend = () => {
 
     try {
       await axios.put(
-        `http://localhost:7777/zoomoney/contract/sendAllowance/${storedChildNum}`,
+        `${API_PATH}/zoomoney/contract/sendAllowance/${storedChildNum}`,
         { amount: Number(amount) }
       );
       const response = await axios.get(
@@ -216,9 +216,6 @@ const ChildEventSend = () => {
               용돈 보내기
             </button>
           </div>
-
-          {/* 하단 네비게이션 */}
-          <FooterParent />
         </div>
       </div>
     </div>

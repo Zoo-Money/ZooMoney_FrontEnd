@@ -77,3 +77,7 @@
 .info-time {
   margin-bottom: 5px;
 }
+
+.cardHist-content {
+  max-height: calc(100vh - 260px);
+}

@@ -1,10 +1,10 @@
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Badge } from "@mui/material";
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchCardInfo, fetchMetadata } from "../card/CardService";
-import Footer from "../common/Footer";
+import { fetchCardInfo, fetchMetadata } from "../card/resources/CardService";
 import defaultCardImage from "../images/card/card00.png"; // 기본 이미지 경로
 import deer02 from "../images/deer/deer02.png";
 import giraffe05 from "../images/giraffe/giraffe05.png";
@@ -33,7 +33,7 @@ const Main = () => {
     // 서버와 SSE 연결
     const conn = () => {
       const eventSource = new EventSource(
-        `http://localhost:7777/zoomoney/notify/subscribe/${memberNum}`
+        `${API_PATH}/zoomoney/notify/subscribe/${memberNum}`
       );
 
       // 알림 정보 갱신
@@ -55,7 +55,7 @@ const Main = () => {
     const list = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/notify/list/${memberNum}`
+          `${API_PATH}/zoomoney/notify/list/${memberNum}`
         );
         setNotifyList(response.data);
       } catch (error) {
@@ -69,7 +69,7 @@ const Main = () => {
     const count = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/notify/unread/${memberNum}`
+          `${API_PATH}/zoomoney/notify/unread/${memberNum}`
         );
         setCount(response.data);
       } catch (error) {
@@ -109,7 +109,7 @@ const Main = () => {
     const fetchMemberPoint = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/member/point/${memberNum}`
+          `${API_PATH}/zoomoney/member/point/${memberNum}`
         );
         const formattedPoint = Number(
           response.data.member_point
@@ -137,9 +137,7 @@ const Main = () => {
   const selectNotify = async (notifyNum, notifyUrl) => {
     // 알림 상태(읽음 여부) 변경
     try {
-      await axios.put(
-        `http://localhost:7777/zoomoney/notify/check/${notifyNum}`
-      );
+      await axios.put(`${API_PATH}/zoomoney/notify/check/${notifyNum}`);
     } catch (error) {
       console.error("알림 상태변경 실패", error);
     }
@@ -191,8 +189,12 @@ const Main = () => {
             <NotificationsIcon
               className={shake ? "bell-shake" : ""}
               color="action"
+              style={{
+                color: view ? "#ff9500" : "",
+                fontSize: "1.5rem",
+                cursor: "pointer",
+              }}
               onClick={animate}
-              style={{ fontSize: "1.5rem", cursor: "pointer" }}
             />
           </Badge>
 
@@ -356,7 +358,6 @@ const Main = () => {
           </a>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

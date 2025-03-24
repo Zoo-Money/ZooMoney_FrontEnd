@@ -1,14 +1,18 @@
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
-import "../moneyPlan/css/planChart.css";
-import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Legend, Tooltip } from "chart.js";
 import axios from "axios";
-import deer03 from "../images/deer/deer03.png";
-import { categoryColor, categoryHoverColor, categoryName } from "../moneyPlan/resource/planCommon.js";
+import { API_PATH } from "../common/config.js";
+import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
+import React from "react";
+import { Doughnut } from "react-chartjs-2";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Header from "../common/Header";
+import deer03 from "../images/deer/deer03.png";
+import "../moneyPlan/css/planChart.css";
+import {
+  categoryColor,
+  categoryHoverColor,
+  categoryName,
+} from "../moneyPlan/resource/planCommon.js";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function PlanChart(props) {
@@ -26,7 +30,6 @@ function PlanChart(props) {
       },
     ],
   };
-  console.log(category);
 
   //DB저장 함수
   const handleSavePlan = () => {
@@ -36,7 +39,7 @@ function PlanChart(props) {
     };
     const memberNum = sessionStorage.getItem("member_num");
     axios
-      .post(`http://localhost:7777/zoomoney/moneyplan/save/${memberNum}`, requestData, {
+      .post(`${API_PATH}/zoomoney/moneyplan/save/${memberNum}`, requestData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -98,7 +101,7 @@ function PlanChart(props) {
                       height: "15px",
                     }}
                   ></div>
-                  <p>{categoryName[key -1]}</p>
+                  <p>{categoryName[key - 1]}</p>
                 </div>
                 <div className="percent">
                   <p>{Math.floor((amount / planMoney) * 100)}%</p>
@@ -109,12 +112,11 @@ function PlanChart(props) {
               </div>
             );
           })}
-              </div>
+        </div>
       </div>
       <button className="planmain-button" onClick={handleSavePlan}>
         다음
       </button>
-      <Footer />
     </div>
   );
 }

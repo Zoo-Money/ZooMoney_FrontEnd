@@ -1,7 +1,7 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import giraffe03 from "../images/giraffe/giraffe03.png";
 import X from "../images/quiz/X.png";
@@ -18,7 +18,7 @@ const QuizFailure = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/quiz/count", {
+      .get(`${API_PATH}/zoomoney/quiz/count`, {
         params: { memberNum: memberNum },
       })
       .then((response) => {
@@ -91,9 +91,6 @@ const QuizFailure = () => {
           </>
         )}
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

@@ -23,12 +23,13 @@
 }
 
 .profile-wrapper {
-  cursor: pointer; /* 🔹 클릭 가능한 요소 표시 */
   width: 60px; /* 🔹 프로필 크기 조정 */
   text-align: center;
+  cursor: pointer;
+  transition: 0.5s ease;
 }
 .profile-wrapper:hover {
-  transform: scale(1.05); /* 마우스 올리면 확대 */
+  opacity: 0.8;
 }
 .profile-image {
   width: 50px;
@@ -36,9 +37,6 @@
   border-radius: 50%;
   border: 2px solid #ddd; /* 🔹 테두리 추가 */
 }
-.profile-name {
-}
-
 /* 용돈 정보 카드 */
 .parent-main-allowance-card {
   background-color: white;
@@ -90,7 +88,7 @@
 /* 소비내역 확인 버튼 */
 .parent-main-consumptionhistory-button {
   height: 40px;
-  background-color: #f9e7cf;
+  background-color: #fff4c2;
   color: black;
   font-size: 16px;
   /* padding: 6px 12px; */
@@ -99,11 +97,13 @@
   font-weight: 600;
   margin-top: 30px;
   cursor: pointer;
+  transition: 0.5s ease;
 }
 
 /* 소비내역 확인 버튼 hover 효과 */
 .parent-main-consumptionhistory-button:hover {
-  background-color: #f8d5a8;
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 /* 송금하기 버튼 */
@@ -116,29 +116,36 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  transition: 0.5s ease;
 }
 
 /* 송금하기 버튼 hover 효과 */
 .sendmoney-button:hover {
-  background-color: #e68a2e;
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 /* 기능 카드 스타일 */
 .parent-card {
   width: 150px;
-  height: 150px;
+  height: 145px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   font-size: 16px;
-  color: black;
+  color: #333;
   text-align: center;
-  transition: transform 0.2s ease-in-out;
   margin: auto;
+  text-decoration: none;
   cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.parent-card:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 .parent-grid {
@@ -196,9 +203,4 @@
 .card-green {
   background-color: #caffc2;
   margin-left: 0;
-}
-
-/* 카드 hover 효과 */
-.parent-card:hover {
-  transform: scale(1.05);
 }

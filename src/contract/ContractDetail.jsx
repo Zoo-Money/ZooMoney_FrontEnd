@@ -1,13 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState, useRef } from "react";
+import { API_PATH } from "../common/config.js";
+import React, { useEffect, useRef, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // ▼▲ 화살표 아이콘
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractDetail.css";
-import FooterParent from "../common/FooterParent";
 
 // PDF Worker 설정 (PDF 파일을 백그라운드에서 처리)
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.js`;
@@ -39,7 +38,7 @@ const ContractDetail = () => {
   useEffect(() => {
     const childNum = sessionStorage.getItem("childNum");
     axios
-      .get(`http://localhost:7777/zoomoney/contract/pastContracts/${childNum}`)
+      .get(`${API_PATH}/zoomoney/contract/pastContracts/${childNum}`)
       .then((response) => {
         setContracts(response.data);
       })
@@ -83,7 +82,7 @@ const ContractDetail = () => {
               {openContract === index && (
                 <div className="pdf-viewer">
                   <Document
-                    file={`http://localhost:7777/zoomoney${contract.contractFilepath}`} // PDF 파일 경로
+                    file={`${API_PATH}/zoomoney${contract.contractFilepath}`} // PDF 파일 경로
                     onLoadSuccess={(pdf) => {
                       // 기존 PDFWorker가 있으면 종료
                       if (loadingTasksRef.current[contract.contractFilepath]) {
@@ -112,11 +111,6 @@ const ContractDetail = () => {
               )}
             </div>
           ))}
-        </div>
-
-        {/* 하단 네비게이션 */}
-        <div className="footer">
-          <FooterParent />
         </div>
       </div>
     </div>

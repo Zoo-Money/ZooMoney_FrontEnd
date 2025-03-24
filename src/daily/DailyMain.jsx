@@ -1,7 +1,7 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import giraffe01 from "../images/giraffe/giraffe01.png";
 import "./dailyMain.css";
@@ -16,7 +16,7 @@ const DailyMain = () => {
   // ✅ 출석 여부 확인 (DB 수정 X)
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/daily/status", {
+      .get(`${API_PATH}/zoomoney/daily/status`, {
         params: { memberNum: memberNum },
       })
       .then((response) => {
@@ -27,12 +27,12 @@ const DailyMain = () => {
         console.error("출석 체크 여부 확인 실패", error);
         setIsLoading(false);
       });
-  });
+  },[]);
 
   // ✅ 출석 체크 (버튼 눌렀을 때만 실행)
   const handleAttendance = () => {
     axios
-      .post(`http://localhost:7777/zoomoney/daily/check?memberNum=${memberNum}`)
+      .post(`${API_PATH}/zoomoney/daily/check?memberNum=${memberNum}`)
       .then((response) => {
         setIsChecked(true); // 출석 완료 상태 업데이트
         navigate("/daily/end"); // 출석 성공 시 이동
@@ -68,7 +68,7 @@ const DailyMain = () => {
         ) : (
           <>
             <p className="daily-description">
-              하루 한 번 <strong>10 포인트</strong>를 지급해드려요!
+              하루 한 번 <span>10 포인트</span>를 지급해드려요!
             </p>
             <button className="daily-button" onClick={handleAttendance}>
               출석체크 하기
@@ -76,8 +76,6 @@ const DailyMain = () => {
           </>
         )}
       </div>
-
-      <Footer />
     </div>
   );
 };

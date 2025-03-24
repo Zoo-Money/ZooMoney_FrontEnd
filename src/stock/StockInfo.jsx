@@ -1,7 +1,7 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/StockInfo.css";
 
@@ -10,7 +10,7 @@ function StockInfo() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/stock/StockInfoAll")
+      .get(`${API_PATH}/zoomoney/stock/StockInfoAll`)
       .then((response) => {
         setStockInfoList(response.data);
       })
@@ -35,7 +35,6 @@ function StockInfo() {
           })}
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../common/Header";
@@ -11,7 +12,7 @@ function StockInfoDetail() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:7777/zoomoney/stock/detail/${infoNum}`)
+      .get(`${API_PATH}/zoomoney/stock/detail/${infoNum}`)
       .then((response) => {
         InfoDetailList(response.data);
       })
