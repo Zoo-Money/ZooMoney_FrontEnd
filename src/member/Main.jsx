@@ -288,6 +288,9 @@ const Main = () => {
                       ? "mycard-image custom-image"
                       : "mycard-image default-image"
                   }
+                  onClick={() => {
+                    navigate("/card/modify");
+                  }}
                 />
                 {!metadata?.image && (
                   <Link to="/card/create">
