@@ -24,7 +24,6 @@ function StockMain(props) {
     const checkMarketStatus = () => {
       const now = new Date();
       const hours = now.getHours();
-      // const minutes = now.getMinutes();
 
       // 9~15시까지 오픈
       const marketOpen = hours >= 9 && hours <= 15;
@@ -74,7 +73,6 @@ function StockMain(props) {
       showMarketClosedToast();
       return;
     }
-
     navi("/stock/stockSell", { state: { stockId, stockPrice, stockName } });
   };
 

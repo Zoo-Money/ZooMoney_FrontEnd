@@ -18,9 +18,6 @@ function StockRankDetail(props) {
           </p>
         </div>
         <div className="rank-detail-list">
-          {/* 컴포넌트로 돌리세요
-            일단 예시로 밖으로 빼놓음. 컴포넌트 만들어 놓았음 */}
-          {/* <RankList gold={gold}></RankList> */}
           <div className="list-box">
             <img src={gold} alt="gold" />
             <div className="list-box-info">
