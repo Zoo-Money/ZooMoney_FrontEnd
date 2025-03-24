@@ -49,7 +49,7 @@ const MyStockProfit = () => {
         <div className="myStockProfit-item" onClick={() => openModal("총매입")}>
           <span>
             총매입
-            <AiOutlineQuestionCircle className="question-white"/>
+            <AiOutlineQuestionCircle className="question-white" />
           </span>
           <span className="myStockProfit-value">
             {totalPurchase.toLocaleString()} 원
@@ -58,7 +58,7 @@ const MyStockProfit = () => {
         <div className="myStockProfit-item" onClick={() => openModal("총평가")}>
           <span>
             총평가
-            <AiOutlineQuestionCircle className="question-white"/>
+            <AiOutlineQuestionCircle className="question-white" />
           </span>
           <span className="myStockProfit-value">
             {totalEvaluation.toLocaleString()} 원
@@ -70,18 +70,18 @@ const MyStockProfit = () => {
         >
           <span>
             평가손익
-            <AiOutlineQuestionCircle className="question-white"/>
+            <AiOutlineQuestionCircle className="question-white" />
           </span>
-          <span className="myStockProfit-value highlight">
+          <span className={evaluationProfitLoss >= 0 ? "my-profit" : "my-loss"}>
             {evaluationProfitLoss.toLocaleString()} 원
           </span>
         </div>
         <div className="myStockProfit-item" onClick={() => openModal("수익률")}>
           <span>
             수익률
-            <AiOutlineQuestionCircle className="question-white"/>
+            <AiOutlineQuestionCircle className="question-white" />
           </span>
-          <span className="myStockProfit-value highlight">
+          <span className={totalProfitRate >= 0 ? "my-profit" : "my-loss"}>
             {totalProfitRate.toFixed(2)} %
           </span>
         </div>
@@ -91,7 +91,7 @@ const MyStockProfit = () => {
         >
           <span>
             추정자산
-            <AiOutlineQuestionCircle className="question-white"/>
+            <AiOutlineQuestionCircle className="question-white" />
           </span>
           <span className="myStockProfit-value">
             {totalEvaluation.toLocaleString()} 원
