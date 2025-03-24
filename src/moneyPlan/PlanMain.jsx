@@ -8,7 +8,7 @@ import SelectChart from './SelectChart';
 function PlanMain(props) {
 
     const navi = useNavigate();
-    const handelClick = ()=>{
+    const handleClick = ()=>{
       navi("/moneyPlan/write");
     };
 
@@ -30,7 +30,7 @@ function PlanMain(props) {
             </div>
           </div>
         </div>
-        <button className="planmain-button" onClick={handelClick}>
+        <button className="planmain-button" onClick={handleClick}>
           용돈 계획 세우기
         </button>
       </div>

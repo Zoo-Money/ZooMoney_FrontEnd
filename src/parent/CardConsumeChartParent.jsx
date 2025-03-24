@@ -150,11 +150,7 @@ function PatternChart() {
 
   const chartData = getCurrentChartData();
 
-  if (!chartData) {
-    return <div>소비 내역이 없습니다!</div>;
-  }
-
-  //차트 옵션
+  // 차트 옵션
   const chartOptions = {
     plugins: {
       legend: {
@@ -168,6 +164,8 @@ function PatternChart() {
       },
     },
   };
+
+  if (!chartData) return null;
 
   return (
     <div className="mock-container">
@@ -194,7 +192,7 @@ function PatternChart() {
               />
             </div>
             <div className="chart-total-amount">
-              사용한 총 용돈은{" "}
+              사용한 총 용돈 :{" "}
               <span>{chartData?.totalAmount?.toLocaleString()}원</span>
               <br />
               <span>{highestCategory}</span>에 가장 많이 사용했어요
