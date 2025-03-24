@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../common/Header";
 import "./css/StockInfo.css";
 
@@ -27,7 +27,11 @@ function StockInfo() {
           {stockInfoList.map((item) => {
             return (
               <div className="faq-InfoTitle">
-                <Link key={item.infoNum} to={`/stock/info/${item.infoNum}`}>
+                <Link
+                  key={item.infoNum}
+                  to={`/stock/info/${item.infoNum}`}
+                  state={{ infoTitle: item.infoTitle }}
+                >
                   {item.infoTitle}
                 </Link>
               </div>
