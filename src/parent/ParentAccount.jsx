@@ -1,13 +1,12 @@
 import axios from "axios";
-import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { API_PATH } from "../common/config.js";
 import Header from "../common/Header";
 import stamp from "../images/stamp.png";
 
 const ParentAccount = () => {
-  const location = useLocation(); // 상태를 받아오기 위해 useLocation 사용
   const navigate = useNavigate();
 
   const [accountList, setAccountList] = useState([]);
@@ -15,8 +14,7 @@ const ParentAccount = () => {
 
   const colorList = ["#FFCB9A", "#C2F1FF", "#FFF4C2", "#FEC7C0", "#CAFFC2"];
 
-  // state에서 추출
-  const target = location.state?.target;
+  const target = sessionStorage.getItem("childNum");
 
   useEffect(() => {
     // 사용자의 저금통 목록 조회
