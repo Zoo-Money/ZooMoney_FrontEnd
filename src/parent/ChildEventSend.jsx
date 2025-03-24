@@ -122,7 +122,19 @@ const ChildEventSend = () => {
         `${API_PATH}/zoomoney/contract/sendAllowance/${storedChildNum}`,
         { amount: Number(amount) }
       );
-      toast.error("용돈 송금에 성공했습니다.");
+      const response = await axios.get(
+        "http://localhost:7777/zoomoney/member/select",
+        {
+          params: { memberNum: storedChildNum },
+        }
+      );
+
+      await axios.post("http://localhost:7777/zoomoney/notify/send", {
+        memberNum: selectedChild,
+        notifyContent: `💸 ${amount.toLocaleString()} 원만큼 용돈을 받았어요.`,
+        notifyUrl: "/main",
+      });
+      toast.success("용돈 송금에 성공했습니다.");
       navigate(`/parent/main`); // childNum 전달
     } catch (error) {
       console.error("송금 실패:", error);
