@@ -32,7 +32,7 @@ function StockInfo() {
                   to={`/stock/info/${item.infoNum}`}
                   state={{ infoTitle: item.infoTitle }}
                 >
-                  {item.infoTitle}
+                  <div>{item.infoTitle}</div>
                 </Link>
               </div>
             );
