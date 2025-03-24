@@ -207,49 +207,53 @@ function StockMain(props) {
           <table className="stock-table">
             <tbody className="stock-main-mystock-list-box">
               {myStockData.length > 0 ? (
-                myStockData.map((stock, index) => {
-                  const profitRate =
-                    ((stock.stockPrice - stock.averagePrice) /
-                      stock.averagePrice) *
-                    100;
-                  return (
-                    <tr key={index}>
-                      <td>
-                        {stock.stockName}
-                        <br />( {stock.quantity}주 )
-                      </td>
-                      <td>
-                        {Math.floor(stock.averagePrice).toLocaleString("ko-KR")}
-                        원
-                        <br />
-                        <span className={profitRate >= 0 ? "profit" : "loss"}>
-                          ( {profitRate.toFixed(1)}% )
-                        </span>
-                      </td>
-                      <td>
-                        {stock.totalValue.toLocaleString()}원
-                        <br />
-                        <span className="current-price">
-                          (현재가 {stock.stockPrice.toLocaleString()}원)
-                        </span>
-                      </td>
-                      <td>
-                        <button
-                          className="sell-button"
-                          onClick={() =>
-                            goToSell(
-                              stock.stockId,
-                              stock.stockPrice,
-                              stock.stockName
-                            )
-                          }
-                        >
-                          매도하기
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })
+                myStockData
+                  .filter((stock) => stock.quantity > 0)
+                  .map((stock, index) => {
+                    const profitRate =
+                      ((stock.stockPrice - stock.averagePrice) /
+                        stock.averagePrice) *
+                      100;
+                    return (
+                      <tr key={index}>
+                        <td>
+                          {stock.stockName}
+                          <br />( {stock.quantity}주 )
+                        </td>
+                        <td>
+                          {Math.floor(stock.averagePrice).toLocaleString(
+                            "ko-KR"
+                          )}
+                          원
+                          <br />
+                          <span className={profitRate >= 0 ? "profit" : "loss"}>
+                            ( {profitRate.toFixed(1)}% )
+                          </span>
+                        </td>
+                        <td>
+                          {stock.totalValue.toLocaleString()}원
+                          <br />
+                          <span className="current-price">
+                            (현재가 {stock.stockPrice.toLocaleString()}원)
+                          </span>
+                        </td>
+                        <td>
+                          <button
+                            className="sell-button"
+                            onClick={() =>
+                              goToSell(
+                                stock.stockId,
+                                stock.stockPrice,
+                                stock.stockName
+                              )
+                            }
+                          >
+                            매도하기
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })
               ) : (
                 <tr>
                   <td colSpan="4">보유한 주식이 없습니다.</td>

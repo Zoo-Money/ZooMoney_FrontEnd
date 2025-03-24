@@ -41,15 +41,25 @@ function StockSell(props) {
         }),
       });
 
+      const resultText = await response.text();
+
       if (response.ok) {
-        navigate("/stock/TradeDone", {
-          state: {
-            stockName,
-            amount,
-            totalPrice: amount * price, // 총 매도 금액
-          },
+        // 실패했을 때 메시지 토스트 출력
+        toast.error(resultText, {
+          position: "top-center",
+          autoClose: 2000,
         });
+        return; // 실패했으니 페이지 이동 막기
       }
+
+      // 성공한 경우에만 페이지 이동
+      navigate("/stock/TradeDone", {
+        state: {
+          stockName,
+          amount,
+          totalPrice: amount * price,
+        },
+      });
     } catch (error) {
       console.error("매도 실패:", error);
       toast.error("매도 중 오류가 발생했습니다.");
