@@ -25,7 +25,7 @@ function PlanMain(props) {
           <img src={deer01} alt="deer01" className="planmain-deer" />
           </div>
           <div className="planmain-box">
-            <div className="planmain-chart-box" style={{height:"500px", display:"flex",justifyContent:"center", alignItems:"center", fontSize:"24px"}}>
+            <div className="planmain-chart-box" style={{width: "340px",height:"500px"}}>
               <SelectChart />
             </div>
           </div>
