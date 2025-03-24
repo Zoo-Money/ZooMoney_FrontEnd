@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
@@ -12,7 +13,7 @@ const StockBegin = () => {
 
   const handleJoin = () => {
     axios
-      .post("http://localhost:7777/zoomoney/stock/start", { memberNum })
+      .post(`${API_PATH}/zoomoney/stock/start`, { memberNum })
       .then((response) => {
         setHasJoined(response.data); // 응답 데이터를 상태에 저장
         navigate("/stock/list");

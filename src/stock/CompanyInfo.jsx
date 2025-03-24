@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./css/CompanyInfo.css";
+import { API_PATH } from "../common/config.js";
 
 const CompanyInfo = () => {
   // URL에서 종목 코드, 이름 가져오기
@@ -8,7 +9,7 @@ const CompanyInfo = () => {
   const [stockInfo, setStockInfo] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:7777/zoomoney/stock/info/${stockId}`)
+    fetch(`${API_PATH}/zoomoney/stock/info/${stockId}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Stock info not found");

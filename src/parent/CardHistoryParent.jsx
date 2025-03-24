@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { fetchMetadata } from "../card/resources/CardService";
@@ -17,7 +18,7 @@ function CardHistory() {
   useEffect(() => {
     const loadOrders = (period) => {
       axios
-        .get("http://localhost:7777/zoomoney/card/select", {
+        .get(`${API_PATH}/zoomoney/card/select`, {
           params: { period, member_num: memberNum },
         })
 

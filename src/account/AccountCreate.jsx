@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +26,7 @@ const AccountTest = () => {
     }
 
     try {
-      await axios.post("http://localhost:7777/zoomoney/account/create", {
+      await axios.post(`${API_PATH}/zoomoney/account/create`, {
         memberNum: memberNum,
         accountName: name,
         accountGoal: goal,

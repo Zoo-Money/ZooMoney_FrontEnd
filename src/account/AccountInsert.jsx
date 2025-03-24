@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import { useEffect, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -29,14 +30,11 @@ const AccountInsert = () => {
     const get = async () => {
       try {
         // 카드 잔액 조회
-        const response = await axios.get(
-          `http://localhost:7777/zoomoney/card/get`,
-          {
-            params: {
-              member_num: memberNum,
-            },
-          }
-        );
+        const response = await axios.get(`${API_PATH}/zoomoney/card/get`, {
+          params: {
+            member_num: memberNum,
+          },
+        });
         setCardMoneyLeft(response.data.cardMoney);
         setAccountMoneyLeft(accountGoal - accountNow);
       } catch (error) {
@@ -78,17 +76,13 @@ const AccountInsert = () => {
       await mintTokens(amount);
 
       // 카드 금액 변경
-      await axios.put(
-        `http://localhost:7777/zoomoney/card/change/${memberNum}`,
-        null,
-        {
-          params: { amount: -amount }, // 쿼리 파라미터로 amount 전달
-        }
-      );
+      await axios.put(`${API_PATH}/zoomoney/card/change/${memberNum}`, null, {
+        params: { amount: -amount }, // 쿼리 파라미터로 amount 전달
+      });
 
       // 저금통 금액 변경
       await axios.put(
-        `http://localhost:7777/zoomoney/account/insert/${accountNum}`,
+        `${API_PATH}/zoomoney/account/insert/${accountNum}`,
         null,
         {
           params: { amount: amount }, // 쿼리 파라미터로 amount 전달

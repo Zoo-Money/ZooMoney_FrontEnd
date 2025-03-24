@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -36,7 +37,7 @@ const ContractWriteChild = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/contract/childInfo", {
+      .get(`${API_PATH}/zoomoney/contract/childInfo`, {
         params: { childId: memberNum },
       })
       .then((response) => {
@@ -50,7 +51,7 @@ const ContractWriteChild = () => {
   // 부모가 작성한 계약 내용
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/contract/getDetails", {
+      .get(`${API_PATH}/zoomoney/contract/getDetails`, {
         params: { childId: memberNum },
       })
       .then((response) => {
@@ -93,19 +94,13 @@ const ContractWriteChild = () => {
     };
 
     try {
-      await axios.post(
-        "http://localhost:7777/zoomoney/contract/complete",
-        contractData
-      );
+      await axios.post(`${API_PATH}/zoomoney/contract/complete`, contractData);
 
-      const response = await axios.get(
-        "http://localhost:7777/zoomoney/member/select",
-        {
-          params: { memberNum: memberNum },
-        }
-      );
+      const response = await axios.get(`${API_PATH}/zoomoney/member/select`, {
+        params: { memberNum: memberNum },
+      });
 
-      await axios.post("http://localhost:7777/zoomoney/notify/send", {
+      await axios.post(`${API_PATH}/zoomoney/notify/send`, {
         memberNum: response.data[0].memberParent.memberNum,
         notifyContent: "📜 용돈계약서의 확인이 완료되어 잘 보관되었어요",
         notifyUrl: "/contract/contractSelect",

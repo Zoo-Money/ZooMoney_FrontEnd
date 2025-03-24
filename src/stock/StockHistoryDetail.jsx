@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../common/Header";
@@ -14,7 +15,7 @@ function StockHistoryDetail(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:7777/zoomoney/stock/history/list/${memberNum}`, {
+      .get(`${API_PATH}/zoomoney/stock/history/list/${memberNum}`, {
         params: { memberNum },
       })
       .then((response) => {

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import StockModal from "./StockModal";
@@ -12,7 +13,7 @@ function StockNews(props) {
 
   useEffect(() => {
     axios({
-      url: `http://localhost:7777/zoomoney/stock/getnews/${stockName}`,
+      url: `${API_PATH}/zoomoney/stock/getnews/${stockName}`,
       method: "get",
     })
       .then((responseData) => {

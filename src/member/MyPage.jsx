@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
@@ -13,7 +14,7 @@ function MyPage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/member/select", {
+      .get(`${API_PATH}/zoomoney/member/select`, {
         params: { memberNum },
       })
       .then((response) => {

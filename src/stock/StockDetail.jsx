@@ -26,7 +26,7 @@ const StockDetail = () => {
       {
         label: "실시간 체결가",
         data: [],
-        borderColor: "rgb(255, 40, 40)", // 기존 빨간색 유지
+        borderColor: "#ff2828", // 기존 빨간색 유지
         fill: false,
         tension: 0.2, // 곡선 부드럽게 유지
       },
@@ -61,7 +61,7 @@ const StockDetail = () => {
                 {
                   label: "체결가",
                   data: newData,
-                  borderColor: "rgb(255, 40, 40)", // 기존 빨간색 유지
+                  borderColor: "#ff2828", // 기존 빨간색 유지
                   fill: false,
                   tension: 0.2, // 부드러운 곡선 적용
                 },
@@ -153,11 +153,11 @@ const StockDetail = () => {
       </div>
 
       {activeTab === "company" && (
-        <div>
+     
           <button className="goToBuy-button" onClick={handleButtonClick}>
             사러가기
           </button>
-        </div>
+    
       )}
     </div>
   );

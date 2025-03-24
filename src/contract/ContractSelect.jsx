@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import * as pdfjs from "pdfjs-dist/webpack";
 import React, { useEffect, useState } from "react";
 import { FaChevronRight } from "react-icons/fa"; // 아이콘 사용
@@ -31,7 +32,7 @@ const ContractSelect = () => {
     const draw = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/contract/latest`,
+          `${API_PATH}/zoomoney/contract/latest`,
           { params: { childNum: childNum } }
         );
 
@@ -66,7 +67,7 @@ const ContractSelect = () => {
           <div className="ContractSelect-contract-box">
             {latestPdfPath && (
               <Document
-                file={`http://localhost:7777/zoomoney/contract_pdf/${latestPdfPath}`}
+                file={`${API_PATH}/zoomoney/contract_pdf/${latestPdfPath}`}
                 onLoadError={(error) => console.error("PDF 로드 오류:", error)}
               >
                 <Page pageNumber={1} width={350} />

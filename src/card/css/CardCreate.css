@@ -77,7 +77,7 @@
   background-color: #ff9500; /* 주황색 배경 */
   color: white; /* 흰색 텍스트 */
   font-size: 14px; /* 폰트 크기 */
-  font-weight: bold; /* 글자 두께 */
+  /* font-weight: bold; 글자 두께 */
   border: none; /* 테두리 없앰 */
   border-radius: 10px; /* 둥근 모서리 */
   cursor: pointer; /* 마우스 커서 */

@@ -1,13 +1,18 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
 import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc"; 
+import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import React, { useEffect, useRef, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { categoryColor, categoryHoverColor, categoryName } from "../moneyPlan/resource/planCommon.js";
-import "../moneyPlan/css/selectChart.css"
+import {
+  categoryColor,
+  categoryHoverColor,
+  categoryName,
+} from "../moneyPlan/resource/planCommon.js";
+import "../moneyPlan/css/selectChart.css";
 ChartJS.register(ArcElement, Tooltip, Legend);
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -17,7 +22,7 @@ function SelectChart() {
   const [currentPlanNum, setCurrentPlanNum] = useState(0); //현재 보여줄 plan_num
   const [planDate, setPlanDate] = useState([]); //날짜짜
   const [legendData, setLegendData] = useState([]); //범례
-  const [money, setMoney]=useState({});
+  const [money, setMoney] = useState({});
   const chartInstanceRef = useRef(null); // 차트 인스턴스 저장
   const memberNum = sessionStorage.getItem("member_num");
 
@@ -44,7 +49,7 @@ function SelectChart() {
   // plan_num 별로 그룹화된 데이터 저장
   useEffect(() => {
     axios
-      .get(`http://localhost:7777/zoomoney/moneyplan/select/${memberNum}`, {
+      .get(`${API_PATH}/zoomoney/moneyplan/select/${memberNum}`, {
         params: { memberNum },
       })
       .then((response) => {
@@ -66,7 +71,7 @@ function SelectChart() {
       .catch((error) => {
         console.error("데이터 로딩 오류: ", error);
       });
-  });
+  },[]);
 
   //카테고리별 세부 금액
   useEffect(() => {
@@ -139,24 +144,24 @@ function SelectChart() {
   };
 
   // 차트 전환 함수
-   const handleChartChange = (direction) => {
-     const planKeys = Object.keys(plansData);
-     const totalPlans = planKeys.length;
+  const handleChartChange = (direction) => {
+    const planKeys = Object.keys(plansData);
+    const totalPlans = planKeys.length;
 
-     if (direction === "next") {
-       setCurrentPlanNum((prevIndex) => (prevIndex + 1) % totalPlans);
-     } else {
-       setCurrentPlanNum((prevIndex) =>
-         prevIndex === 0 ? totalPlans - 1 : prevIndex - 1
-       );
-     }
+    if (direction === "next") {
+      setCurrentPlanNum((prevIndex) => (prevIndex + 1) % totalPlans);
+    } else {
+      setCurrentPlanNum((prevIndex) =>
+        prevIndex === 0 ? totalPlans - 1 : prevIndex - 1
+      );
+    }
 
-     setTimeout(() => {
-       if (chartInstanceRef.current) {
-         chartInstanceRef.current.resize();
-       }
-     }, 100); // 리사이징 강제 적용
-   };
+    setTimeout(() => {
+      if (chartInstanceRef.current) {
+        chartInstanceRef.current.resize();
+      }
+    }, 100); // 리사이징 강제 적용
+  };
 
   // 데이터가 없다면 차트가 표시되지 않도록
   if (!Object.keys(plansData).length) {
@@ -165,7 +170,7 @@ function SelectChart() {
 
   const currentPlanDetails = plansData[Object.keys(plansData)[currentPlanNum]];
   const totalAmout = getTotalAmount(currentPlanDetails);
- const currentPlanMoney = money[currentPlanNum];
+  const currentPlanMoney = money[currentPlanNum];
 
   return (
     <>

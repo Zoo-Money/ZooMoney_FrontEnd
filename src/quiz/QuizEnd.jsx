@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
@@ -12,7 +13,7 @@ const QuizEnd = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/quiz/total", {
+      .get(`${API_PATH}/zoomoney/quiz/total`, {
         params: { memberNum: memberNum },
       })
       .then((response) => {

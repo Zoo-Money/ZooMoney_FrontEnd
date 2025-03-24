@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import bear03 from "../images/bear/bear03.png";
 import "./login.css";
 import { toast } from "react-toastify";
+import axios from "axios";
+import { API_PATH } from "../common/config.js";
+import { useNavigate } from "react-router-dom";
 
 function Login(props) {
   const [memberId, setMemberId] = useState("");
@@ -13,7 +16,7 @@ function Login(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios({
-      url: `http://localhost:7777/zoomoney/member/login`,
+      url: `${API_PATH}/zoomoney/member/login`,
       method: "post",
       params: {
         member_id: memberId,

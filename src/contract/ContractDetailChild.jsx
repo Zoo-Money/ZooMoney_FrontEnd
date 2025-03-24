@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // ▼▲ 화살표 추가
 import { Document, Page, pdfjs } from "react-pdf";
@@ -23,7 +24,7 @@ const ContractDetail = () => {
   useEffect(() => {
     const memberNum = sessionStorage.getItem("member_num"); // 세션 값 가져오기
     axios
-      .get(`http://localhost:7777/zoomoney/contract/pastContracts/${memberNum}`)
+      .get(`${API_PATH}/zoomoney/contract/pastContracts/${memberNum}`)
       .then((response) => {
         setContracts(response.data); // 데이터를 상태에 저장
       })
@@ -53,7 +54,7 @@ const ContractDetail = () => {
               {openContract === index && (
                 <div className="pdf-viewer">
                   <Document
-                    file={`http://localhost:7777/zoomoney${contract.contractFilepath}`}
+                    file={`${API_PATH}/zoomoney${contract.contractFilepath}`}
                     onLoadError={(error) =>
                       console.error("PDF 로드 오류:", error)
                     }
