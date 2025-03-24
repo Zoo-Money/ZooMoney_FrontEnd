@@ -1,10 +1,10 @@
+import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useState } from "react";
-import Footer from "../common/Footer";
+import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
 import rabbit1 from "../images/rabbit/rabbit01.png";
 import "./css/StockBegin.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const StockBegin = () => {
   const [, setHasJoined] = useState(false);
@@ -13,7 +13,7 @@ const StockBegin = () => {
 
   const handleJoin = () => {
     axios
-      .post("http://localhost:7777/zoomoney/stock/start", { memberNum })
+      .post(`${API_PATH}/zoomoney/stock/start`, { memberNum })
       .then((response) => {
         setHasJoined(response.data); // 응답 데이터를 상태에 저장
         navigate("/stock/list");
@@ -48,8 +48,6 @@ const StockBegin = () => {
           참여하기
         </button>
       </div>
-
-      <Footer />
     </div>
   );
 };

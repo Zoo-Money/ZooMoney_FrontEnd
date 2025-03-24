@@ -15,11 +15,11 @@ function InputComponent({
      let formattedValue = inputValue
        ? parseInt(inputValue, 10).toLocaleString()
        : "";
-
      // 실시간으로 포맷된 값 업데이트
      setValue(formattedValue);
-     handleInputChange(e, index + 1); // 부모 컴포넌트에 값 전달
+     handleInputChange(e, index + 1);
    };
+
   return (
     <>
       <div className="planwrite-input-list">

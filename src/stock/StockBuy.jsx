@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "../stock/css/stockBuy.css";
+import { API_PATH } from "../common/config.js";
 
 function StockBuy(props) {
   const location = useLocation();
@@ -27,7 +27,7 @@ function StockBuy(props) {
     }
 
     try {
-      const response = await fetch("http://localhost:7777/zoomoney/stock/buy", {
+      const response = await fetch(`${API_PATH}/zoomoney/stock/buy`, {
         method: "POST",
         mode: "cors",
         headers: {
@@ -60,7 +60,7 @@ function StockBuy(props) {
     <div className="mock-container">
       <Header title="구매하기" />
       <div className="buy-header">
-        주식을 <span style={{ color: "red" }}>매수</span>하면,
+        주식을 <span style={{ color: "#FF2200" }}>매수</span>하면,
         <br />
         해당 주식의 <span>소유자</span>가 돼요.
         <br />
@@ -72,22 +72,23 @@ function StockBuy(props) {
       <div className="buy-container">
         <div className="buy-box">
           현재 <span>주식</span> 가격
-          <input type="number" value={price} placeholder="가격 입력" readOnly />
+          <br />
+          <p>{price.toLocaleString()}원</p>
         </div>
         <div className="buy-box">
           구매 <span>수량</span>
           <input
             type="number"
+            min="0"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            placeholder="수량 입력"
+            placeholder="수량을 입력해주세요."
           />
         </div>
       </div>
       <button className="buy-button" onClick={handleBuy}>
         구매하기
       </button>
-      <Footer />
     </div>
   );
 }

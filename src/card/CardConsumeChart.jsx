@@ -3,17 +3,19 @@ import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
 import React, { useEffect, useRef, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
+import { API_PATH } from "../common/config.js";
 import Header from "../common/Header";
-import "./css/CardConsumeChart.css";
-import { categoryName } from "./resources/patternCommon";
+// css -> moneyplan 의 planMain.css, selectChart.css 사용
+import deer01 from "../images/deer/deer01.png";
+import {
+  categoryColor,
+  categoryHoverColor,
+  categoryName,
+} from "../moneyPlan/resource/planCommon";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 function PatternChart() {
-
-  const navigate = useNavigate();
   const [groupedData, setGroupedData] = useState({}); // 1주일 단위로 그룹화된 데이터
   const [currentCardNum, setCurrentCardNum] = useState(0); // 현재 보고 있는 주차 인덱스
   const [highestCategory, setHighestCategory] = useState(""); // 가장 많이 소비한 카테고리
@@ -22,7 +24,7 @@ function PatternChart() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/zoomoney/card/select", {
+      .get(`${API_PATH}/zoomoney/card/select`, {
         params: { member_num: memberNum },
       })
       .then((response) => {
@@ -82,7 +84,7 @@ function PatternChart() {
       return acc;
     }, {});
     weekData.transactions.forEach((item) => {
-      const category = item.category?.categoryName?.trim() || "기타"; // category 객체에서 categoryName을 가져오고 없으면 "기타"로 처리
+      const category = item.category?.categoryName?.trim() || "기타";
       const money = Number(item.usehistMoney) || 0; // 금액 값 가져오기
       // 카테고리가 존재하고, categoryName 배열에 포함되면 해당 카테고리에 금액을 추가
       if (categoryName.includes(category)) {
@@ -131,24 +133,12 @@ function PatternChart() {
     const categorizedData = groupDataByCategory(dataForWeek);
     const chartData = categoryName.map((category) => categorizedData[category]);
     return {
-      labels: categoryName, // labels에 카테고리 이름 설정
+      labels: categoryName,
       datasets: [
         {
           data: chartData,
-          backgroundColor: [
-            "#FFCB9A",
-            "#C2F1FF",
-            "#FFF4C2",
-            "#FEC7C0",
-            "#CAFFC2",
-          ],
-          hoverBackgroundColor: [
-            "#E6B183",
-            "#A6D7E6",
-            "#E6DBAB",
-            "#E6ADA6",
-            "#ACD9A6",
-          ],
+          backgroundColor: categoryColor,
+          hoverBackgroundColor: categoryHoverColor,
         },
       ],
       weekLabel: selectedWeek,
@@ -160,74 +150,84 @@ function PatternChart() {
   const chartOptions = {
     plugins: {
       legend: {
-        position: "bottom",
-        labels: {
-          generateLabels: (chart) => {
-            const data = chart.data.datasets[0].data;
-            return chart.data.labels.map((label, i) => ({
-              text: `${label}: ${data[i].toLocaleString()}원`,
-              fillStyle: chart.data.datasets[0].backgroundColor[i],
-            }));
-          },
-          usePointStyle: true,
-          boxWidth: 20,
-          padding: 20,
-          font: {
-            size: 12,
-          },
-        },
+        display: false,
       },
       tooltip: {
         callbacks: {
-          label: (tooltipItem) =>
-            `${tooltipItem.label}: ${tooltipItem.raw.toLocaleString()}원`,
+          label: function (tooltipItem) {
+            let value = tooltipItem.raw || 0;
+            return `${tooltipItem.label}: ${value.toLocaleString()}원`;
+          },
         },
       },
     },
-    responsive: true,
-    cutout: "60%",
   };
   return (
     <div className="mock-container">
       <Header title="소비 내역" />
-      <div className="pattern-main-content">
-        <p>
-          짜임새 있는 소비 내역을 분석하고,
-          <br />
-          알뜰한 <span>소비 습관</span>을 길러봐요!
-        </p>
-        <div className="pattern-main-box">
-          <div className="pattern-chart-icon">
-            <span>{chartData.weekLabel}</span>
-            <IoIosArrowBack
-              className="pattern-chart-back"
-              onClick={() => handleChartChange("prev")}
-            />
-            <IoIosArrowForward
-              className="pattern-chart-forward"
-              onClick={() => handleChartChange("next")}
-            />
-          </div>
-          <div className="chart-box">
-            <Doughnut data={chartData} options={chartOptions} />
-          </div>
-          <div className="available-money">
-            <p>
-              사용한 총 용돈은{" "}
+      <div className="planmain-content">
+        <div className="planmain-description">
+          <p>
+            한 눈에 보는 내 <span>소비 패턴</span>!
+            <br />
+            똑똑한 소비 습관을 길러보아요
+          </p>
+          <img src={deer01} alt="deer01" className="planmain-deer" />
+        </div>
+        <div className="planmain-box">
+          <div className="planmain-chart-box">
+            <div className="selectchart-icon">
+              <span>{chartData.weekLabel}</span>
+              <IoIosArrowBack
+                className="selectchart-back"
+                onClick={() => handleChartChange("prev")}
+              />
+              <IoIosArrowForward
+                className="selectchart-forward"
+                onClick={() => handleChartChange("next")}
+              />
+            </div>
+            <div className="chart-total-amount">
+              사용한 총 용돈 :{" "}
               <span>{chartData.totalAmount.toLocaleString()}원</span>
-            </p>
-          </div>
-          <div className="highest-category">
-            <p>
+              <br />
               <span>{highestCategory}</span>에 가장 많이 사용했어요
-            </p>
+            </div>
+            <div className="selectchart-box">
+              <Doughnut id="myChart2" data={chartData} options={chartOptions} />
+            </div>
+            <div className="select-chart-legend">
+              {chartData?.datasets[0]?.data?.map((amount, index) => (
+                <div className="select-box-list" key={index}>
+                  <div className="name-box">
+                    <div
+                      className="pattern-index"
+                      style={{
+                        backgroundColor: categoryColor[index],
+                        borderRadius: "50%",
+                        width: "15px",
+                        height: "15px",
+                      }}
+                    ></div>
+                    <p>{categoryName[index]}</p>
+                  </div>
+                  <div className="percent">
+                    <p>
+                      {chartData?.totalAmount > 0
+                        ? Math.floor((amount / chartData.totalAmount) * 100)
+                        : 0}
+                      %
+                    </p>
+                  </div>
+                  <div className="box-amount">
+                    <p>{amount.toLocaleString()}원</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-      <button className="pattern-main-button" onClick={() => navigate("/main")}>
-        메인 페이지
-      </button>
-      <Footer />
     </div>
   );
 }

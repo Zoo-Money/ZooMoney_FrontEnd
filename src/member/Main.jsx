@@ -1,10 +1,10 @@
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Badge } from "@mui/material";
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchCardInfo, fetchMetadata } from "../card/CardService";
-import Footer from "../common/Footer";
+import { fetchCardInfo, fetchMetadata } from "../card/resources/CardService";
 import defaultCardImage from "../images/card/card00.png"; // 기본 이미지 경로
 import deer02 from "../images/deer/deer02.png";
 import giraffe05 from "../images/giraffe/giraffe05.png";
@@ -33,7 +33,7 @@ const Main = () => {
     // 서버와 SSE 연결
     const conn = () => {
       const eventSource = new EventSource(
-        `http://localhost:7777/zoomoney/notify/subscribe/${memberNum}`
+        `${API_PATH}/zoomoney/notify/subscribe/${memberNum}`
       );
 
       // 알림 정보 갱신
@@ -55,7 +55,7 @@ const Main = () => {
     const list = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/notify/list/${memberNum}`
+          `${API_PATH}/zoomoney/notify/list/${memberNum}`
         );
         setNotifyList(response.data);
       } catch (error) {
@@ -69,7 +69,7 @@ const Main = () => {
     const count = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/notify/unread/${memberNum}`
+          `${API_PATH}/zoomoney/notify/unread/${memberNum}`
         );
         setCount(response.data);
       } catch (error) {
@@ -109,7 +109,7 @@ const Main = () => {
     const fetchMemberPoint = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/member/point/${memberNum}`
+          `${API_PATH}/zoomoney/member/point/${memberNum}`
         );
         const formattedPoint = Number(
           response.data.member_point
@@ -137,9 +137,7 @@ const Main = () => {
   const selectNotify = async (notifyNum, notifyUrl) => {
     // 알림 상태(읽음 여부) 변경
     try {
-      await axios.put(
-        `http://localhost:7777/zoomoney/notify/check/${notifyNum}`
-      );
+      await axios.put(`${API_PATH}/zoomoney/notify/check/${notifyNum}`);
     } catch (error) {
       console.error("알림 상태변경 실패", error);
     }
@@ -191,8 +189,12 @@ const Main = () => {
             <NotificationsIcon
               className={shake ? "bell-shake" : ""}
               color="action"
+              style={{
+                color: view ? "#ff9500" : "",
+                fontSize: "1.5rem",
+                cursor: "pointer",
+              }}
               onClick={animate}
-              style={{ fontSize: "1.5rem", cursor: "pointer" }}
             />
           </Badge>
 
@@ -257,7 +259,7 @@ const Main = () => {
                       }}
                     />
                   </form>
-                ))}{" "}
+                ))}
               </div>
               <div style={{ margin: "0.5rem" }}></div>
             </div>
@@ -326,7 +328,10 @@ const Main = () => {
 
         {/* 기능 카드 버튼 */}
         <div className="main-grid grid-cols-2 gap-2 mt-1 w-full">
-          <a href="/card/pattern" className="main-grid-box box-skyblue">
+          <div
+            className="main-grid-box box-skyblue"
+            onClick={() => navigate("/card/pattern")}
+          >
             <div>
               <img
                 src={rabbit01}
@@ -335,28 +340,36 @@ const Main = () => {
               />
               <p>소비 패턴 분석</p>
             </div>
-          </a>
-          <a href="/moneyplan/main" className="main-grid-box box-blue">
+          </div>
+          <div
+            className="main-grid-box box-blue"
+            onClick={() => navigate("/moneyplan/main")}
+          >
             <div>
               <img src={deer02} className="card-deer" alt="용돈 계획 세우기" />
               <p>용돈 계획</p>
             </div>
-          </a>
-          <a href="/quiz/main" className="main-grid-box box-yellow">
+          </div>
+          <div
+            className="main-grid-box box-yellow"
+            onClick={() => navigate("/quiz/main")}
+          >
             <div>
               <img src={giraffe05} className="card-giraffe" alt="금융퀴즈" />
               <p>금융 퀴즈</p>
             </div>
-          </a>
-          <a href="/daily/main" className="main-grid-box box-pink">
+          </div>
+          <div
+            className="main-grid-box box-pink"
+            onClick={() => navigate("/daily/main")}
+          >
             <div>
               <img src={pig00} className="card-pig" alt="출석체크" />
               <p>출석체크</p>
             </div>
-          </a>
+          </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

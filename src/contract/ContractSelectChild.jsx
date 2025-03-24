@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import * as pdfjs from "pdfjs-dist/webpack";
 import React, { useEffect, useState } from "react";
 import { FaChevronRight } from "react-icons/fa"; // 아이콘 사용
@@ -8,7 +9,6 @@ import "react-pdf/dist/esm/Page/TextLayer.css"; //  텍스트 레이어 스타�
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import { useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "./css/contractSelect.css";
 
@@ -32,7 +32,7 @@ const ContractSelect = () => {
     const draw = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/contract/latest`,
+          `${API_PATH}/zoomoney/contract/latest`,
           { params: { childNum: memberNum } }
         );
 
@@ -67,7 +67,7 @@ const ContractSelect = () => {
           <div className="ContractSelect-contract-box">
             {latestPdfPath && (
               <Document
-                file={`http://localhost:7777/zoomoney/contract_pdf/${latestPdfPath}`}
+                file={`${API_PATH}/zoomoney/contract_pdf/${latestPdfPath}`}
                 onLoadError={(error) => console.error("PDF 로드 오류:", error)}
               >
                 <Page pageNumber={1} width={350} />
@@ -83,9 +83,6 @@ const ContractSelect = () => {
             <FaChevronRight className="ContractSelect-arrow-icon" />
           </div>
         </div>
-
-        {/* 하단 네비게이션 */}
-        <Footer />
       </div>
     </div>
   );

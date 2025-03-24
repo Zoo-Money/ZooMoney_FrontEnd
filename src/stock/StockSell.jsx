@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { API_PATH } from "../common/config.js";
 import { useLocation, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
+import { toast } from "react-toastify";
 import Header from "../common/Header";
 import rabbit07 from "../images/rabbit/rabbit07.png";
 import "../stock/css/stockBuy.css";
-import { toast } from "react-toastify";
 
 function StockSell(props) {
   const location = useLocation();
@@ -27,30 +27,36 @@ function StockSell(props) {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost:7777/zoomoney/stock/sell",
-        {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            memberNum,
-            stockId,
-            amount,
-            price,
-          }),
-        }
-      );
+      const response = await fetch(`${API_PATH}/zoomoney/stock/sell`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          memberNum,
+          stockId,
+          amount,
+          price,
+        }),
+      });
 
-      if (response.ok) {
+      const resultText = await response.text();
+
+      // "매도 완료"인 경우에만 이동
+      if (response.ok && resultText.includes("매도 완료")) {
         navigate("/stock/TradeDone", {
           state: {
             stockName,
             amount,
-            totalPrice: amount * price, // 총 매도 금액
+            totalPrice: amount * price,
           },
+        });
+      } else {
+        // 실패 케이스는 토스트로 안내
+        toast.error(resultText || "매도에 실패했습니다.", {
+          position: "top-center",
+          autoClose: 2000,
         });
       }
     } catch (error) {
@@ -63,25 +69,25 @@ function StockSell(props) {
     <div className="mock-container">
       <Header title="판매하기" />
       <div className="buy-header">
-        주식을 <span style={{ color: "blue" }}>매도</span>하면,
+        주식을 <span style={{ color: "#2667E1" }}>매도</span>하면,
         <br />
-        해당 주식을 <span>소유자</span>가 아니에요.
+        해당 주식의 <span>소유권</span>이 사라져요.
+        <br />
+        매도한 금액은
+        <br />
+        다른 기회로 활용할 수 있어요!
         <img src={rabbit07} alt="rabbit07" className="buy-rabbit07" />
       </div>
       <div className="buy-container">
         <div className="buy-box">
           현재 <span>매도</span> 가격
-          <input
-            type="number"
-            value={price}
-            readOnly
-            placeholder="가격을 입력하세요."
-          />
+          <p className="buy-text-left">{price.toLocaleString()}원</p>
         </div>
         <div className="buy-box">
           판매 <span>수량</span>
           <input
             type="number"
+            min="0"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="수량을 입력해주세요."
@@ -90,12 +96,11 @@ function StockSell(props) {
       </div>
       <button
         className="buy-button"
-        style={{ backgroundColor: "blue" }}
+        style={{ backgroundColor: "#2667e1" }}
         onClick={handleSell}
       >
         판매하기
       </button>
-      <Footer />
     </div>
   );
 }

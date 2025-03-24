@@ -1,9 +1,10 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
-import FooterParent from "../common/FooterParent";
 import Header from "../common/Header";
+import stamp from "../images/stamp.png";
 
 const ParentAccount = () => {
   const location = useLocation(); // 상태를 받아오기 위해 useLocation 사용
@@ -22,7 +23,7 @@ const ParentAccount = () => {
     const list = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:7777/zoomoney/account/list/${target}`
+          `${API_PATH}/zoomoney/account/list/${target}`
         );
         setAccountList(response.data);
       } catch (error) {
@@ -41,12 +42,10 @@ const ParentAccount = () => {
   const selectApply = async (accountNum, accountName) => {
     try {
       // 저금통 상태 변경
-      await axios.put(
-        `http://localhost:7777/zoomoney/account/close/${accountNum}`
-      );
+      await axios.put(`${API_PATH}/zoomoney/account/close/${accountNum}`);
 
       // 해지 알림 전송
-      await axios.post("http://localhost:7777/zoomoney/notify/send", {
+      await axios.post(`${API_PATH}/zoomoney/notify/send`, {
         memberNum: target,
         notifyContent: `🐷 ${accountName}<br>저금통 해지 요청이 승인되었어요`,
         notifyUrl: "/account",
@@ -62,7 +61,7 @@ const ParentAccount = () => {
     try {
       // 저금통 해지 요청 거절
       await axios.put(
-        `http://localhost:7777/zoomoney/account/request/${accountNum}`,
+        `${API_PATH}/zoomoney/account/request/${accountNum}`,
         null,
         {
           params: { request: false }, // 쿼리 파라미터로 request 전달
@@ -70,7 +69,7 @@ const ParentAccount = () => {
       );
 
       // 해지 요청 거절 알림 전송
-      await axios.post("http://localhost:7777/zoomoney/notify/send", {
+      await axios.post(`${API_PATH}/zoomoney/notify/send`, {
         memberNum: target,
         notifyContent: `🐷 ${accountName}<br>저금통 해지 요청이 거절되었어요`,
         notifyUrl: "/account",
@@ -104,80 +103,85 @@ const ParentAccount = () => {
                   className="AccountMainForm"
                   style={{
                     backgroundColor:
-                      account.accountGoal - account.accountNow <= 0
-                        ? "#ff9500" // 목표 금액 달성 시 색상
-                        : new Date().setHours(0, 0, 0, 0) >
-                          new Date(account.accountEnd)
+                      new Date().setHours(0, 0, 0, 0) >
+                      new Date(account.accountEnd)
                         ? "#c4c0ba" // 만기된 저금통 색상
                         : colorList[index % colorList.length],
                     cursor: "default",
                   }}
                 >
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <span style={{ fontSize: "0.75rem" }}>
-                      {/* 남은 일수 계산 */}
-                      {(() => {
-                        const daysLeft = Math.ceil(
-                          (new Date(account.accountEnd) - new Date()) /
-                            (1000 * 60 * 60 * 24)
-                        );
-                        return new Date().setHours(0, 0, 0, 0) >
-                          new Date(account.accountEnd)
-                          ? "만기일 지남" // 만기일이 지났을 때
-                          : daysLeft < 1
-                          ? "1일 미만 남음" // 남은 일수가 1일 미만일 때
-                          : `${daysLeft}일 남음`; // 남은 일수가 1일 이상일 때
-                      })()}
-                    </span>
-                    <span style={{ fontSize: "0.75rem" }}>
-                      {account.accountGoal - account.accountNow <= 0
-                        ? "목표 달성 완료 💘" // 목표 달성 시 표시
-                        : Math.floor(
-                            (account.accountNow / account.accountGoal) * 100
-                          ) + "% 달성"}
-                    </span>
-                  </div>
-                  <div style={{ marginTop: "20px" }}>
-                    <span>{account.accountNow.toLocaleString()} 원</span>
-                  </div>
-                  <div style={{ marginBottom: "20px" }}>
-                    <span>{account.accountName}</span>
-                  </div>
-                  <div>
+                  <div style={{ position: "relative" }}>
+                    {account.accountGoal - account.accountNow <= 0 ? (
+                      <img
+                        className="AccountMainImage"
+                        src={stamp}
+                        alt="stamp"
+                      />
+                    ) : null}
                     <div
-                      className="progress bg-secondary bg-opacity-50"
-                      style={{ height: "0.5rem" }}
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
                     >
-                      <div
-                        className="progress bg-light"
-                        role="progressbar"
-                        style={{
-                          width:
-                            (account.accountNow / account.accountGoal) * 100 +
-                            "%",
-                          height: "0.5rem",
-                        }}
-                        aria-valuenow={
+                      <span style={{ fontSize: "0.9rem" }}>
+                        {/* 남은 일수 계산 */}
+                        {(() => {
+                          const daysLeft = Math.ceil(
+                            (new Date(account.accountEnd) - new Date()) /
+                              (1000 * 60 * 60 * 24)
+                          );
+                          return new Date().setHours(0, 0, 0, 0) >
+                            new Date(account.accountEnd)
+                            ? "만기일 지남" // 만기일이 지났을 때
+                            : daysLeft < 1
+                            ? "1일 미만 남음" // 남은 일수가 1일 미만일 때
+                            : `${daysLeft}일 남음`; // 남은 일수가 1일 이상일 때
+                        })()}
+                      </span>
+                      <span style={{ fontSize: "0.9rem" }}>
+                        {Math.floor(
                           (account.accountNow / account.accountGoal) * 100
-                        }
-                      ></div>
+                        ) + "% 달성"}
+                      </span>
                     </div>
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "0.75rem",
-                      marginTop: "10px",
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <label>목표 금액</label>
-                    <span>{account.accountGoal.toLocaleString()} 원</span>
+                    <div style={{ marginTop: "10px" }}>
+                      <span>{account.accountNow.toLocaleString()} 원</span>
+                    </div>
+                    <div style={{ marginBottom: "10px" }}>
+                      <span>{account.accountName}</span>
+                    </div>
+                    <div>
+                      <div
+                        className="progress bg-secondary bg-opacity-50"
+                        style={{ height: "0.5rem" }}
+                      >
+                        <div
+                          className="progress bg-light"
+                          role="progressbar"
+                          style={{
+                            width:
+                              (account.accountNow / account.accountGoal) * 100 +
+                              "%",
+                            height: "0.5rem",
+                          }}
+                          aria-valuenow={
+                            (account.accountNow / account.accountGoal) * 100
+                          }
+                        ></div>
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "0.9rem",
+                        marginTop: "10px",
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <label>목표 금액</label>
+                      <span>{account.accountGoal.toLocaleString()} 원</span>
+                    </div>
                   </div>
                   {account.accountRequest === true && (
                     <div>
@@ -225,9 +229,6 @@ const ParentAccount = () => {
           )}
         </div>
       </div>
-
-      {/* 하단 네비게이션 */}
-      <FooterParent />
     </div>
   );
 };

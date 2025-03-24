@@ -1,11 +1,11 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useState } from "react";
-import { InputGroup, Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
+import { toast } from "react-toastify";
 import Header from "../common/Header";
 import "./css/AccountCreate.css";
-import { toast } from "react-toastify";
 
 const AccountTest = () => {
   // 세션 값 불러오기
@@ -26,7 +26,7 @@ const AccountTest = () => {
     }
 
     try {
-      await axios.post("http://localhost:7777/zoomoney/account/create", {
+      await axios.post(`${API_PATH}/zoomoney/account/create`, {
         memberNum: memberNum,
         accountName: name,
         accountGoal: goal,
@@ -37,6 +37,15 @@ const AccountTest = () => {
     } catch (error) {
       console.error("저금통 생성 실패", error);
     }
+  };
+
+  //천원단위가공
+  const handleInputChange = (e, key) => {
+    let value = e.target.value.replace(/[^0-9]/g, "");
+    if (value) {
+      value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    setGoal(value.replace(/,/g, ""));
   };
 
   return (
@@ -65,10 +74,10 @@ const AccountTest = () => {
         </div>
         <InputGroup className="AccountCreateInput">
           <Form.Control
-            type="number"
+            type="text"
             placeholder="목표 금액"
-            value={goal}
-            onChange={(e) => setGoal(e.target.value)}
+            value={goal ? goal.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : ""}
+            onChange={(e) => handleInputChange(e, "goal")}
           />
           <InputGroup.Text>원</InputGroup.Text>
         </InputGroup>
@@ -91,9 +100,6 @@ const AccountTest = () => {
           <span>다음</span>
         </button>
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

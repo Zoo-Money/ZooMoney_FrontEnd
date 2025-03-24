@@ -9,6 +9,8 @@ const FooterParent = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const target = sessionStorage.getItem("childNum");
+
   // 현재 경로에 따라 active 클래스를 동적으로 할당
   const isActive = (path) => location.pathname.startsWith(path);
 
@@ -16,18 +18,20 @@ const FooterParent = () => {
     <div className="footer">
       <div className="footer-container">
         <HomeRoundedIcon
-          className={`footer-icon ${isActive("/main") ? "active" : ""}`}
+          className={`footer-icon ${isActive("/parent/main") ? "active" : ""}`}
           onClick={() => {
-            navigate("/main");
+            navigate("/parent/main");
           }}
         />
         홈
       </div>
       <div className="footer-container">
         <SavingsRoundedIcon
-          className={`footer-icon ${isActive("/account") ? "active" : ""}`}
+          className={`footer-icon ${
+            isActive("/parent/account") ? "active" : ""
+          }`}
           onClick={() => {
-            navigate("/account");
+            navigate("/parent/account", { state: { target: target } });
           }}
         />
         저금통

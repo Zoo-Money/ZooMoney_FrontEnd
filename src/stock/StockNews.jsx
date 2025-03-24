@@ -1,18 +1,18 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import StockModal from "./StockModal";
 import "./css/stockNews.css";
 
 function StockNews(props) {
-  //초기값 가져오기기
   const { stockName } = useParams(); // URL에서 infoNum 가져오기
   const [newsList, setNewsList] = useState([]);
   const [selectedNews, setSelectedNews] = useState(null);
 
   useEffect(() => {
     axios({
-      url: `http://localhost:7777/zoomoney/stock/getnews/${stockName}`,
+      url: `${API_PATH}/zoomoney/stock/getnews/${stockName}`,
       method: "get",
     })
       .then((responseData) => {

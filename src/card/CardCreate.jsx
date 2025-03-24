@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import card00 from "../images/card/card00.png";
 import card01 from "../images/card/card01.png";
 import card02 from "../images/card/card02.png";
 import card03 from "../images/card/card03.png";
 import card04 from "../images/card/card04.png";
-import { mintNFT } from "./CardService";
+import { mintNFT } from "./resources/CardService";
 import "./css/CardCreate.css";
 
 const CardCreate = () => {
@@ -131,9 +130,6 @@ const CardCreate = () => {
       >
         {minting ? "" : "카드 발급"}
       </button>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

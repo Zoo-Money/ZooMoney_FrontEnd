@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import card00 from "../images/card/card00.png";
 import card01 from "../images/card/card01.png";
 import card02 from "../images/card/card02.png";
 import card03 from "../images/card/card03.png";
 import card04 from "../images/card/card04.png";
-import { fetchCardInfo, fetchMetadata, mintNFT } from "./CardService";
+import { fetchCardInfo, fetchMetadata, mintNFT } from "./resources/CardService";
 import "./css/CardModify.css";
 const CardModify = () => {
   const [file, setFile] = useState(null);
@@ -179,9 +178,6 @@ const CardModify = () => {
       >
         {minting ? "" : "다음"}
       </button>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

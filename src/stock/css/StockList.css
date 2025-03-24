@@ -29,6 +29,7 @@
   align-items: center;
   border-bottom: 1px solid #eee;
   padding: 12px 0;
+  cursor: pointer;
   transition: 0.5s ease;
 }
 .stock-item:hover {
@@ -41,13 +42,12 @@
 }
 
 .stock-rank {
-  color: blue;
+  color: #2667e1;
   font-size: 18px;
   margin-right: 8px;
 }
 
 .stock-name {
-  font-weight: 600;
   color: #333;
 }
 
@@ -60,25 +60,32 @@
 }
 
 .stock-change.up {
-  color: red;
+  color: #FF2200;
 }
 
 .stock-change.down {
-  color: blue;
+  color: 
+  #2667e1;
 }
-
+.stock-header{
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+}
+.stock-header span{
+  color: #ff9500;
+  /* display: inline; */
+}
 .stockList-image {
   width: 50px;
   height: auto;
-  align-self: self-end;
-  margin-right: 15%;
+  /* align-self: self-end; */
+  /* margin-right: 15%; */
   transform: scaleX(-1);
 }
 
 .stockList-image img {
-  margin-right: 10px; /* 텍스트와 간격 */
-}
-
-.clickable {
-  cursor: pointer; /* 클릭할 수 있도록 변경 */
+  margin-right: 10px;
 }

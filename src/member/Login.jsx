@@ -1,20 +1,20 @@
+import axios from "axios";
 import React, { useState } from "react";
-import Header from "../common/Header";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { API_PATH } from "../common/config.js";
 import bear03 from "../images/bear/bear03.png";
 import "./login.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 function Login(props) {
   const [memberId, setMemberId] = useState("");
   const [memberPw, setMemberPw] = useState("");
-  const [message, setMessage] = useState("");
   const navi = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios({
-      url: `http://localhost:7777/zoomoney/member/login`,
+      url: `${API_PATH}/zoomoney/member/login`,
       method: "post",
       params: {
         member_id: memberId,
@@ -24,7 +24,6 @@ function Login(props) {
     })
       .then((responseData) => {
         if (responseData.data.message === "로그인 성공") {
-          setMessage("로그인 성공!");
           const {
             member_id,
             member_num,
@@ -47,17 +46,16 @@ function Login(props) {
             navi("/main");
           }
         } else {
-          setMessage("로그인 실패!");
+          toast.error("아이디 또는 비밀번호가 일치하지 않습니다.");
         }
       })
       .catch((err) => {
-        console.error("로그인 중 오류", err);
+        console.error("로그인 오류 발생", err);
       });
   };
 
   return (
     <div className="mock-container">
-      <Header title="로그인"></Header>
       <div className="login-container">
         <div className="login-header">
           <span>Zoo</span>Money
@@ -69,7 +67,7 @@ function Login(props) {
             <input
               className="login-input"
               type="text"
-              placeholder="아이디를 입력하세요"
+              placeholder="아이디를 입력해주세요"
               value={memberId}
               onChange={(e) => setMemberId(e.target.value)}
             />
@@ -79,18 +77,16 @@ function Login(props) {
             <input
               type="password"
               className="login-input"
-              placeholder="비밀번호를 입력하세요"
+              placeholder="비밀번호를 입력해주세요"
               value={memberPw}
               onChange={(e) => setMemberPw(e.target.value)}
             />
           </div>
-          {message && <p className="login-error">{message}</p>}
           <button type="submit" className="login-button">
             로그인
           </button>
         </form>
       </div>
-      <button className="login-forgotPW">비밀번호를 잊으셨나요?</button>
     </div>
   );
 }

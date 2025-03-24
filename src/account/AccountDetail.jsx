@@ -1,7 +1,7 @@
 import axios from "axios";
+import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Footer from "../common/Footer";
 import Header from "../common/Header";
 import stamp from "../images/stamp.png";
 import "./css/AccountDetail.css";
@@ -29,7 +29,7 @@ const AccountDetail = () => {
         try {
           // 저금통 상세 조회
           const response = await axios.post(
-            `http://localhost:7777/zoomoney/account/select/${accountNum}`
+            `${API_PATH}/zoomoney/account/select/${accountNum}`
           );
           setAccount(response.data);
         } catch (error) {
@@ -66,19 +66,13 @@ const AccountDetail = () => {
         await burnTokens(account.accountNow);
 
         // 카드 금액 변경
-        await axios.put(
-          `http://localhost:7777/zoomoney/card/change/${memberNum}`,
-          null,
-          {
-            params: { amount: account.accountNow }, // 쿼리 파라미터로 amount 전달
-          }
-        );
+        await axios.put(`${API_PATH}/zoomoney/card/change/${memberNum}`, null, {
+          params: { amount: account.accountNow }, // 쿼리 파라미터로 amount 전달
+        });
       }
 
       // 저금통 상태 변경
-      await axios.put(
-        `http://localhost:7777/zoomoney/account/close/${accountNum}`
-      );
+      await axios.put(`${API_PATH}/zoomoney/account/close/${accountNum}`);
 
       navigate("/account/end", {
         state: { accountName: account.accountName, status: 1 },
@@ -248,9 +242,6 @@ const AccountDetail = () => {
           </div>
         ) : null}
       </div>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

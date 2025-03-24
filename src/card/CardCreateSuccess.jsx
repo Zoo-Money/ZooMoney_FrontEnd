@@ -1,8 +1,7 @@
 import React from "react";
-import "./css/CardCreateSuccess.css";
-import Footer from "../common/Footer";
-import bear01 from "../images/bear/bear01.png";
 import { Link } from "react-router-dom";
+import bear01 from "../images/bear/bear01.png";
+import "./css/CardCreateSuccess.css";
 
 const CardCreateSuccess = () => {
   return (
@@ -21,9 +20,6 @@ const CardCreateSuccess = () => {
           홈으로
         </Link>
       </button>
-
-      {/* 하단 네비게이션 */}
-      <Footer />
     </div>
   );
 };

@@ -1,0 +1,122 @@
+/* PlanWrite */
+.planwrite-content {
+  margin-top: 10px;
+  text-align: left;
+  margin-left: -50px;
+}
+.planwrite-content span {
+  font-size: 1.5rem;
+  color: #ff5454;
+}
+.planwrite-container p {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 30px;
+}
+.planwrite-container {
+  width: 90%;
+  font-size: 18px;
+}
+.planwrite-container img:nth-child(1) {
+  margin-left: 7px;
+}
+.planwrite-button {
+  width: 80%;
+  height: 45px;
+  background-color: #ff9500;
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+  display: inline;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.planwrite-button:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+/* InputComponent */
+.planwrite-input-list {
+  transition: 0.5s ease;
+}
+.planwrite-input-list:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 15px;
+  width: 329px;
+  height: 58px;
+  background-color: #ffcb9a;
+  margin-bottom: 20px;
+}
+.planwrite-input-list span {
+  display: flex;
+  width: 50px;
+  margin-right: 20px;
+}
+.planwrite-input-list img {
+  width: 60px;
+  display: flex;
+  margin-right: 25px;
+}
+.planwrite-input-list input {
+  vertical-align: middle;
+  width: 150px;
+  border: none;
+  background-color: transparent;
+  margin-right: 10px;
+  text-align: right;
+}
+.planwrite-input-list input:focus {
+  outline: none;
+}
+.planwrite-input-list:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 15px;
+  width: 329px;
+  height: 58px;
+  margin-bottom: 20px;
+  background-color: #c2f1ff;
+}
+.planwrite-input-list:nth-child(3) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 15px;
+  width: 329px;
+  height: 58px;
+  margin-bottom: 20px;
+  background-color: #fff4c2;
+}
+.planwrite-input-list:nth-child(4) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 15px;
+  width: 329px;
+  height: 58px;
+  margin-bottom: 20px;
+  background-color: #fec7c0;
+}
+.planwrite-input-list:nth-child(5) {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 15px;
+  width: 329px;
+  height: 58px;
+  margin-bottom: 20px;
+  background-color: #caffc2;
+}
+
+.planwrite-input-list:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}

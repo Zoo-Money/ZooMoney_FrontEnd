@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./css/stockModal.css";
 
 function StockModal({ news, closeModal, clearText, formatDate }) {
+
   return (
     <div
       className="modal-background"
@@ -21,9 +23,9 @@ function StockModal({ news, closeModal, clearText, formatDate }) {
           <div className="modal-body">
             <p>{formatDate(news.pubDate)}</p>
             <p>{clearText(news.description)}</p>
-            {/* 원문 그대로 보여주는 태그그
+            {/* 원문 그대로 보여주는 태그
               <embed src="https://www.kbanker.co.kr/news/articleView.html?idxno=218832"></embed> */}
-            <a href={news.link}>🔗더 궁금하다면, 원본 기사 보러가기</a>
+            <Link to={news.link}>🔗더 궁금하다면, 원본 기사 보러가기</Link>
           </div>
           <div className="modal-footer">
             <button

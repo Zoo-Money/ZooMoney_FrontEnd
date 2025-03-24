@@ -1,8 +1,8 @@
 .stock-main-box {
-  border: 2px solid #ff9500;
+  border: none;
+  background-color: #fff2e2;
   padding: 16px;
   border-radius: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 360px;
   cursor: pointer;
@@ -10,7 +10,7 @@
 }
 .stock-main-box:hover {
   opacity: 0.8;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 .stock-main-header {
   width: 20%;
@@ -22,7 +22,7 @@
 }
 .stock-main-info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 5px;
   margin-left: -120px;
   margin-bottom: 5px;
@@ -76,7 +76,7 @@
   height: 45px;
   border: none;
   border-radius: 10px;
-  margin-top: 30px;
+  margin-top: 20px;
   cursor: pointer;
   transition: 0.5s ease;
 }
@@ -89,13 +89,26 @@
   border-collapse: collapse;
   margin-top: 20px;
 }
-.stock-main-mystock-list-box33 {
-  max-height: calc(100vh - 580px);
+/* 헤더 고정 */
+.table-header {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+/* 테이블 바디 영역 스크롤 */
+.table-body {
+  max-height: calc(100vh - 620px); /* 스크롤 높이 조정 */
+  overflow-y: auto;
+  display: block;
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-.stock-main-mystock-list-box33::-webkit-scrollbar {
+.stock-main-mystock-list-box33 {
+  max-height: calc(100vh - 580px);
+}
+.table-body::-webkit-scrollbar {
   display: none;
 }
 
@@ -113,11 +126,11 @@
 }
 
 .profit {
-  color: red;
+  color: #ff2200;
 }
 
 .loss {
-  color: blue;
+  color: #0059ff;
 }
 
 .current-price {
@@ -126,11 +139,11 @@
 }
 
 .sell-button {
-  background-color: #c2f1ff;
+  background-color: #2667e1;
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
-  color: #000;
+  color: #fff;
   cursor: pointer;
   transition: 0.5s ease;
 }

@@ -1,32 +1,35 @@
 /* ZooMoney 로고 스타일 */
 .parent-main-zoo-money-title {
-  font-size: 30px;
+  width: 80%;
+  font-size: 24px;
   display: flex;
-  margin-left: -150px;
   align-items: center;
-  margin-bottom: 10px;
-  margin-top: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: space-between;
 }
-.parent-zoo {
+.parent-main-zoo {
   color: #ff9500;
 }
-.parent-money {
+.parent-main-money {
   color: #1a1a1a;
 }
 .parent-main-profile-container {
   width: 80%;
   display: flex;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-left: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .profile-wrapper {
-  cursor: pointer; /* 🔹 클릭 가능한 요소 표시 */
   width: 60px; /* 🔹 프로필 크기 조정 */
   text-align: center;
+  cursor: pointer;
+  transition: 0.5s ease;
 }
-.profile-wrapper:hover{
-  transform: scale(1.05); /* 마우스 올리면 확대 */
+.profile-wrapper:hover {
+  opacity: 0.8;
 }
 .profile-image {
   width: 50px;
@@ -34,63 +37,71 @@
   border-radius: 50%;
   border: 2px solid #ddd; /* 🔹 테두리 추가 */
 }
-
 /* 용돈 정보 카드 */
-.allowance-card {
+.parent-main-allowance-card {
   background-color: white;
-  width: 85%;
+  width: 80%;
   height: auto;
   border-radius: 12px;
   border: 3px solid #ff9500;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
   margin-bottom: 30px;
+  margin-top: 10px;
 }
 /* 카드 상단 레이아웃 */
-.card-header {
+.parent-main-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 /* 용돈 정보 텍스트 */
-.allowance-text {
+.parent-main-allowance-text {
   display: flex;
   flex-direction: column;
 }
 
 /* 타이틀 스타일 */
-.allowance-title {
-  font-size: 16px;
+.parent-main-allowance-title {
+  font-size: 21px;
   color: #333;
+  font-style: normal;
+  margin-bottom: 10px;
 }
-.allowance-cild-name{
+.parent-main-allowance-cild-name {
+  color: #ff9500;
+}
+
+.allowance-cild-name {
   font-size: 18px;
 }
 /* 금액 스타일 */
-.allowance-amount {
+.parent-main-allowance-amount {
   font-size: 24px;
   align-items: center;
-  margin-left: 8px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 /* 소비내역 확인 버튼 */
-.consumptionhistory-button {
+.parent-main-consumptionhistory-button {
   height: 40px;
-  background-color: #f9e7cf;
+  background-color: #fff4c2;
   color: black;
-  font-size: 14px;
-  padding: 6px 12px;
+  font-size: 16px;
+  /* padding: 6px 12px; */
   border: none;
   border-radius: 10px;
-  font-weight: 600;
-  margin-top: 20px;
+  margin-top: 30px;
   cursor: pointer;
+  transition: 0.5s ease;
 }
 
-/* 송금하기 버튼 hover 효과 */
-.consumptionhistory-button:hover {
-  background-color: #f8d5a8;
+/* 소비내역 확인 버튼 hover 효과 */
+.parent-main-consumptionhistory-button:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 /* 송금하기 버튼 */
@@ -103,29 +114,36 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  transition: 0.5s ease;
 }
 
 /* 송금하기 버튼 hover 효과 */
 .sendmoney-button:hover {
-  background-color: #e68a2e;
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 /* 기능 카드 스타일 */
 .parent-card {
   width: 150px;
-  height: 150px;
+  height: 145px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   font-size: 16px;
-  color: black;
+  color: #333;
   text-align: center;
-  transition: transform 0.2s ease-in-out;
   margin: auto;
+  text-decoration: none;
   cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.parent-card:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 .parent-grid {
@@ -134,50 +152,53 @@
   width: 100%;
   max-width: 400px;
 }
-.parent-bear{
+.parent-bear {
   width: 70px;
-  margin-right: 5px;
-  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
 }
-.parent-deer{
+
+.parent-deer {
   width: 75px;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
   margin-left: 5px;
+  margin-top: 15px;
 }
-.parent-rabbit{
+.parent-rabbit {
   width: 80px;
   margin-top: 5px;
 }
-.card-purple p{
-  margin-top: 10px;
-}
-.parent-pig{
+
+.parent-pig {
   width: 180px;
   margin-top: -15px;
-  
 }
 /* 개별 카드 배경색 */
-.card-yellow {
+.card-blue {
   background-color: #c2f1ff;
   margin-right: 0;
 }
+.card-blue p {
+  margin-top: 10px;
+}
 
-.card-blue {
+.card-yellow {
   background-color: #fff4c2;
   margin-left: 0;
 }
-
-.card-purple {
-  background-color: #fec7c0;
-  margin-right: 0;
+.card-yellow p {
+  margin-top: 10px;
 }
 
 .card-pink {
-  background-color: #caffc2;
-  margin-left: 0;
+  background-color: #fec7c0;
+  margin-right: 0;
+}
+.card-pink p {
+  margin-top: 10px;
 }
 
-/* 카드 hover 효과 */
-.parent-card:hover {
-  transform: scale(1.05);
+.card-green {
+  background-color: #caffc2;
+  margin-left: 0;
 }

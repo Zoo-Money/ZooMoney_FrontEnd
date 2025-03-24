@@ -1,15 +1,14 @@
 import React from 'react';
-import Header from '../common/Header';
-import Footer from '../common/Footer';
-import deer01 from "../images/deer/deer01.png";
-import "../moneyPlan/css/moneyPlan.css"
 import { useNavigate } from 'react-router-dom';
+import Header from '../common/Header';
+import deer01 from "../images/deer/deer01.png";
+import "../moneyPlan/css/planMain.css";
 import SelectChart from './SelectChart';
 
 function PlanMain(props) {
 
     const navi = useNavigate();
-    const handelClick = ()=>{
+    const handleClick = ()=>{
       navi("/moneyPlan/write");
     };
 
@@ -27,14 +26,13 @@ function PlanMain(props) {
           </div>
           <div className="planmain-box">
             <div className="planmain-chart-box">
-              <SelectChart></SelectChart>
+              <SelectChart />
             </div>
           </div>
         </div>
-        <button className="planmain-button" onClick={handelClick}>
+        <button className="planmain-button" onClick={handleClick}>
           용돈 계획 세우기
         </button>
-        <Footer />
       </div>
     );
 }
