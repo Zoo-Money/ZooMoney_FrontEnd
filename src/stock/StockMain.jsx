@@ -26,7 +26,7 @@ function StockMain(props) {
       const hours = now.getHours();
 
       // 9~15시까지 오픈
-      const marketOpen = hours >= 9 && hours <= 15;
+      const marketOpen = hours >= 9 && hours < 15;
 
       // 장이 닫혀 있으면 true, 열려 있으면 false
       setIsMarketClosed(!marketOpen);
@@ -34,7 +34,7 @@ function StockMain(props) {
 
     checkMarketStatus();
     // 1초마다 상태 갱신
-    const interval = setInterval(checkMarketStatus, 1000);
+    const interval = setInterval(checkMarketStatus, 100);
 
     return () => clearInterval(interval);
   }, []);
