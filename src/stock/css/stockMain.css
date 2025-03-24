@@ -98,17 +98,15 @@
 }
 /* 테이블 바디 영역 스크롤 */
 .table-body {
-  max-height: 300px; /* 스크롤 높이 조정 */
+  max-height: calc(100vh - 620px); /* 스크롤 높이 조정 */
   overflow-y: auto;
   display: block;
-}
-.stock-main-mystock-list-box33 {
-  max-height: calc(100vh - 580px);
-}
-.table-body {
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+.stock-main-mystock-list-box33 {
+  max-height: calc(100vh - 580px);
 }
 .table-body::-webkit-scrollbar {
   display: none;

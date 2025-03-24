@@ -40,15 +40,16 @@ const StockList = () => {
       <div className="stock-list">
         {stocks.length > 0
           ? stocks.map((stock, index) => (
-              <div key={index} className="stock-item">
+              <div
+                key={index}
+                className="stock-item"
+                onClick={() =>
+                  handleStockClick(stock.stock_id, stock.stock_name)
+                }
+              >
                 <div className="stock-info">
                   <span className="stock-rank">{index + 1}</span>
-                  <span
-                    className="stock-name clickable"
-                    onClick={() =>
-                      handleStockClick(stock.stock_id, stock.stock_name)
-                    }
-                  >
+                  <span className="stock-name">
                     {stock.stock_name || "이름 없음"}
                   </span>
                 </div>

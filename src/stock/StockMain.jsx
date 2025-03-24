@@ -173,17 +173,17 @@ function StockMain(props) {
         <div className="stock-main-box-detail">
           <div>
             <span>총 수익</span>
-            <span class="loss">
+            <span className={totalProfitRate >= 0 ? "profit" : "loss"}>
               {(totalInvestment - 1000000).toLocaleString()} 원
             </span>
           </div>
           <div>
             <span>총 수익률</span>
-            <span class="loss">{totalProfitRate.toFixed(2)} %</span>
+            <span span className={totalProfitRate >= 0 ? "profit" : "loss"}>{totalProfitRate.toFixed(2)} %</span>
           </div>
           <div>
             <span>예수금</span>
-            <span class="loss">{stockMoney.toLocaleString()} 원</span>
+            <span span className={totalProfitRate >= 0 ? "profit" : "loss"}>{stockMoney.toLocaleString()} 원</span>
           </div>
         </div>
       </div>
