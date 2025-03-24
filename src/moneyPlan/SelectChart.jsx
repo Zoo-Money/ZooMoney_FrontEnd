@@ -25,6 +25,7 @@ function SelectChart() {
   const [planDate, setPlanDate] = useState([]); //날짜
   const [legendData, setLegendData] = useState([]); //범례
   const [money, setMoney] = useState({});
+  const [loading, setLoading] = useState(true);
   const chartInstanceRef = useRef(null); // 차트 인스턴스 저장
 
   const formatPlanDate = (dateString) => {
@@ -53,7 +54,8 @@ function SelectChart() {
       })
       .catch((error) => {
         console.error("데이터 로딩 오류: ", error);
-      });
+      })
+      .finally(setLoading(false));
   }, [memberNum]);
 
   // plan_num별로 데이터를 그룹화
@@ -68,7 +70,7 @@ function SelectChart() {
       return acc;
     }, {});
   };
-  
+
   // 날짜에 맞는 plan_num 찾기
   const findPlanNumByDate = (date) => {
     const planIndex = planDate.findIndex((planDate) => planDate === date);
@@ -93,6 +95,8 @@ function SelectChart() {
       return detail ? detail.detail_money : 0;
     });
     setLegendData(data); // legendData 업데이트
+
+    setLoading(false);
   }, [currentPlanNum, plansData, planDate]);
 
   // 입력 값 총합
@@ -172,62 +176,80 @@ function SelectChart() {
   const currentPlanDetails = plansData[selectedPlanNum] || [];
   const totalAmout = getTotalAmount(currentPlanDetails);
   const currentPlanMoney = money[currentPlanNum];
-  
-  if (!Object.keys(plansData).length) return "현재 용돈 계획이 없어요 🥲";
+
+  if (loading) return null;
 
   return (
     <>
-      <div className="selectchart-icon">
-        <span>{formatPlanDate(planDate[currentPlanNum]) || "날짜없음"}</span>
-        <IoIosArrowBack
-          className="selectchart-back"
-          onClick={() => handleChartChange("prev")}
-        />
-        <IoIosArrowForward
-          className="selectchart-forward"
-          onClick={() => handleChartChange("next")}
-        />
-      </div>
-      <div className="chart-total-amount">
-        <p>
-          일주일 용돈{" "}
-          <span>
-            {currentPlanMoney ? currentPlanMoney.toLocaleString() : 0}원
-          </span>
-        </p>
-      </div>
-      <div className="selectchart-box">
-        <Doughnut
-          ref={(chart) => (chartInstanceRef.current = chart)}
-          id="myChart"
-          data={getChartData(currentPlanDetails)}
-          options={chartOptions}
-        />
-      </div>
-      <div className="select-chart-legend">
-        {legendData.map((amount, index) => (
-          <div className="select-box-list" key={index}>
-            <div className="name-box">
-              <div
-                className="select-eat"
-                style={{
-                  backgroundColor: categoryColor[index],
-                  borderRadius: "50%",
-                  width: "15px",
-                  height: "15px",
-                }}
-              ></div>
-              <p>{categoryName[index]}</p>
-            </div>
-            <div className="percent">
-              <p>{Math.floor((amount / totalAmout) * 100)}%</p>
-            </div>
-            <div className="box-amount">
-              <p>{amount.toLocaleString()}원</p>
-            </div>
+      {!Object.keys(plansData).length ? (
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: "24px",
+          }}
+        >
+          현재 용돈 계획이 없어요 🥲
+        </div>
+      ) : (
+        <>
+          <div className="selectchart-icon">
+            <span>
+              {formatPlanDate(planDate[currentPlanNum]) || "날짜없음"}
+            </span>
+            <IoIosArrowBack
+              className="selectchart-back"
+              onClick={() => handleChartChange("prev")}
+            />
+            <IoIosArrowForward
+              className="selectchart-forward"
+              onClick={() => handleChartChange("next")}
+            />
           </div>
-        ))}
-      </div>
+          <div className="chart-total-amount">
+            <p>
+              일주일 용돈{" "}
+              <span>
+                {currentPlanMoney ? currentPlanMoney.toLocaleString() : 0}원
+              </span>
+            </p>
+          </div>
+          <div className="selectchart-box">
+            <Doughnut
+              ref={(chart) => (chartInstanceRef.current = chart)}
+              id="myChart"
+              data={getChartData(currentPlanDetails)}
+              options={chartOptions}
+            />
+          </div>
+          <div className="select-chart-legend">
+            {legendData.map((amount, index) => (
+              <div className="select-box-list" key={index}>
+                <div className="name-box">
+                  <div
+                    className="select-eat"
+                    style={{
+                      backgroundColor: categoryColor[index],
+                      borderRadius: "50%",
+                      width: "15px",
+                      height: "15px",
+                    }}
+                  ></div>
+                  <p>{categoryName[index]}</p>
+                </div>
+                <div className="percent">
+                  <p>{Math.floor((amount / totalAmout) * 100)}%</p>
+                </div>
+                <div className="box-amount">
+                  <p>{amount.toLocaleString()}원</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 }
