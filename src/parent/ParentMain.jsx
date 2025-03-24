@@ -304,7 +304,6 @@ const ParentMain = () => {
       </div>
       {/* 프로필 영역 */}
       <div className="parent-main-profile-container">
-        {" "}
         {/* 가로로 정렬을 위한 추가 */}
         {children.map((child) => (
           <div
