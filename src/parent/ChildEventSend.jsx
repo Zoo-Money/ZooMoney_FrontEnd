@@ -82,9 +82,6 @@ const ChildEventSend = () => {
 
   // 금액 버튼 클릭 시
   const handleAmountClick = (value) => {
-    // setAmount(amount + value);
-    // setSelectedAmount(value);
-    // setIsCustomInput(false); //직접입력 종료
     const numericAmount = Number(amount); // 🔥 숫자 변환 추가
     setAmount(numericAmount + value);
     setSelectedAmount(value);
@@ -101,7 +98,6 @@ const ChildEventSend = () => {
   // 직접입력시 금액 입력 핸들러
   const handleAmountChange = (e) => {
     const numericValue = e.target.value.replace(/\D/g, ""); // 숫자만 입력
-    // setAmount(numericValue);
     setAmount(Number(numericValue)); // 🔥 숫자 변환 추가
   };
 
@@ -122,14 +118,11 @@ const ChildEventSend = () => {
         `${API_PATH}/zoomoney/contract/sendAllowance/${storedChildNum}`,
         { amount: Number(amount) }
       );
-      const response = await axios.get(
-        "http://localhost:7777/zoomoney/member/select",
-        {
-          params: { memberNum: storedChildNum },
-        }
-      );
+      await axios.get(`${API_PATH}/zoomoney/member/select`, {
+        params: { memberNum: storedChildNum },
+      });
 
-      await axios.post("http://localhost:7777/zoomoney/notify/send", {
+      await axios.post(`${API_PATH}/zoomoney/notify/send`, {
         memberNum: selectedChild,
         notifyContent: `💸 ${amount.toLocaleString()} 원만큼 용돈을 받았어요.`,
         notifyUrl: "/main",
@@ -154,11 +147,8 @@ const ChildEventSend = () => {
               보낼까요?
             </h3>
             <p className="Child-Event-Send-balance">
-              {" "}
-              {selectedChildInfo
-                ? selectedChildInfo.memberName
-                : "자녀 없음"}{" "}
-              의 주머니 잔액 : {cardMoney.toLocaleString()}원
+              {selectedChildInfo ? selectedChildInfo.memberName : "자녀 없음"}의
+              주머니 잔액 : {cardMoney.toLocaleString()}원
             </p>
             <div className="Child-Event-Send-amount-buttons">
               <button
@@ -199,7 +189,6 @@ const ChildEventSend = () => {
           </div>
 
           {/* 충전 계좌 정보 */}
-
           <div className="Child-Event-Send-amount-account-containerTop">
             <label>충전계좌 정보</label>
             <div className="Child-Event-Send-amount-account-container">

@@ -1,14 +1,16 @@
 import axios from "axios";
 import { API_PATH } from "../common/config.js";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Header from "../common/Header";
 import rabbit2 from "../images/rabbit/rabbit02.png";
 import "./css/StockInfoDetail.css";
 
 function StockInfoDetail() {
   const { infoNum } = useParams();
+  const location = useLocation();
   const [infoDetail, InfoDetailList] = useState(null);
+  const { infoTitle } = location.state || {};
 
   useEffect(() => {
     axios
@@ -24,7 +26,7 @@ function StockInfoDetail() {
   return (
     <div className="mock-container">
       <div className="stockinfo-header">
-        <Header title="주식에 대해 궁금해요" />
+        <Header title={infoTitle} />
         <img className="stockinfo-image" src={rabbit2} alt="토끼 이미지" />
       </div>
       <div className="stockinfo_content">

@@ -73,7 +73,7 @@
 /* 포인트 숫자 */
 .main-point-num p {
   font-size: 15px;
-  font-weight: 900;
+  font-weight: bold;
   color: #787878;
   margin: 0;
 }
@@ -115,7 +115,6 @@
 .main-grid {
   display: grid !important; /* 강제로 grid 적용 */
   grid-template-columns: repeat(2, 1fr); /* 2열 그리드 */
-  gap: 10px;
   width: 100%;
   max-width: 400px;
 }
@@ -133,7 +132,11 @@
   text-align: center;
   margin: auto;
   text-decoration: none;
+  cursor: pointer;
   transition: 0.5s ease;
+}
+.main-grid-box div p {
+  margin-bottom: 0;
 }
 /* 개별 카드 배경색 */
 .box-skyblue {
@@ -167,8 +170,8 @@
 }
 .card-pig {
   width: 70px;
+  margin-top: 5px;
   margin-right: 5px;
-  margin-bottom: 7px;
 }
 .card-rabbit {
   width: 70px;

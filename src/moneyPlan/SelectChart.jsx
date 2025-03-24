@@ -18,13 +18,14 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 function SelectChart() {
+  const memberNum = sessionStorage.getItem("member_num");
+
   const [plansData, setPlansData] = useState({}); //각 plan_num별 데이터 저장
   const [currentPlanNum, setCurrentPlanNum] = useState(0); //현재 보여줄 plan_num
   const [planDate, setPlanDate] = useState([]); //날짜짜
   const [legendData, setLegendData] = useState([]); //범례
   const [money, setMoney] = useState({});
   const chartInstanceRef = useRef(null); // 차트 인스턴스 저장
-  const memberNum = sessionStorage.getItem("member_num");
 
   // plan_date를 일주일 단위로 변환
   const formatPlanDate = (dateString) => {
@@ -70,7 +71,7 @@ function SelectChart() {
       .catch((error) => {
         console.error("데이터 로딩 오류: ", error);
       });
-  },[]);
+  }, [memberNum]);
 
   //카테고리별 세부 금액
   useEffect(() => {
@@ -163,9 +164,7 @@ function SelectChart() {
   };
 
   // 데이터가 없다면 차트가 표시되지 않도록
-  if (!Object.keys(plansData).length) {
-    return <div>현재 세운 용돈 계획이 없습니다!</div>;
-  }
+  if (!Object.keys(plansData).length) return null;
 
   const currentPlanDetails = plansData[Object.keys(plansData)[currentPlanNum]];
   const totalAmout = getTotalAmount(currentPlanDetails);
