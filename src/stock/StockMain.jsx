@@ -115,9 +115,9 @@ function StockMain(props) {
   }, 0);
 
   // 3. 총 매수 금액 (매수 평균가 * 보유량)
-  const totalInvested = myStockData.reduce((total, stock) => {
-    return total + stock.averagePrice * stock.quantity;
-  }, 0);
+  // const totalInvested = myStockData.reduce((total, stock) => {
+  //   return total + stock.averagePrice * stock.quantity;
+  // }, 0);
 
   const totalInvestment = totalCurrentValue + stockMoney;
 

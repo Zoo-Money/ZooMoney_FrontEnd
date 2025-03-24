@@ -45,7 +45,7 @@ function SelectChartParent() {
       .catch((error) => {
         console.error("데이터 로딩 오류: ", error);
       });
-  }, []);
+  }, [childNum]);
 
   //카테고리별 세부 금액
   useEffect(() => {
