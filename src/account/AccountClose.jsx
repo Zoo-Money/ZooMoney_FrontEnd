@@ -1,7 +1,7 @@
 import axios from "axios";
-import { API_PATH } from "../common/config.js";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { API_PATH } from "../common/config.js";
 import Header from "../common/Header";
 import "./css/AccountClose.css";
 
@@ -10,7 +10,7 @@ const AccountClose = () => {
   const navigate = useNavigate();
 
   const member_name = sessionStorage.getItem("member_name");
-  const target = sessionStorage.getItem("member_parent");
+  const memberNum = sessionStorage.getItem("member_num");
 
   // state에서 추출
   const accountNum = location.state?.accountNum;
@@ -28,9 +28,13 @@ const AccountClose = () => {
         }
       );
 
+      const response = await axios.get(`${API_PATH}/zoomoney/member/select`, {
+        params: { memberNum: memberNum },
+      });
+
       // 해지 요청 알림 전송
       await axios.post(`${API_PATH}/zoomoney/notify/send`, {
-        memberNum: target,
+        memberNum: response.data[0].memberParent.memberNum,
         notifyContent: `🐷 ${member_name}님이 저금통 해지 요청을 보냈어요`,
         notifyUrl: "/parent/account",
       });
@@ -40,7 +44,6 @@ const AccountClose = () => {
 
     navigate("/account/end", { state: { accountNum, status: 5 } }); // state로 전달
   };
-
   return (
     <div className="mock-container">
       {/* 헤더 */}
