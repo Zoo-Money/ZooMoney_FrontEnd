@@ -370,8 +370,8 @@ const ParentMain = () => {
           <p>용돈 계획 확인</p>
         </div>
         <div className="parent-card card-pink" onClick={goPattern}>
-          <img className="parent-rabbit" src={rabbit02} alt="소비패턴 분석" />
-          <p>소비 패턴 분석</p>
+          <img className="parent-rabbit" src={rabbit02} alt="소비패턴 확인" />
+          <p>소비 패턴 확인</p>
         </div>
         <div className="parent-card card-green" onClick={goAccount}>
           <img className="parent-pig" src={pig02} alt="저금통 확인" />

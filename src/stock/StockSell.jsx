@@ -80,7 +80,7 @@ function StockSell(props) {
       </div>
       <div className="buy-container">
         <div className="buy-box">
-          현재 <span>매도</span> 가격
+          현재 <span>주식</span> 가격
           <p className="buy-text-left">{price.toLocaleString()}원</p>
         </div>
         <div className="buy-box">
