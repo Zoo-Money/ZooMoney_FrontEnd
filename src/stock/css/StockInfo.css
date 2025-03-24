@@ -5,6 +5,8 @@
   cursor: pointer;
   line-height: 1.5;
   white-space: nowrap;
+  text-decoration: none;
+  transition: 0.5s ease;
 }
 .faq-InfoTitle a {
   text-decoration: none;
@@ -21,9 +23,8 @@
   height: 1.5px;
   background-color: #e5e7eb;
 }
-.faq-InfoTitle:hover{
-   opacity: 0.8;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+.faq-InfoTitle:hover {
+  opacity: 0.8;
 }
 .faqInfo {
   padding: 20px 0px 20px 0px;

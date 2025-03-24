@@ -16,7 +16,7 @@ import "./css/contractSelect.css";
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.8.69/build/pdf.worker.min.js`;
 
 const ContractSelect = () => {
-  const childNum = sessionStorage.getItem("member_num");
+  const childNum = sessionStorage.getItem("childNum");
   const navigate = useNavigate(); // useNavigate 사용
 
   const [latestPdfPath, setLatestPdfPath] = useState("");

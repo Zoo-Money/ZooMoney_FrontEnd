@@ -161,7 +161,7 @@ function StockMain(props) {
           }}
         />
         <div className="stock-main-box-amount">
-          {totalInvestment.toLocaleString()} 원
+          {(totalCurrentValue + 1000000).toLocaleString()} 원
         </div>
         <div className="stock-main-box-text">예상 수수료 * 세금 포함</div>
         <div className="stock-main-box-detail">
