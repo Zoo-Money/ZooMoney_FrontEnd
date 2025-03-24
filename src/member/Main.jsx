@@ -328,7 +328,10 @@ const Main = () => {
 
         {/* 기능 카드 버튼 */}
         <div className="main-grid grid-cols-2 gap-2 mt-1 w-full">
-          <a href="/card/pattern" className="main-grid-box box-skyblue">
+          <div
+            className="main-grid-box box-skyblue"
+            onClick={() => navigate("/card/pattern")}
+          >
             <div>
               <img
                 src={rabbit01}
@@ -337,25 +340,34 @@ const Main = () => {
               />
               <p>소비 패턴 분석</p>
             </div>
-          </a>
-          <a href="/moneyplan/main" className="main-grid-box box-blue">
+          </div>
+          <div
+            className="main-grid-box box-blue"
+            onClick={() => navigate("/moneyplan/main")}
+          >
             <div>
               <img src={deer02} className="card-deer" alt="용돈 계획 세우기" />
               <p>용돈 계획</p>
             </div>
-          </a>
-          <a href="/quiz/main" className="main-grid-box box-yellow">
+          </div>
+          <div
+            className="main-grid-box box-yellow"
+            onClick={() => navigate("/quiz/main")}
+          >
             <div>
               <img src={giraffe05} className="card-giraffe" alt="금융퀴즈" />
               <p>금융 퀴즈</p>
             </div>
-          </a>
-          <a href="/daily/main" className="main-grid-box box-pink">
+          </div>
+          <div
+            className="main-grid-box box-pink"
+            onClick={() => navigate("/daily/main")}
+          >
             <div>
               <img src={pig00} className="card-pig" alt="출석체크" />
               <p>출석체크</p>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </div>

@@ -15,9 +15,7 @@
   font-size: 15px;
   color: #5a5a5a;
   line-height: 1.5;
-  font-weight: 500;
   margin: 10px 25px 10px 25px;
-  font-weight: 400;
 }
 /* 홈 버튼 */
 .success-button {
@@ -26,7 +24,6 @@
   background-color: #ff9500;
   color: white;
   font-size: 14px;
-  font-weight: bold;
   border: none;
   border-radius: 10px;
   cursor: pointer;

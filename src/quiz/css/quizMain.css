@@ -58,7 +58,6 @@
 .quizmain-total-left {
   font-size: 16px;
   color: #000000;
-  font-weight: 500;
   text-align: left;
   margin-bottom: 3px;
 }
@@ -66,7 +65,6 @@
 .quizmain-total-right {
   font-size: 16px;
   color: #000000;
-  font-weight: 500;
   text-align: right;
   margin-bottom: 3px;
 }
@@ -98,7 +96,6 @@
   font-size: 16px;
   color: #5a5a5a;
   line-height: 1.5;
-  font-weight: 500;
   margin: 20px 25px 20px 25px;
 }
 
@@ -107,7 +104,6 @@
   font-size: 15px;
   color: #5a5a5a;
   line-height: 1.5;
-  font-weight: 500;
   margin: 20px 25px 20px 25px;
 }
 
@@ -144,7 +140,6 @@
   font-size: 16px;
   color: #5a5a5a;
   line-height: 2.5;
-  font-weight: 300;
   margin: 10px 50px 10px 50px;
   text-align: left;
 }
