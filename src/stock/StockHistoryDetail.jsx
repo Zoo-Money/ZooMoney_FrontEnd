@@ -24,7 +24,7 @@ function StockHistoryDetail(props) {
       .catch((err) => {
         console.error(err);
       });
-  });
+  }, []);
 
   return (
     <div className="mock-container">
