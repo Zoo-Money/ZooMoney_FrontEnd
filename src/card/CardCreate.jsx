@@ -128,7 +128,7 @@ const CardCreate = () => {
         disabled={minting}
         className="createbutton-style"
       >
-        {minting ? "" : "카드 발급"}
+        {minting ? "처리중..." : "카드 발급"}
       </button>
     </div>
   );

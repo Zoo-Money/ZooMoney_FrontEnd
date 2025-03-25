@@ -11,15 +11,13 @@ const CardCreateSuccess = () => {
         <img src={bear01} alt="bear01" className="main-image" />
       </div>
       <p className="description">카드 발급이 완료되었어요</p>
-      <button className="success-button">
-        <Link
-          to="/main" // 상대경로로 수정
-          className="success-button"
-          style={{ textDecoration: "none" }}
-        >
-          홈으로
-        </Link>
-      </button>
+      <Link
+        to="/main" // 상대경로로 수정
+        className="success-button"
+        style={{ textDecoration: "none" }}
+      >
+        <button className="success-button">홈으로</button>
+      </Link>
     </div>
   );
 };
